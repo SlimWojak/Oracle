@@ -136,6 +136,21 @@ evaluation on a period — tagging after seeing performance is prohibited;
 SHA, configuration hash, input manifest identifiers, UTC execution time, and
 output content hashes.
 
+## D-020 — HL-fills challenger runs no predictive ladder this cycle
+
+**Accepted** (user sign-off, 2026-08-23). The Hyperliquid fill tape's usable
+history (2025-05-25 to the catalogue end 2026-07-31) falls entirely inside the
+final-test region of any regime-diverse chronological split and contains too
+few independent clusters (~170 at 1h) to support a nested development/
+validation/test design. In this cycle the fill tape therefore serves EXP-001
+reconstruction feasibility, construct validation (realized liquidation mass
+with book/backstop split), and realized-mass diagnostics only; no predictive
+ladder is fitted on an HL-fills-derived fuel feature. The challenger earns a
+ladder in a later cycle when its history extends, consistent with D-016
+(own ladder on own usable history) and D-018 (observed status gated on
+EXP-001). The nested-split alternative was considered and rejected as
+statistically uninterpretable.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest

@@ -6,6 +6,7 @@ import numpy as np
 
 from oracle_research.batch_labels import batch_first_passage
 from oracle_research.binance_klines import KlineArrays
+from oracle_research.clusters import EventCluster
 from oracle_research.labels import Direction
 
 
@@ -81,6 +82,54 @@ class CollectPositiveAnchorsTests(unittest.TestCase):
         self.assertEqual(
             anchors[0].anchor_timestamp,
             int(klines.timestamp[1]) + catalogue.STEP_SECONDS,
+        )
+
+
+class ClusterRecordTests(unittest.TestCase):
+    def test_directional_record(self) -> None:
+        cluster = EventCluster(
+            start_timestamp=1_700_000_060,
+            end_timestamp=1_700_000_360,
+            anchor_count=3,
+            up_count=3,
+            down_count=0,
+        )
+        record = catalogue._cluster_record(cluster)
+        self.assertEqual(record["direction"], "up")
+        self.assertEqual(record["start"], "2023-11-14T22:14:20Z")
+        self.assertEqual(record["start_timestamp"], 1_700_000_060)
+        self.assertEqual(record["end_timestamp"], 1_700_000_360)
+        self.assertEqual(record["anchor_count"], 3)
+
+    def test_mixed_record(self) -> None:
+        cluster = EventCluster(
+            start_timestamp=1_700_000_060,
+            end_timestamp=1_700_000_360,
+            anchor_count=2,
+            up_count=1,
+            down_count=1,
+        )
+        self.assertEqual(catalogue._cluster_record(cluster)["direction"], "mixed")
+
+
+class LabelHorizonRecordTests(unittest.TestCase):
+    def test_records_match_summary_counts(self) -> None:
+        klines = make_klines([100.5, 100.5, 100.5, 103.0] + [100.5] * 6)
+        segments = [(0, klines.n_rows)]
+        summary, records = catalogue._label_horizon(
+            klines, segments, horizon_bars=5, threshold=0.02
+        )
+        self.assertEqual(summary["clusters"]["total"], len(records))
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]["direction"], "up")
+        self.assertEqual(records[0]["anchor_count"], 3)
+        self.assertEqual(
+            records[0]["start_timestamp"],
+            int(klines.timestamp[0]) + catalogue.STEP_SECONDS,
+        )
+        self.assertEqual(
+            records[0]["end_timestamp"],
+            int(klines.timestamp[3]) + catalogue.STEP_SECONDS,
         )
 
 

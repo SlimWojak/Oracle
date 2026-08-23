@@ -146,13 +146,27 @@ def _cluster_stats(clusters: list[EventCluster]) -> dict[str, object]:
     }
 
 
+def _cluster_record(cluster: EventCluster) -> dict[str, object]:
+    direction = "mixed" if cluster.mixed else cluster.direction.name.lower()
+    return {
+        "start_timestamp": cluster.start_timestamp,
+        "end_timestamp": cluster.end_timestamp,
+        "start": iso_utc(cluster.start_timestamp),
+        "end": iso_utc(cluster.end_timestamp),
+        "direction": direction,
+        "anchor_count": cluster.anchor_count,
+        "up_count": cluster.up_count,
+        "down_count": cluster.down_count,
+    }
+
+
 def _label_horizon(
     klines: KlineArrays,
     segments: list[tuple[int, int]],
     *,
     horizon_bars: int,
     threshold: float,
-) -> dict[str, object]:
+) -> tuple[dict[str, object], list[dict[str, object]]]:
     up = down = ambiguous = insufficient = none = 0
     positives: list[PositiveAnchor] = []
     for start, end in segments:
@@ -173,7 +187,7 @@ def _label_horizon(
     total = up + down + ambiguous + insufficient + none
     positive = up + down
     clusters = cluster_positive_anchors(positives, horizon_seconds=horizon_bars * STEP_SECONDS)
-    return {
+    summary = {
         "horizon_bars": horizon_bars,
         "horizon_seconds": horizon_bars * STEP_SECONDS,
         "total_anchors": total,
@@ -186,6 +200,7 @@ def _label_horizon(
         "positive_rate": (positive / total) if total else 0.0,
         "clusters": _cluster_stats(clusters),
     }
+    return summary, [_cluster_record(cluster) for cluster in clusters]
 
 
 def _format_optional(value: float | None, digits: int = 2) -> str:
@@ -288,7 +303,10 @@ def print_stdout_summary(payload: dict[str, object], out_dir: Path) -> None:
             f"insufficient; {clusters['total']} clusters "
             f"({clusters['up']} up, {clusters['down']} down, {clusters['mixed']} mixed)"
         )
-    print(f"Wrote {out_dir / 'catalogue.json'} and {out_dir / 'SUMMARY.md'}")
+    print(
+        f"Wrote {out_dir / 'catalogue.json'}, {out_dir / 'clusters.json'}, "
+        f"and {out_dir / 'SUMMARY.md'}"
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -296,7 +314,7 @@ def main(argv: list[str] | None = None) -> int:
     kline_dir = args.data_root / args.spot_subdir
     klines = load_kline_dir(kline_dir)
     segments = contiguous_segments(klines.timestamp, step_seconds=STEP_SECONDS)
-    horizons = [
+    results = [
         _label_horizon(
             klines,
             segments,
@@ -305,22 +323,37 @@ def main(argv: list[str] | None = None) -> int:
         )
         for horizon_bars in args.horizons_bars
     ]
+    parameters = {
+        "spot_subdir": args.spot_subdir,
+        "threshold": args.threshold,
+        "horizons_bars": list(args.horizons_bars),
+        "step_seconds": STEP_SECONDS,
+        "decision_clock": "60s",
+        "kline_open_time": "interval_start",
+        "anchor_timestamp": "interval_end",
+    }
     payload = {
-        "parameters": {
-            "spot_subdir": args.spot_subdir,
-            "threshold": args.threshold,
-            "horizons_bars": list(args.horizons_bars),
-            "step_seconds": STEP_SECONDS,
-            "decision_clock": "60s",
-            "kline_open_time": "interval_start",
-            "anchor_timestamp": "interval_end",
-        },
+        "parameters": parameters,
         "coverage": _coverage(klines, segments),
-        "horizons": horizons,
+        "horizons": [summary for summary, _ in results],
+    }
+    clusters_payload = {
+        "parameters": parameters,
+        "horizons": [
+            {
+                "horizon_bars": summary["horizon_bars"],
+                "horizon_seconds": summary["horizon_seconds"],
+                "clusters": records,
+            }
+            for summary, records in results
+        ],
     }
     out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "catalogue.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    (out_dir / "clusters.json").write_text(
+        json.dumps(clusters_payload, indent=2) + "\n", encoding="utf-8"
+    )
     (out_dir / "SUMMARY.md").write_text(render_summary(payload), encoding="utf-8")
     print_stdout_summary(payload, out_dir)
     return 0
