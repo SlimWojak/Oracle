@@ -1,0 +1,31 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.idea/
+.venv/
+.vscode/
+__pycache__/
+*.egg-info/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Data is external and immutable. Never commit local datasets.
+data/
+raw/
+derived/
+*.csv
+*.parquet
+*.feather
+*.duckdb
+*.db
+
+# Generated notebook state and reports.
+.ipynb_checkpoints/
+reports/generated/
+

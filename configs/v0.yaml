@@ -1,0 +1,63 @@
+study:
+  name: oracle_v0
+  asset: BTC
+  label_price: consolidated_spot_index
+
+labels:
+  fixed_first_passage:
+    threshold_fraction: 0.02
+    horizons_seconds:
+      - 3600
+      - 14400
+    directions:
+      - up
+      - down
+    same_bar_policy: ambiguous
+  volatility_normalized:
+    status: decision_required
+
+sampling:
+  decision_clock_seconds: 60
+  group_by_event_cluster: true
+
+evaluation:
+  split_method: chronological_purged
+  embargo_seconds: label_horizon
+  require_multiple_oos_periods: true
+  report_timestamp_and_cluster_counts: true
+
+feature_families:
+  fuel:
+    challengers:
+      - hyperliquid_observed
+      - cex_inferred
+      - vendor_model
+    price_bands_bps:
+      - 50
+      - 100
+      - 200
+    combine_challengers: false
+  impact_susceptibility:
+    candidates:
+      - visible_book_walk
+      - trailing_realized_impact
+    combine_candidates: false
+  ignition:
+    candidates:
+      - signed_ofi_acceleration
+      - signed_cvd_acceleration
+      - spot_vs_perp_lead
+
+excluded_from_v0:
+  - toxic_wallet_identity
+  - subsecond_leader_lagger
+  - options_surface
+  - adl_rating
+  - cross_asset_correlation_fabric
+  - hidden_liquidity_estimation
+  - full_replenishment_model
+  - automated_news_classifier
+  - dashboard
+  - live_service
+  - execution
+
