@@ -6,6 +6,7 @@
 - step_seconds: 60
 - decision_clock: 60s
 - kline_open_time: interval_start
+- anchor_timestamp: interval_end
 - spot_subdir: raw/binance_vision/spot/monthly/klines/BTCUSDT/1m
 
 ## Coverage

@@ -8,7 +8,8 @@
     ],
     "step_seconds": 60,
     "decision_clock": "60s",
-    "kline_open_time": "interval_start"
+    "kline_open_time": "interval_start",
+    "anchor_timestamp": "interval_end"
   },
   "coverage": {
     "total_bars": 3459435,
