@@ -51,6 +51,18 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   proposed chronological splits, per-fuel-challenger usable history, HL pull
   sizing (blocked on AWS SCP).
 
+  2026-08-23 (later): AWS SCP unblocked (region floor widened to ap-northeast-1;
+  S3 reads whitelisted in us-east-1). Hyperliquid requester-pays sizing:
+  `asset_ctxs` (per-minute contexts incl. quoted impact prices, all assets)
+  2023-05-20..present, 1,169 daily files, ~6 GB, ~$0.60 egress; `market_data`
+  L2 book (BTC-only slice, hourly ~0.9 MB) 2023-04-15..present, ~29 GB, ~$3;
+  `node_fills/hourly` (old format) 2025-05-25..2025-07-27, 64 days x ~0.8 GB
+  ~51 GB, ~$6; `node_fills_by_block/hourly` 2025-07-27..present, 393 days x
+  ~1.2-1.5 GB, ~470-590 GB, ~$54-67. Full fill history therefore ~$60-75 of
+  the $100 credit. Staged plan: Stage 1 (executed) asset_ctxs full plus two
+  sample fill hours for schema inspection; Stage 2 (user sign-off required)
+  full fill history; l2Book BTC slice cheap and deferred to need.
+
 ## Experiment template
 
 ```text
