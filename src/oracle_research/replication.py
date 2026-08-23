@@ -20,13 +20,16 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import numpy as np
-from numpy.lib.stride_tricks import sliding_window_view
 
-from oracle_research.batch_labels import DIR_AMBIGUOUS, DIR_DOWN, DIR_UP
+from oracle_research.batch_labels import (
+    DIR_AMBIGUOUS,
+    DIR_DOWN,
+    DIR_UP,
+    batch_first_passage_time,
+)
 from oracle_research.binance_klines import KlineArrays
 
 STEP_SECONDS = 60
-CHUNK_SIZE = 65_536
 
 VERDICT_REPLICATED = "replicated"
 VERDICT_DISPUTED = "venue_disputed"
@@ -77,61 +80,28 @@ def venue_positive_anchors(
 ) -> VenueAnchors:
     """Time-aware first passage over gappy venue bars; anchors at bar close.
 
-    Every bar is an anchor. Its passage window is the wall-clock span
-    ``(ts, ts + horizon_bars * 60]`` evaluated over whatever bars exist there;
-    absent minutes contribute no evidence. Because consecutive bars are at
-    least 60s apart, at most ``horizon_bars`` bars can fall in the window, so
-    a fixed-width bar window with a per-element time mask is exact.
+    Thin wrapper over :func:`batch_first_passage_time`. Anchors whose window
+    extends beyond the venue's bar history are insufficient there and yield
+    no anchor; the cluster-level ``pending_bars`` verdict covers that edge.
     """
 
-    n_rows = klines.n_rows
-    horizon_seconds = horizon_bars * STEP_SECONDS
-    pad_ts = np.full(horizon_bars, np.iinfo(np.int64).max, dtype=np.int64)
-    pad_price = np.full(horizon_bars, np.nan)
-    ts_padded = np.concatenate([klines.timestamp, pad_ts])
-    high_padded = np.concatenate([klines.high, pad_price])
-    low_padded = np.concatenate([klines.low, pad_price])
-
-    ts_windows = sliding_window_view(ts_padded[1:], horizon_bars)
-    high_windows = sliding_window_view(high_padded[1:], horizon_bars)
-    low_windows = sliding_window_view(low_padded[1:], horizon_bars)
-
-    anchor_ts: list[np.ndarray] = []
-    codes: list[np.ndarray] = []
-    upper_scale = 1.0 + threshold_fraction
-    lower_scale = 1.0 - threshold_fraction
-    for chunk0 in range(0, n_rows, CHUNK_SIZE):
-        chunk1 = min(chunk0 + CHUNK_SIZE, n_rows)
-        chunk = slice(chunk0, chunk1)
-        deadline = (klines.timestamp[chunk] + horizon_seconds)[:, np.newaxis]
-        in_window = ts_windows[chunk] <= deadline
-        with np.errstate(invalid="ignore"):
-            hit_up = (high_windows[chunk] >= (klines.close[chunk] * upper_scale)[:, np.newaxis])
-            hit_down = (low_windows[chunk] <= (klines.close[chunk] * lower_scale)[:, np.newaxis])
-        hit_up &= in_window
-        hit_down &= in_window
-        any_up = hit_up.any(axis=1)
-        any_down = hit_down.any(axis=1)
-        positive = np.nonzero(any_up | any_down)[0]
-        if positive.size == 0:
-            continue
-        first_up = hit_up[positive].argmax(axis=1)
-        first_down = hit_down[positive].argmax(axis=1)
-        pos_up = any_up[positive]
-        pos_down = any_down[positive]
-        direction = np.where(pos_up & ~pos_down, DIR_UP, DIR_DOWN).astype(np.int8)
-        both = pos_up & pos_down
-        direction[both & (first_up < first_down)] = DIR_UP
-        direction[both & (first_down < first_up)] = DIR_DOWN
-        direction[both & (first_up == first_down)] = DIR_AMBIGUOUS
-        anchor_ts.append(klines.timestamp[chunk0 + positive] + STEP_SECONDS)
-        codes.append(direction)
-    if not anchor_ts:
-        empty_ts = np.empty(0, dtype=np.int64)
-        return VenueAnchors(anchor_timestamp=empty_ts, direction=np.empty(0, dtype=np.int8))
+    labels = batch_first_passage_time(
+        klines.timestamp,
+        klines.high,
+        klines.low,
+        klines.close,
+        horizon_seconds=horizon_bars * STEP_SECONDS,
+        threshold_fraction=threshold_fraction,
+        step_seconds=STEP_SECONDS,
+    )
+    positive = np.nonzero(
+        (labels.direction == DIR_UP)
+        | (labels.direction == DIR_DOWN)
+        | (labels.direction == DIR_AMBIGUOUS)
+    )[0]
     return VenueAnchors(
-        anchor_timestamp=np.concatenate(anchor_ts),
-        direction=np.concatenate(codes),
+        anchor_timestamp=klines.timestamp[positive] + STEP_SECONDS,
+        direction=labels.direction[positive],
     )
 
 
