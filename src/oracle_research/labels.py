@@ -6,13 +6,13 @@ and consolidated-index construction remain configurable research decisions.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 from math import isfinite
-from typing import Sequence
 
 
-class Direction(str, Enum):
+class Direction(StrEnum):
     """First barrier reached after an anchor."""
 
     UP = "up"

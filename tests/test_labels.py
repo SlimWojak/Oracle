@@ -85,14 +85,13 @@ class FirstPassageTests(unittest.TestCase):
 
     def test_invalid_threshold_rejected(self) -> None:
         for threshold in (0, -0.01, 1, math.nan):
-            with self.subTest(threshold=threshold):
-                with self.assertRaises(ValueError):
-                    first_passage(
-                        [bar(0, 100)],
-                        anchor_index=0,
-                        horizon_bars=1,
-                        threshold_fraction=threshold,
-                    )
+            with self.subTest(threshold=threshold), self.assertRaises(ValueError):
+                first_passage(
+                    [bar(0, 100)],
+                    anchor_index=0,
+                    horizon_bars=1,
+                    threshold_fraction=threshold,
+                )
 
     def test_invalid_bar_rejected(self) -> None:
         with self.assertRaises(ValueError):
