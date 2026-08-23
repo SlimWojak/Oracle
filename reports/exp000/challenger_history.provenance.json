@@ -1,0 +1,52 @@
+{
+  "repo_commit": "07963f8f044adbc3e47891ebc81344fbd5778afb",
+  "generated_at_utc": "2026-08-23T14:20:14Z",
+  "config": {
+    "windows": [
+      {
+        "key": "price_controls",
+        "label": "Price-only controls (M0)",
+        "start": "2020-01-01",
+        "note": "Binance spot 1m klines; context baseline, never a comparable score (D-016)."
+      },
+      {
+        "key": "cex_inferred",
+        "label": "CEX-inferred challenger (M1+, Binance UM metrics)",
+        "start": "2021-12-01",
+        "note": "OI/taker metrics dumps begin 2021-12; funding alone reaches back to 2020-01."
+      },
+      {
+        "key": "hl_impact_context",
+        "label": "HL impact-context challenger (asset_ctxs)",
+        "start": "2023-05-20",
+        "note": "Per-minute quoted impact prices, OI, premium."
+      },
+      {
+        "key": "hl_fills",
+        "label": "HL fill tape (no predictive ladder this cycle, D-020)",
+        "start": "2025-05-25",
+        "note": "Construct validation and EXP-001 only; observed-fuel status gated by D-018."
+      }
+    ],
+    "membership_rule": "cluster start_timestamp >= window start (straddlers excluded)"
+  },
+  "inputs": [
+    {
+      "path": "reports/exp000/clusters.json",
+      "bytes": 1081533,
+      "sha256": "f569190d34d920fdc860252dca4fdf6bbabb35b3e46222bd86db2ec2c347eaea"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "challenger_history.json",
+      "bytes": 4435,
+      "sha256": "2f95a25a49c847ba930d2ce2a34df7beb4199b36ecd029a6f29f217baaf88c09"
+    },
+    {
+      "path": "challenger_history.md",
+      "bytes": 2431,
+      "sha256": "b553bf71472bb880cbaa9bb8779b5085c329bdfc3cce937e605d4579a1402e60"
+    }
+  ]
+}

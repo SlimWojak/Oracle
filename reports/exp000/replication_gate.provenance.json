@@ -1,0 +1,42 @@
+{
+  "repo_commit": "07963f8f044adbc3e47891ebc81344fbd5778afb",
+  "generated_at_utc": "2026-08-23T14:20:16Z",
+  "config": {
+    "coverage_floor": 0.9,
+    "bars_start": "2019-11-01T00:00:00Z",
+    "escalation_rate": 0.02,
+    "kraken_csvs": [
+      "XBTUSD_1.csv",
+      "XBTUSD_1_Q1_2026.csv"
+    ]
+  },
+  "inputs": [
+    {
+      "path": "XBTUSD_1.csv",
+      "bytes": 256666564,
+      "sha256": "e183d1e0345e369f41fe59c6421c4955e372e9b4a11b516c1b1af5285656402a"
+    },
+    {
+      "path": "XBTUSD_1_Q1_2026.csv",
+      "bytes": 7709654,
+      "sha256": "c16b87ab87b09b3898a16013c217d0c48db3cbdc6c7d25654acb560563f36789"
+    },
+    {
+      "path": "clusters.json",
+      "bytes": 1081533,
+      "sha256": "f569190d34d920fdc860252dca4fdf6bbabb35b3e46222bd86db2ec2c347eaea"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "replication_gate.json",
+      "bytes": 94183,
+      "sha256": "439a7496c9d0c7c30a275db35f9ac945f36b6c22457a3768cfaccc9fe07bc3d9"
+    },
+    {
+      "path": "REPLICATION.md",
+      "bytes": 811,
+      "sha256": "099a6dd6d7b6e5a7e5eeb03e573f9f9de0b9ebb0e47d0530abaa24d80750e650"
+    }
+  ]
+}
