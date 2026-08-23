@@ -110,6 +110,23 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   catalogue window ending 2026-07-31. The ~600-hour shortfall vs theoretical
   hours is hours absent from the archive, matching the fill-pull pattern.
 
+  2026-08-23 (seat 2, later): Kraken XBTUSD acquisition for the D-013
+  replication gate complete (delegated; lead-reviewed). Official OHLCVT 1m
+  CSVs: master export through 2025-12-31 plus Q1 2026 quarterly (both
+  Drive-quota-blocked programmatically; retrieved by manual user browser
+  download, rsynced to the data host, sha256-verified end to end). Combined
+  official bars 2013-10-06..2026-03-31, 3,234,282 rows inside the catalogue
+  window, exact 60s continuity at both file seams. Raw public-API trade
+  pages: 2026-01-01..2026-04-01 (5,762 pages, overlapping official Q1 bars
+  as a deliberate bar-construction validation corpus) and
+  2026-04-01..2026-08-01 (6,466 pages); zero rate-limit or error pages.
+  Kraken structural missing minutes (no-trade bars absent by construction):
+  30,186 in 2020 falling to 2,362 by 2025 — replication semantics must
+  treat absent bars as reduced evidence, not disagreement. Manifest with
+  full hash tables on the data host; fetch script and tests committed.
+  Apr-Jul 2026 has no official bars; replication over that span waits on
+  the normalization-layer bar construction from raw trades.
+
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 
 - **Status:** PLANNED
