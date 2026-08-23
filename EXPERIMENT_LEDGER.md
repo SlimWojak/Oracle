@@ -102,6 +102,14 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   Kraken XBTUSD 1m OHLCVT acquisition for the D-013 replication gate.
   Remaining before verdict: Kraken replication run, split proposal.
 
+  2026-08-23 (seat 2, later): l2Book BTC slice pull complete (07:14-07:44Z,
+  30 min): 28,304 hourly `l2Book/BTC.lz4` files, ~22GB, dates
+  2023-04-15..2026-08-01. Verified by dry-run re-sync: zero missing objects
+  under the BTC filter. The `hyperliquid-archive` market_data prefix trails
+  the present (last published date 2026-08-01), which still fully covers the
+  catalogue window ending 2026-07-31. The ~600-hour shortfall vs theoretical
+  hours is hours absent from the archive, matching the fill-pull pattern.
+
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 
 - **Status:** PLANNED
