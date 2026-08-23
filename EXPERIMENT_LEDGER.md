@@ -63,6 +63,12 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   sample fill hours for schema inspection; Stage 2 (user sign-off required)
   full fill history; l2Book BTC slice cheap and deferred to need.
 
+  Stage 1 complete (asset_ctxs ~9GB; samples verified: fills carry
+  liquidation.liquidatedUser and method in {market, backstop}; ADL tagged;
+  dedupe by liquidated-user leg confirmed viable). Stage 2 full fill pull
+  approved by user and launched 2026-08-23; result to be recorded on
+  completion.
+
 ## Experiment template
 
 ```text

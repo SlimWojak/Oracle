@@ -80,6 +80,14 @@ Delegation rules:
 - The lead agent reviews delegated diffs before commit. Delegation transfers
   labour, not authority.
 
+## Seat rotation
+
+- Before ending a CTO session, update `docs/HANDOVER.md`: topology/access
+  state, data on hand, in-flight jobs, verified load-bearing facts, next
+  actions. Terse agent-to-agent prose.
+- An incoming seat orients by reading `AGENTS.md`, then `docs/HANDOVER.md`,
+  then `EXPERIMENT_LEDGER.md` and `docs/DECISIONS.md`, before touching code.
+
 ## Compute and data topology
 
 - The canonical repository seat is the user's workstation; the remote headless
