@@ -101,6 +101,28 @@ Failure here rejects the measurement implementation, not the market mechanism.
 - Inspect descriptive monotonicity before fitting nonlinear models.
 - Stratify results by direction, horizon, volatility regime, and event tag.
 
+## Evaluation discipline (D-015)
+
+1. **Robust regions, frozen grid.** Interaction evidence is reported on a
+   coarse quantile grid (no finer than quintile x quintile) frozen before
+   evaluation. The full grid is published with stability across years,
+   horizons, and volatility regimes. No post-hoc region search; a single
+   threshold that wins in one slice is not a finding.
+2. **Family accounting.** Fuel challengers, impact proxies, and interaction
+   forms are evaluated as families, not independent attempts. The interaction
+   family (challenger x proxy x functional form) is the largest and most
+   dangerous. A win at any ladder rung is incremental lift that beats the
+   cluster-bootstrap distribution of the best-in-family statistic under a
+   within-regime permutation null, not lift over zero. Killed measurement
+   paths stay dead unless the estimator implementation changes, and re-enter
+   only as a new ledger entry.
+3. **Slice before model.** Before any M2+ fit, lift tables are reported by
+   volatility regime, trading session, direction (squeeze vs dump), news-tag
+   stratum, and mixed vs one-way cluster. Slices with fewer than 30 clusters
+   are reported but not interpreted. Slices characterize a pooled
+   pre-registered result; a story that lives only in one slice is recorded as
+   a hypothesis for the next OOS period, not as a result.
+
 ## Interpretation matrix
 
 | Evidence | Verdict |

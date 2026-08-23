@@ -88,6 +88,15 @@ mixed. Splits, bootstraps, and sample counts operate on clusters. The definition
 deliberately errs toward merging, since pseudo-replication is the feared failure
 mode.
 
+## D-015 — Evaluation discipline: regions, families, slices
+
+**Accepted.** Three user-seeded rules, adopted with modifications: interaction
+evidence on a pre-frozen coarse quantile grid published in full; family-level
+accounting with best-in-family bootstrap nulls (the interaction family counted
+as one family across challengers, proxies, and forms); population slicing
+before modelling with a 30-cluster interpretation floor, slices characterizing
+rather than rescuing pooled results. Details in `RESEARCH_CONTRACT.md`.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
