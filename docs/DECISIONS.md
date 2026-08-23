@@ -151,6 +151,34 @@ ladder in a later cycle when its history extends, consistent with D-016
 EXP-001). The nested-split alternative was considered and rejected as
 statistically uninterpretable.
 
+## D-021 — Venue-replication check semantics (operationalizes D-013)
+
+**Accepted** (2026-08-23). The D-013 Kraken re-check runs at event-cluster
+level with these frozen rules:
+
+1. **Unit and window.** Each Binance-labelled cluster (first anchor decision
+   timestamp T0, cluster end T1, horizon h, threshold 2%) is checked once per
+   horizon. Kraken bars are labelled with the identical first-passage code
+   (same threshold, horizon, interval-end decision timestamps) on Kraken's
+   own price series; the cluster replicates when at least one positive
+   Kraken anchor with a direction present in the cluster falls in
+   [T0 - h, T1]. Mixed clusters replicate on either direction.
+2. **Own-venue reference prices.** Each venue's passage is measured from its
+   own bar closes. XBTUSD (USD) versus BTCUSDT (USDT) basis drift therefore
+   cancels within-venue; disagreement during stablecoin-stress periods is
+   informative signal, not measurement error.
+3. **Structural sparsity is not disagreement.** Kraken omits no-trade
+   minutes (30,186 missing in 2020 falling to 2,362 by 2025). If Kraken bar
+   coverage over [T0 - h, T1 + h] is below 90%, the cluster is flagged
+   `KRAKEN_SPARSE` and excluded from the disagreement-rate denominator;
+   sparse counts are reported alongside. Only well-covered non-replicating
+   clusters become `VENUE_DISPUTED`. The D-013 2% escalation threshold is
+   evaluated on the well-covered population per horizon.
+4. **Coverage boundary.** Official Kraken bars end 2026-03-31; clusters
+   whose check window extends past that date are deferred until the
+   normalization layer builds bars from the raw trade pages, and are
+   reported as `PENDING_BARS` rather than silently skipped.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
