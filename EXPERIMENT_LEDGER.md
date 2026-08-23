@@ -39,6 +39,18 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   scoped IAM user and an arxiv requester-pays control). HL pull sizing deferred
   until the SCP is lifted from the org management account.
 
+  2026-08-23 catalogue run (`reports/exp000/`): 3,459,435 one-minute bars,
+  2020-01-01..2026-07-31, 99.97% coverage (15 gaps, 2,325 missing minutes, all
+  material gaps pre-2022). Pseudo-replication confirmed and quantified: 1h
+  horizon has 136,952 positive timestamps collapsing to 1,679 independent
+  clusters (82:1); 4h has 655,883 collapsing to 1,940 (338:1). Direction is
+  balanced (1h pure clusters: 560 up / 568 down; 551 mixed). Every calendar
+  year contains 98-440 clusters, so multiple contiguous OOS periods are
+  feasible. Ambiguous labels are negligible (16 and 19). Cluster duration is
+  heavy-tailed (1h median 83 min, max 9.2 days). Remaining before verdict:
+  proposed chronological splits, per-fuel-challenger usable history, HL pull
+  sizing (blocked on AWS SCP).
+
 ## Experiment template
 
 ```text

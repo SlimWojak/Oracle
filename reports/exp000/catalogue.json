@@ -1,0 +1,149 @@
+{
+  "parameters": {
+    "spot_subdir": "raw/binance_vision/spot/monthly/klines/BTCUSDT/1m",
+    "threshold": 0.02,
+    "horizons_bars": [
+      60,
+      240
+    ],
+    "step_seconds": 60,
+    "decision_clock": "60s",
+    "kline_open_time": "interval_start"
+  },
+  "coverage": {
+    "total_bars": 3459435,
+    "first_timestamp": "2020-01-01T00:00:00Z",
+    "last_timestamp": "2026-07-31T23:59:00Z",
+    "segment_count": 16,
+    "gap_count": 15,
+    "total_missing_minutes": 2325.0,
+    "largest_gaps": [
+      {
+        "start": "2020-02-19T11:35:00Z",
+        "end": "2020-02-19T17:30:00Z",
+        "missing_minutes": 354.0
+      },
+      {
+        "start": "2021-04-25T04:00:00Z",
+        "end": "2021-04-25T08:45:00Z",
+        "missing_minutes": 284.0
+      },
+      {
+        "start": "2021-08-13T01:59:00Z",
+        "end": "2021-08-13T06:30:00Z",
+        "missing_minutes": 270.0
+      },
+      {
+        "start": "2020-12-21T14:09:00Z",
+        "end": "2020-12-21T18:00:00Z",
+        "missing_minutes": 230.0
+      },
+      {
+        "start": "2020-06-28T01:59:00Z",
+        "end": "2020-06-28T05:30:00Z",
+        "missing_minutes": 210.0
+      },
+      {
+        "start": "2020-04-25T01:59:00Z",
+        "end": "2020-04-25T04:30:00Z",
+        "missing_minutes": 150.0
+      },
+      {
+        "start": "2021-04-20T01:59:00Z",
+        "end": "2021-04-20T04:30:00Z",
+        "missing_minutes": 150.0
+      },
+      {
+        "start": "2020-03-04T09:21:00Z",
+        "end": "2020-03-04T11:30:00Z",
+        "missing_minutes": 128.0
+      },
+      {
+        "start": "2021-09-29T06:59:00Z",
+        "end": "2021-09-29T09:00:00Z",
+        "missing_minutes": 120.0
+      },
+      {
+        "start": "2021-03-06T01:59:00Z",
+        "end": "2021-03-06T03:30:00Z",
+        "missing_minutes": 90.0
+      }
+    ]
+  },
+  "horizons": [
+    {
+      "horizon_bars": 60,
+      "horizon_seconds": 3600,
+      "total_anchors": 3459435,
+      "up_count": 63551,
+      "down_count": 73401,
+      "positive_count": 136952,
+      "ambiguous_count": 16,
+      "insufficient_horizon_count": 960,
+      "none_count": 3321507,
+      "positive_rate": 0.039587967399300754,
+      "clusters": {
+        "total": 1679,
+        "up": 560,
+        "down": 568,
+        "mixed": 551,
+        "duration_minutes": {
+          "median": 83.0,
+          "p90": 435.0,
+          "max": 13269.0
+        },
+        "anchors_per_cluster": {
+          "median": 42.0,
+          "p90": 140.0,
+          "max": 6088.0
+        },
+        "per_year": {
+          "2020": 282,
+          "2021": 440,
+          "2022": 304,
+          "2023": 174,
+          "2024": 237,
+          "2025": 144,
+          "2026": 98
+        }
+      }
+    },
+    {
+      "horizon_bars": 240,
+      "horizon_seconds": 14400,
+      "total_anchors": 3459435,
+      "up_count": 313092,
+      "down_count": 342791,
+      "positive_count": 655883,
+      "ambiguous_count": 19,
+      "insufficient_horizon_count": 3840,
+      "none_count": 2799693,
+      "positive_rate": 0.18959252016586522,
+      "clusters": {
+        "total": 1940,
+        "up": 588,
+        "down": 538,
+        "mixed": 814,
+        "duration_minutes": {
+          "median": 368.5,
+          "p90": 1089.6000000000008,
+          "max": 31790.0
+        },
+        "anchors_per_cluster": {
+          "median": 197.0,
+          "p90": 604.1000000000001,
+          "max": 26459.0
+        },
+        "per_year": {
+          "2020": 308,
+          "2021": 342,
+          "2022": 332,
+          "2023": 241,
+          "2024": 318,
+          "2025": 231,
+          "2026": 168
+        }
+      }
+    }
+  ]
+}
