@@ -51,6 +51,46 @@ Before making material changes, read:
 - Record negative, null, ambiguous, and blocked results in `EXPERIMENT_LEDGER.md`.
 - Notebooks may explore; canonical transformations and metrics belong in tested code.
 
+## Operating model: thin orchestration
+
+The lead agent session holds the CTO seat. It owns research judgment and must not
+spend its context on mechanical work.
+
+Reserved for the lead agent (never delegated):
+
+- changes to `THESIS.md`, `RESEARCH_CONTRACT.md`, `DATA_CONTRACT.md`,
+  `docs/DECISIONS.md`, and experiment verdicts in `EXPERIMENT_LEDGER.md`;
+- experiment design, pass/fail interpretation, and anything touching label,
+  split, or leakage semantics;
+- review of all delegated output before it is committed.
+
+Delegate to lighter Cursor-native models (Composer, Grok) via subagents:
+
+- scaffolding, plumbing, and download/ingest scripts written to a frozen spec;
+- mechanical refactors, formatting, boilerplate tests from a given spec;
+- remote provisioning and long-running job supervision;
+- broad codebase or literature searches whose output is a summary.
+
+Delegation rules:
+
+- Every delegated task carries a tight written spec with explicit file
+  boundaries and acceptance checks.
+- Delegated agents obey every fence in this file and may not edit the reserved
+  documents above.
+- The lead agent reviews delegated diffs before commit. Delegation transfers
+  labour, not authority.
+
+## Compute and data topology
+
+- The canonical repository seat is the user's workstation; the remote headless
+  data host (Tailscale name `dexter`) owns the immutable raw-data root and heavy
+  data construction.
+- Git is the only bridge between machines. Raw and derived data never enter the
+  repository; scripts receive the data root as a parameter.
+- On the data host, work only inside the Oracle repo clone and the Oracle data
+  root. Other directories on that machine belong to unrelated projects and are
+  out of bounds.
+
 ## Change discipline
 
 - Prefer tiny composable modules and explicit contracts.

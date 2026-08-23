@@ -34,13 +34,33 @@ four hours, and does aligned ignition add incremental timing information?
 | Model | Inputs | Purpose |
 |---|---|---|
 | M0 | RV, trend, range, time controls | price-only baseline |
-| M1 | M0 + OI, funding, premium | generic leverage baseline |
+| M1 | M0 + OI, funding, premium, taker-flow variance | generic leverage/flow baseline |
 | M2 | M1 + fuel challengers | path-local fuel increment |
 | M3 | M2 + impact proxies separately | fragility increment |
 | M4 | M3 + candidate interactions | armed-state test |
 | M5 | M4 + ignition | timing increment |
 
 No layer may be skipped in the reported ablation.
+
+Taker-flow variance compression sits in M1 deliberately: it is the only
+placebo-tested cross-event precursor in the motivating studies, so every
+Oracle-specific family must demonstrate increment over it, not merely over price
+controls.
+
+## Pre-model descriptive gates
+
+Before any interaction modelling (M4):
+
+1. **Armed-quadrant occupancy.** Report the joint distribution of each fuel
+   challenger against each impact proxy, including their correlation and the
+   occupancy of the high-fuel/poor-absorption quadrant. Prior evidence found the
+   analogous factors anticorrelated near -0.7, which would leave the armed cell
+   too sparse to test. If occupancy is inadequate, record that verdict; do not
+   proceed to H2 modelling on an empty cell.
+2. **Trailing-path confounding.** Fuel is partly a deterministic function of the
+   recent price path. Report the correlation of each fuel feature with trailing
+   returns at the label horizons, and require that any claimed fuel lift in M2 is
+   incremental to the M0/M1 controls that carry that path information.
 
 ## Two evaluation clocks
 
@@ -61,7 +81,9 @@ continuation detection when appropriate.
 Before predictive testing:
 
 1. A fuel estimator must be evaluated against realized liquidation mass when its
-   price bands are subsequently traversed.
+   price bands are subsequently traversed. On Hyperliquid, realized mass must be
+   split into book-hitting and backstop-absorbed components, because the venue
+   backstop suppresses the propagation the estimator is meant to anticipate.
 2. An impact proxy must be evaluated against subsequent realized slippage/impact for
    matched aggressive-flow sizes.
 

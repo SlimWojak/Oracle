@@ -26,6 +26,40 @@ SweepRatio_d(x, t) = estimated forced notional_d([0, x], t)
 Oracle must also test the numerator, denominator, additive form, interaction form,
 and log-difference separately. A noisy denominator can manufacture an extreme ratio.
 
+## Position relative to prior evidence
+
+The motivating studies (arXiv:2607.27070, arXiv:2608.03616) tested seven historical
+cascades and report three results Oracle must not ignore:
+
+1. No scalar pre-state measure graded cascade severity: not leverage stock, not
+   measured book fragility, and not their product. The branching product
+   `k * rho` self-cancelled because its factors were strongly anticorrelated
+   (`corr(log k, log rho) ~ -0.7`).
+2. The one placebo-tested, cross-event invariant precursor was compression of
+   taker buy/sell flow variance before onset - a population-level signal, not a
+   per-event alarm.
+3. The single pre-state candidate their designs could not test is the accumulated
+   map of liquidation thresholds near price: a measure swept by the path, not a
+   scalar.
+
+Oracle's claim to novelty is therefore specific: the distance-indexed, directional
+fuel surface is a discretization of exactly the untested path-swept map, and the
+target population is common +/-2% first passages rather than seven record
+cascades, which escapes the n=7 sample problem.
+
+Known threats inherited from that evidence:
+
+- Fuel and impact susceptibility may be mechanically anticorrelated, leaving the
+  armed cell (high fuel and poor absorption) nearly unpopulated. This must be
+  checked descriptively before any interaction modelling.
+- Fuel near price is partly a deterministic function of the trailing price path
+  (a decline drags long liquidation levels toward price). Fuel lift must be shown
+  conditional on trailing-return controls, or it is repackaged momentum.
+- The observed Hyperliquid topology is propagation-damped by design: the venue
+  backstop absorbed roughly two thirds of forced notional off-book in the record
+  cascade. HL-observed fuel validates measurement methodology, not cascade
+  mechanics.
+
 ## Durable deductions
 
 1. Leverage is fuel, not a clock.
@@ -66,6 +100,13 @@ These remain separate until evidence supports a composite.
 v0 candidates are signed OFI/CVD acceleration and spot-led versus perp-led impulse.
 Ignition tests operate on a separate clock from precondition tests so continuation
 is not misrepresented as advance warning.
+
+### Flow state
+
+Taker buy/sell flow-variance compression (aggressive flow going persistently
+one-sided) is a precondition-clock candidate. It is the only placebo-tested
+cross-event precursor in the motivating studies and enters as its own family, not
+as an ignition-timing signal.
 
 ### Propagation
 

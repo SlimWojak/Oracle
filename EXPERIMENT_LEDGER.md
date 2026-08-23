@@ -15,7 +15,8 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-000 — Data feasibility and independent-event audit
 
-- **Status:** PLANNED
+- **Status:** RUNNING (data acquisition started 2026-08-23; free Binance Vision
+  dumps only, no requester-pays spend)
 - **Question:** Is there sufficient point-in-time data and independent +/-2% event
   coverage to test the v0 contract without pseudo-replication?
 - **Inputs:** Consolidated BTC index candidate feeds and availability metadata for
@@ -23,7 +24,10 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 - **Method:** Build fixed 1h/4h first-passage labels; identify ambiguous bars; cluster
   adjacent labels into independent events; produce source-by-time coverage matrix.
 - **Required outputs:** Timestamp counts, independent cluster counts, direction and
-  horizon breakdown, gap report, proposed time splits, unresolved data decisions.
+  horizon breakdown, gap report, proposed time splits, unresolved data decisions,
+  per-fuel-challenger usable point-in-time history (the Hyperliquid fill log
+  begins 2025-05-25; vendor as-of history is unverified), and an estimated size
+  and cost of the requester-pays Hyperliquid S3 pull before any spend.
 - **Pass condition:** Coverage supports at least one honest development/validation/
   test design or clearly identifies a justified discovery-only alternative.
 - **Failure meaning:** Revise scope or data acquisition before feature engineering.

@@ -38,6 +38,19 @@ Every interval field must declare whether its timestamp denotes:
 Mixed-source alignment requires an explicit audit. A high contemporaneous
 correlation is not sufficient evidence that interval conventions align.
 
+### Known convention traps (binding)
+
+- Binance futures metrics dumps stamp the interval **end**, while Binance kline
+  timestamps mark the interval **start**. Joining them naively shifts flow one
+  bar ahead of returns and has produced published spurious-causality results.
+  A -5 minute realignment of the metrics feed is required and must be asserted
+  by a lag-correlation audit in the normalization layer.
+- The Hyperliquid fill log attaches the liquidation object to both legs of each
+  forced trade. All liquidation totals must be deduplicated by the
+  liquidated-user leg or they double-count.
+- The Hyperliquid fill log begins 2025-05-25. No observed fuel surface exists
+  before that date; earlier periods may only use inferred or vendor challengers.
+
 ## Storage layers
 
 ### Raw

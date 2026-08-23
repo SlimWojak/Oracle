@@ -42,6 +42,10 @@ feature_families:
       - visible_book_walk
       - trailing_realized_impact
     combine_candidates: false
+  flow_state:
+    clock: precondition
+    candidates:
+      - taker_flow_variance_compression
   ignition:
     candidates:
       - signed_ofi_acceleration
