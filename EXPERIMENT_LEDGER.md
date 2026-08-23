@@ -173,6 +173,20 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   consolidated-index construction is next, followed by the sensitivity
   report, split proposal, and EXP-000 verdict.
 
+  2026-08-24 (seat 2): D-022 consolidated index built and catalogue rebuilt
+  on it (`reports/exp000/index_*`, `SENSITIVITY.md`, provenance sidecars).
+  Index grid 2020-01-01..2026-07-31: 3,461,652 bars, only 108 missing
+  minutes (vs 2,325 Binance-only — the >=2-of-3 union is more complete than
+  any member); 98.4% of bars are 3-of-3; 0.87% (1h) / 1.02% (4h) of positive
+  anchors sit on 2-of-3 bars. Sensitivity vs Binance-only labels (aligned
+  2020-01-01 start): 1h 1,679 -> 1,658 clusters (1,630 retained, 0 direction
+  flips, 49 removed, 17 added, median |start shift| 0s, p90 180s); 4h
+  1,940 -> 1,935 (1,897 retained, 0 flips, 43 removed, 26 added). Removals
+  skew to 2020-21, consistent with the gate's finding that disputes were
+  marginal single-venue barrier events. The consolidated catalogue
+  (`index_clusters.json`) is now the label population for split design;
+  remaining before verdict: split boundaries, then close EXP-000.
+
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 
 - **Status:** PLANNED
