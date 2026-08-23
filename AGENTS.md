@@ -95,8 +95,10 @@ Delegation rules:
 - The canonical repository seat is the user's workstation; the remote headless
   data host (Tailscale name `dexter`) owns the immutable raw-data root and heavy
   data construction.
-- Git is the only bridge between machines. Raw and derived data never enter the
-  repository; scripts receive the data root as a parameter.
+- Git is the only bridge between machines. Raw data and bulk derived datasets
+ never enter the repository; small deterministic evidence artifacts under
+ `reports/` (with D-019 provenance) are committed. Scripts receive the data
+ root as a parameter.
 - On the data host, work only inside the Oracle repo clone and the Oracle data
   root. Other directories on that machine belong to unrelated projects and are
   out of bounds.

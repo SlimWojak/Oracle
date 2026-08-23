@@ -1,9 +1,13 @@
 study:
   name: oracle_v0
   asset: BTC
-  # D-013: Binance spot 1m primary, Kraken replication gate, VENUE_DISPUTED
-  # exclusion; >2% disagreement escalates to a median-of-three index.
-  label_price: binance_spot_1m
+  # D-013 escalation triggered (5.90% / 4.26% disagreement vs Kraken);
+  # D-022: labels use a median-of-three consolidated index, frozen blind.
+  label_price: consolidated_median_of_three
+  label_index_members:
+    - binance_btcusdt_spot_1m
+    - kraken_xbtusd_spot_1m
+    - coinbase_btcusd_spot_1m
 
 labels:
   fixed_first_passage:
@@ -31,6 +35,8 @@ evaluation:
 feature_families:
   fuel:
     challengers:
+      # hyperliquid_observed is provisional pending EXP-001 (D-018) and runs
+      # no predictive ladder this cycle (D-020).
       - hyperliquid_observed
       - cex_inferred
       - vendor_model

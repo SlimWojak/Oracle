@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-23 (seat 1)
+## State as of 2026-08-23 late evening (seat 2)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -32,6 +32,15 @@ That file is gitignored and must never be committed; this repository is public.
   with the same sync if ever needed.
 - Hyperliquid samples: two schema-inspection fill hours (one per format, incl.
   2025-10-10 hour 21, the record cascade).
+- Hyperliquid l2Book BTC slice: 28,304 hourly files ~22GB, 2023-04-15..
+  2026-08-01 (archive trailing edge), verified by dry-run re-sync.
+- Kraken XBTUSD: official OHLCVT 1m CSVs (master to 2025-12-31 + Q1 2026;
+  browser-downloaded by user due to Drive quota, sha256-verified) plus raw
+  Trades pages 2026-01-01..2026-08-01 (incl. 2 patch pages recovering a
+  censored API window on 2026-02-20). Trades-derived bars exact-match
+  official Q1 (129,509/129,509 rows); Apr-Jul derived bars built.
+- Coinbase BTC-USD 1m candles 2019-12..2026-08: acquisition in flight on the
+  data host at handover-writing time (public API, ~11,700 tiled windows).
 
 ### Verified schema facts (load-bearing)
 
@@ -48,16 +57,26 @@ That file is gitignored and must never be committed; this repository is public.
 
 ### EXP-000 status (RUNNING)
 
-Done: acquisition (above); event catalogue built and committed
-(`reports/exp000/`): 1,679 (1h) / 1,940 (4h) independent clusters,
-pseudo-replication 82:1 / 338:1, direction balanced, ambiguity negligible.
+Done: all acquisition (above); event catalogue + per-cluster inventory
+committed (`reports/exp000/`): 1,679 (1h) / 1,940 (4h) independent clusters,
+82:1 / 338:1 pseudo-replication; per-challenger usable history table
+(D-016); D-020 accepted (no HL-fills predictive ladder this cycle); Kraken
+replication gate (D-013/D-021) implemented, corrected (time-aware venue
+labeller) and run: 5.90% (1h) / 4.26% (4h) disagreement, both above the 2%
+line, disputes overwhelmingly near-misses (median best Kraken move ~1.94%).
+ESCALATION TRIGGERED: median-of-three index required. D-022 (index
+semantics) frozen blind before Coinbase data was inspected.
 
 Remaining for verdict:
-1. Propose chronological dev/validation/test split boundaries (regard regime
-   diversity; per-year cluster counts are in the catalogue).
-2. Per-fuel-challenger usable history table (D-016 common-support rule now
-   governs how these histories are compared).
-3. Kraken replication gate for labels (D-013); not started.
+1. Finish Coinbase candle acquisition + audit (in flight).
+2. Build the D-022 consolidated index in the normalization layer; rebuild
+   the catalogue on it; produce the D-022 sensitivity report
+   (Binance-only vs consolidated churn).
+3. Re-run the D-021 gate context only if semantics demand (the index
+   supersedes per-event VENUE_DISPUTED flagging).
+4. Propose chronological split boundaries on the consolidated catalogue.
+5. Record the EXP-000 verdict and CLOSE the experiment (advisor: do not let
+   the ledger become a diary).
 
 ### Next work after EXP-000 verdict
 
@@ -79,8 +98,14 @@ Remaining for verdict:
   plumbing, Grok high for tricky vectorization) with tight specs; lead seat
   reviews everything; contracts/ledger/decisions never delegated. Property
   tests against `labels.first_passage` are the pattern for any new labeller.
-- An external advisory/red-team seat exists (read-only); its 2026-08-23 review
-  produced D-016..D-019, EXP-001, and the D-017 timestamp fix.
+- An external advisory/red-team seat exists (read-only); its first 2026-08-23
+  review produced D-016..D-019, EXP-001, and the D-017 timestamp fix; its
+  second (same day) endorsed the Kraken escalation, requested the blind
+  D-022 freeze, a D-021 interpretation caveat, D-019 provenance sidecars on
+  committed artifacts, and doc-sync hygiene (all executed or in flight).
+- Venue APIs can serve censored tape: the Kraken Trades API omitted a
+  906-second cascade window that official bars contained; always validate
+  trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 54 tests green at handover.
+  handing off. 101 tests green at last check.
 - Known open decisions listed at the bottom of `docs/DECISIONS.md`.

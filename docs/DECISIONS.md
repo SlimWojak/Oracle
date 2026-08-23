@@ -179,6 +179,13 @@ level with these frozen rules:
    normalization layer builds bars from the raw trade pages, and are
    reported as `PENDING_BARS` rather than silently skipped.
 
+**Interpretation caveat (2026-08-23, advisor review).** The match window
+[T0 - h, T1] admits Kraken anchors whose passage completes up to one horizon
+after the Binance cluster end, which biases toward replication. Exceeding the
+2% escalation threshold despite that generosity makes the escalation robust,
+but the disagreement statistic must not later be read as a measure of precise
+cross-venue synchronization.
+
 **Correction (2026-08-23, same seat, before any committed gate result).**
 Rule 1 originally said Kraken bars are labelled "with the identical
 first-passage code". The identical bar-count labeller is wrong on a venue
@@ -193,6 +200,42 @@ threshold and interval-end decision timestamps. Bar-count and wall-clock
 windows coincide wherever bars are contiguous, so this changes nothing on
 the primary venue. A venue anchor crossing both barriers in one bar counts
 toward either direction.
+
+## D-022 — Median-of-three consolidated label index
+
+**Accepted** (2026-08-23, frozen blind: adopted while the Coinbase pull was
+still running, before any Coinbase data or its effect on the catalogue was
+inspected). Executes the D-013 escalation.
+
+1. **Members, fixed.** Binance BTCUSDT spot, Kraken XBTUSD spot, Coinbase
+   BTC-USD spot, 1m bars. No further label venues will be added. Kraken bars
+   are the official OHLCVT export through 2026-03-31 and the exact-validated
+   trades-derived bars for 2026-04-01..2026-07-31.
+2. **Availability rule.** An index minute exists iff at least two members
+   have a bar. Each index bar records a `3_OF_3` or `2_OF_3` flag.
+   Single-venue minutes produce no index bar. No venue is ever
+   forward-filled across its gaps.
+3. **Construction.** Componentwise median of available members for open,
+   high, low, and close (the median of two is their midpoint). Volume is the
+   sum of available members, carried as a diagnostic only — labels never use
+   it. Source interval-start stamps; decision timestamps remain interval end
+   (D-017).
+4. **Quote basis.** No USD/USDT adjustment. With two USD members and one
+   USDT member, the median follows the USD majority during stablecoin
+   stress; this is intended behavior for a consolidated BTC index and is
+   documented rather than corrected. The sensitivity report must slice any
+   window where members diverge materially.
+5. **Label semantics on the index.** First-passage labels use wall-clock
+   horizons exactly as in the D-021 correction: every index bar anchors a
+   window (close, close + h minutes] evaluated over the index bars that
+   exist in it; absent minutes contribute no evidence. The same-bar
+   ambiguity rule is unchanged. On near-complete grids this coincides with
+   the bar-count labeller.
+6. **Sensitivity report, required before splits are frozen.** Binance-only
+   versus consolidated catalogue: clusters retained, added, removed;
+   direction flips; anchor and passage timing shifts; mixed-cluster
+   changes; breakdowns by year and volatility regime; and the share of
+   positive anchors whose bars are `2_OF_3`.
 
 ## Open decisions
 
