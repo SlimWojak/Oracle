@@ -31,7 +31,13 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 - **Pass condition:** Coverage supports at least one honest development/validation/
   test design or clearly identifies a justified discovery-only alternative.
 - **Failure meaning:** Revise scope or data acquisition before feature engineering.
-- **Result:** Not run.
+- **Result:** In progress. 2026-08-23: Binance Vision acquisition complete
+  (1,962/1,962 files, zero missing, zero checksum failures; spot+perp 1m klines
+  and funding 2020-01..2026-07, daily metrics 2021-12..2026-08). Hyperliquid
+  requester-pays S3 access is BLOCKED by an organization-level guardrail on the
+  new-experience AWS account (cross-account S3 denied above IAM; confirmed with
+  scoped IAM user and an arxiv requester-pays control). HL pull sizing deferred
+  until the SCP is lifted from the org management account.
 
 ## Experiment template
 

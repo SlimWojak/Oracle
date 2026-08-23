@@ -68,13 +68,32 @@ in `AGENTS.md`.
 **Accepted.** DuckDB over Parquet files, rebuildable from raw plus manifests. No
 database server or hosted store in v0.
 
+## D-013 — v0 label price source and venue-replication gate
+
+**Accepted.** v0 labels use Binance spot 1m klines as the primary price. Once the
+event catalogue exists, every labelled event is re-checked against a second spot
+venue (Kraken). Non-replicating events are flagged `VENUE_DISPUTED` and excluded
+from headline results. If the disagreement rate exceeds 2% of events, a
+median-of-three consolidated index must be built before predictive work. The
+contract's core requirement stands: labels are never taken from a perpetual
+venue.
+
+## D-014 — Event-cluster definition
+
+**Accepted.** Two positive anchors belong to one cluster when their decision
+timestamps are within one label horizon of each other or their passage windows
+overlap. A cluster closes only after a full 4h window without a positive anchor.
+Direction is recorded per anchor; clusters containing both directions are marked
+mixed. Splits, bootstraps, and sample counts operate on clusters. The definition
+deliberately errs toward merging, since pseudo-replication is the feared failure
+mode.
+
 ## Open decisions
 
-- Consolidated BTC index construction.
-- Raw and derived data roots.
-- Point-in-time historical source selection.
+- Raw and derived data roots (host layout accepted in D-010; naming/manifest
+  conventions for derived layers pending).
+- Point-in-time historical source selection for fuel challengers.
 - Volatility-normalized barrier estimator.
-- Event-cluster definition.
 - Precondition-clock impulse exclusion.
 - Normalized book-walk sizing rule.
 - Initial chronological split boundaries.
