@@ -1,0 +1,77 @@
+{
+  "old_source": "reports/exp000/clusters.json",
+  "new_source": "reports/exp000/index_clusters.json",
+  "horizons": [
+    {
+      "horizon_bars": 60,
+      "churn": {
+        "old_total": 1679,
+        "new_total": 1658,
+        "retained": 1630,
+        "direction_changed": 0,
+        "removed": 49,
+        "added": 17,
+        "pure_to_mixed": 11,
+        "mixed_to_pure": 23,
+        "start_delta_seconds": {
+          "median_abs": 0.0,
+          "p90_abs": 180.0,
+          "max_abs": 172800.0
+        },
+        "removed_by_year": {
+          "2020": 13,
+          "2021": 17,
+          "2022": 6,
+          "2023": 7,
+          "2024": 4,
+          "2025": 1,
+          "2026": 1
+        },
+        "added_by_year": {
+          "2020": 8,
+          "2021": 1,
+          "2022": 1,
+          "2023": 4,
+          "2024": 1,
+          "2025": 1,
+          "2026": 1
+        }
+      }
+    },
+    {
+      "horizon_bars": 240,
+      "churn": {
+        "old_total": 1940,
+        "new_total": 1935,
+        "retained": 1897,
+        "direction_changed": 0,
+        "removed": 43,
+        "added": 26,
+        "pure_to_mixed": 15,
+        "mixed_to_pure": 21,
+        "start_delta_seconds": {
+          "median_abs": 0.0,
+          "p90_abs": 564.0000000000055,
+          "max_abs": 254700.0
+        },
+        "removed_by_year": {
+          "2020": 7,
+          "2021": 7,
+          "2022": 5,
+          "2023": 4,
+          "2024": 10,
+          "2025": 3,
+          "2026": 7
+        },
+        "added_by_year": {
+          "2020": 17,
+          "2021": 1,
+          "2022": 3,
+          "2023": 2,
+          "2024": 1,
+          "2026": 2
+        }
+      }
+    }
+  ]
+}

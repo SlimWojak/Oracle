@@ -1,0 +1,88 @@
+{
+  "parameters": {
+    "members": [
+      "binance_btcusdt_spot",
+      "kraken_xbtusd_spot",
+      "coinbase_btcusd_spot"
+    ],
+    "min_members": 2,
+    "construction": "componentwise_median",
+    "label_semantics": "wall_clock_first_passage",
+    "threshold": 0.02,
+    "horizons_seconds": [
+      3600,
+      14400
+    ],
+    "decision_timestamp": "interval_end",
+    "bars_start": "2020-01-01T00:00:00Z",
+    "kraken_csvs": [
+      "raw/kraken/ohlcvt/XBTUSD_1.csv",
+      "raw/kraken/ohlcvt/XBTUSD_1_Q1_2026.csv",
+      "derived/kraken/XBTUSD_1_2026AprJul_from_trades_v2.csv"
+    ]
+  },
+  "coverage": {
+    "bars": 3461652,
+    "first": "2020-01-01T00:00:00Z",
+    "last": "2026-07-31T23:59:00Z",
+    "bars_3of3": 3405505,
+    "bars_2of3": 56147,
+    "missing_minutes": 108
+  },
+  "horizons": [
+    {
+      "horizon_seconds": 3600,
+      "total_anchors": 3461652,
+      "up_count": 62003,
+      "down_count": 72125,
+      "positive_count": 134128,
+      "ambiguous_count": 22,
+      "insufficient_horizon_count": 60,
+      "none_count": 3327442,
+      "positive_anchors_on_2of3_bars": 1171,
+      "positive_anchors_on_2of3_share": 0.00873046642013599,
+      "clusters": {
+        "total": 1658,
+        "up": 558,
+        "down": 558,
+        "mixed": 542,
+        "per_year": {
+          "2020": 278,
+          "2021": 431,
+          "2022": 301,
+          "2023": 172,
+          "2024": 235,
+          "2025": 143,
+          "2026": 98
+        }
+      }
+    },
+    {
+      "horizon_seconds": 14400,
+      "total_anchors": 3461652,
+      "up_count": 309971,
+      "down_count": 339921,
+      "positive_count": 649892,
+      "ambiguous_count": 23,
+      "insufficient_horizon_count": 240,
+      "none_count": 2811497,
+      "positive_anchors_on_2of3_bars": 6611,
+      "positive_anchors_on_2of3_share": 0.010172459424027377,
+      "clusters": {
+        "total": 1935,
+        "up": 594,
+        "down": 534,
+        "mixed": 807,
+        "per_year": {
+          "2020": 317,
+          "2021": 344,
+          "2022": 335,
+          "2023": 239,
+          "2024": 309,
+          "2025": 228,
+          "2026": 163
+        }
+      }
+    }
+  ]
+}

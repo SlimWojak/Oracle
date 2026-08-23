@@ -1,0 +1,32 @@
+{
+  "repo_commit": "9eed16c949d55bf4560b9f3df6f0f78fb332909e",
+  "generated_at_utc": "2026-08-23T15:55:54Z",
+  "config": {
+    "matching": "interval_overlap_max",
+    "direction_rule": "set_intersection"
+  },
+  "inputs": [
+    {
+      "path": "reports/exp000/clusters.json",
+      "bytes": 1081533,
+      "sha256": "f569190d34d920fdc860252dca4fdf6bbabb35b3e46222bd86db2ec2c347eaea"
+    },
+    {
+      "path": "reports/exp000/index_clusters.json",
+      "bytes": 1074050,
+      "sha256": "3e636f10ae5096f7239ad2d57b2e1dd4472508d8e8cdcbcd3cc608bad03795a8"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "sensitivity.json",
+      "bytes": 1677,
+      "sha256": "69d976fda5bf5e15e7cd95ceeb9ba7939a01ddcacc6f7a32a0e646c8eab688d4"
+    },
+    {
+      "path": "SENSITIVITY.md",
+      "bytes": 975,
+      "sha256": "775ebb41fec91631fd03251fee0cb435754b21941318a87789a9e7dbad7ac7bc"
+    }
+  ]
+}
