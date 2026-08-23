@@ -1,0 +1,3025 @@
+{
+  "clusters_source": "reports/exp000/clusters.json",
+  "kraken_csvs": [
+    "XBTUSD_1.csv",
+    "XBTUSD_1_Q1_2026.csv"
+  ],
+  "kraken_bars": 3309994,
+  "kraken_first": "2019-11-01T00:00:00Z",
+  "kraken_last": "2026-03-31T23:59:00Z",
+  "coverage_floor": 0.9,
+  "horizons": [
+    {
+      "horizon_bars": 60,
+      "threshold": 0.02,
+      "total_clusters": 1679,
+      "replicated": 1532,
+      "venue_disputed": 96,
+      "kraken_sparse": 13,
+      "sparse_replicated_anyway": 13,
+      "pending_bars": 38,
+      "disagreement_rate": 0.05896805896805897,
+      "escalation_threshold": 0.02,
+      "escalation_triggered": true,
+      "disputed_by_year": {
+        "2020": 17,
+        "2021": 28,
+        "2022": 18,
+        "2023": 17,
+        "2024": 9,
+        "2025": 6,
+        "2026": 1
+      },
+      "disputed_clusters": [
+        {
+          "start": "2020-01-10T10:21:00Z",
+          "end": "2020-01-10T11:21:00Z",
+          "start_timestamp": 1578651660,
+          "end_timestamp": 1578655260,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9337,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-01-17T11:24:00Z",
+          "end": "2020-01-17T12:23:00Z",
+          "start_timestamp": 1579260240,
+          "end_timestamp": 1579263780,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9722,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-02-17T14:24:00Z",
+          "end": "2020-02-17T15:03:00Z",
+          "start_timestamp": 1581949440,
+          "end_timestamp": 1581951780,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9938,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-03-05T08:41:00Z",
+          "end": "2020-03-05T09:58:00Z",
+          "start_timestamp": 1583397660,
+          "end_timestamp": 1583402280,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9697,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-03-07T23:32:00Z",
+          "end": "2020-03-08T00:32:00Z",
+          "start_timestamp": 1583623920,
+          "end_timestamp": 1583627520,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9448,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-03-31T12:19:00Z",
+          "end": "2020-03-31T13:19:00Z",
+          "start_timestamp": 1585657140,
+          "end_timestamp": 1585660740,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.989,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-07-29T09:01:00Z",
+          "end": "2020-07-29T09:29:00Z",
+          "start_timestamp": 1596013260,
+          "end_timestamp": 1596014940,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9732,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-08-04T10:55:00Z",
+          "end": "2020-08-04T11:55:00Z",
+          "start_timestamp": 1596538500,
+          "end_timestamp": 1596542100,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9337,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-08-06T21:02:00Z",
+          "end": "2020-08-06T21:50:00Z",
+          "start_timestamp": 1596747720,
+          "end_timestamp": 1596750600,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9941,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-08-07T13:19:00Z",
+          "end": "2020-08-07T14:19:00Z",
+          "start_timestamp": 1596806340,
+          "end_timestamp": 1596809940,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-09-08T08:02:00Z",
+          "end": "2020-09-08T10:02:00Z",
+          "start_timestamp": 1599552120,
+          "end_timestamp": 1599559320,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9378,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-09-10T00:11:00Z",
+          "end": "2020-09-10T00:50:00Z",
+          "start_timestamp": 1599696660,
+          "end_timestamp": 1599699000,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9688,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-09-14T08:15:00Z",
+          "end": "2020-09-14T08:47:00Z",
+          "start_timestamp": 1600071300,
+          "end_timestamp": 1600073220,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9412,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-11-08T19:03:00Z",
+          "end": "2020-11-08T19:54:00Z",
+          "start_timestamp": 1604862180,
+          "end_timestamp": 1604865240,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9942,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-11-14T16:17:00Z",
+          "end": "2020-11-14T17:17:00Z",
+          "start_timestamp": 1605370620,
+          "end_timestamp": 1605374220,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9392,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-11-29T07:13:00Z",
+          "end": "2020-11-29T08:15:00Z",
+          "start_timestamp": 1606633980,
+          "end_timestamp": 1606637700,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9454,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-12-13T06:47:00Z",
+          "end": "2020-12-13T07:52:00Z",
+          "start_timestamp": 1607842020,
+          "end_timestamp": 1607845920,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9516,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-01-09T19:29:00Z",
+          "end": "2021-01-09T20:13:00Z",
+          "start_timestamp": 1610220540,
+          "end_timestamp": 1610223180,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-01-23T21:34:00Z",
+          "end": "2021-01-23T22:05:00Z",
+          "start_timestamp": 1611437640,
+          "end_timestamp": 1611439500,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9934,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-02-03T13:05:00Z",
+          "end": "2021-02-03T13:26:00Z",
+          "start_timestamp": 1612357500,
+          "end_timestamp": 1612358760,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-02-05T02:20:00Z",
+          "end": "2021-02-05T03:17:00Z",
+          "start_timestamp": 1612491600,
+          "end_timestamp": 1612495020,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-02-14T12:54:00Z",
+          "end": "2021-02-14T13:54:00Z",
+          "start_timestamp": 1613307240,
+          "end_timestamp": 1613310840,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-02-17T18:52:00Z",
+          "end": "2021-02-17T19:46:00Z",
+          "start_timestamp": 1613587920,
+          "end_timestamp": 1613591160,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-03-08T14:37:00Z",
+          "end": "2021-03-08T14:47:00Z",
+          "start_timestamp": 1615214220,
+          "end_timestamp": 1615214820,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-03-14T10:29:00Z",
+          "end": "2021-03-14T11:29:00Z",
+          "start_timestamp": 1615717740,
+          "end_timestamp": 1615721340,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-03-16T19:14:00Z",
+          "end": "2021-03-16T20:07:00Z",
+          "start_timestamp": 1615922040,
+          "end_timestamp": 1615925220,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-03-26T02:58:00Z",
+          "end": "2021-03-26T03:46:00Z",
+          "start_timestamp": 1616727480,
+          "end_timestamp": 1616730360,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-04-02T01:34:00Z",
+          "end": "2021-04-02T02:37:00Z",
+          "start_timestamp": 1617327240,
+          "end_timestamp": 1617331020,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-04-27T05:16:00Z",
+          "end": "2021-04-27T06:12:00Z",
+          "start_timestamp": 1619500560,
+          "end_timestamp": 1619503920,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-04-29T16:14:00Z",
+          "end": "2021-04-29T17:09:00Z",
+          "start_timestamp": 1619712840,
+          "end_timestamp": 1619716140,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-06-18T02:24:00Z",
+          "end": "2021-06-18T03:10:00Z",
+          "start_timestamp": 1623983040,
+          "end_timestamp": 1623985800,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-07-04T22:01:00Z",
+          "end": "2021-07-04T23:01:00Z",
+          "start_timestamp": 1625436060,
+          "end_timestamp": 1625439660,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9945,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-08-02T06:11:00Z",
+          "end": "2021-08-02T07:09:00Z",
+          "start_timestamp": 1627884660,
+          "end_timestamp": 1627888140,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9665,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-08-15T07:03:00Z",
+          "end": "2021-08-15T07:57:00Z",
+          "start_timestamp": 1629010980,
+          "end_timestamp": 1629014220,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9886,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-08-16T23:40:00Z",
+          "end": "2021-08-17T00:26:00Z",
+          "start_timestamp": 1629157200,
+          "end_timestamp": 1629159960,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-08-18T18:35:00Z",
+          "end": "2021-08-18T19:35:00Z",
+          "start_timestamp": 1629311700,
+          "end_timestamp": 1629315300,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-09-30T18:25:00Z",
+          "end": "2021-09-30T19:01:00Z",
+          "start_timestamp": 1633026300,
+          "end_timestamp": 1633028460,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9936,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-10-16T11:52:00Z",
+          "end": "2021-10-16T12:53:00Z",
+          "start_timestamp": 1634385120,
+          "end_timestamp": 1634388780,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.989,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-09T14:41:00Z",
+          "end": "2021-11-09T15:08:00Z",
+          "start_timestamp": 1636468860,
+          "end_timestamp": 1636470480,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-12T19:23:00Z",
+          "end": "2021-11-12T20:08:00Z",
+          "start_timestamp": 1636744980,
+          "end_timestamp": 1636747680,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-24T08:03:00Z",
+          "end": "2021-11-24T08:50:00Z",
+          "start_timestamp": 1637740980,
+          "end_timestamp": 1637743800,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-24T23:53:00Z",
+          "end": "2021-11-25T00:48:00Z",
+          "start_timestamp": 1637797980,
+          "end_timestamp": 1637801280,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-26T23:48:00Z",
+          "end": "2021-11-27T00:42:00Z",
+          "start_timestamp": 1637970480,
+          "end_timestamp": 1637973720,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-12-26T21:11:00Z",
+          "end": "2021-12-26T21:54:00Z",
+          "start_timestamp": 1640553060,
+          "end_timestamp": 1640555640,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-12-28T15:32:00Z",
+          "end": "2021-12-28T17:38:00Z",
+          "start_timestamp": 1640705520,
+          "end_timestamp": 1640713080,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-01-02T17:40:00Z",
+          "end": "2022-01-02T18:34:00Z",
+          "start_timestamp": 1641145200,
+          "end_timestamp": 1641148440,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-01-17T22:17:00Z",
+          "end": "2022-01-17T22:38:00Z",
+          "start_timestamp": 1642457820,
+          "end_timestamp": 1642459080,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-01-31T16:24:00Z",
+          "end": "2022-01-31T17:18:00Z",
+          "start_timestamp": 1643646240,
+          "end_timestamp": 1643649480,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-02-03T09:37:00Z",
+          "end": "2022-02-03T10:19:00Z",
+          "start_timestamp": 1643881020,
+          "end_timestamp": 1643883540,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9877,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-02-07T17:15:00Z",
+          "end": "2022-02-07T18:12:00Z",
+          "start_timestamp": 1644254100,
+          "end_timestamp": 1644257520,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-02-28T07:12:00Z",
+          "end": "2022-02-28T08:09:00Z",
+          "start_timestamp": 1646032320,
+          "end_timestamp": 1646035740,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-03-06T04:12:00Z",
+          "end": "2022-03-06T05:05:00Z",
+          "start_timestamp": 1646539920,
+          "end_timestamp": 1646543100,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9943,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-03-15T06:18:00Z",
+          "end": "2022-03-15T07:16:00Z",
+          "start_timestamp": 1647325080,
+          "end_timestamp": 1647328560,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9888,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-03-21T01:38:00Z",
+          "end": "2022-03-21T02:38:00Z",
+          "start_timestamp": 1647826680,
+          "end_timestamp": 1647830280,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-04-24T16:52:00Z",
+          "end": "2022-04-24T16:56:00Z",
+          "start_timestamp": 1650819120,
+          "end_timestamp": 1650819360,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-04-30T22:33:00Z",
+          "end": "2022-04-30T23:12:00Z",
+          "start_timestamp": 1651357980,
+          "end_timestamp": 1651360320,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-07-09T11:02:00Z",
+          "end": "2022-07-09T11:58:00Z",
+          "start_timestamp": 1657364520,
+          "end_timestamp": 1657367880,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-08-01T22:14:00Z",
+          "end": "2022-08-01T23:14:00Z",
+          "start_timestamp": 1659392040,
+          "end_timestamp": 1659395640,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-08-22T07:25:00Z",
+          "end": "2022-08-22T08:20:00Z",
+          "start_timestamp": 1661153100,
+          "end_timestamp": 1661156400,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9886,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-08-28T22:58:00Z",
+          "end": "2022-08-28T23:58:00Z",
+          "start_timestamp": 1661727480,
+          "end_timestamp": 1661731080,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-09-20T17:00:00Z",
+          "end": "2022-09-20T18:00:00Z",
+          "start_timestamp": 1663693200,
+          "end_timestamp": 1663696800,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-09-23T22:12:00Z",
+          "end": "2022-09-23T23:17:00Z",
+          "start_timestamp": 1663971120,
+          "end_timestamp": 1663975020,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-11-13T20:08:00Z",
+          "end": "2022-11-13T21:04:00Z",
+          "start_timestamp": 1668370080,
+          "end_timestamp": 1668373440,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-01-13T14:31:00Z",
+          "end": "2023-01-13T15:30:00Z",
+          "start_timestamp": 1673620260,
+          "end_timestamp": 1673623800,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-01-21T22:00:00Z",
+          "end": "2023-01-21T23:00:00Z",
+          "start_timestamp": 1674338400,
+          "end_timestamp": 1674342000,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-03-16T09:33:00Z",
+          "end": "2023-03-16T10:33:00Z",
+          "start_timestamp": 1678959180,
+          "end_timestamp": 1678962780,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-03-16T18:49:00Z",
+          "end": "2023-03-16T19:25:00Z",
+          "start_timestamp": 1678992540,
+          "end_timestamp": 1678994700,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-03-20T01:45:00Z",
+          "end": "2023-03-20T02:45:00Z",
+          "start_timestamp": 1679276700,
+          "end_timestamp": 1679280300,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-03-30T17:11:00Z",
+          "end": "2023-03-30T18:11:00Z",
+          "start_timestamp": 1680196260,
+          "end_timestamp": 1680199860,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-04-03T01:01:00Z",
+          "end": "2023-04-03T01:47:00Z",
+          "start_timestamp": 1680483660,
+          "end_timestamp": 1680486420,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-06-17T04:43:00Z",
+          "end": "2023-06-17T05:43:00Z",
+          "start_timestamp": 1686976980,
+          "end_timestamp": 1686980580,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9779,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-08-01T01:11:00Z",
+          "end": "2023-08-01T02:11:00Z",
+          "start_timestamp": 1690852260,
+          "end_timestamp": 1690855860,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-09-08T09:10:00Z",
+          "end": "2023-09-08T10:07:00Z",
+          "start_timestamp": 1694164200,
+          "end_timestamp": 1694167620,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9944,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-09-12T09:23:00Z",
+          "end": "2023-09-12T10:23:00Z",
+          "start_timestamp": 1694510580,
+          "end_timestamp": 1694514180,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9945,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-11-05T22:11:00Z",
+          "end": "2023-11-05T23:05:00Z",
+          "start_timestamp": 1699222260,
+          "end_timestamp": 1699225500,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-11-07T17:17:00Z",
+          "end": "2023-11-07T18:52:00Z",
+          "start_timestamp": 1699377420,
+          "end_timestamp": 1699383120,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9954,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-11-21T23:11:00Z",
+          "end": "2023-11-22T00:01:00Z",
+          "start_timestamp": 1700608260,
+          "end_timestamp": 1700611260,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-12-04T04:25:00Z",
+          "end": "2023-12-04T05:25:00Z",
+          "start_timestamp": 1701663900,
+          "end_timestamp": 1701667500,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-12-07T08:34:00Z",
+          "end": "2023-12-07T09:28:00Z",
+          "start_timestamp": 1701938040,
+          "end_timestamp": 1701941280,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.96,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-12-19T01:05:00Z",
+          "end": "2023-12-19T02:01:00Z",
+          "start_timestamp": 1702947900,
+          "end_timestamp": 1702951260,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-01-05T13:59:00Z",
+          "end": "2024-01-05T14:43:00Z",
+          "start_timestamp": 1704463140,
+          "end_timestamp": 1704465780,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-01-31T15:19:00Z",
+          "end": "2024-01-31T16:07:00Z",
+          "start_timestamp": 1706714340,
+          "end_timestamp": 1706717220,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-03-21T03:09:00Z",
+          "end": "2024-03-21T03:55:00Z",
+          "start_timestamp": 1710990540,
+          "end_timestamp": 1710993300,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-04-05T13:18:00Z",
+          "end": "2024-04-05T14:15:00Z",
+          "start_timestamp": 1712323080,
+          "end_timestamp": 1712326500,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-05-27T14:47:00Z",
+          "end": "2024-05-27T15:47:00Z",
+          "start_timestamp": 1716821220,
+          "end_timestamp": 1716824820,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-07-02T13:43:00Z",
+          "end": "2024-07-02T14:43:00Z",
+          "start_timestamp": 1719927780,
+          "end_timestamp": 1719931380,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-07-15T21:59:00Z",
+          "end": "2024-07-15T22:42:00Z",
+          "start_timestamp": 1721080740,
+          "end_timestamp": 1721083320,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-08-22T01:58:00Z",
+          "end": "2024-08-22T02:53:00Z",
+          "start_timestamp": 1724291880,
+          "end_timestamp": 1724295180,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-12-31T07:34:00Z",
+          "end": "2024-12-31T08:33:00Z",
+          "start_timestamp": 1735630440,
+          "end_timestamp": 1735633980,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9944,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-01-09T01:25:00Z",
+          "end": "2025-01-09T02:13:00Z",
+          "start_timestamp": 1736385900,
+          "end_timestamp": 1736388780,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-01-17T01:18:00Z",
+          "end": "2025-01-17T02:19:00Z",
+          "start_timestamp": 1737076680,
+          "end_timestamp": 1737080340,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-02-04T04:37:00Z",
+          "end": "2025-02-04T05:36:00Z",
+          "start_timestamp": 1738643820,
+          "end_timestamp": 1738647360,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-02-27T14:29:00Z",
+          "end": "2025-02-27T15:02:00Z",
+          "start_timestamp": 1740666540,
+          "end_timestamp": 1740668520,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-04-22T00:37:00Z",
+          "end": "2025-04-22T01:22:00Z",
+          "start_timestamp": 1745282220,
+          "end_timestamp": 1745284920,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-11-19T20:24:00Z",
+          "end": "2025-11-19T21:23:00Z",
+          "start_timestamp": 1763583840,
+          "end_timestamp": 1763587380,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-02-01T14:51:00Z",
+          "end": "2026-02-01T15:39:00Z",
+          "start_timestamp": 1769957460,
+          "end_timestamp": 1769960340,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        }
+      ],
+      "pending_clusters": [
+        {
+          "start": "2026-04-02T00:45:00Z",
+          "end": "2026-04-02T01:51:00Z",
+          "start_timestamp": 1775090700,
+          "end_timestamp": 1775094660,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-05T22:19:00Z",
+          "end": "2026-04-05T23:33:00Z",
+          "start_timestamp": 1775427540,
+          "end_timestamp": 1775431980,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-07T21:38:00Z",
+          "end": "2026-04-07T23:31:00Z",
+          "start_timestamp": 1775597880,
+          "end_timestamp": 1775604660,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-09T14:35:00Z",
+          "end": "2026-04-09T15:49:00Z",
+          "start_timestamp": 1775745300,
+          "end_timestamp": 1775749740,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-12T00:44:00Z",
+          "end": "2026-04-12T01:46:00Z",
+          "start_timestamp": 1775954640,
+          "end_timestamp": 1775958360,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-13T21:55:00Z",
+          "end": "2026-04-13T23:11:00Z",
+          "start_timestamp": 1776117300,
+          "end_timestamp": 1776121860,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-16T13:15:00Z",
+          "end": "2026-04-16T13:56:00Z",
+          "start_timestamp": 1776345300,
+          "end_timestamp": 1776347760,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-17T13:32:00Z",
+          "end": "2026-04-17T14:24:00Z",
+          "start_timestamp": 1776432720,
+          "end_timestamp": 1776435840,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-27T14:37:00Z",
+          "end": "2026-04-27T15:26:00Z",
+          "start_timestamp": 1777300620,
+          "end_timestamp": 1777303560,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-04T01:01:00Z",
+          "end": "2026-05-04T02:01:00Z",
+          "start_timestamp": 1777856460,
+          "end_timestamp": 1777860060,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-04T09:27:00Z",
+          "end": "2026-05-04T14:56:00Z",
+          "start_timestamp": 1777886820,
+          "end_timestamp": 1777906560,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-15T12:52:00Z",
+          "end": "2026-05-15T13:52:00Z",
+          "start_timestamp": 1778849520,
+          "end_timestamp": 1778853120,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-28T03:03:00Z",
+          "end": "2026-05-28T04:03:00Z",
+          "start_timestamp": 1779937380,
+          "end_timestamp": 1779940980,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-29T14:38:00Z",
+          "end": "2026-05-29T15:37:00Z",
+          "start_timestamp": 1780065480,
+          "end_timestamp": 1780069020,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-02T13:28:00Z",
+          "end": "2026-06-02T14:28:00Z",
+          "start_timestamp": 1780406880,
+          "end_timestamp": 1780410480,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-03T02:51:00Z",
+          "end": "2026-06-03T03:51:00Z",
+          "start_timestamp": 1780455060,
+          "end_timestamp": 1780458660,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-03T23:31:00Z",
+          "end": "2026-06-04T03:41:00Z",
+          "start_timestamp": 1780529460,
+          "end_timestamp": 1780544460,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-04T11:37:00Z",
+          "end": "2026-06-04T14:13:00Z",
+          "start_timestamp": 1780573020,
+          "end_timestamp": 1780582380,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-05T05:00:00Z",
+          "end": "2026-06-05T08:00:00Z",
+          "start_timestamp": 1780635600,
+          "end_timestamp": 1780646400,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-05T13:01:00Z",
+          "end": "2026-06-05T23:34:00Z",
+          "start_timestamp": 1780664460,
+          "end_timestamp": 1780702440,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-06T03:38:00Z",
+          "end": "2026-06-06T06:05:00Z",
+          "start_timestamp": 1780717080,
+          "end_timestamp": 1780725900,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-07T21:15:00Z",
+          "end": "2026-06-07T22:16:00Z",
+          "start_timestamp": 1780866900,
+          "end_timestamp": 1780870560,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-09T13:48:00Z",
+          "end": "2026-06-09T14:48:00Z",
+          "start_timestamp": 1781012880,
+          "end_timestamp": 1781016480,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-11T17:04:00Z",
+          "end": "2026-06-11T18:03:00Z",
+          "start_timestamp": 1781197440,
+          "end_timestamp": 1781200980,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-14T20:41:00Z",
+          "end": "2026-06-14T21:51:00Z",
+          "start_timestamp": 1781469660,
+          "end_timestamp": 1781473860,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-17T17:54:00Z",
+          "end": "2026-06-17T19:51:00Z",
+          "start_timestamp": 1781718840,
+          "end_timestamp": 1781725860,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-18T14:41:00Z",
+          "end": "2026-06-18T15:59:00Z",
+          "start_timestamp": 1781793660,
+          "end_timestamp": 1781798340,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-24T12:43:00Z",
+          "end": "2026-06-24T20:50:00Z",
+          "start_timestamp": 1782304980,
+          "end_timestamp": 1782334200,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-25T12:45:00Z",
+          "end": "2026-06-25T15:16:00Z",
+          "start_timestamp": 1782391500,
+          "end_timestamp": 1782400560,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-26T01:17:00Z",
+          "end": "2026-06-26T04:18:00Z",
+          "start_timestamp": 1782436620,
+          "end_timestamp": 1782447480,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-26T12:30:00Z",
+          "end": "2026-06-26T14:01:00Z",
+          "start_timestamp": 1782477000,
+          "end_timestamp": 1782482460,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-29T02:14:00Z",
+          "end": "2026-06-29T03:06:00Z",
+          "start_timestamp": 1782699240,
+          "end_timestamp": 1782702360,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-29T13:16:00Z",
+          "end": "2026-06-29T14:16:00Z",
+          "start_timestamp": 1782738960,
+          "end_timestamp": 1782742560,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-01T13:14:00Z",
+          "end": "2026-07-01T14:19:00Z",
+          "start_timestamp": 1782911640,
+          "end_timestamp": 1782915540,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-06T11:47:00Z",
+          "end": "2026-07-06T16:13:00Z",
+          "start_timestamp": 1783338420,
+          "end_timestamp": 1783354380,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-14T12:29:00Z",
+          "end": "2026-07-14T13:24:00Z",
+          "start_timestamp": 1784032140,
+          "end_timestamp": 1784035440,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-20T14:55:00Z",
+          "end": "2026-07-20T15:55:00Z",
+          "start_timestamp": 1784559300,
+          "end_timestamp": 1784562900,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-31T13:11:00Z",
+          "end": "2026-07-31T14:11:00Z",
+          "start_timestamp": 1785503460,
+          "end_timestamp": 1785507060,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        }
+      ]
+    },
+    {
+      "horizon_bars": 240,
+      "threshold": 0.02,
+      "total_clusters": 1940,
+      "replicated": 1754,
+      "venue_disputed": 78,
+      "kraken_sparse": 24,
+      "sparse_replicated_anyway": 22,
+      "pending_bars": 84,
+      "disagreement_rate": 0.0425764192139738,
+      "escalation_threshold": 0.02,
+      "escalation_triggered": true,
+      "disputed_by_year": {
+        "2020": 7,
+        "2021": 13,
+        "2022": 9,
+        "2023": 13,
+        "2024": 21,
+        "2025": 10,
+        "2026": 5
+      },
+      "disputed_clusters": [
+        {
+          "start": "2020-01-31T09:18:00Z",
+          "end": "2020-01-31T13:19:00Z",
+          "start_timestamp": 1580462280,
+          "end_timestamp": 1580476740,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9418,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-04-14T17:02:00Z",
+          "end": "2020-04-14T20:39:00Z",
+          "start_timestamp": 1586883720,
+          "end_timestamp": 1586896740,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9842,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-04-23T02:02:00Z",
+          "end": "2020-04-23T06:01:00Z",
+          "start_timestamp": 1587607320,
+          "end_timestamp": 1587621660,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9028,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-06-18T23:31:00Z",
+          "end": "2020-06-19T02:59:00Z",
+          "start_timestamp": 1592523060,
+          "end_timestamp": 1592535540,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9855,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-09-14T23:22:00Z",
+          "end": "2020-09-15T02:47:00Z",
+          "start_timestamp": 1600125720,
+          "end_timestamp": 1600138020,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9708,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-09-15T21:51:00Z",
+          "end": "2020-09-16T00:48:00Z",
+          "start_timestamp": 1600206660,
+          "end_timestamp": 1600217280,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.959,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2020-10-02T10:26:00Z",
+          "end": "2020-10-02T13:47:00Z",
+          "start_timestamp": 1601634360,
+          "end_timestamp": 1601646420,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.978,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-07-20T08:04:00Z",
+          "end": "2021-07-20T10:01:00Z",
+          "start_timestamp": 1626768240,
+          "end_timestamp": 1626775260,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9866,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-07-25T01:55:00Z",
+          "end": "2021-07-25T07:34:00Z",
+          "start_timestamp": 1627178100,
+          "end_timestamp": 1627198440,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9451,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-07-31T10:39:00Z",
+          "end": "2021-07-31T14:08:00Z",
+          "start_timestamp": 1627727940,
+          "end_timestamp": 1627740480,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9623,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-09-25T22:55:00Z",
+          "end": "2021-09-26T02:16:00Z",
+          "start_timestamp": 1632610500,
+          "end_timestamp": 1632622560,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9604,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-10-09T02:03:00Z",
+          "end": "2021-10-09T06:04:00Z",
+          "start_timestamp": 1633744980,
+          "end_timestamp": 1633759440,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9889,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-10-14T11:26:00Z",
+          "end": "2021-10-14T15:04:00Z",
+          "start_timestamp": 1634210760,
+          "end_timestamp": 1634223840,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9957,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-06T08:22:00Z",
+          "end": "2021-11-06T12:19:00Z",
+          "start_timestamp": 1636186920,
+          "end_timestamp": 1636201140,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9847,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-08T14:40:00Z",
+          "end": "2021-11-08T16:04:00Z",
+          "start_timestamp": 1636382400,
+          "end_timestamp": 1636387440,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-13T20:30:00Z",
+          "end": "2021-11-14T00:28:00Z",
+          "start_timestamp": 1636835400,
+          "end_timestamp": 1636849680,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.993,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-24T06:09:00Z",
+          "end": "2021-11-24T08:50:00Z",
+          "start_timestamp": 1637734140,
+          "end_timestamp": 1637743800,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9938,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-11-26T23:48:00Z",
+          "end": "2021-11-27T00:42:00Z",
+          "start_timestamp": 1637970480,
+          "end_timestamp": 1637973720,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-12-01T06:05:00Z",
+          "end": "2021-12-01T08:33:00Z",
+          "start_timestamp": 1638338700,
+          "end_timestamp": 1638347580,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9952,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2021-12-21T12:35:00Z",
+          "end": "2021-12-21T15:38:00Z",
+          "start_timestamp": 1640090100,
+          "end_timestamp": 1640101080,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.991,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-01-16T13:30:00Z",
+          "end": "2022-01-16T16:28:00Z",
+          "start_timestamp": 1642339800,
+          "end_timestamp": 1642350480,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9803,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-05-25T08:51:00Z",
+          "end": "2022-05-25T11:50:00Z",
+          "start_timestamp": 1653468660,
+          "end_timestamp": 1653479400,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9848,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-05-25T16:37:00Z",
+          "end": "2022-05-25T18:32:00Z",
+          "start_timestamp": 1653496620,
+          "end_timestamp": 1653503520,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9966,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-08-23T23:26:00Z",
+          "end": "2022-08-24T02:55:00Z",
+          "start_timestamp": 1661297160,
+          "end_timestamp": 1661309700,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9957,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-10-02T19:13:00Z",
+          "end": "2022-10-02T23:17:00Z",
+          "start_timestamp": 1664737980,
+          "end_timestamp": 1664752620,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9917,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-10-23T16:30:00Z",
+          "end": "2022-10-23T21:24:00Z",
+          "start_timestamp": 1666542600,
+          "end_timestamp": 1666560240,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.991,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-10-29T07:07:00Z",
+          "end": "2022-10-29T10:23:00Z",
+          "start_timestamp": 1667027220,
+          "end_timestamp": 1667038980,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9719,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-11-04T02:36:00Z",
+          "end": "2022-11-04T06:34:00Z",
+          "start_timestamp": 1667529360,
+          "end_timestamp": 1667543640,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9958,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2022-11-17T22:31:00Z",
+          "end": "2022-11-18T01:03:00Z",
+          "start_timestamp": 1668724260,
+          "end_timestamp": 1668733380,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9858,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-01-29T16:11:00Z",
+          "end": "2023-01-29T19:49:00Z",
+          "start_timestamp": 1675008660,
+          "end_timestamp": 1675021740,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-02-06T19:21:00Z",
+          "end": "2023-02-06T23:21:00Z",
+          "start_timestamp": 1675711260,
+          "end_timestamp": 1675725660,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9986,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-02-13T07:24:00Z",
+          "end": "2023-02-13T10:23:00Z",
+          "start_timestamp": 1676273040,
+          "end_timestamp": 1676283780,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-03-11T16:41:00Z",
+          "end": "2023-03-11T20:39:00Z",
+          "start_timestamp": 1678552860,
+          "end_timestamp": 1678567140,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-04-13T22:00:00Z",
+          "end": "2023-04-14T01:48:00Z",
+          "start_timestamp": 1681423200,
+          "end_timestamp": 1681436880,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-04-22T13:38:00Z",
+          "end": "2023-04-22T17:32:00Z",
+          "start_timestamp": 1682170680,
+          "end_timestamp": 1682184720,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-06-22T00:12:00Z",
+          "end": "2023-06-22T02:51:00Z",
+          "start_timestamp": 1687392720,
+          "end_timestamp": 1687402260,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-08-01T01:05:00Z",
+          "end": "2023-08-01T02:11:00Z",
+          "start_timestamp": 1690851900,
+          "end_timestamp": 1690855860,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-08-01T15:31:00Z",
+          "end": "2023-08-01T19:01:00Z",
+          "start_timestamp": 1690903860,
+          "end_timestamp": 1690916460,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9493,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-10-21T14:02:00Z",
+          "end": "2023-10-21T18:02:00Z",
+          "start_timestamp": 1697896920,
+          "end_timestamp": 1697911320,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9958,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-11-15T07:56:00Z",
+          "end": "2023-11-15T11:40:00Z",
+          "start_timestamp": 1700034960,
+          "end_timestamp": 1700048400,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-12-04T16:03:00Z",
+          "end": "2023-12-04T19:57:00Z",
+          "start_timestamp": 1701705780,
+          "end_timestamp": 1701719820,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2023-12-22T06:35:00Z",
+          "end": "2023-12-22T09:17:00Z",
+          "start_timestamp": 1703226900,
+          "end_timestamp": 1703236620,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9969,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-01-19T03:33:00Z",
+          "end": "2024-01-19T07:04:00Z",
+          "start_timestamp": 1705635180,
+          "end_timestamp": 1705647840,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9986,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-02-14T21:32:00Z",
+          "end": "2024-02-15T00:38:00Z",
+          "start_timestamp": 1707946320,
+          "end_timestamp": 1707957480,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9985,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-03-10T00:28:00Z",
+          "end": "2024-03-10T04:23:00Z",
+          "start_timestamp": 1710030480,
+          "end_timestamp": 1710044580,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-03-24T07:32:00Z",
+          "end": "2024-03-24T10:49:00Z",
+          "start_timestamp": 1711265520,
+          "end_timestamp": 1711277340,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9941,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-03-25T02:17:00Z",
+          "end": "2024-03-25T05:33:00Z",
+          "start_timestamp": 1711333020,
+          "end_timestamp": 1711344780,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9882,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-04-03T11:10:00Z",
+          "end": "2024-04-03T14:30:00Z",
+          "start_timestamp": 1712142600,
+          "end_timestamp": 1712154600,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-04-04T04:24:00Z",
+          "end": "2024-04-04T08:20:00Z",
+          "start_timestamp": 1712204640,
+          "end_timestamp": 1712218800,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9986,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-04-07T16:39:00Z",
+          "end": "2024-04-07T19:54:00Z",
+          "start_timestamp": 1712507940,
+          "end_timestamp": 1712519640,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9985,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-04-25T21:18:00Z",
+          "end": "2024-04-26T01:12:00Z",
+          "start_timestamp": 1714079880,
+          "end_timestamp": 1714093920,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9902,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-04-29T01:37:00Z",
+          "end": "2024-04-29T05:34:00Z",
+          "start_timestamp": 1714354620,
+          "end_timestamp": 1714368840,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9903,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-05-05T00:27:00Z",
+          "end": "2024-05-05T01:36:00Z",
+          "start_timestamp": 1714868820,
+          "end_timestamp": 1714872960,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9709,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-05-28T18:40:00Z",
+          "end": "2024-05-28T22:08:00Z",
+          "start_timestamp": 1716921600,
+          "end_timestamp": 1716934080,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9971,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-06-13T00:49:00Z",
+          "end": "2024-06-13T03:40:00Z",
+          "start_timestamp": 1718239740,
+          "end_timestamp": 1718250000,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.977,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-07-02T13:43:00Z",
+          "end": "2024-07-02T14:43:00Z",
+          "start_timestamp": 1719927780,
+          "end_timestamp": 1719931380,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9908,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-07-10T10:37:00Z",
+          "end": "2024-07-10T14:13:00Z",
+          "start_timestamp": 1720607820,
+          "end_timestamp": 1720620780,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9943,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-07-23T02:46:00Z",
+          "end": "2024-07-23T05:37:00Z",
+          "start_timestamp": 1721702760,
+          "end_timestamp": 1721713020,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9954,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-07-27T11:18:00Z",
+          "end": "2024-07-27T14:05:00Z",
+          "start_timestamp": 1722079080,
+          "end_timestamp": 1722089100,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9923,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-10-21T21:14:00Z",
+          "end": "2024-10-22T00:34:00Z",
+          "start_timestamp": 1729545240,
+          "end_timestamp": 1729557240,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9956,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-11-04T21:54:00Z",
+          "end": "2024-11-05T00:53:00Z",
+          "start_timestamp": 1730757240,
+          "end_timestamp": 1730767980,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-11-20T11:14:00Z",
+          "end": "2024-11-20T14:54:00Z",
+          "start_timestamp": 1732101240,
+          "end_timestamp": 1732114440,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2024-12-11T01:57:00Z",
+          "end": "2024-12-11T05:05:00Z",
+          "start_timestamp": 1733882220,
+          "end_timestamp": 1733893500,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-01-09T01:25:00Z",
+          "end": "2025-01-09T02:13:00Z",
+          "start_timestamp": 1736385900,
+          "end_timestamp": 1736388780,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-01-19T06:59:00Z",
+          "end": "2025-01-19T09:22:00Z",
+          "start_timestamp": 1737269940,
+          "end_timestamp": 1737278520,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-03-23T21:18:00Z",
+          "end": "2025-03-24T00:35:00Z",
+          "start_timestamp": 1742764680,
+          "end_timestamp": 1742776500,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9985,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-03-27T10:07:00Z",
+          "end": "2025-03-27T13:41:00Z",
+          "start_timestamp": 1743070020,
+          "end_timestamp": 1743082860,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9928,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-04-15T13:48:00Z",
+          "end": "2025-04-15T15:52:00Z",
+          "start_timestamp": 1744724880,
+          "end_timestamp": 1744732320,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-05-12T03:06:00Z",
+          "end": "2025-05-12T07:06:00Z",
+          "start_timestamp": 1747019160,
+          "end_timestamp": 1747033560,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9986,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-05-20T13:48:00Z",
+          "end": "2025-05-20T20:50:00Z",
+          "start_timestamp": 1747748880,
+          "end_timestamp": 1747774200,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9967,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-07-31T16:36:00Z",
+          "end": "2025-07-31T20:18:00Z",
+          "start_timestamp": 1753979760,
+          "end_timestamp": 1753993080,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-08-19T01:04:00Z",
+          "end": "2025-08-19T04:10:00Z",
+          "start_timestamp": 1755565440,
+          "end_timestamp": 1755576600,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2025-10-19T09:29:00Z",
+          "end": "2025-10-19T11:11:00Z",
+          "start_timestamp": 1760866140,
+          "end_timestamp": 1760872260,
+          "direction": "up",
+          "verdict": "venue_disputed",
+          "coverage": 0.9931,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-01-15T17:43:00Z",
+          "end": "2026-01-15T20:33:00Z",
+          "start_timestamp": 1768498980,
+          "end_timestamp": 1768509180,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-02-14T11:57:00Z",
+          "end": "2026-02-14T13:19:00Z",
+          "start_timestamp": 1771070220,
+          "end_timestamp": 1771075140,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-02-18T08:26:00Z",
+          "end": "2026-02-18T11:11:00Z",
+          "start_timestamp": 1771403160,
+          "end_timestamp": 1771413060,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 0.9985,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-03-08T10:26:00Z",
+          "end": "2026-03-08T13:43:00Z",
+          "start_timestamp": 1772965560,
+          "end_timestamp": 1772977380,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-03-25T11:32:00Z",
+          "end": "2026-03-25T15:18:00Z",
+          "start_timestamp": 1774438320,
+          "end_timestamp": 1774451880,
+          "direction": "down",
+          "verdict": "venue_disputed",
+          "coverage": 1.0,
+          "matching_anchors": 0
+        }
+      ],
+      "pending_clusters": [
+        {
+          "start": "2026-04-01T02:37:00Z",
+          "end": "2026-04-01T07:11:00Z",
+          "start_timestamp": 1775011020,
+          "end_timestamp": 1775027460,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.1113,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-01T22:22:00Z",
+          "end": "2026-04-02T04:43:00Z",
+          "start_timestamp": 1775082120,
+          "end_timestamp": 1775104980,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-02T13:17:00Z",
+          "end": "2026-04-02T17:19:00Z",
+          "start_timestamp": 1775135820,
+          "end_timestamp": 1775150340,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-05T19:16:00Z",
+          "end": "2026-04-06T00:02:00Z",
+          "start_timestamp": 1775416560,
+          "end_timestamp": 1775433720,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-06T06:29:00Z",
+          "end": "2026-04-06T09:23:00Z",
+          "start_timestamp": 1775456940,
+          "end_timestamp": 1775467380,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-06T19:15:00Z",
+          "end": "2026-04-06T23:08:00Z",
+          "start_timestamp": 1775502900,
+          "end_timestamp": 1775516880,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-07T16:10:00Z",
+          "end": "2026-04-08T02:36:00Z",
+          "start_timestamp": 1775578200,
+          "end_timestamp": 1775615760,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-08T13:05:00Z",
+          "end": "2026-04-08T14:57:00Z",
+          "start_timestamp": 1775653500,
+          "end_timestamp": 1775660220,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-09T13:16:00Z",
+          "end": "2026-04-09T17:16:00Z",
+          "start_timestamp": 1775740560,
+          "end_timestamp": 1775754960,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-11T21:42:00Z",
+          "end": "2026-04-12T01:50:00Z",
+          "start_timestamp": 1775943720,
+          "end_timestamp": 1775958600,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-13T10:50:00Z",
+          "end": "2026-04-13T23:11:00Z",
+          "start_timestamp": 1776077400,
+          "end_timestamp": 1776121860,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-14T10:34:00Z",
+          "end": "2026-04-14T18:50:00Z",
+          "start_timestamp": 1776162840,
+          "end_timestamp": 1776192600,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-15T15:37:00Z",
+          "end": "2026-04-15T19:37:00Z",
+          "start_timestamp": 1776267420,
+          "end_timestamp": 1776281820,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-16T13:15:00Z",
+          "end": "2026-04-16T20:01:00Z",
+          "start_timestamp": 1776345300,
+          "end_timestamp": 1776369660,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-17T05:29:00Z",
+          "end": "2026-04-17T16:24:00Z",
+          "start_timestamp": 1776403740,
+          "end_timestamp": 1776443040,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-19T14:48:00Z",
+          "end": "2026-04-19T18:26:00Z",
+          "start_timestamp": 1776610080,
+          "end_timestamp": 1776623160,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-20T14:57:00Z",
+          "end": "2026-04-20T19:01:00Z",
+          "start_timestamp": 1776697020,
+          "end_timestamp": 1776711660,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-21T19:47:00Z",
+          "end": "2026-04-22T05:25:00Z",
+          "start_timestamp": 1776800820,
+          "end_timestamp": 1776835500,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-23T15:24:00Z",
+          "end": "2026-04-23T17:48:00Z",
+          "start_timestamp": 1776957840,
+          "end_timestamp": 1776966480,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-26T21:47:00Z",
+          "end": "2026-04-27T06:33:00Z",
+          "start_timestamp": 1777240020,
+          "end_timestamp": 1777271580,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-27T14:37:00Z",
+          "end": "2026-04-27T16:59:00Z",
+          "start_timestamp": 1777300620,
+          "end_timestamp": 1777309140,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-04-29T11:38:00Z",
+          "end": "2026-04-29T18:11:00Z",
+          "start_timestamp": 1777462680,
+          "end_timestamp": 1777486260,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-01T09:54:00Z",
+          "end": "2026-05-01T13:56:00Z",
+          "start_timestamp": 1777629240,
+          "end_timestamp": 1777643760,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-03T23:23:00Z",
+          "end": "2026-05-04T04:20:00Z",
+          "start_timestamp": 1777850580,
+          "end_timestamp": 1777868400,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-04T06:46:00Z",
+          "end": "2026-05-04T17:54:00Z",
+          "start_timestamp": 1777877160,
+          "end_timestamp": 1777917240,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-06T11:23:00Z",
+          "end": "2026-05-06T14:08:00Z",
+          "start_timestamp": 1778066580,
+          "end_timestamp": 1778076480,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-10T20:45:00Z",
+          "end": "2026-05-11T03:37:00Z",
+          "start_timestamp": 1778445900,
+          "end_timestamp": 1778470620,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-13T09:47:00Z",
+          "end": "2026-05-13T16:10:00Z",
+          "start_timestamp": 1778665620,
+          "end_timestamp": 1778688600,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-14T11:04:00Z",
+          "end": "2026-05-14T17:05:00Z",
+          "start_timestamp": 1778756640,
+          "end_timestamp": 1778778300,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-15T09:52:00Z",
+          "end": "2026-05-15T13:52:00Z",
+          "start_timestamp": 1778838720,
+          "end_timestamp": 1778853120,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-17T19:42:00Z",
+          "end": "2026-05-17T23:42:00Z",
+          "start_timestamp": 1779046920,
+          "end_timestamp": 1779061320,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-18T12:39:00Z",
+          "end": "2026-05-18T15:31:00Z",
+          "start_timestamp": 1779107940,
+          "end_timestamp": 1779118260,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-23T16:56:00Z",
+          "end": "2026-05-23T21:01:00Z",
+          "start_timestamp": 1779555360,
+          "end_timestamp": 1779570060,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-26T14:15:00Z",
+          "end": "2026-05-26T17:32:00Z",
+          "start_timestamp": 1779804900,
+          "end_timestamp": 1779816720,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-28T00:03:00Z",
+          "end": "2026-05-28T04:03:00Z",
+          "start_timestamp": 1779926580,
+          "end_timestamp": 1779940980,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-05-29T13:24:00Z",
+          "end": "2026-05-29T17:21:00Z",
+          "start_timestamp": 1780061040,
+          "end_timestamp": 1780075260,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-01T09:56:00Z",
+          "end": "2026-06-01T16:14:00Z",
+          "start_timestamp": 1780307760,
+          "end_timestamp": 1780330440,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-01T23:41:00Z",
+          "end": "2026-06-02T02:08:00Z",
+          "start_timestamp": 1780357260,
+          "end_timestamp": 1780366080,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-02T10:12:00Z",
+          "end": "2026-06-03T06:40:00Z",
+          "start_timestamp": 1780395120,
+          "end_timestamp": 1780468800,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-03T12:27:00Z",
+          "end": "2026-06-04T17:46:00Z",
+          "start_timestamp": 1780489620,
+          "end_timestamp": 1780595160,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-04T23:05:00Z",
+          "end": "2026-06-06T10:32:00Z",
+          "start_timestamp": 1780614300,
+          "end_timestamp": 1780741920,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-06T22:27:00Z",
+          "end": "2026-06-07T01:30:00Z",
+          "start_timestamp": 1780784820,
+          "end_timestamp": 1780795800,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-07T05:32:00Z",
+          "end": "2026-06-07T12:43:00Z",
+          "start_timestamp": 1780810320,
+          "end_timestamp": 1780836180,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-07T18:15:00Z",
+          "end": "2026-06-07T22:16:00Z",
+          "start_timestamp": 1780856100,
+          "end_timestamp": 1780870560,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-08T12:05:00Z",
+          "end": "2026-06-08T15:14:00Z",
+          "start_timestamp": 1780920300,
+          "end_timestamp": 1780931640,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-08T21:08:00Z",
+          "end": "2026-06-09T00:50:00Z",
+          "start_timestamp": 1780952880,
+          "end_timestamp": 1780966200,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-09T10:31:00Z",
+          "end": "2026-06-09T20:16:00Z",
+          "start_timestamp": 1781001060,
+          "end_timestamp": 1781036160,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-10T09:48:00Z",
+          "end": "2026-06-10T15:55:00Z",
+          "start_timestamp": 1781084880,
+          "end_timestamp": 1781106900,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-10T22:18:00Z",
+          "end": "2026-06-11T03:57:00Z",
+          "start_timestamp": 1781129880,
+          "end_timestamp": 1781150220,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-11T15:46:00Z",
+          "end": "2026-06-11T19:34:00Z",
+          "start_timestamp": 1781192760,
+          "end_timestamp": 1781206440,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-12T13:43:00Z",
+          "end": "2026-06-12T15:16:00Z",
+          "start_timestamp": 1781271780,
+          "end_timestamp": 1781277360,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-14T17:41:00Z",
+          "end": "2026-06-14T23:55:00Z",
+          "start_timestamp": 1781458860,
+          "end_timestamp": 1781481300,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-15T09:33:00Z",
+          "end": "2026-06-15T13:27:00Z",
+          "start_timestamp": 1781515980,
+          "end_timestamp": 1781530020,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-16T12:32:00Z",
+          "end": "2026-06-16T14:34:00Z",
+          "start_timestamp": 1781613120,
+          "end_timestamp": 1781620440,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-17T12:21:00Z",
+          "end": "2026-06-17T22:04:00Z",
+          "start_timestamp": 1781698860,
+          "end_timestamp": 1781733840,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-18T11:46:00Z",
+          "end": "2026-06-18T15:59:00Z",
+          "start_timestamp": 1781783160,
+          "end_timestamp": 1781798340,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-21T23:32:00Z",
+          "end": "2026-06-22T01:27:00Z",
+          "start_timestamp": 1782084720,
+          "end_timestamp": 1782091620,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-22T09:40:00Z",
+          "end": "2026-06-22T14:01:00Z",
+          "start_timestamp": 1782121200,
+          "end_timestamp": 1782136860,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-23T02:21:00Z",
+          "end": "2026-06-23T08:29:00Z",
+          "start_timestamp": 1782181260,
+          "end_timestamp": 1782203340,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-24T09:47:00Z",
+          "end": "2026-06-24T20:51:00Z",
+          "start_timestamp": 1782294420,
+          "end_timestamp": 1782334260,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-25T03:45:00Z",
+          "end": "2026-06-25T07:43:00Z",
+          "start_timestamp": 1782359100,
+          "end_timestamp": 1782373380,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-25T09:41:00Z",
+          "end": "2026-06-25T15:16:00Z",
+          "start_timestamp": 1782380460,
+          "end_timestamp": 1782400560,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-25T22:14:00Z",
+          "end": "2026-06-26T16:01:00Z",
+          "start_timestamp": 1782425640,
+          "end_timestamp": 1782489660,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-29T00:32:00Z",
+          "end": "2026-06-29T06:19:00Z",
+          "start_timestamp": 1782693120,
+          "end_timestamp": 1782713940,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-29T10:16:00Z",
+          "end": "2026-06-29T17:32:00Z",
+          "start_timestamp": 1782728160,
+          "end_timestamp": 1782754320,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-06-30T09:52:00Z",
+          "end": "2026-06-30T15:07:00Z",
+          "start_timestamp": 1782813120,
+          "end_timestamp": 1782832020,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-01T01:09:00Z",
+          "end": "2026-07-01T04:47:00Z",
+          "start_timestamp": 1782868140,
+          "end_timestamp": 1782881220,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-01T10:15:00Z",
+          "end": "2026-07-01T15:25:00Z",
+          "start_timestamp": 1782900900,
+          "end_timestamp": 1782919500,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-01T18:24:00Z",
+          "end": "2026-07-02T03:58:00Z",
+          "start_timestamp": 1782930240,
+          "end_timestamp": 1782964680,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-02T07:14:00Z",
+          "end": "2026-07-02T13:37:00Z",
+          "start_timestamp": 1782976440,
+          "end_timestamp": 1782999420,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-05T18:31:00Z",
+          "end": "2026-07-05T23:16:00Z",
+          "start_timestamp": 1783276260,
+          "end_timestamp": 1783293360,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-06T08:06:00Z",
+          "end": "2026-07-06T17:27:00Z",
+          "start_timestamp": 1783325160,
+          "end_timestamp": 1783358820,
+          "direction": "mixed",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-07T14:15:00Z",
+          "end": "2026-07-07T16:53:00Z",
+          "start_timestamp": 1783433700,
+          "end_timestamp": 1783443180,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-09T03:02:00Z",
+          "end": "2026-07-09T07:48:00Z",
+          "start_timestamp": 1783566120,
+          "end_timestamp": 1783583280,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-13T00:06:00Z",
+          "end": "2026-07-13T05:01:00Z",
+          "start_timestamp": 1783901160,
+          "end_timestamp": 1783918860,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-14T08:59:00Z",
+          "end": "2026-07-14T15:33:00Z",
+          "start_timestamp": 1784019540,
+          "end_timestamp": 1784043180,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-17T13:12:00Z",
+          "end": "2026-07-17T18:50:00Z",
+          "start_timestamp": 1784293920,
+          "end_timestamp": 1784314200,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-20T04:38:00Z",
+          "end": "2026-07-20T08:38:00Z",
+          "start_timestamp": 1784522280,
+          "end_timestamp": 1784536680,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-20T13:55:00Z",
+          "end": "2026-07-20T18:14:00Z",
+          "start_timestamp": 1784555700,
+          "end_timestamp": 1784571240,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-24T10:43:00Z",
+          "end": "2026-07-24T14:27:00Z",
+          "start_timestamp": 1784889780,
+          "end_timestamp": 1784903220,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-27T19:08:00Z",
+          "end": "2026-07-28T01:08:00Z",
+          "start_timestamp": 1785179280,
+          "end_timestamp": 1785200880,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-28T13:48:00Z",
+          "end": "2026-07-28T16:52:00Z",
+          "start_timestamp": 1785246480,
+          "end_timestamp": 1785257520,
+          "direction": "up",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-29T18:53:00Z",
+          "end": "2026-07-29T21:06:00Z",
+          "start_timestamp": 1785351180,
+          "end_timestamp": 1785359160,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        },
+        {
+          "start": "2026-07-31T10:21:00Z",
+          "end": "2026-07-31T14:11:00Z",
+          "start_timestamp": 1785493260,
+          "end_timestamp": 1785507060,
+          "direction": "down",
+          "verdict": "pending_bars",
+          "coverage": 0.0,
+          "matching_anchors": 0
+        }
+      ]
+    }
+  ]
+}
