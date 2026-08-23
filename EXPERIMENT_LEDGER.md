@@ -163,6 +163,16 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   minutes 26/28/18/30, maintenance-shaped). Coinbase BTC-USD 1m candle
   acquisition (third index venue) in flight on the data host.
 
+  2026-08-23 (seat 2, late): Coinbase acquisition complete (public Exchange
+  API, 11,688 inclusive-boundary tiled windows, 2h40m, zero retries, zero
+  duplicate timestamps): 3,504,259 bars 2019-12-01..2026-07-31 with 2,141
+  structural missing minutes total (2020: 648 vs Kraken's 30,186). Largest
+  holes 391/349/277 min (2026-05-08, 2025-10-25, 2023-03-04), listed in the
+  data-host manifest with per-file sha256s. Fetch script and tests committed
+  (07963f8). All three D-022 index members are now on the data host;
+  consolidated-index construction is next, followed by the sensitivity
+  report, split proposal, and EXP-000 verdict.
+
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 
 - **Status:** PLANNED
