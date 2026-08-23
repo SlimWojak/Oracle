@@ -88,6 +88,20 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   spend came in near half of budget. All EXP-000 data acquisition is now
   complete.
 
+  2026-08-23 (seat 2): D-020 accepted — the HL-fills challenger runs no
+  predictive ladder this cycle (its usable window lies wholly inside any
+  regime-diverse test region). Per-cluster inventory committed
+  (`reports/exp000/clusters.json`, deterministic rebuild, counts unchanged)
+  and the per-fuel-challenger usable history table built from it
+  (`reports/exp000/challenger_history.{json,md}`): price-only 1,679/1,940
+  clusters (1h/4h); CEX-inferred from 2021-12-01, 991/1,329; HL
+  impact-context from 2023-05-20, 561/835; HL fill tape from 2025-05-25,
+  163/292 (construct validation and EXP-001 only per D-020). Vendor
+  challenger has no verified as-of history. In flight: l2Book BTC-only
+  slice pull (hyperliquid-archive `market_data`, ~29GB est., ~$3) and
+  Kraken XBTUSD 1m OHLCVT acquisition for the D-013 replication gate.
+  Remaining before verdict: Kraken replication run, split proposal.
+
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 
 - **Status:** PLANNED

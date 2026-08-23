@@ -1,0 +1,161 @@
+{
+  "source": "reports/exp000/clusters.json",
+  "membership_rule": "cluster start_timestamp >= window start (straddlers excluded)",
+  "windows": [
+    {
+      "key": "price_controls",
+      "label": "Price-only controls (M0)",
+      "start": "2020-01-01",
+      "note": "Binance spot 1m klines; context baseline, never a comparable score (D-016)."
+    },
+    {
+      "key": "cex_inferred",
+      "label": "CEX-inferred challenger (M1+, Binance UM metrics)",
+      "start": "2021-12-01",
+      "note": "OI/taker metrics dumps begin 2021-12; funding alone reaches back to 2020-01."
+    },
+    {
+      "key": "hl_impact_context",
+      "label": "HL impact-context challenger (asset_ctxs)",
+      "start": "2023-05-20",
+      "note": "Per-minute quoted impact prices, OI, premium."
+    },
+    {
+      "key": "hl_fills",
+      "label": "HL fill tape (no predictive ladder this cycle, D-020)",
+      "start": "2025-05-25",
+      "note": "Construct validation and EXP-001 only; observed-fuel status gated by D-018."
+    }
+  ],
+  "vendor_note": "Vendor/model challenger: no as-of point-in-time history acquired or verified; no usable window. Reconstructing history from a current vendor view is prohibited (DATA_CONTRACT).",
+  "horizons": [
+    {
+      "horizon_bars": 60,
+      "windows": {
+        "price_controls": {
+          "total": 1679,
+          "up": 560,
+          "down": 568,
+          "mixed": 551,
+          "first_cluster": "2020-01-02T16:02:00Z",
+          "last_cluster": "2026-07-31T13:11:00Z",
+          "per_year": {
+            "2020": 282,
+            "2021": 440,
+            "2022": 304,
+            "2023": 174,
+            "2024": 237,
+            "2025": 144,
+            "2026": 98
+          }
+        },
+        "cex_inferred": {
+          "total": 991,
+          "up": 343,
+          "down": 361,
+          "mixed": 287,
+          "first_cluster": "2021-12-01T13:30:00Z",
+          "last_cluster": "2026-07-31T13:11:00Z",
+          "per_year": {
+            "2021": 34,
+            "2022": 304,
+            "2023": 174,
+            "2024": 237,
+            "2025": 144,
+            "2026": 98
+          }
+        },
+        "hl_impact_context": {
+          "total": 561,
+          "up": 204,
+          "down": 201,
+          "mixed": 156,
+          "first_cluster": "2023-05-24T13:07:00Z",
+          "last_cluster": "2026-07-31T13:11:00Z",
+          "per_year": {
+            "2023": 82,
+            "2024": 237,
+            "2025": 144,
+            "2026": 98
+          }
+        },
+        "hl_fills": {
+          "total": 163,
+          "up": 62,
+          "down": 66,
+          "mixed": 35,
+          "first_cluster": "2025-06-12T23:25:00Z",
+          "last_cluster": "2026-07-31T13:11:00Z",
+          "per_year": {
+            "2025": 65,
+            "2026": 98
+          }
+        }
+      }
+    },
+    {
+      "horizon_bars": 240,
+      "windows": {
+        "price_controls": {
+          "total": 1940,
+          "up": 588,
+          "down": 538,
+          "mixed": 814,
+          "first_cluster": "2020-01-02T13:02:00Z",
+          "last_cluster": "2026-07-31T10:21:00Z",
+          "per_year": {
+            "2020": 308,
+            "2021": 342,
+            "2022": 332,
+            "2023": 241,
+            "2024": 318,
+            "2025": 231,
+            "2026": 168
+          }
+        },
+        "cex_inferred": {
+          "total": 1329,
+          "up": 406,
+          "down": 398,
+          "mixed": 525,
+          "first_cluster": "2021-12-01T06:05:00Z",
+          "last_cluster": "2026-07-31T10:21:00Z",
+          "per_year": {
+            "2021": 39,
+            "2022": 332,
+            "2023": 241,
+            "2024": 318,
+            "2025": 231,
+            "2026": 168
+          }
+        },
+        "hl_impact_context": {
+          "total": 835,
+          "up": 268,
+          "down": 261,
+          "mixed": 306,
+          "first_cluster": "2023-05-22T23:21:00Z",
+          "last_cluster": "2026-07-31T10:21:00Z",
+          "per_year": {
+            "2023": 118,
+            "2024": 318,
+            "2025": 231,
+            "2026": 168
+          }
+        },
+        "hl_fills": {
+          "total": 292,
+          "up": 103,
+          "down": 98,
+          "mixed": 91,
+          "first_cluster": "2025-05-25T21:23:00Z",
+          "last_cluster": "2026-07-31T10:21:00Z",
+          "per_year": {
+            "2025": 124,
+            "2026": 168
+          }
+        }
+      }
+    }
+  ]
+}
