@@ -1,7 +1,9 @@
 study:
   name: oracle_v0
   asset: BTC
-  label_price: consolidated_spot_index
+  # D-013: Binance spot 1m primary, Kraken replication gate, VENUE_DISPUTED
+  # exclusion; >2% disagreement escalates to a median-of-three index.
+  label_price: binance_spot_1m
 
 labels:
   fixed_first_passage:

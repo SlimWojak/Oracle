@@ -38,6 +38,14 @@ Every interval field must declare whether its timestamp denotes:
 Mixed-source alignment requires an explicit audit. A high contemporaneous
 correlation is not sufficient evidence that interval conventions align.
 
+### Canonical decision timestamp (D-017)
+
+A label anchored on a bar's close is knowable only at interval end. The
+canonical decision timestamp for bar-anchored labels is therefore the interval
+end (`open_time + 60s` for Binance 1m klines). Feature as-of joins, embargoes,
+and split boundaries all operate on interval-end decision timestamps, never the
+raw interval-start stamp.
+
 ### Known convention traps (binding)
 
 - Binance futures metrics dumps stamp the interval **end**, while Binance kline
@@ -92,6 +100,12 @@ Each dataset used by an experiment records:
 - timezone and timestamp conventions;
 - symbol mapping;
 - licensing/reproducibility boundary.
+
+## Run provenance (D-019)
+
+Every data-host run that produces committed evidence records the repository
+commit SHA, configuration hash, input manifest identifiers, UTC execution
+time, and output content hashes.
 
 ## Prohibited practices
 

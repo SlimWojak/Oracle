@@ -79,7 +79,10 @@ Known threats inherited from that evidence:
 
 Maintain independent challengers:
 
-- observed Hyperliquid liquidation topology;
+- observed Hyperliquid liquidation topology (provisional: the fill tape proves
+  realized liquidation mass and routing, but cross-margin liquidation prices
+  depend on account state, not fills alone; "observed" is earned only if
+  EXP-001 demonstrates honest pre-state reconstruction at time t, per D-018);
 - internally inferred CEX topology from causal public data;
 - vendor/model topology.
 

@@ -29,3 +29,6 @@ derived/
 .ipynb_checkpoints/
 reports/generated/
 
+# Operational access details for seat handover; repo is public.
+docs/HANDOVER_LOCAL.md
+

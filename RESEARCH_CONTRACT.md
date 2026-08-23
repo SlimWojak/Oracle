@@ -101,7 +101,7 @@ Failure here rejects the measurement implementation, not the market mechanism.
 - Inspect descriptive monotonicity before fitting nonlinear models.
 - Stratify results by direction, horizon, volatility regime, and event tag.
 
-## Evaluation discipline (D-015)
+## Evaluation discipline (D-015, D-016, D-019)
 
 1. **Robust regions, frozen grid.** Interaction evidence is reported on a
    coarse quantile grid (no finer than quintile x quintile) frozen before
@@ -122,6 +122,21 @@ Failure here rejects the measurement implementation, not the market mechanism.
    are reported but not interpreted. Slices characterize a pooled
    pre-registered result; a story that lives only in one slice is recorded as
    a hypothesis for the next OOS period, not as a result.
+4. **Common support.** Ladder comparisons are valid only on identical
+   timestamp populations, labels, and missingness treatment. Each fuel
+   challenger runs its own ladder on its usable history; incremental-lift
+   comparisons between challengers run only on their common intersection.
+   Adding a shorter-history feature must never silently change the test
+   population. The long price-only history is context, never a comparable
+   score.
+5. **Episode-level evaluation.** Alert quality is scored on contiguous alert
+   episodes and event clusters, never on repeated minute-level wins. A 4h
+   cluster can last weeks; whether large clusters carry capped weight or one
+   episode-level contribution is an open decision that must be settled before
+   M2 scoring.
+6. **Frozen news protocol.** News tags used in slicing are produced by a
+   protocol frozen before model evaluation on that period. Tagging events
+   after seeing model performance is prohibited.
 
 ## Interpretation matrix
 

@@ -15,8 +15,10 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-000 — Data feasibility and independent-event audit
 
-- **Status:** RUNNING (data acquisition started 2026-08-23; free Binance Vision
-  dumps only, no requester-pays spend)
+- **Status:** RUNNING (data acquisition started 2026-08-23)
+- **Correction note (2026-08-23):** the status line originally read "free
+  Binance Vision dumps only, no requester-pays spend"; superseded when the user
+  approved the Hyperliquid requester-pays pull recorded in the result trail.
 - **Question:** Is there sufficient point-in-time data and independent +/-2% event
   coverage to test the v0 contract without pseudo-replication?
 - **Inputs:** Consolidated BTC index candidate feeds and availability metadata for
@@ -68,6 +70,32 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   dedupe by liquidated-user leg confirmed viable). Stage 2 full fill pull
   approved by user and launched 2026-08-23; result to be recorded on
   completion.
+
+  2026-08-23 (advisor review): anchor timestamps in the catalogue were stamped
+  at kline interval start although labels use the bar close. Fixed per D-017
+  (decision timestamp = interval end); catalogue rebuilt. Counts unchanged;
+  all anchor and passage timestamps shifted +60s.
+
+## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
+
+- **Status:** PLANNED
+- **Frozen question:** Can a causal pre-state liquidation topology at time t be
+  honestly reconstructed from available Hyperliquid data, given that
+  cross-margin liquidation prices depend on account value, other positions,
+  funding, and margin state rather than the wallet's fills alone?
+- **Method sketch:** Select known cascade windows (including 2025-10-10 hour
+  21). Attempt account-state reconstruction from the fill tape (positions from
+  cumulative fills; margin state unobserved). For accounts subsequently
+  liquidated, compare implied liquidation prices against observed
+  liquidation-fill `markPx`. Determine what additional data (replica_cmds L1
+  transactions, asset_ctxs funding/mark series) would be required and at what
+  cost.
+- **Pass condition:** Bounded, documented reconstruction error on held-out
+  cascade windows sufficient to justify calling the surface "observed".
+- **Failure meaning:** Per D-018 the HL challenger is demoted from observed
+  fuel to realized-mass diagnostics and construct-validation evidence for the
+  other challengers. The fill tape retains value either way.
+- **Result:** —
 
 ## Experiment template
 

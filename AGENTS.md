@@ -82,9 +82,11 @@ Delegation rules:
 
 ## Seat rotation
 
-- Before ending a CTO session, update `docs/HANDOVER.md`: topology/access
-  state, data on hand, in-flight jobs, verified load-bearing facts, next
-  actions. Terse agent-to-agent prose.
+- Before ending a CTO session, update `docs/HANDOVER.md`: abstract state, data
+  on hand, verified load-bearing facts, next actions. Terse agent-to-agent
+  prose. Operational access details (hosts, accounts, profiles, local paths,
+  session ids, in-flight job names) go in `docs/HANDOVER_LOCAL.md`, which is
+  gitignored and must never be committed; this repository is public.
 - An incoming seat orients by reading `AGENTS.md`, then `docs/HANDOVER.md`,
   then `EXPERIMENT_LEDGER.md` and `docs/DECISIONS.md`, before touching code.
 

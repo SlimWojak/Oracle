@@ -65,6 +65,9 @@ timestamp semantics, transformation version, and content hash.
 
 ## Current status
 
-The repository is at research-contract stage. The first implemented primitive is
-bar-aware first-passage labelling, including explicit ambiguity when both barriers
-are touched within one bar and event ordering cannot be recovered.
+EXP-000 (data feasibility and independent-event audit) is running. Implemented
+primitives: bar-aware first-passage labelling (scalar and vectorized,
+property-tested against each other), event clustering per D-014, Binance Vision
+kline loading, and the EXP-000 event catalogue (`reports/exp000/`). Raw data
+acquisition is manifested on the external data host. EXP-001 (Hyperliquid
+fuel-surface reconstruction feasibility) is planned.

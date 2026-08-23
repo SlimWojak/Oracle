@@ -53,8 +53,8 @@ convention trap and the fill-log deduplication rule are binding in
 ## D-010 — Compute and data topology
 
 **Accepted.** The user workstation is the canonical repository seat. The headless
-data host (`dexter`) owns the immutable raw-data root (`~/oracle-data`) and heavy
-data construction. Git is the only bridge; data never enters the repository.
+data host (`dexter`) owns the immutable raw-data root and heavy data
+construction. Git is the only bridge; data never enters the repository.
 
 ## D-011 — Thin orchestration
 
@@ -97,6 +97,45 @@ as one family across challengers, proxies, and forms); population slicing
 before modelling with a 30-cluster interpretation floor, slices characterizing
 rather than rescuing pooled results. Details in `RESEARCH_CONTRACT.md`.
 
+## D-016 — Common-support rule for ladder comparisons
+
+**Accepted** (advisor review, 2026-08-23). Fuel challengers have very different
+usable histories (CEX-inferred metrics from 2021-12, HL impact context from
+2023-05, HL fills from 2025-05). Each challenger is evaluated on its own ladder
+over its usable period; head-to-head and incremental-lift comparisons run only
+on the common intersection with identical timestamps, labels, and missingness
+treatment. Adding a shorter-history feature must never silently shrink the test
+population. The long price-only history is context, never a comparable score.
+
+## D-017 — Canonical decision timestamp is the interval end
+
+**Accepted** (advisor review, 2026-08-23). A label anchored on a bar's close is
+knowable only at interval end, so the canonical decision timestamp for
+bar-anchored labels is `open_time + 60s`, not the Binance interval-start stamp.
+The EXP-000 catalogue originally stamped anchors at interval start; code fixed
+and catalogue rebuilt before any feature alignment, embargo, or split boundary
+was frozen. Counts unaffected; all anchor/passage timestamps shifted +60s.
+
+## D-018 — Hyperliquid-observed fuel is provisional pending EXP-001
+
+**Accepted** (advisor review, 2026-08-23). The fill tape proves realized
+liquidation mass, book/backstop routing, and aggressor flow, but under
+cross-margin a liquidation price depends on account value, other positions,
+funding, and margin state — not fills alone. "HL-observed fuel" therefore
+remains a provisional construct until EXP-001 demonstrates honest pre-state
+topology reconstruction at time t. If reconstruction fails, the HL challenger
+is demoted to realized-mass diagnostics and construct validation.
+
+## D-019 — Reporting and provenance hygiene
+
+**Accepted** (advisor review, 2026-08-23). Three rules: (1) alert quality is
+evaluated on contiguous alert episodes and event clusters, never repeated
+minute-level wins; (2) any news-tagging protocol is frozen before model
+evaluation on a period — tagging after seeing performance is prohibited;
+(3) every data-host run producing committed evidence records the repo commit
+SHA, configuration hash, input manifest identifiers, UTC execution time, and
+output content hashes.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
@@ -106,4 +145,7 @@ rather than rescuing pooled results. Details in `RESEARCH_CONTRACT.md`.
 - Precondition-clock impulse exclusion.
 - Normalized book-walk sizing rule.
 - Initial chronological split boundaries.
+- Training/scoring weight policy for large clusters (thousands of anchor votes
+  vs capped weight vs one episode-level contribution).
+- Concrete news-tagging protocol (source list, tag taxonomy, freeze procedure).
 

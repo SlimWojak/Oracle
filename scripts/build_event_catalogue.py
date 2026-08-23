@@ -17,6 +17,7 @@ from oracle_research.batch_labels import (
     DIR_INSUFFICIENT,
     DIR_NONE,
     DIR_UP,
+    BatchLabels,
     batch_first_passage,
 )
 from oracle_research.binance_klines import KlineArrays, contiguous_segments, load_kline_dir
@@ -28,6 +29,33 @@ STEP_SECONDS = 60
 
 def iso_utc(timestamp: int) -> str:
     return datetime.fromtimestamp(int(timestamp), tz=UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def decision_timestamp(open_timestamp: int) -> int:
+    """Bar-anchored labels use the close, knowable only at interval end (D-017)."""
+    return int(open_timestamp) + STEP_SECONDS
+
+
+def collect_positive_anchors(
+    klines: KlineArrays,
+    labels: BatchLabels,
+    segment_start: int,
+) -> list[PositiveAnchor]:
+    """Positive anchors for one labelled segment, stamped at bar close (D-017)."""
+    positive_local = np.nonzero((labels.direction == DIR_UP) | (labels.direction == DIR_DOWN))[0]
+    anchors: list[PositiveAnchor] = []
+    for local_index in positive_local:
+        abs_index = segment_start + int(local_index)
+        code = int(labels.direction[local_index])
+        passage = int(labels.passage_index[local_index])
+        anchors.append(
+            PositiveAnchor(
+                anchor_timestamp=decision_timestamp(int(klines.timestamp[abs_index])),
+                passage_timestamp=decision_timestamp(int(klines.timestamp[passage])),
+                direction=Direction.UP if code == DIR_UP else Direction.DOWN,
+            )
+        )
+    return anchors
 
 
 def parse_horizons(text: str) -> list[int]:
@@ -141,20 +169,7 @@ def _label_horizon(
         ambiguous += int(np.count_nonzero(labels.direction == DIR_AMBIGUOUS))
         insufficient += int(np.count_nonzero(labels.direction == DIR_INSUFFICIENT))
         none += int(np.count_nonzero(labels.direction == DIR_NONE))
-        positive_local = np.nonzero(
-            (labels.direction == DIR_UP) | (labels.direction == DIR_DOWN)
-        )[0]
-        for local_index in positive_local:
-            abs_index = start + int(local_index)
-            code = int(labels.direction[local_index])
-            passage = int(labels.passage_index[local_index])
-            positives.append(
-                PositiveAnchor(
-                    anchor_timestamp=int(klines.timestamp[abs_index]),
-                    passage_timestamp=int(klines.timestamp[passage]),
-                    direction=Direction.UP if code == DIR_UP else Direction.DOWN,
-                )
-            )
+        positives.extend(collect_positive_anchors(klines, labels, start))
     total = up + down + ambiguous + insufficient + none
     positive = up + down
     clusters = cluster_positive_anchors(positives, horizon_seconds=horizon_bars * STEP_SECONDS)
@@ -191,6 +206,7 @@ def render_summary(payload: dict[str, object]) -> str:
         f"- step_seconds: {parameters['step_seconds']}",
         f"- decision_clock: {parameters['decision_clock']}",
         f"- kline_open_time: {parameters['kline_open_time']}",
+        f"- anchor_timestamp: {parameters['anchor_timestamp']}",
         f"- spot_subdir: {parameters['spot_subdir']}",
         "",
         "## Coverage",
@@ -297,6 +313,7 @@ def main(argv: list[str] | None = None) -> int:
             "step_seconds": STEP_SECONDS,
             "decision_clock": "60s",
             "kline_open_time": "interval_start",
+            "anchor_timestamp": "interval_end",
         },
         "coverage": _coverage(klines, segments),
         "horizons": horizons,
