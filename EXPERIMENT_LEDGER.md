@@ -127,6 +127,27 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   Apr-Jul 2026 has no official bars; replication over that span waits on
   the normalization-layer bar construction from raw trades.
 
+  2026-08-23 (seat 2, later): D-021 accepted (frozen replication semantics),
+  then corrected before any committed result: the initial segment-restricted
+  venue labeller under-detected passages in gap-dense years (2020 Kraken:
+  24,261 segments, median 6 bars), inflating 4h disputes to a diagnostic
+  22%. Corrected to a time-aware wall-clock-window labeller (identical
+  semantics on contiguous data; correction note in D-021). Gate results on
+  the corrected code (`reports/exp000/replication_gate.{json,md}`,
+  repo 401dc6a): 1h — 1,532 replicated, 96 disputed, 13 sparse, 38 pending;
+  disagreement 5.90%. 4h — 1,754 replicated, 78 disputed, 24 sparse,
+  84 pending; disagreement 4.26%. Both exceed the 2% D-013 escalation
+  threshold. Near-miss diagnostic on disputed clusters: median best Kraken
+  same-direction move 1.94-1.95%; 88/96 (1h) and 77/78 (4h) reached at
+  least 1.8%; only one cluster below 1.0%. Disputes are therefore marginal
+  barrier-crossing disagreements, not absent moves: labels are
+  venue-sensitive at the barrier margin. VERDICT per D-013: a
+  median-of-three consolidated index is REQUIRED before predictive work.
+  Third venue selection is an open decision (Coinbase BTC-USD spot is the
+  leading candidate: largest USD spot venue, free public data).
+  PENDING_BARS clusters (2026-04..07) await trades-derived Kraken bars from
+  the normalization layer.
+
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 
 - **Status:** PLANNED
