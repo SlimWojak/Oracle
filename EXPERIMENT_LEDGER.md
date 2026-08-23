@@ -76,6 +76,18 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   (decision timestamp = interval end); catalogue rebuilt. Counts unchanged;
   all anchor and passage timestamps shifted +60s.
 
+  Stage 2 complete (2026-08-23 05:06-06:11Z, 65 min). Full Hyperliquid fill
+  history on the data host: old format 1,507 hourly files ~30GB
+  (2025-05-25..2025-07-27), by-block format 9,405 hourly files ~240GB
+  (2025-07-27..2026-08-23 hour 4). Verified by dry-run re-sync against S3:
+  zero missing objects in either prefix (the only pending object was the hour
+  published after the sync's listing pass). File counts below theoretical
+  hour counts reflect hours absent from the archive itself, not download
+  failures. Actual size ~270GB vs the ~520-640GB estimate; the per-day
+  estimate had extrapolated from the record-cascade sample hour, so egress
+  spend came in near half of budget. All EXP-000 data acquisition is now
+  complete.
+
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 
 - **Status:** PLANNED

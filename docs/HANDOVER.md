@@ -25,9 +25,11 @@ That file is gitignored and must never be committed; this repository is public.
   99.97% bar coverage.
 - Hyperliquid asset_ctxs: per-minute contexts (incl. quoted impact prices, OI,
   premium) 2023-05-20..present, ~9GB.
-- Hyperliquid node_fills: full fill history 2025-05-25..present, two formats
-  (old hourly format to 2025-07-27, then by-block hourly), ~520-640GB. Stage 2
-  pull launched 2026-08-23 in a tmux session on the data host (names local).
+- Hyperliquid node_fills: full fill history 2025-05-25..2026-08-23, two
+  formats (old hourly format to 2025-07-27, 1,507 files ~30GB; then by-block
+  hourly, 9,405 files ~240GB). Pull complete and verified against S3 by
+  dry-run re-sync (zero missing objects). Trailing hours can be topped up
+  with the same sync if ever needed.
 - Hyperliquid samples: two schema-inspection fill hours (one per format, incl.
   2025-10-10 hour 21, the record cascade).
 
