@@ -8,7 +8,9 @@ version = "0.0.1"
 description = "Standalone research laboratory for BTC first-passage hazard hypotheses"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+  "numpy>=1.26",
+]
 
 [project.optional-dependencies]
 dev = [
