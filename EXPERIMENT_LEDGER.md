@@ -15,7 +15,7 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-000 — Data feasibility and independent-event audit
 
-- **Status:** RUNNING (data acquisition started 2026-08-23)
+- **Status:** PASS (closed 2026-08-24)
 - **Correction note (2026-08-23):** the status line originally read "free
   Binance Vision dumps only, no requester-pays spend"; superseded when the user
   approved the Hyperliquid requester-pays pull recorded in the result trail.
@@ -186,6 +186,25 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   marginal single-venue barrier events. The consolidated catalogue
   (`index_clusters.json`) is now the label population for split design;
   remaining before verdict: split boundaries, then close EXP-000.
+
+- **Verdict (2026-08-24): PASS.** D-023 accepted (chronological splits:
+  development 2020-01-01..2023-12-31, validation 2024, final test
+  2025-01-01..2026-07-31 as two contiguous OOS periods; straddle-drop
+  boundary rule; per-challenger ladders share the final test per D-016).
+  Coverage supports an honest development/validation/test design on the
+  consolidated D-022 index: 1,658 (1h) / 1,935 (4h) independent clusters
+  with venue-robust labels (zero direction flips under consolidation),
+  per-fuel-challenger usable histories recorded
+  (`reports/exp000/challenger_history.*`), pseudo-replication quantified
+  and controlled by D-014 clustering, and the D-013 replication escalation
+  resolved by construction rather than exclusion. Experiment closed.
+- **Limitations carried forward:** validation year is thin (235 one-hour
+  clusters); the volatility-normalized barrier twin remains an open
+  decision; large-cluster weight policy must be settled before M2 scoring;
+  2026-04..07 Kraken index bars derive from the raw trade tape (exact-
+  validated methodology, but no official bars exist for that span); the
+  challenger-history table still reflects the Binance-only catalogue and
+  should be regenerated from `index_clusters.json` before ladder work.
 
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 

@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-23 late evening (seat 2)
+## State as of 2026-08-24 (seat 2 closing; EXP-000 closed PASS)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -39,8 +39,11 @@ That file is gitignored and must never be committed; this repository is public.
   Trades pages 2026-01-01..2026-08-01 (incl. 2 patch pages recovering a
   censored API window on 2026-02-20). Trades-derived bars exact-match
   official Q1 (129,509/129,509 rows); Apr-Jul derived bars built.
-- Coinbase BTC-USD 1m candles 2019-12..2026-08: acquisition in flight on the
-  data host at handover-writing time (public API, ~11,700 tiled windows).
+- Coinbase BTC-USD 1m candles 2019-12-01..2026-07-31: 3,504,259 bars,
+  11,688 verbatim response files ~198MB, zero duplicates, manifested with
+  per-file sha256s.
+- Derived (data host): Kraken trades-derived 1m bars for 2026-01..03
+  (exact-match validated vs official) and 2026-04..07 (index input).
 
 ### Verified schema facts (load-bearing)
 
@@ -55,34 +58,39 @@ That file is gitignored and must never be committed; this repository is public.
 - Canonical decision timestamp is interval END (D-017); the catalogue was
   rebuilt after an advisor caught the interval-start stamping defect.
 
-### EXP-000 status (RUNNING)
+### EXP-000: CLOSED, PASS (2026-08-24)
 
-Done: all acquisition (above); event catalogue + per-cluster inventory
-committed (`reports/exp000/`): 1,679 (1h) / 1,940 (4h) independent clusters,
-82:1 / 338:1 pseudo-replication; per-challenger usable history table
-(D-016); D-020 accepted (no HL-fills predictive ladder this cycle); Kraken
-replication gate (D-013/D-021) implemented, corrected (time-aware venue
-labeller) and run: 5.90% (1h) / 4.26% (4h) disagreement, both above the 2%
-line, disputes overwhelmingly near-misses (median best Kraken move ~1.94%).
-ESCALATION TRIGGERED: median-of-three index required. D-022 (index
-semantics) frozen blind before Coinbase data was inspected.
+Full trail in the ledger. Load-bearing outcomes:
+- Labels now come from the D-022 median-of-three consolidated index
+  (Binance/Kraken/Coinbase, >=2-of-3 rule, wall-clock horizons). The index
+  grid is MORE complete than any member (108 missing minutes 2020-01..
+  2026-07). Canonical inventory: `reports/exp000/index_clusters.json`
+  (1,658 / 1,935 clusters at 1h / 4h).
+- The Kraken gate (D-013/D-021) triggered escalation at 5.90%/4.26%
+  disagreement; disputes were marginal barrier events; consolidation fixed
+  them by construction (sensitivity: 0 direction flips, ~3% churn).
+- Splits frozen as D-023: dev 2020-2023, val 2024, test 2025..2026-07 as
+  two contiguous OOS periods; straddle-drop boundary rule; per-challenger
+  ladders share the final test.
+- Debt: challenger_history.* still derives from the Binance-only
+  clusters.json; regenerate from index_clusters.json before ladder work.
 
-Remaining for verdict:
-1. Finish Coinbase candle acquisition + audit (in flight).
-2. Build the D-022 consolidated index in the normalization layer; rebuild
-   the catalogue on it; produce the D-022 sensitivity report
-   (Binance-only vs consolidated churn).
-3. Re-run the D-021 gate context only if semantics demand (the index
-   supersedes per-event VENUE_DISPUTED flagging).
-4. Propose chronological split boundaries on the consolidated catalogue.
-5. Record the EXP-000 verdict and CLOSE the experiment (advisor: do not let
-   the ledger become a diary).
-
-### Next work after EXP-000 verdict
+### Next work (in order)
 
 - EXP-001 (PLANNED, see ledger): Hyperliquid fuel-surface reconstruction
   feasibility. This gates any "HL-observed fuel" feature per D-018. It comes
-  before fuel feature construction, not after.
+  before fuel feature construction, not after. Seat-2 planning color: the
+  central identification problem is cross-margin — a wallet's BTC
+  liquidation price depends on its other-asset positions and unobserved
+  margin state, so start by bounding the tractable subset (single-position
+  and BTC-only wallets, whose liquidation prices are approximately
+  derivable from fills plus asset_ctxs funding/mark series) and frame the
+  pass metric as coverage-weighted: the fraction of realized liquidated BTC
+  notional whose pre-state liquidation price was predictable within
+  tolerance, not per-wallet accuracy. Liquidation-fill `markPx` is ground
+  truth at event time; keep book-hitting (method=market) and backstop
+  separate throughout. If reconstruction needs L1 account state,
+  `replica_cmds` is the next requester-pays ask — size it before any spend.
 - Normalization layer for fills and asset_ctxs (tested modules, manifests,
   timestamp audits per DATA_CONTRACT). Fills are all-asset; filter BTC at
   normalization, keep raw intact.
@@ -107,5 +115,7 @@ Remaining for verdict:
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 101 tests green at last check.
-- Known open decisions listed at the bottom of `docs/DECISIONS.md`.
+  handing off. 134 tests green at handover.
+- Known open decisions listed at the bottom of `docs/DECISIONS.md`. Settle
+  the large-cluster weight policy before any M2 scoring; regenerate the
+  challenger-history table from the index inventory before ladder design.

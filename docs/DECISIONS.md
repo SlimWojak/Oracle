@@ -237,6 +237,23 @@ inspected). Executes the D-013 escalation.
    changes; breakdowns by year and volatility regime; and the share of
    positive anchors whose bars are `2_OF_3`.
 
+## D-023 — Initial chronological split boundaries
+
+**Accepted** (user sign-off, 2026-08-24). On the D-022 consolidated
+catalogue: development 2020-01-01..2023-12-31 (1,182 one-hour clusters;
+COVID crash, 2021 mania and unwinds, 2022 Luna/FTX bear, 2023 chop);
+validation 2024-01-01..2024-12-31 (235); final test 2025-01-01..2026-07-31
+(241), scored as two contiguous OOS periods (2025 and 2026-01..07). Any
+cluster whose span padded by one 4h horizon crosses a boundary is dropped
+from both sides (stricter than the contract's minimum purge/embargo). Per
+D-016, all challenger ladders share the final-test period; the CEX-inferred
+ladder develops on 2021-12..2023-12 and validates on 2024; the HL
+impact-context ladder develops on 2023-05-20..2024-06-30 and validates on
+2024-07-01..2024-12-31; head-to-head comparisons run only on common
+intersections. The HL fill tape runs no ladder this cycle (D-020). The
+validation year is thin (235 clusters) but the alternative — validating on
+2025 — would leave a single-period final test, which the contract forbids.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
@@ -245,7 +262,6 @@ inspected). Executes the D-013 escalation.
 - Volatility-normalized barrier estimator.
 - Precondition-clock impulse exclusion.
 - Normalized book-walk sizing rule.
-- Initial chronological split boundaries.
 - Training/scoring weight policy for large clusters (thousands of anchor votes
   vs capped weight vs one episode-level contribution).
 - Concrete news-tagging protocol (source list, tag taxonomy, freeze procedure).
