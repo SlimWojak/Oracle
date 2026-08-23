@@ -67,6 +67,22 @@ class VenueAnchorTests(unittest.TestCase):
         )
         self.assertEqual(anchors.anchor_timestamp.size, 0)
 
+    def test_passage_detected_across_gap_inside_time_window(self) -> None:
+        # Bars 46-49 are missing; the spike at bar 50 is 5 minutes after bar 45,
+        # inside its wall-clock window. Segment-restricted labelling missed this.
+        klines = make_klines(200, spike_up_at=50, drop_indices={46, 47, 48, 49})
+        anchors = venue_positive_anchors(
+            klines, horizon_bars=HORIZON, threshold_fraction=THRESHOLD
+        )
+        self.assertIn(BASE + 60 * 45 + 60, anchors.anchor_timestamp.tolist())
+
+    def test_gap_does_not_stretch_the_time_window(self) -> None:
+        # With horizon 4 bars (240s), the spike 300s after bar 45 is beyond the
+        # deadline even though it is bar 45's immediate successor in the array.
+        klines = make_klines(200, spike_up_at=50, drop_indices={46, 47, 48, 49})
+        anchors = venue_positive_anchors(klines, horizon_bars=4, threshold_fraction=THRESHOLD)
+        self.assertNotIn(BASE + 60 * 45 + 60, anchors.anchor_timestamp.tolist())
+
 
 class CheckClustersTests(unittest.TestCase):
     def test_replicated_when_matching_anchor_in_window(self) -> None:

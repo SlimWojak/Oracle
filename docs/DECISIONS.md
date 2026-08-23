@@ -179,6 +179,21 @@ level with these frozen rules:
    normalization layer builds bars from the raw trade pages, and are
    reported as `PENDING_BARS` rather than silently skipped.
 
+**Correction (2026-08-23, same seat, before any committed gate result).**
+Rule 1 originally said Kraken bars are labelled "with the identical
+first-passage code". The identical bar-count labeller is wrong on a venue
+with structural no-trade gaps: fixed bar-count windows are undefined across
+gaps, and restricting to contiguous segments under-detects passages exactly
+where gaps are dense (2020 Kraken fragments into 24,261 segments of median
+length 6 bars, making 4h passages nearly undetectable and inflating the
+disputed rate to 22% at 4h in a diagnostic run). The venue labeller is
+therefore time-aware: every bar anchors a wall-clock window
+(close, close + h minutes] evaluated over the bars that exist in it, same
+threshold and interval-end decision timestamps. Bar-count and wall-clock
+windows coincide wherever bars are contiguous, so this changes nothing on
+the primary venue. A venue anchor crossing both barriers in one bar counts
+toward either direction.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
