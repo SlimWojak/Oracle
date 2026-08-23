@@ -148,6 +148,21 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   PENDING_BARS clusters (2026-04..07) await trades-derived Kraken bars from
   the normalization layer.
 
+  2026-08-23 (seat 2, later): Kraken trades-to-bars construction built to a
+  frozen lead spec (delegated implementation, lead-reviewed, committed
+  970106e) and construct-validated: derived Q1 2026 bars match the official
+  OHLCVT CSV on all 129,509 rows exactly (zero OHLC/trades differences,
+  volume at float epsilon). Validation initially exposed one 906-second
+  hole INSIDE a raw Trades-API page (2026-02-20 13:38:47-13:53:53Z, a
+  cascade window served censored by the API while present in official
+  bars); a live refetch recovered it (2 append-only patch pages, manifest
+  note on the data host). All other intra-page tape gaps in 2026-01..07
+  coincide with scheduled maintenance halts absent from official bars too.
+  Trades-derived bars for the official-bar-free span rebuilt from committed
+  code at 970106e: 175,578 rows, 2026-04-01..2026-07-31 (per-month missing
+  minutes 26/28/18/30, maintenance-shaped). Coinbase BTC-USD 1m candle
+  acquisition (third index venue) in flight on the data host.
+
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 
 - **Status:** PLANNED
