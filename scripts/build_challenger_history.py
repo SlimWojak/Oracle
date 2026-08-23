@@ -20,6 +20,10 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 
+from oracle_research.provenance import build_provenance, write_provenance_sidecar
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+
 
 @dataclass(frozen=True, slots=True)
 class ChallengerWindow:
@@ -153,16 +157,35 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    clusters_payload = json.loads(args.clusters.read_text(encoding="utf-8"))
+    clusters_path = args.clusters.resolve()
+    clusters_payload = json.loads(clusters_path.read_text(encoding="utf-8"))
     payload = build_payload(clusters_payload)
     args.out_dir.mkdir(parents=True, exist_ok=True)
-    (args.out_dir / "challenger_history.json").write_text(
-        json.dumps(payload, indent=2) + "\n", encoding="utf-8"
-    )
-    (args.out_dir / "challenger_history.md").write_text(
-        render_markdown(payload), encoding="utf-8"
+    json_path = args.out_dir / "challenger_history.json"
+    md_path = args.out_dir / "challenger_history.md"
+    json_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    md_path.write_text(render_markdown(payload), encoding="utf-8")
+    config = {
+        "windows": [
+            {"key": window.key, "label": window.label, "start": window.start, "note": window.note}
+            for window in WINDOWS
+        ],
+        "membership_rule": payload["membership_rule"],
+    }
+    sidecar = write_provenance_sidecar(
+        args.out_dir,
+        "challenger_history",
+        build_provenance(
+            repo_root=REPO_ROOT,
+            config=config,
+            inputs=[clusters_path],
+            outputs=[json_path, md_path],
+            input_base=REPO_ROOT,
+            output_base=args.out_dir,
+        ),
     )
     print(f"Wrote {args.out_dir / 'challenger_history.json'} and challenger_history.md")
+    print(f"Wrote {sidecar}")
     return 0
 
 

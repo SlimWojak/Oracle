@@ -15,6 +15,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from oracle_research.kraken_klines import load_kraken_csvs
+from oracle_research.provenance import build_provenance, write_provenance_sidecar
 from oracle_research.replication import (
     VERDICT_DISPUTED,
     VERDICT_PENDING,
@@ -24,6 +25,7 @@ from oracle_research.replication import (
     check_clusters,
 )
 
+REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_CSVS = ("XBTUSD_1.csv", "XBTUSD_1_Q1_2026.csv")
 ESCALATION_RATE = 0.02
 
@@ -133,7 +135,8 @@ def render_markdown(payload: dict[str, object]) -> str:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    clusters_payload = json.loads(args.clusters.read_text(encoding="utf-8"))
+    clusters_path = args.clusters.resolve()
+    clusters_payload = json.loads(clusters_path.read_text(encoding="utf-8"))
     threshold = float(clusters_payload["parameters"]["threshold"])
     csv_dir = args.data_root / "raw" / "kraken" / "ohlcvt"
     csv_paths = [csv_dir / name for name in DEFAULT_CSVS if (csv_dir / name).exists()]
@@ -165,10 +168,27 @@ def main(argv: list[str] | None = None) -> int:
         "horizons": horizons,
     }
     args.out_dir.mkdir(parents=True, exist_ok=True)
-    (args.out_dir / "replication_gate.json").write_text(
-        json.dumps(payload, indent=2) + "\n", encoding="utf-8"
+    json_path = args.out_dir / "replication_gate.json"
+    md_path = args.out_dir / "REPLICATION.md"
+    json_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    md_path.write_text(render_markdown(payload), encoding="utf-8")
+    config = {
+        "coverage_floor": args.coverage_floor,
+        "bars_start": args.bars_start,
+        "escalation_rate": ESCALATION_RATE,
+        "kraken_csvs": [path.name for path in csv_paths],
+    }
+    sidecar = write_provenance_sidecar(
+        args.out_dir,
+        "replication_gate",
+        build_provenance(
+            repo_root=REPO_ROOT,
+            config=config,
+            inputs=[*csv_paths, clusters_path],
+            outputs=[json_path, md_path],
+            output_base=args.out_dir,
+        ),
     )
-    (args.out_dir / "REPLICATION.md").write_text(render_markdown(payload), encoding="utf-8")
     for horizon in horizons:
         print(
             f"horizon {horizon['horizon_bars']}: {horizon['replicated']} replicated, "
@@ -177,6 +197,7 @@ def main(argv: list[str] | None = None) -> int:
             f"({'ESCALATION' if horizon['escalation_triggered'] else 'ok'})"
         )
     print(f"Wrote {args.out_dir / 'replication_gate.json'} and REPLICATION.md")
+    print(f"Wrote {sidecar}")
     return 0
 
 

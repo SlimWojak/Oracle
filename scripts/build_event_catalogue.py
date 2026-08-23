@@ -23,7 +23,9 @@ from oracle_research.batch_labels import (
 from oracle_research.binance_klines import KlineArrays, contiguous_segments, load_kline_dir
 from oracle_research.clusters import EventCluster, PositiveAnchor, cluster_positive_anchors
 from oracle_research.labels import Direction
+from oracle_research.provenance import build_provenance, write_provenance_sidecar
 
+REPO_ROOT = Path(__file__).resolve().parent.parent
 STEP_SECONDS = 60
 
 
@@ -312,6 +314,7 @@ def print_stdout_summary(payload: dict[str, object], out_dir: Path) -> None:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     kline_dir = args.data_root / args.spot_subdir
+    input_zips = sorted(path for path in kline_dir.glob("*.zip") if path.is_file())
     klines = load_kline_dir(kline_dir)
     segments = contiguous_segments(klines.timestamp, step_seconds=STEP_SECONDS)
     results = [
@@ -350,12 +353,26 @@ def main(argv: list[str] | None = None) -> int:
     }
     out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "catalogue.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    (out_dir / "clusters.json").write_text(
-        json.dumps(clusters_payload, indent=2) + "\n", encoding="utf-8"
+    catalogue_path = out_dir / "catalogue.json"
+    clusters_path = out_dir / "clusters.json"
+    summary_path = out_dir / "SUMMARY.md"
+    catalogue_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    clusters_path.write_text(json.dumps(clusters_payload, indent=2) + "\n", encoding="utf-8")
+    summary_path.write_text(render_summary(payload), encoding="utf-8")
+    sidecar = write_provenance_sidecar(
+        out_dir,
+        "catalogue",
+        build_provenance(
+            repo_root=REPO_ROOT,
+            config=parameters,
+            inputs=input_zips,
+            outputs=[catalogue_path, clusters_path, summary_path],
+            input_base=args.data_root,
+            output_base=out_dir,
+        ),
     )
-    (out_dir / "SUMMARY.md").write_text(render_summary(payload), encoding="utf-8")
     print_stdout_summary(payload, out_dir)
+    print(f"Wrote {sidecar}")
     return 0
 
 
