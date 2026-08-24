@@ -1,0 +1,24 @@
+{
+  "repo_commit": "9d7bab38ed2e8ecdc6d55016dee286973af9c9d0",
+  "generated_at_utc": "2026-08-24T09:04:48Z",
+  "config": {
+    "experiment": "EXP-001",
+    "phase": "reconstruction_summary",
+    "data_root": "/home/a8ra_dgx/oracle-data",
+    "max_files": null,
+    "files_processed": 10912
+  },
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "reconstruction_summary.json",
+      "bytes": 4377,
+      "sha256": "f79b9f11db8d8999b87dbac78a835e5a9422373b80b1771f6c329a8a6aeb1b0e"
+    },
+    {
+      "path": "reconstruction_summary.md",
+      "bytes": 332,
+      "sha256": "ca7bc96c1e3c4b3748fa9f3265c78082334e9a3ba1b918fd98731912ec62048c"
+    }
+  ]
+}

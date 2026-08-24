@@ -254,6 +254,17 @@ intersections. The HL fill tape runs no ladder this cycle (D-020). The
 validation year is thin (235 clusters) but the alternative — validating on
 2025 — would leave a single-period final test, which the contract forbids.
 
+## D-024 — EXP-001 FAIL executes D-018 demotion
+
+**Accepted** (2026-08-24, Grok Bot CTO seat). EXP-001 closed FAIL: Phase 1
+tractable notional share 39.06% (below 50% partial-viability) and Phase 2
+coverage-weighted reconstruction accuracy 8.02% (below 90% PASS). The
+Hyperliquid-observed fuel challenger is demoted from provisional observed fuel
+to **realized-mass diagnostics and construct-validation evidence only**. No
+predictive ladder on HL-fills-derived fuel this cycle (consistent with D-020).
+Fill tape retained. `replica_cmds` / L1 account-state pulls are not authorized
+by this demotion; reopen only with an explicit sized spend decision.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest

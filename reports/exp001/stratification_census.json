@@ -1,0 +1,81 @@
+{
+  "experiment": "EXP-001",
+  "phase": "stratification_census",
+  "data_root": "/home/a8ra_dgx/oracle-data",
+  "files_processed": 10912,
+  "dedupe_key": [
+    "liquidatedUser",
+    "tid"
+  ],
+  "liquidated_leg_only": true,
+  "total_btc_liquidation_events": 1462734,
+  "total_btc_liquidation_notional_usd": 23093649899.03648,
+  "tractable_notional_usd": 9021302582.304964,
+  "tractable_share": 0.3906399647411886,
+  "early_demotion_triggered": false,
+  "early_demotion_threshold": 0.2,
+  "partial_viability_threshold": 0.5,
+  "partial_viability_met": false,
+  "counts_by_stratum": {
+    "a_btc_only_isolated": 828,
+    "b_btc_only_cross": 802516,
+    "c_cross_asset": 659390
+  },
+  "notional_usd_by_stratum": {
+    "a_btc_only_isolated": 19822574.872812986,
+    "b_btc_only_cross": 9001480007.432152,
+    "c_cross_asset": 14072347316.731516
+  },
+  "counts_by_method": {
+    "backstop": 4715,
+    "market": 1458019
+  },
+  "notional_usd_by_method": {
+    "backstop": 1315033878.1347132,
+    "market": 21778616020.901707
+  },
+  "counts_by_dir": {
+    "Close Long": 908660,
+    "Close Short": 549359,
+    "Liquidated Cross Long": 3160,
+    "Liquidated Isolated Long": 1063,
+    "Liquidated Isolated Short": 355,
+    "Liquidated Cross Short": 137
+  },
+  "counts_by_stratum_and_method": {
+    "a_btc_only_isolated": {
+      "backstop": 828
+    },
+    "b_btc_only_cross": {
+      "backstop": 902,
+      "market": 801614
+    },
+    "c_cross_asset": {
+      "backstop": 2985,
+      "market": 656405
+    }
+  },
+  "notional_usd_by_stratum_and_method": {
+    "a_btc_only_isolated": {
+      "backstop": 19822574.872812986
+    },
+    "b_btc_only_cross": {
+      "backstop": 163428650.72840112,
+      "market": 8838051356.703741
+    },
+    "c_cross_asset": {
+      "backstop": 1131782652.533496,
+      "market": 12940564664.197956
+    }
+  },
+  "cross_asset_by_method": {
+    "backstop": {
+      "event_count": 2985,
+      "notional_usd": 1131782652.533496
+    },
+    "market": {
+      "event_count": 656405,
+      "notional_usd": 12940564664.197956
+    }
+  }
+}

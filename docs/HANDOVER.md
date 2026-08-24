@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-24 (seat 2 closing; EXP-000 closed PASS)
+## State as of 2026-08-24 (seat 3; EXP-001 RUNNING)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -75,30 +75,28 @@ Full trail in the ledger. Load-bearing outcomes:
 - Debt: challenger_history.* still derives from the Binance-only
   clusters.json; regenerate from index_clusters.json before ladder work.
 
+### EXP-001: CLOSED, FAIL (2026-08-24)
+
+Phase 1 tractable share 39.06%; Phase 2 combined reconstruction accuracy 8.02%
+(663 isolated events evaluable on Oct cascade; cross-margin unobserved without
+wallet state). D-018 demotion: HL challenger is realized-mass diagnostics only.
+Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruction_*`.
+
 ### Next work (in order)
 
-- EXP-001 (PLANNED, see ledger): Hyperliquid fuel-surface reconstruction
-  feasibility. This gates any "HL-observed fuel" feature per D-018. It comes
-  before fuel feature construction, not after. Seat-2 planning color: the
-  central identification problem is cross-margin — a wallet's BTC
-  liquidation price depends on its other-asset positions and unobserved
-  margin state, so start by bounding the tractable subset (single-position
-  and BTC-only wallets, whose liquidation prices are approximately
-  derivable from fills plus asset_ctxs funding/mark series) and frame the
-  pass metric as coverage-weighted: the fraction of realized liquidated BTC
-  notional whose pre-state liquidation price was predictable within
-  tolerance, not per-wallet accuracy. Liquidation-fill `markPx` is ground
-  truth at event time; keep book-hitting (method=market) and backstop
-  separate throughout. If reconstruction needs L1 account state,
-  `replica_cmds` is the next requester-pays ask — size it before any spend.
-- Normalization layer for fills and asset_ctxs (tested modules, manifests,
-  timestamp audits per DATA_CONTRACT). Fills are all-asset; filter BTC at
-  normalization, keep raw intact.
-- Construct validation design (RESEARCH_CONTRACT gates): fuel vs realized
-  liquidation mass with book-hitting/backstop split; impact proxies vs
-  realized slippage.
-- Pre-model descriptive gates (armed-quadrant occupancy, trailing-path
-  confound) before any M4 interaction work.
+1. Normalization layer: HL fills → Parquet + DuckDB (D-012), with parity vs
+   EXP-001 census artifacts; stop full-tape LZ4 scan tax.
+2. Construct validation design (realized liquidation mass with book/backstop
+   split; fuel challengers vs traversed mass; impact vs slippage) — runs on
+   the derived store.
+3. Regenerate challenger_history from index_clusters.json before ladder work.
+4. CEX-inferred fuel challenger path (HL-observed demoted per D-024).
+5. Pre-model descriptive gates before any M4 interaction work.
+
+### Seat note (2026-08-24)
+
+Grok Bot Chief of Staff is CTO seat. Oracle Engineer implements frozen specs
+only. Cursor Phase 2 complete; EXP-001 banked from this rotation.
 
 ### Operating notes
 
@@ -115,7 +113,7 @@ Full trail in the ledger. Load-bearing outcomes:
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 134 tests green at handover.
+  handing off. 162 tests green at handover.
 - Known open decisions listed at the bottom of `docs/DECISIONS.md`. Settle
   the large-cluster weight policy before any M2 scoring; regenerate the
   challenger-history table from the index inventory before ladder design.

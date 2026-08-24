@@ -37,11 +37,15 @@ RESEARCH_CONTRACT.md      v0 hypotheses, exclusions, validation and kill rules
 DATA_CONTRACT.md          causal timing and data lineage requirements
 EXPERIMENT_LEDGER.md      append-only experiment records
 configs/v0.yaml           frozen initial study configuration
+docs/HANDOVER.md          CTO seat orientation (abstract); see HANDOVER_LOCAL.md locally
 docs/DECISIONS.md         accepted architectural/research decisions
 src/oracle_research/      deterministic research primitives
+scripts/                  report-producing runners (EXP-000 catalogue, EXP-001 census)
 tests/                    focused tests for those primitives
 notebooks/                disposable exploration only; never canonical logic
 reports/                  generated evidence reports; no raw data
+reports/exp000/           EXP-000 catalogue, clusters, sensitivity
+reports/exp001/           EXP-001 stratification census and reconstruction
 ```
 
 ## Setup
@@ -51,7 +55,7 @@ Oracle targets Python 3.11 or newer.
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-python -m pip install -e '.[dev]'
+python -m pip install -e '.[dev,hyperliquid]'
 python -m unittest discover
 ruff check .
 ```
@@ -65,9 +69,15 @@ timestamp semantics, transformation version, and content hash.
 
 ## Current status
 
-EXP-000 (data feasibility and independent-event audit) is running. Implemented
-primitives: bar-aware first-passage labelling (scalar and vectorized,
-property-tested against each other), event clustering per D-014, Binance Vision
-kline loading, and the EXP-000 event catalogue (`reports/exp000/`). Raw data
-acquisition is manifested on the external data host. EXP-001 (Hyperliquid
-fuel-surface reconstruction feasibility) is planned.
+EXP-000 closed **PASS** (2026-08-24): D-022 consolidated index labels, D-023
+chronological splits, per-cluster inventory in `reports/exp000/`.
+
+EXP-001 closed **FAIL** (2026-08-24): HL-observed fuel demoted per D-018. Phase 1
+tractable share 39%; Phase 2 reconstruction accuracy 8%. Construct validation and
+normalization layer are next.
+
+Implemented primitives include consolidated-index construction, venue-replication
+gate, Kraken trades-to-bars, Hyperliquid fill normalization (`hyperliquid_fills`,
+`hl_liquidations`, optional `[hyperliquid]` deps for lz4), and EXP-001 census/
+reconstruction runners. Raw data acquisition is on the external data host
+(`dexter`).

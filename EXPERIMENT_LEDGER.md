@@ -208,24 +208,120 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 
-- **Status:** PLANNED
+- **Status:** FAIL (closed 2026-08-24)
 - **Frozen question:** Can a causal pre-state liquidation topology at time t be
   honestly reconstructed from available Hyperliquid data, given that
   cross-margin liquidation prices depend on account value, other positions,
   funding, and margin state rather than the wallet's fills alone?
-- **Method sketch:** Select known cascade windows (including 2025-10-10 hour
-  21). Attempt account-state reconstruction from the fill tape (positions from
-  cumulative fills; margin state unobserved). For accounts subsequently
-  liquidated, compare implied liquidation prices against observed
-  liquidation-fill `markPx`. Determine what additional data (replica_cmds L1
-  transactions, asset_ctxs funding/mark series) would be required and at what
-  cost.
-- **Pass condition:** Bounded, documented reconstruction error on held-out
-  cascade windows sufficient to justify calling the surface "observed".
+- **Hypothesis:** A tractable subset of liquidated BTC notional — wallets whose
+  pre-event state is inferable without L1 account snapshots — carries enough
+  coverage-weighted mass that an HL-observed fuel surface is viable as a partial
+  surface with a documented bound; cross-asset wallets are stratified out rather
+  than modelled in v0.
+- **Data manifest:** Hyperliquid `node_fills` + `node_fills_by_block` hourly
+  LZ4 on the data host (2025-05-25..catalogue end); `asset_ctxs` for mark/funding
+  in the reconstruction phase; optional `replica_cmds` only if Phase 2 fails and
+  is sized before spend.
+- **Development period:** Full fill tape 2025-05-25..2026-07-31 for Phase 1
+  census; Phase 2 reconstruction trains on tractable strata outside held-out
+  cascade windows.
+- **Validation period:** — (feasibility experiment; no predictive ladder).
+- **Final test period:** Held-out cascade windows below (reconstruction error only).
+- **Features available as of:** Fill tape from 2025-05-25; asset_ctxs from
+  2023-05-20 (used only in Phase 2 for tractable wallets).
+- **Method (frozen 2026-08-24):** Two phases. Do not attack cross-margin
+  reconstruction head-on; stratify first.
+
+  **Event unit.** One deduped BTC liquidation event: a fill with `coin == "BTC"`,
+  a `liquidation` object, and `user == liquidation.liquidatedUser` (liquidated-user
+  leg only; the object rides both legs — dedupe before any count). Primary key:
+  (`liquidatedUser`, `tid`). USD notional: `float(px) * float(sz)`.
+
+  **Routing split (binding from first count).** Partition every event by
+  `liquidation.method`: `market` (book-hitting) vs `backstop` (backstop-absorbed).
+  Report both; construct-validation and fuel propagation tests use book-hitting
+  mass; backstop mass is diagnostic only (RESEARCH_CONTRACT construct gate).
+
+  **Stratification at event time t** (`fill.time` ms, liquidated user):
+  1. **(c) cross-asset:** exists coin C ≠ `BTC` where the user's last known
+     post-fill net position on C at or before t has `abs(position) >= 1e-8`
+     (end position inferred from `startPosition`, `side`, and `sz`; not raw
+     `startPosition`, which is pre-fill and misclassifies closed alt positions).
+  2. **(a) BTC-only isolated:** not (c) and `dir` matches `Liquidated Isolated *`.
+  3. **(b) BTC-only cross-margin:** not (c) and (`dir` matches `Liquidated Cross *`
+     OR `method == market` with `dir` in {`Close Long`, `Close Short`} on the
+     liquidated-user leg — the dominant market-liquidation tag on the tape).
+
+  Tractable strata = (a) + (b). Stratum (c) is excluded from reconstruction;
+  its notional sets the coverage bound on any partial surface.
+
+  **Phase 1 — stratification census (full tape).** Stream all hourly fill files;
+  classify every deduped BTC liquidation event; report event counts and USD
+  notional by stratum and by `method`; tractable-share =
+  `(notional_a + notional_b) / total_btc_liq_notional`. Artifacts under
+  `reports/exp001/`.
+
+  **Phase 2 — reconstruction (tractable strata only).** On held-out cascade
+  windows, for strata (a) and (b) separately: infer pre-state BTC liquidation
+  threshold from cumulative fills plus `asset_ctxs` mark/funding series; compare
+  implied liquidation price at t−ε to observed `liquidation.markPx` on the event
+  fill (per-event ground truth). Margin wallet balance remains unobserved; do
+  not impute. If Phase 2 requires L1 account state, size `replica_cmds`
+  requester-pays pull before spend (sample-hour trap: full fill pull was ~270GB
+  actual vs ~520GB estimate).
+
+  **Held-out cascade windows (UTC, inclusive hour boundaries):**
+  - `2025-07-15T12:00:00Z` .. `2025-07-15T13:00:00Z` (old fill format; sample on hand)
+  - `2025-10-10T21:00:00Z` .. `2025-10-10T22:00:00Z` (record cascade; by-block format)
+  - `2025-08-05T14:00:00Z` .. `2025-08-05T15:00:00Z` (2025 final-test cluster hour;
+    independent of the October cascade)
+
+  Phase 2 trains on all tractable events outside these three hours.
+
+- **Baselines:** — (feasibility only).
+- **Metrics:** Phase 1 — tractable notional share; counts by stratum, direction,
+  and `method`. Phase 2 — coverage-weighted fraction of tractable notional with
+  `|implied_liq_px - markPx| / markPx <= 0.01` at ε = 1 fill before event;
+  breakdown by stratum (a) vs (b) and by `method`.
+- **Pass/fail contract:**
+  - **Early demotion (Phase 1 only):** tractable notional share < 20% → FAIL;
+    D-018 demotion path closed without cross-margin modelling or `replica_cmds`.
+  - **Partial viability:** tractable share ≥ 50% with documented coverage bound
+    (notional in (c) reported explicitly); does not alone PASS the experiment.
+  - **PASS:** tractable share ≥ 50% AND Phase 2 coverage-weighted reconstruction
+    accuracy ≥ 90% of tractable notional at the 1% relative-error tolerance on
+    held-out windows.
+  - **FAIL (after Phase 2):** tractable share ≥ 20% but Phase 2 accuracy below
+    PASS threshold → per D-018 demote HL challenger; fills remain for realized-mass
+    diagnostics.
 - **Failure meaning:** Per D-018 the HL challenger is demoted from observed
   fuel to realized-mass diagnostics and construct-validation evidence for the
   other challengers. The fill tape retains value either way.
-- **Result:** —
+- **Result:** 2026-08-24 — design frozen; normalization scaffold and Phase 1 census
+  complete (seat 3). **Phase 1 verdict (census v3, corrected code):** tractable
+  notional share **39.06%** (`$9.02B` of `$23.09B` deduped BTC liquidation
+  notional; 803,304 tractable events in strata a+b vs 659,390 cross-asset).
+  Early demotion **not** triggered (≥20%). Partial viability at 50% **not** met.
+  Census v1/v2 (tractable share 0.27%) invalid: pre-correction code on dexter
+  from bad rsync. **Phase 2 verdict (2026-08-24, dexter):** held-out windows
+  processed 14,279 tractable events (`$780M` notional). Combined coverage-weighted
+  reconstruction accuracy **8.02%** at 1% relative-error tolerance (663 evaluated
+  isolated events on 2025-10-10 hour 21; stratum b cross-margin 100% unobserved
+  without account value). Below 90% PASS threshold; tractable share also below
+  50% partial-viability bar. Per D-018, HL challenger demoted from observed fuel
+  to realized-mass diagnostics and construct-validation evidence.
+- **Verdict (2026-08-24):** FAIL. Honest pre-state liquidation topology cannot
+  be reconstructed from fills + asset_ctxs alone at sufficient coverage-weighted
+  accuracy. Fill tape retained for realized liquidation mass (book/backstop split)
+  and construct validation of other challengers.
+- **Artifacts:** `reports/exp001/stratification_census.{json,md}` (+ provenance);
+  `reports/exp001/reconstruction_{window}.{json,md}` and
+  `reports/exp001/reconstruction_summary.{json,md}` (+ provenance).
+- **Correction notes (2026-08-24):** Phase 1 census v1 used pre-fill
+  `startPosition` for cross-asset detection (inflated stratum c) and omitted
+  market-method liquidations tagged `Close Long`/`Close Short` from tractable
+  stratum (b). v2 uses post-fill net position and the market-close rule above.
+- **Correction notes (2026-08-24, CTO bank):** Phase 2 `reconstruction_summary.provenance.json` records `repo_commit` `9d7bab3` (dexter working tree ahead of / not equal to the later bank commit). Counts and FAIL verdict are unchanged; treat that sidecar as run metadata for the dexter execution, not as the banked tip SHA. D-024 records the demotion as executed.
 
 ## Experiment template
 

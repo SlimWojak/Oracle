@@ -1,0 +1,137 @@
+{
+  "experiment": "EXP-001",
+  "phase": "reconstruction",
+  "data_root": "/home/a8ra_dgx/oracle-data",
+  "files_processed": 10912,
+  "held_out_windows": [
+    {
+      "label": "20250715_12",
+      "start_ms": 1752580800000,
+      "end_ms": 1752584400000
+    },
+    {
+      "label": "20251010_21",
+      "start_ms": 1760130000000,
+      "end_ms": 1760133600000
+    },
+    {
+      "label": "20250805_14",
+      "start_ms": 1754402400000,
+      "end_ms": 1754406000000
+    }
+  ],
+  "asset_ctx_minutes_loaded": 4320,
+  "total_event_count": 14279,
+  "total_tractable_notional_usd": 779935951.311766,
+  "combined_coverage_weighted_accuracy": 0.08021155538146037,
+  "combined_evaluated_notional_usd": 21138313.896864,
+  "combined_within_tolerance_notional_usd": 1695537.035809,
+  "tolerance_relative": 0.01,
+  "windows": [
+    {
+      "event_count": 1,
+      "tractable_notional_usd": 587.4504400000001,
+      "evaluated_event_count": 0,
+      "evaluated_notional_usd": 0,
+      "within_tolerance_event_count": 0,
+      "within_tolerance_notional_usd": 0,
+      "coverage_weighted_accuracy": null,
+      "tolerance_relative": 0.01,
+      "by_stratum": {
+        "a": {
+          "event_count": 0,
+          "tractable_notional_usd": 0,
+          "evaluated_event_count": 0,
+          "evaluated_notional_usd": 0,
+          "within_tolerance_event_count": 0,
+          "within_tolerance_notional_usd": 0,
+          "coverage_weighted_accuracy": null,
+          "unobserved_event_count": 0
+        },
+        "b": {
+          "event_count": 1,
+          "tractable_notional_usd": 587.4504400000001,
+          "evaluated_event_count": 0,
+          "evaluated_notional_usd": 0,
+          "within_tolerance_event_count": 0,
+          "within_tolerance_notional_usd": 0,
+          "coverage_weighted_accuracy": null,
+          "unobserved_event_count": 1
+        }
+      },
+      "label": "20250715_12",
+      "start_ms": 1752580800000,
+      "end_ms": 1752584400000
+    },
+    {
+      "event_count": 12663,
+      "tractable_notional_usd": 748815762.218226,
+      "evaluated_event_count": 663,
+      "evaluated_notional_usd": 21138313.896864,
+      "within_tolerance_event_count": 136,
+      "within_tolerance_notional_usd": 1695537.035809,
+      "coverage_weighted_accuracy": 0.08021155538146037,
+      "tolerance_relative": 0.01,
+      "by_stratum": {
+        "a": {
+          "event_count": 935,
+          "tractable_notional_usd": 35305126.208429,
+          "evaluated_event_count": 663,
+          "evaluated_notional_usd": 21138313.896864,
+          "within_tolerance_event_count": 136,
+          "within_tolerance_notional_usd": 1695537.035809,
+          "coverage_weighted_accuracy": 0.08021155538146037,
+          "unobserved_event_count": 272
+        },
+        "b": {
+          "event_count": 11728,
+          "tractable_notional_usd": 713510636.009797,
+          "evaluated_event_count": 0,
+          "evaluated_notional_usd": 0,
+          "within_tolerance_event_count": 0,
+          "within_tolerance_notional_usd": 0,
+          "coverage_weighted_accuracy": null,
+          "unobserved_event_count": 11728
+        }
+      },
+      "label": "20251010_21",
+      "start_ms": 1760130000000,
+      "end_ms": 1760133600000
+    },
+    {
+      "event_count": 1615,
+      "tractable_notional_usd": 31119601.6431,
+      "evaluated_event_count": 0,
+      "evaluated_notional_usd": 0,
+      "within_tolerance_event_count": 0,
+      "within_tolerance_notional_usd": 0,
+      "coverage_weighted_accuracy": null,
+      "tolerance_relative": 0.01,
+      "by_stratum": {
+        "a": {
+          "event_count": 0,
+          "tractable_notional_usd": 0,
+          "evaluated_event_count": 0,
+          "evaluated_notional_usd": 0,
+          "within_tolerance_event_count": 0,
+          "within_tolerance_notional_usd": 0,
+          "coverage_weighted_accuracy": null,
+          "unobserved_event_count": 0
+        },
+        "b": {
+          "event_count": 1615,
+          "tractable_notional_usd": 31119601.6431,
+          "evaluated_event_count": 0,
+          "evaluated_notional_usd": 0,
+          "within_tolerance_event_count": 0,
+          "within_tolerance_notional_usd": 0,
+          "coverage_weighted_accuracy": null,
+          "unobserved_event_count": 1615
+        }
+      },
+      "label": "20250805_14",
+      "start_ms": 1754402400000,
+      "end_ms": 1754406000000
+    }
+  ]
+}
