@@ -63,6 +63,16 @@ def parquet_table_exists(table_root: Path) -> bool:
     return Path(table_root).is_dir() and any(Path(table_root).rglob("*.parquet"))
 
 
+def display_path(path: Path) -> str:
+    """Return repo-relative paths for committed reports when possible."""
+
+    resolved = Path(path).resolve()
+    try:
+        return resolved.relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        return str(resolved)
+
+
 def row_to_census_fill(row: tuple[Any, ...]) -> tuple[str, dict[str, Any]]:
     (
         user,
@@ -367,7 +377,7 @@ def missing_data_report(table_root: Path, expected_path: Path) -> dict[str, Any]
     return {
         "status": "MISSING_DATA",
         "parquet_table_root": str(table_root),
-        "expected_path": str(expected_path),
+        "expected_path": display_path(expected_path),
         "note": "No Parquet files found; run the D-012 builder on the data host.",
         "tolerances": {
             "notional_relative": REL_TOLERANCE,
@@ -483,7 +493,7 @@ def main(argv: list[str] | None = None) -> int:
     report = {
         "status": "PASS" if passed else "FAIL",
         "parquet_table_root": str(table_root),
-        "expected_path": str(expected_path),
+        "expected_path": display_path(expected_path),
         "tolerances": {
             "notional_relative": REL_TOLERANCE,
             "tractable_share_absolute": TRACTABLE_SHARE_ABS_TOLERANCE,
