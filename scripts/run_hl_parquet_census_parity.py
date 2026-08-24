@@ -412,7 +412,7 @@ def write_report(
                 "gate": "hl_parquet_v1_exp001_census_parity",
                 "status": report["status"],
                 "parquet_table_root": report["parquet_table_root"],
-                "expected_path": str(expected_path),
+                "expected_path": display_path(expected_path),
                 "tolerances": report["tolerances"],
             },
             inputs=provenance_inputs,
