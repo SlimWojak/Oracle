@@ -300,6 +300,17 @@ interaction claim. That day is not a redesign license. Allowed follow-ons are
 pre-registered regime slice). They do not reopen the failed occupancy cell as
 the same EXP, and they do not authorize M4 modelling on an empty cell.
 
+## D-028 — D-012 Parquet store banked (P0)
+
+**Accepted** (2026-08-25, CTO). The Hyperliquid fills derived store is the
+canonical analytical source for HL fill/liquidation queries: Hive-partitioned
+zstd Parquet under `{data_root}/derived/hyperliquid/fills/v1/all_fills`, rebuilt
+from raw LZ4 via `scripts/build_hl_btc_liquidations.py`. EXP-001 Phase 1 census
+parity against `reports/exp001/stratification_census.json` is PASS (13/13 exact;
+artifacts `reports/infra_hl_parquet_v1/parity.*`). Full-tape LZ4 scans are no
+longer the default path for census-class work. Raw LZ4 remains the immutable
+source of truth for rebuilds.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest

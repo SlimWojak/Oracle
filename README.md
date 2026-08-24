@@ -99,7 +99,7 @@ mismatches.
 
 ## Current status
 
-Active sequence: [`docs/glide_path.md`](docs/glide_path.md) (v1).
+Active sequence: [`docs/glide_path.md`](docs/glide_path.md) (v1). P0 (D-012 Parquet + census parity) **BANKED**.
 
 
 EXP-000 closed **PASS** (2026-08-24): D-022 consolidated index labels, D-023

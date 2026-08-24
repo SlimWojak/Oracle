@@ -23,18 +23,22 @@ as doctrine. The north star outlives any single v0 hypothesis.
 - EXP-001 FAIL — HL-observed fuel demoted (D-024) to realized-mass diagnostics
   and construct-validation evidence only; no HL-fills predictive ladder this
   cycle (D-020)
-- D-012 in flight — HL fills → Parquet/DuckDB; hard census parity required
-  before further HL-derived science
+- D-012 BANKED — HL fills Parquet/DuckDB; census parity PASS (13/13 exact)
 
 ## Active path (order locked)
 
-### P0 — Velocity substrate
+### P0 — Velocity substrate — **BANKED 2026-08-25**
 
-Bank Parquet/DuckDB (D-012) with hard parity vs banked EXP-001 census.
+Parquet/DuckDB (D-012) with hard parity vs banked EXP-001 census.
 
-**Done when:** PASS parity report on main and derived store on the data host.
+**Done:** PASS `reports/infra_hl_parquet_v1/parity.*` (13/13 exact). Derived store
+on dexter: `{data_root}/derived/hyperliquid/fills/v1/all_fills` (10,912 source
+hours, 3,460,998,856 rows, 82,512 zstd Hive parts). Builder wall 8h28m; parity
+wall 1h54m after stream hotfix (PR #2). Provenance sidecar records dexter
+working-tree SHA `086d9a8`; harness equivalent is main `7e2fab2`.
 
-**Blocker:** no new HL-derived EXP until this banks.
+**Blocker lifted** for HL-derived science that *reads* the store. Next science
+beat is still P1 (CTO freeze) — not self-authorized.
 
 ### P1 — Freeze construct designs
 
