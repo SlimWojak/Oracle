@@ -118,6 +118,11 @@ and exits non-zero; do not invent passing parity numbers.
 4. CEX-inferred fuel challenger path (HL-observed demoted per D-024).
 5. Pre-model descriptive gates before any M4 interaction work.
 
+### Glide path (authoritative sequence)
+
+Active research sequence is `docs/glide_path.md` (v1, banked 2026-08-24).
+Commission work only inside the current beat; verdicts return to CTO.
+
 ### Seat note (2026-08-24)
 
 Grok Bot Chief of Staff is CTO seat. Oracle Engineer implements frozen specs

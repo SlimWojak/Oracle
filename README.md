@@ -99,6 +99,9 @@ mismatches.
 
 ## Current status
 
+Active sequence: [`docs/glide_path.md`](docs/glide_path.md) (v1).
+
+
 EXP-000 closed **PASS** (2026-08-24): D-022 consolidated index labels, D-023
 chronological splits, per-cluster inventory in `reports/exp000/`.
 
