@@ -78,7 +78,9 @@ Settle before any M0/M1 banking:
 - timestamp / risk-set construction and negative dependence
 - cluster or episode weighting
 - alert-episode scoring
-- volatility-normalized barrier twin
+- volatility-normalized barrier twin **estimator** (D-026: twin is a finding
+  blocker — no PASS headline on fixed ±2% alone)
+- primary vs exploratory cell budget for ladder reports (D-025)
 - regenerate `challenger_history` from `index_clusters.json`
 
 Open as decision debt when P0 banks; must be settled before P6 scoring.
@@ -106,6 +108,12 @@ After Slim/Chair authorization of further ladder work:
 6. M5 / ignition only after armed-state evidence
 
 Armed occupancy must not run before both construct paths have surviving measures.
+If occupancy is inadequate: H2 dies descriptively (D-027) — record NULL/FAIL;
+follow-ons are new EXP stubs only, not a same-day redesign or M4 on an empty cell.
+
+Fixed ±2% work may proceed for construct/descriptive beats; **claimed findings
+and PASS headlines** require the vol-normalized twin alongside (D-026).
+Ladder PASS headlines may cite primary cells only (D-025).
 
 ## Anti-goals (this glide)
 
@@ -116,6 +124,14 @@ Armed occupancy must not run before both construct paths have surviving measures
 - averaging or quietly reviving dead challengers
 - silent estimator retries after FAIL
 - Owl/autonomy loops that widen path without CTO/Slim
+- PASS headlines from exploratory cells or fixed-barrier-only claims (D-025, D-026)
+
+## Post-P0 hygiene (not a science beat)
+
+After P0 banks: thin Engineer commission for **golden / byte-identity pins** on
+deterministic primitives (labels, clusters, index, stratification classification,
+Parquet schema) using tiny fixtures — same inputs, same bytes, unittest-guarded.
+Complements D-019; does not gold-pin the full fill tape. Does not authorize P1+.
 
 ## Bounded travel
 
@@ -153,5 +169,6 @@ When reporting status upward, use:
 
 - D-012 parity FAIL after honest debug → stop HL science; escalate
 - Construct FAIL on a challenger → demote that path; do not average in substitutes
-- Armed cell inadequate (when reached) → record NULL for H2; do not proceed to M4
+- Armed cell inadequate (when reached) → H2 dies descriptively (D-027); NULL/FAIL; do not proceed to M4; no same-day redesign
 - Any PR that adds predictive features without a ledger EXP → reject
+- PASS headline from exploratory cells or without vol twin (D-025, D-026) → reject

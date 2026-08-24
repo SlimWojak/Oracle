@@ -265,12 +265,47 @@ predictive ladder on HL-fills-derived fuel this cycle (consistent with D-020).
 Fill tape retained. `replica_cmds` / L1 account-state pulls are not authorized
 by this demotion; reopen only with an explicit sized spend decision.
 
+## D-025 — Primary vs exploratory evaluation cells
+
+**Accepted** (2026-08-24, CTO; constellation fresh-eye seed). Family accounting
+and the frozen coarse quantile grid (D-015) remain binding. In addition, every
+ladder report names a **primary cell set** that is pre-registered before
+evaluation on that period. Primary cells are few (default sketch: both
+directions × both horizons on the frozen coarse grid; at most one pre-registered
+regime slice). All other cells — finer grids, extra regime cuts, post-hoc
+interactions of challenger × proxy × form — are labelled **exploratory** and
+**cannot headline a PASS**. Exploratory tables may be published for diagnosis
+only. Exact primary-cell enumeration for v0 baselines is settled with the
+evaluation-unit freeze (glide path P5) before M0/M1 banking.
+
+## D-026 — Vol-normalized twin is a finding blocker
+
+**Accepted** (2026-08-24, CTO; constellation fresh-eye seed). The
+volatility-normalized barrier twin remains required (D-007). Strengthening:
+**no claimed finding or PASS headline** may rest on fixed ±2% barriers alone.
+Fixed-barrier labels may still be used for construct validation, descriptive
+audits, and scaffolding, but any predictive PASS / material claim must report
+the twin alongside (or justify a recorded exception). Exact twin estimator is
+still an open decision; it must be accepted before P6 baseline banking if
+baselines are to be treated as findings, and in any case before any M2+ PASS
+headline.
+
+## D-027 — Empty armed-cell outcome is pre-decided
+
+**Accepted** (2026-08-24, CTO; constellation fresh-eye seed). If
+armed-quadrant occupancy is inadequate when that gate is reached, **H2 dies
+descriptively** for that challenger/proxy family: record NULL or FAIL for the
+interaction claim. That day is not a redesign license. Allowed follow-ons are
+**new EXP stubs only** (examples: H4 asymmetry; occupancy conditional on a
+pre-registered regime slice). They do not reopen the failed occupancy cell as
+the same EXP, and they do not authorize M4 modelling on an empty cell.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
   conventions for derived layers pending).
 - Point-in-time historical source selection for fuel challengers.
-- Volatility-normalized barrier estimator.
+- Volatility-normalized barrier **estimator** (requirement and finding-blocker locked in D-026; estimator choice still open).
 - Precondition-clock impulse exclusion.
 - Normalized book-walk sizing rule.
 - Training/scoring weight policy for large clusters (thousands of anchor votes

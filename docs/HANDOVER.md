@@ -120,8 +120,12 @@ and exits non-zero; do not invent passing parity numbers.
 
 ### Glide path (authoritative sequence)
 
-Active research sequence is `docs/glide_path.md` (v1, banked 2026-08-24).
-Commission work only inside the current beat; verdicts return to CTO.
+Active research sequence is `docs/glide_path.md` (v1, banked 2026-08-24;
+amended same day with D-025..D-027 multiplicity / vol-twin finding-blocker /
+empty armed-cell pre-decision). Commission work only inside the current beat;
+verdicts return to CTO. Post-P0 hygiene: golden byte-identity pins on
+deterministic primitives (see glide path).
+
 
 ### Seat note (2026-08-24)
 
