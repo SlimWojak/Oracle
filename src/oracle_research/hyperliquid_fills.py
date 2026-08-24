@@ -137,9 +137,9 @@ def _iter_parsed_line(parsed: Any) -> Iterator[HlFill]:
     raise ValueError(f"unsupported fill line shape: {type(parsed).__name__}")
 
 
-def iter_fills_from_json_lines(raw: bytes) -> Iterator[HlFill]:
-    """Parse newline-delimited JSON fill payloads (decompressed hourly files)."""
-    for line_number, line in enumerate(raw.splitlines(), start=1):
+def iter_fills_from_json_line_bytes(lines: Iterator[bytes]) -> Iterator[HlFill]:
+    """Parse newline-delimited JSON fill payloads from a byte-line iterator."""
+    for line_number, line in enumerate(lines, start=1):
         if not line.strip():
             continue
         try:
@@ -149,6 +149,11 @@ def iter_fills_from_json_lines(raw: bytes) -> Iterator[HlFill]:
         yield from _iter_parsed_line(parsed)
 
 
+def iter_fills_from_json_lines(raw: bytes) -> Iterator[HlFill]:
+    """Parse newline-delimited JSON fill payloads (decompressed hourly files)."""
+    yield from iter_fills_from_json_line_bytes(iter(raw.splitlines()))
+
+
 def iter_fills_from_lz4(path: Path) -> Iterator[HlFill]:
     """Stream normalized fills from one lz4-compressed hourly node_fills file."""
     if lz4 is None:
@@ -156,5 +161,4 @@ def iter_fills_from_lz4(path: Path) -> Iterator[HlFill]:
         raise ImportError(msg)
 
     with lz4.frame.open(Path(path), mode="rb") as handle:
-        raw = handle.read()
-    yield from iter_fills_from_json_lines(raw)
+        yield from iter_fills_from_json_line_bytes(handle)
