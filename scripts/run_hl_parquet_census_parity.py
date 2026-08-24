@@ -20,7 +20,7 @@ from run_exp001_stratification_census import (
     process_fill_stream,
 )
 
-from oracle_research.hl_fills_parquet import all_fills_root
+from oracle_research.hl_fills_parquet import all_fills_root, stable_source_id
 from oracle_research.provenance import build_provenance, write_provenance_sidecar
 
 try:
@@ -34,6 +34,9 @@ DEFAULT_OUTPUT_DIR = REPO_ROOT / "reports" / "infra_hl_parquet_v1"
 
 REL_TOLERANCE = 1e-9
 TRACTABLE_SHARE_ABS_TOLERANCE = 1e-12
+DEFAULT_DUCKDB_MEMORY_LIMIT = "48GB"
+DEFAULT_PROGRESS_EVERY_SOURCES = 100
+DEFAULT_PROGRESS_EVERY_ROWS = 1_000_000
 
 SELECT_COLUMNS = (
     "user",
@@ -59,8 +62,80 @@ def parquet_glob(table_root: Path) -> str:
     return (Path(table_root) / "**" / "*.parquet").as_posix()
 
 
+def parquet_source_glob(table_root: Path, source_path: str) -> str:
+    source_id = stable_source_id(source_path)
+    return (Path(table_root) / "**" / f"part-{source_id}-*.parquet").as_posix()
+
+
+def manifest_path_for_table(table_root: Path) -> Path:
+    return dataset_root_from_table(table_root) / "manifest.json"
+
+
 def parquet_table_exists(table_root: Path) -> bool:
-    return Path(table_root).is_dir() and any(Path(table_root).rglob("*.parquet"))
+    root = Path(table_root)
+    if not root.is_dir():
+        return False
+
+    manifest_path = manifest_path_for_table(root)
+    if manifest_path.exists():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            manifest = {}
+        for entry in manifest.get("output_files", []):
+            relative = entry.get("path") if isinstance(entry, dict) else None
+            if isinstance(relative, str) and (root.parent / relative).exists():
+                return True
+
+    for pattern in ("*.parquet", "date=*/hour=*/*.parquet", "*/*/*.parquet"):
+        if next(root.glob(pattern), None) is not None:
+            return True
+    return False
+
+
+def source_paths_from_manifest(table_root: Path) -> list[str]:
+    manifest_path = manifest_path_for_table(table_root)
+    if not manifest_path.exists():
+        return []
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    for key in ("source_paths", "input_source_paths", "source_path_order"):
+        values = manifest.get(key)
+        if isinstance(values, list) and all(isinstance(value, str) for value in values):
+            return sorted(set(values))
+    return []
+
+
+def discover_source_paths(
+    conn: duckdb.DuckDBPyConnection,
+    *,
+    table_root: Path,
+) -> list[str]:
+    manifest_sources = source_paths_from_manifest(table_root)
+    if manifest_sources:
+        return manifest_sources
+
+    query = (
+        "SELECT DISTINCT source_path "
+        f"FROM read_parquet({_sql_literal(parquet_glob(table_root))}, "
+        "hive_partitioning=true) "
+        "WHERE source_path IS NOT NULL"
+    )
+    return sorted(str(row[0]) for row in conn.execute(query).fetchall())
+
+
+def configure_duckdb(
+    conn: duckdb.DuckDBPyConnection,
+    *,
+    memory_limit: str,
+    temp_directory: Path,
+) -> None:
+    temp_directory.mkdir(parents=True, exist_ok=True)
+    conn.execute(f"SET memory_limit = {_sql_literal(memory_limit)}")
+    conn.execute(f"SET temp_directory = {_sql_literal(str(temp_directory))}")
+
+
+def print_progress(message: str) -> None:
+    print(message, file=sys.stderr, flush=True)
 
 
 def display_path(path: Path) -> str:
@@ -114,25 +189,60 @@ def iter_census_fills_from_duckdb(
     *,
     table_root: Path,
     batch_rows: int,
+    progress_every_sources: int = 0,
+    progress_every_rows: int = 0,
 ) -> Iterator[tuple[str, dict[str, Any]]]:
     """Yield fills from Parquet in raw source order for EXP-001 census logic."""
 
     columns = ", ".join(SELECT_COLUMNS)
-    query = (
-        f"SELECT {columns} "
-        f"FROM read_parquet({_sql_literal(parquet_glob(table_root))}, hive_partitioning=true) "
-        "ORDER BY source_path, source_row_number"
-    )
-    cursor = conn.execute(query)
-    while rows := cursor.fetchmany(batch_rows):
-        for row in rows:
-            yield row_to_census_fill(row)
+    source_paths = discover_source_paths(conn, table_root=table_root)
+    total_sources = len(source_paths)
+    total_rows = 0
+    next_row_progress = progress_every_rows if progress_every_rows > 0 else None
+    progress_enabled = progress_every_sources > 0 or progress_every_rows > 0
+    if progress_enabled and total_sources:
+        print_progress(f"discovered {total_sources} source_path values")
+
+    for source_index, source_path in enumerate(source_paths, start=1):
+        if progress_every_sources > 0 and (
+            source_index == 1 or source_index % progress_every_sources == 0
+        ):
+            print_progress(
+                f"streaming source {source_index}/{total_sources}; rows_read={total_rows}; "
+                f"source_path={source_path}"
+            )
+        query = (
+            f"SELECT {columns} "
+            "FROM read_parquet("
+            f"{_sql_literal(parquet_source_glob(table_root, source_path))}, "
+            "hive_partitioning=true) "
+            "WHERE source_path = ? "
+            "ORDER BY source_row_number"
+        )
+        cursor = conn.execute(query, [source_path])
+        while rows := cursor.fetchmany(batch_rows):
+            total_rows += len(rows)
+            while next_row_progress is not None and total_rows >= next_row_progress:
+                print_progress(
+                    f"streamed {total_rows} rows from "
+                    f"{source_index}/{total_sources} sources"
+                )
+                next_row_progress += progress_every_rows
+            for row in rows:
+                yield row_to_census_fill(row)
+
+    if progress_enabled and total_sources:
+        print_progress(f"streamed {total_rows} rows from {total_sources} sources")
 
 
 def run_census_from_parquet(
     table_root: Path,
     *,
     batch_rows: int = 100_000,
+    duckdb_memory_limit: str = DEFAULT_DUCKDB_MEMORY_LIMIT,
+    duckdb_temp_directory: Path | None = None,
+    progress_every_sources: int = DEFAULT_PROGRESS_EVERY_SOURCES,
+    progress_every_rows: int = DEFAULT_PROGRESS_EVERY_ROWS,
 ) -> dict[str, Any]:
     if duckdb is None:
         msg = "duckdb is required; install with pip install oracle-btc-research[analytics]"
@@ -140,6 +250,9 @@ def run_census_from_parquet(
     if not parquet_table_exists(table_root):
         raise FileNotFoundError(f"no Parquet files found under {table_root}")
 
+    temp_directory = duckdb_temp_directory
+    if temp_directory is None:
+        temp_directory = dataset_root_from_table(table_root) / "staging" / "d012_duckdb_tmp"
     tracker = PositionTracker()
     seen_keys: set[tuple[str, int]] = set()
     counts_by_stratum: defaultdict[str, int] = defaultdict(int)
@@ -153,11 +266,18 @@ def run_census_from_parquet(
 
     conn = duckdb.connect(database=":memory:", read_only=False)
     try:
+        configure_duckdb(
+            conn,
+            memory_limit=duckdb_memory_limit,
+            temp_directory=temp_directory,
+        )
         process_fill_stream(
             iter_census_fills_from_duckdb(
                 conn,
                 table_root=table_root,
                 batch_rows=batch_rows,
+                progress_every_sources=progress_every_sources,
+                progress_every_rows=progress_every_rows,
             ),
             tracker=tracker,
             seen_keys=seen_keys,
@@ -461,6 +581,32 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=100_000,
         help="DuckDB fetch batch size for streaming census replay.",
     )
+    parser.add_argument(
+        "--duckdb-memory-limit",
+        default=DEFAULT_DUCKDB_MEMORY_LIMIT,
+        help="DuckDB memory_limit setting for parity replay.",
+    )
+    parser.add_argument(
+        "--duckdb-temp-directory",
+        type=Path,
+        default=None,
+        help=(
+            "DuckDB spill directory. Defaults to "
+            "{data_root}/staging/d012_duckdb_tmp."
+        ),
+    )
+    parser.add_argument(
+        "--progress-every-sources",
+        type=int,
+        default=DEFAULT_PROGRESS_EVERY_SOURCES,
+        help="Print progress every N source_path values (0 to disable).",
+    )
+    parser.add_argument(
+        "--progress-every-rows",
+        type=int,
+        default=DEFAULT_PROGRESS_EVERY_ROWS,
+        help="Print progress every N streamed rows (0 to disable).",
+    )
     return parser.parse_args(argv)
 
 
@@ -469,11 +615,25 @@ def main(argv: list[str] | None = None) -> int:
     if args.batch_rows <= 0:
         print("--batch-rows must be positive", file=sys.stderr)
         return 2
+    if args.progress_every_sources < 0:
+        print("--progress-every-sources must be non-negative", file=sys.stderr)
+        return 2
+    if args.progress_every_rows < 0:
+        print("--progress-every-rows must be non-negative", file=sys.stderr)
+        return 2
+    if not args.duckdb_memory_limit:
+        print("--duckdb-memory-limit must be non-empty", file=sys.stderr)
+        return 2
 
     data_root = args.data_root.resolve()
     table_root = args.parquet_root.resolve() if args.parquet_root else all_fills_root(data_root)
     expected_path = args.expected.resolve()
     output_dir = args.output_dir.resolve()
+    duckdb_temp_directory = (
+        args.duckdb_temp_directory.resolve()
+        if args.duckdb_temp_directory
+        else data_root / "staging" / "d012_duckdb_tmp"
+    )
 
     if not expected_path.exists():
         print(f"expected census missing: {expected_path}", file=sys.stderr)
@@ -487,7 +647,14 @@ def main(argv: list[str] | None = None) -> int:
 
     with expected_path.open("r", encoding="utf-8") as handle:
         expected = json.load(handle)
-    actual = run_census_from_parquet(table_root, batch_rows=args.batch_rows)
+    actual = run_census_from_parquet(
+        table_root,
+        batch_rows=args.batch_rows,
+        duckdb_memory_limit=args.duckdb_memory_limit,
+        duckdb_temp_directory=duckdb_temp_directory,
+        progress_every_sources=args.progress_every_sources,
+        progress_every_rows=args.progress_every_rows,
+    )
     comparisons = compare_to_expected(actual, expected)
     passed = all(check["passed"] for check in comparisons)
     report = {

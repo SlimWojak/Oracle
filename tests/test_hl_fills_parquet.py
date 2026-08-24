@@ -5,6 +5,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from typing import Any
 
 from oracle_research.hl_fills_parquet import (
     BUILDER_VERSION,
@@ -193,6 +194,82 @@ class HlFillsParquetTests(unittest.TestCase):
             {"b_btc_only_cross": 1, "c_cross_asset": 1},
         )
         self.assertEqual(summary["counts_by_method"], {"market": 2})
+
+    @unittest.skipUnless(HAS_ANALYTICS, "pyarrow and duckdb are optional analytics deps")
+    def test_census_iterator_streams_per_source_without_global_sort(self) -> None:
+        parity = _load_parity_module()
+        source_a = "hyperliquid/node_fills_by_block/hourly/a.lz4"
+        source_b = "hyperliquid/node_fills_by_block/hourly/b.lz4"
+
+        class RecordingConnection:
+            def __init__(self, conn: Any) -> None:
+                self.conn = conn
+                self.queries: list[str] = []
+
+            def execute(self, query: str, parameters: list[str] | None = None) -> Any:
+                self.queries.append(query)
+                if parameters is None:
+                    return self.conn.execute(query)
+                return self.conn.execute(query, parameters)
+
+        def make_source_rows(source_path: str, tid_base: int) -> list[dict[str, Any]]:
+            return [
+                fill_to_parquet_row(
+                    make_fill(tid=tid_base + 2, time_ms=0),
+                    source_format="by_block",
+                    source_path=source_path,
+                    source_row_number=2,
+                    builder_version=BUILDER_VERSION,
+                ),
+                fill_to_parquet_row(
+                    make_fill(tid=tid_base + 1, time_ms=3_600_000),
+                    source_format="by_block",
+                    source_path=source_path,
+                    source_row_number=1,
+                    builder_version=BUILDER_VERSION,
+                ),
+            ]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            table_root = Path(tmp) / "all_fills"
+            write_partitioned_chunk(
+                make_source_rows(source_b, 200),
+                output_root=table_root,
+                source_path=source_b,
+                chunk_index=0,
+                compression="zstd",
+            )
+            write_partitioned_chunk(
+                make_source_rows(source_a, 100),
+                output_root=table_root,
+                source_path=source_a,
+                chunk_index=0,
+                compression="zstd",
+            )
+
+            raw_conn = duckdb.connect(database=":memory:", read_only=False)
+            recording_conn = RecordingConnection(raw_conn)
+            try:
+                fills = list(
+                    parity.iter_census_fills_from_duckdb(
+                        recording_conn,
+                        table_root=table_root,
+                        batch_rows=1,
+                        progress_every_sources=0,
+                        progress_every_rows=0,
+                    )
+                )
+            finally:
+                raw_conn.close()
+
+        self.assertEqual([fill["tid"] for _, fill in fills], [101, 102, 201, 202])
+        executed_sql = "\n".join(recording_conn.queries)
+        self.assertIn("SELECT DISTINCT source_path", executed_sql)
+        self.assertNotIn("ORDER BY source_path, source_row_number", executed_sql)
+        self.assertEqual(
+            sum("ORDER BY source_row_number" in query for query in recording_conn.queries),
+            2,
+        )
 
 
 if __name__ == "__main__":

@@ -102,7 +102,7 @@ python scripts/run_hl_parquet_census_parity.py \
 
 The builder writes `manifest.json` and `manifest.provenance.json` beside the
 derived table under the data root. The parity gate reads Parquet via DuckDB
-only, replays the EXP-001 Phase 1 census state machine, and emits
+only, streams per `source_path` to avoid a global-sort OOM, replays the EXP-001 Phase 1 census state machine, and emits
 `reports/infra_hl_parquet_v1/parity.{json,md}` plus a D-019 sidecar. In cloud
 or CI without the data host, the parity script writes a `MISSING_DATA` report
 and exits non-zero; do not invent passing parity numbers.
