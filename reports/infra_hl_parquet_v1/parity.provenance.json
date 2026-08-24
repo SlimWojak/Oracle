@@ -1,0 +1,33 @@
+{
+  "repo_commit": "a3c7c7e7b8b44507bb9519462c95218eb2f2b8b8",
+  "generated_at_utc": "2026-08-24T09:32:50Z",
+  "config": {
+    "gate": "hl_parquet_v1_exp001_census_parity",
+    "status": "MISSING_DATA",
+    "parquet_table_root": "/home/a8ra_dgx/oracle-data/derived/hyperliquid/fills/v1/all_fills",
+    "expected_path": "reports/exp001/stratification_census.json",
+    "tolerances": {
+      "notional_relative": 1e-09,
+      "tractable_share_absolute": 1e-12
+    }
+  },
+  "inputs": [
+    {
+      "path": "stratification_census.json",
+      "bytes": 2046,
+      "sha256": "95d3a6093cf724b7b5a2b18b0f74d2a315b1c6f9d8e770acee664ffbdb5eca35"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "parity.json",
+      "bytes": 379,
+      "sha256": "a10ac1d3c0ccfceaebdf68f4ec0a3e28224581da438063a9102706df6eb3fc7f"
+    },
+    {
+      "path": "parity.md",
+      "bytes": 318,
+      "sha256": "4b05dd3e362ef96e518d15fc25fddaf1ab5f126f692eaebad00caea75d591c4d"
+    }
+  ]
+}
