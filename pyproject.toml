@@ -20,6 +20,10 @@ dev = [
 hyperliquid = [
   "lz4>=4.3",
 ]
+analytics = [
+  "duckdb",
+  "pyarrow",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,7 +1,18 @@
 import json
+import tempfile
 import unittest
+from pathlib import Path
 
-from oracle_research.hyperliquid_fills import HlFill, iter_fills_from_json_lines
+from oracle_research.hyperliquid_fills import (
+    HlFill,
+    iter_fills_from_json_lines,
+    iter_fills_from_lz4,
+)
+
+try:
+    import lz4.frame
+except ImportError:
+    lz4 = None
 
 LIQUIDATED = "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 COUNTERPARTY = "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
@@ -80,6 +91,23 @@ class IterFillsFromJsonLinesTests(unittest.TestCase):
         pair = [COUNTERPARTY, _base_fill(tid=2)]
         raw = (json.dumps(by_block) + "\n" + json.dumps(pair)).encode("utf-8")
         fills = list(iter_fills_from_json_lines(raw))
+        self.assertEqual([fill.tid for fill in fills], [1, 2])
+
+    @unittest.skipIf(lz4 is None, "lz4 not installed")
+    def test_iter_fills_from_lz4_streams_lines(self) -> None:
+        raw = (
+            json.dumps([LIQUIDATED, _base_fill(tid=1)])
+            + "\n"
+            + json.dumps([COUNTERPARTY, _base_fill(tid=2)])
+            + "\n"
+        ).encode("utf-8")
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "fills.lz4"
+            with lz4.frame.open(path, mode="wb") as handle:
+                handle.write(raw)
+
+            fills = list(iter_fills_from_lz4(path))
+
         self.assertEqual([fill.tid for fill in fills], [1, 2])
 
     def test_liquidation_object_preserved(self) -> None:

@@ -82,10 +82,35 @@ Phase 1 tractable share 39.06%; Phase 2 combined reconstruction accuracy 8.02%
 wallet state). D-018 demotion: HL challenger is realized-mass diagnostics only.
 Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruction_*`.
 
+### D-012 derived HL fills store
+
+This branch adds the one-time materializer for the primary all-fills table:
+`{data_root}/derived/hyperliquid/fills/v1/all_fills`, Hive-partitioned by UTC
+`date=YYYY-MM-DD/hour=HH` with `zstd` Parquet by default. Install opt-in deps
+with `python -m pip install -e '.[dev,hyperliquid,analytics]'`.
+
+Run on the data host:
+
+```bash
+python scripts/build_hl_btc_liquidations.py \
+  --data-root /home/a8ra_dgx/oracle-data \
+  --overwrite
+
+python scripts/run_hl_parquet_census_parity.py \
+  --data-root /home/a8ra_dgx/oracle-data
+```
+
+The builder writes `manifest.json` and `manifest.provenance.json` beside the
+derived table under the data root. The parity gate reads Parquet via DuckDB
+only, replays the EXP-001 Phase 1 census state machine, and emits
+`reports/infra_hl_parquet_v1/parity.{json,md}` plus a D-019 sidecar. In cloud
+or CI without the data host, the parity script writes a `MISSING_DATA` report
+and exits non-zero; do not invent passing parity numbers.
+
 ### Next work (in order)
 
-1. Normalization layer: HL fills → Parquet + DuckDB (D-012), with parity vs
-   EXP-001 census artifacts; stop full-tape LZ4 scan tax.
+1. Run the D-012 builder/parity gate on the data host and bank the parity
+   artifacts if the hard EXP-001 census comparison passes.
 2. Construct validation design (realized liquidation mass with book/backstop
    split; fuel challengers vs traversed mass; impact vs slippage) — runs on
    the derived store.

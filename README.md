@@ -60,12 +60,42 @@ python -m unittest discover
 ruff check .
 ```
 
+Install analytical-store dependencies only when building or querying Parquet:
+
+```bash
+python -m pip install -e '.[dev,hyperliquid,analytics]'
+```
+
 ## Data boundary
 
 Raw data lives outside this repository and is immutable. Local paths, credentials,
 vendor payloads, and generated datasets must not be committed. Derived datasets
 must be reproducible from a manifest recording source, retrieval time, exchange
 timestamp semantics, transformation version, and content hash.
+
+### Hyperliquid fills Parquet store (D-012)
+
+The one-time builder materializes the primary all-fills table outside git:
+
+```bash
+python scripts/build_hl_btc_liquidations.py \
+  --data-root /home/a8ra_dgx/oracle-data \
+  --overwrite
+```
+
+It writes Parquet under
+`{data_root}/derived/hyperliquid/fills/v1/all_fills` and a rebuild manifest
+beside that table. Verify hard parity against the banked EXP-001 census without
+re-reading LZ4:
+
+```bash
+python scripts/run_hl_parquet_census_parity.py \
+  --data-root /home/a8ra_dgx/oracle-data
+```
+
+The parity gate emits `reports/infra_hl_parquet_v1/parity.{json,md}` plus a
+D-019 provenance sidecar and exits non-zero if data is missing or any aggregate
+mismatches.
 
 ## Current status
 

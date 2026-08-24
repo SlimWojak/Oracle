@@ -1,0 +1,11 @@
+{
+  "status": "MISSING_DATA",
+  "parquet_table_root": "/home/a8ra_dgx/oracle-data/derived/hyperliquid/fills/v1/all_fills",
+  "expected_path": "reports/exp001/stratification_census.json",
+  "note": "No Parquet files found; run the D-012 builder on the data host.",
+  "tolerances": {
+    "notional_relative": 1e-09,
+    "tractable_share_absolute": 1e-12
+  },
+  "comparisons": []
+}
