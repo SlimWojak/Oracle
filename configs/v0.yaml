@@ -39,7 +39,7 @@ sampling:
   event_clusters_define_risk_set: false
 
 evaluation:
-  status: exp005_checkpoint_a_pre_effect
+  status: exp005_complete_null
   split_method: chronological_purged
   boundary_purge_seconds: 14400
   outcome_window_must_remain_in_period: true
@@ -121,13 +121,16 @@ exp004:
     news: news_not_available_non_gating_m0_m1
 
 exp005:
-  status: checkpoint_a_cleared_checkpoint_b_authorized
+  status: complete_null
   contract: docs/briefs/2026-08-25-exp005-flow-compression-replication.md
   decision: D-037
   exact_d033_feature: true
   m1_unchanged_blocked_asof: true
   development_only_firewall_authorized: true
+  development_only_firewall_completed: true
   oos_effect_inspection_authorized: false
+  pre_oos_implementation_sha: 7fa0709011f451d0fc5ef95b5f4b5e7baf8152ed
+  result: reports/exp005/result.json
   source_audit:
     flow_availability_floor: 0.90
     m0_flow_joint_availability_floor: 0.85
@@ -150,7 +153,7 @@ exp005:
     epsilon: none
     partial_windows: false
     forward_fill: false
-  one_shot_execution_consumed: false
+  one_shot_execution_consumed: true
   later_rungs_authorized: false
 
 feature_families:

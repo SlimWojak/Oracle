@@ -503,7 +503,7 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-005 — Taker-flow variance-compression replication
 
-- **Status:** RUNNING (Checkpoint A cleared pre-effect; Checkpoint B authorized)
+- **Status:** NULL (closed 2026-08-25; one exact-SHA execution; D-037)
 - **Frozen question:** Does the exact D-033 `flow_compression_T` construct add
   prospective OOS information and useful event selectivity beyond M0 on
   identical support?
@@ -565,14 +565,27 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   validation / test-2025 / test-2026-01..07. No full month had zero joint
   coverage. Exact block membership, interval-end causality, the T-5m cutoff,
   conflict-as-missing, and paired support hashes cleared. No label, outcome,
-  fit, score, or effect was constructed or inspected. Model result remains
-  blank pending the frozen development firewall and one-shot execution.
-- **Verdict:** —
+  fit, score, or effect was constructed or inspected at that checkpoint.
+  The development firewall at candidate SHA `3e71902` retained only pre-2024
+  sources, rows, passages, and clusters; froze four development supports and
+  eight fresh models; and preserved `kappa=0.771724`. Empty pre-OOS seal SHA
+  `7fa0709011f451d0fc5ef95b5f4b5e7baf8152ed` has the identical tree. One
+  receipt was consumed and completed valid without OOS refit. Evidence commit
+  `7ab09aa62b4392c61aa93d40752ca1ec3bd86efb` records fixed/twin family Brier
+  skill of `0.1785% / -0.0040%` validation, `0.2180% / 0.0309%` test-2025,
+  and `0.1346% / -0.0305%` test-2026-01..07. Every family misses the +1% PASS
+  floor; no family approaches the stable -1% FAIL boundary. Primary alert
+  cells also miss recall, cluster-count, and other actionability gates.
+- **Verdict:** **NULL.** The valid result is neither the all-period/all-family
+  PASS nor the stable adverse FAIL. Park exact D-033 flow compression without
+  another window, transform, threshold, or run. M1 stays `BLOCKED_ASOF`; no
+  later rung is authorized.
 - **Limitations:** A PASS is a bounded operational replication, not a definitive
   predictive headline, and does not waive D-029's untouched confirmation. M1
   remains complete and `BLOCKED_ASOF`; EXP-005 cannot shrink or unblock it.
-- **Artifacts:** D-037; frozen EXP-005 brief; future artifacts under
-  `reports/exp005/` with D-019 provenance.
+- **Artifacts:** D-037; frozen EXP-005 brief;
+  `reports/exp005/{source_readiness,frozen_state,result}*` with D-019
+  provenance.
 - **Correction notes:** This is not M1-lite, partial M1, an EXP-004 rescue, M2,
   ignition, CVD, OFI, or a new feature menu. The flow construct remains inside
   the frozen future M1 definition while being tested here as a separate

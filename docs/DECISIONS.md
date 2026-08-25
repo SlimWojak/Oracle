@@ -594,7 +594,29 @@ month. Schema, hashes, exact block membership, interval-end causality, T-5m,
 duplicate/conflict handling, and paired support identifiers all clear. The
 audit constructed no labels, outcomes, fits, scores, or effects. The frozen
 Checkpoint A disposition is `CLEARED_CHECKPOINT_A`, so Checkpoint B is
-authorized unchanged; no later checkpoint is yet consumed.
+authorized unchanged.
+
+**Final disposition (2026-08-25).** The real development firewall at candidate
+SHA `3e7190293bbafc952d1280de9c2b58bde793f335` admitted only timestamps,
+passages, and clusters strictly before `2024-01-01T00:00:00Z`, preserved D-032
+`kappa=0.771724`, froze four development support identifiers and eight fresh
+models, and constructed or froze no OOS score support. Its external envelope
+SHA-256 was `dbae564be6a2a8533c26080366bdbc9e73c543d05c1070bcb083ddc5fddc580a`;
+the frozen state SHA-256 was
+`317bdc2926b35163f2da10a3ecb12d09e5ec8e87e87b3dbc363e0de9ffa1e8c2`.
+
+Empty seal commit `7fa0709011f451d0fc5ef95b5f4b5e7baf8152ed` retained the exact candidate
+tree. Its one-shot run consumed the experiment-wide receipt once, loaded the
+frozen development state without refit, and completed valid. Evidence commit
+`7ab09aa62b4392c61aa93d40752ca1ec3bd86efb` records family relative Brier
+skill for fixed/twin as `0.1785% / -0.0040%` in validation, `0.2180% / 0.0309%`
+in test-2025, and `0.1346% / -0.0305%` in test-2026-01..07. All six family
+skills miss the `+1%` PASS floor; the all-six `<=-1%` FAIL condition is also
+false. Multiple primary cells independently miss recall, minimum-cluster, and
+other actionability gates. The only mechanical disposition is therefore
+**NULL**. Exact D-033 flow compression is parked as a standalone comparator;
+there is no alternate window, transform, threshold, or rerun. M1 remains
+complete and `BLOCKED_ASOF`, and no M2+ or other rung is authorized.
 
 ## Open decisions
 

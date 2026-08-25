@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Codex CTO; EXP-003 P4 BLOCKED_SOURCE; STOPPED)
+## State as of 2026-08-25 (Codex CTO; EXP-005 NULL; STOPPED)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -26,6 +26,11 @@ That file is gitignored and must never be committed; this repository is public.
   four-family hourly joint coverage is 99.69% M1-dev, 99.32% validation,
   99.74% test-2025, and 100% test-2026. Coverage clears; publication as-of does
   not.
+- EXP-005's narrower audit reverified the 79 selected USD-M BTCUSDT 1m
+  archives plus all 11,770 D-022 inputs. Exact flow availability is 99.82% /
+  99.83% / 99.77% / 100% and seven-M0-plus-flow joint availability is 99.58% /
+  99.83% / 99.77% / 100% for development / validation / test-2025 /
+  test-2026-01..07, with no zero-coverage month.
 - Hyperliquid asset_ctxs: per-minute contexts (incl. quoted impact prices, OI,
   premium) 2023-05-20..present, ~9GB.
 - Hyperliquid node_fills: full fill history 2025-05-25..2026-08-23, two
@@ -186,6 +191,28 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
   created. Do not narrow history, infer the schedule, substitute trailing
   realized impact, or call this FAIL/NULL.
 
+### D-037 / EXP-005 flow replication: CLOSED, NULL (2026-08-25)
+
+- Checkpoint A evidence commit `79851be` cleared exact USD-M interval semantics,
+  T-5m causality, archive/input hashes, and all period coverage floors before
+  labels or effects.
+- The real development firewall passed at candidate `3e71902`: every source
+  row, candidate row, passage, and cluster passed downstream was strictly
+  pre-2024; `kappa=0.771724`; four development support IDs and eight fresh
+  converged models were frozen. No OOS score support was frozen. External
+  envelope SHA-256: `dbae564b...`; frozen-state SHA-256: `317bdc29...`.
+- Empty pre-OOS seal SHA:
+  `7fa0709011f451d0fc5ef95b5f4b5e7baf8152ed` (tree-identical to the
+  development candidate). One local experiment-wide receipt was consumed and
+  completed valid; no OOS refit or retry occurred.
+- Evidence commit: `7ab09aa62b4392c61aa93d40752ca1ec3bd86efb`.
+  Fixed/twin family Brier lift was `0.1785% / -0.0040%` validation,
+  `0.2180% / 0.0309%` test-2025, and `0.1346% / -0.0305%`
+  test-2026-01..07. All miss the +1% PASS floor; the stable -1% FAIL rule is
+  false; multiple primary alert gates miss. Mechanical verdict: **NULL**.
+- Park exact D-033 flow compression without another window, transform,
+  threshold, or run. It does not shrink/unblock M1 or authorize M2+.
+
 ### D-012 derived HL fills store
 
 P0 BANKED (main `656c4fb`). Canonical analytical source:
@@ -217,16 +244,18 @@ and exits non-zero; do not invent passing parity numbers.
 Authoritative sequence remains `docs/glide_path.md`. There is no active
 implementation or science commission after this seat close.
 
-1. **Next judgment point:** Chair reviews the banked EXP-003 `BLOCKED_SOURCE` at
-   status/verdict commit `82a9d944d3804541599f1176415fbbfe5f02bada`. A future quoted
-   impact attempt requires authoritative versioned notional history and
-   row-level as-of semantics; narrowing to the later regime is a contract
-   change. Nothing self-starts.
-2. The earlier EXP-004 M0 verdict remains NULL. If qualifying M1 publication
+1. **Next judgment point:** Chair reviews the banked EXP-005 `NULL` at evidence
+   commit `7ab09aa62b4392c61aa93d40752ca1ec3bd86efb`. Exact D-033 flow
+   compression is parked; no same-family retry or window/transform change is
+   authorized. Nothing self-starts.
+2. EXP-003 remains `BLOCKED_SOURCE`. A future quoted-impact attempt requires
+   authoritative versioned notional history and row-level as-of semantics;
+   narrowing to the later regime is a contract change.
+3. The earlier EXP-004 M0 verdict remains NULL. If qualifying M1 publication
    evidence is ever supplied and a new commission is granted, apply D-033
    unchanged. Do not shrink M1, invent a lag, substitute
    Hyperliquid/parked fuel, or reuse the consumed M0 execution authorization.
-3. No M1, M2+, EXP-003 rescue, replacement impact proxy, fuel retry, new feature
+4. No M1, M2+, EXP-003 rescue, replacement impact proxy, fuel retry, new feature
    family, dashboard, live service, or trading work is active.
 
 ### Glide path (authoritative sequence)
@@ -237,17 +266,18 @@ contracts `2319b07`, inventory `54e7166`). **D-033 contract/audit BANKED**
 (`21fbfd4`, `04edc6b`, `c430f8f`). **EXP-004 M0 BANKED NULL** (pre-OOS
 `680f2af`, evidence `826ea19`, verdict `8704454`). **M1 BLOCKED_ASOF; all later
 rungs unauthorized.** **EXP-003 P4 BANKED BLOCKED_SOURCE** (contract
-`8e23b80`, evidence `23c838e`); no census or score.
+`8e23b80`, evidence `23c838e`); no census or score. **EXP-005 BANKED NULL**
+(pre-OOS `7fa0709`, evidence `7ab09aa`); exact flow replication parked.
 Census: `reports/p1_eligibility_census.json`. No M2.
 
 
 ### Seat note (2026-08-25)
 
-Codex completed the later bounded P4 commission through Checkpoint A, banked
-D-036 `BLOCKED_SOURCE` before effects, synchronized the public status surface,
-and stopped. The next seat inherits no active implementation commission. Thin
-orchestration is provider-neutral: the lead owns research judgment; subagents
-perform only fenced mechanical work.
+Codex completed EXP-005 through its exact-SHA one-shot, banked the mechanical
+`NULL`, synchronized the public status surface, and stopped. The next seat
+inherits no active implementation commission. Thin orchestration is
+provider-neutral: the lead owns research judgment; subagents perform only
+fenced mechanical work.
 
 ### Operating notes
 
@@ -265,8 +295,8 @@ perform only fenced mechanical work.
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 244 tests passed (7 skipped) and Ruff passed at verdict commit
-  `8704454`; rerun after this handover-only commit.
+  handing off. 281 tests passed (7 skipped) and Ruff passed before the EXP-005
+  status close; rerun after any handover-only commit.
 - Known open decisions are listed at the bottom of `docs/DECISIONS.md`. The
   precondition impulse, large-cluster weighting, and D-026 twin estimator are
   closed by corrected D-032.

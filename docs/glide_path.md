@@ -34,10 +34,10 @@ as doctrine. The north star outlives any single v0 hypothesis.
   unversioned ~5,000→20,000-USDC historical notional change and no authoritative
   quote-at-T publication semantics. No eligibility census, score, or one-shot
   run exists.
-- D-037 / EXP-005 ACTIVE — direct standalone commission of exact D-033 taker-flow
-  compression against M0 on identical support. Checkpoint A source evidence
-  `79851be` is `CLEARED_CHECKPOINT_A`; no label/effect was inspected. Checkpoint
-  B immutable implementation is the only active work.
+- D-037 / EXP-005 BANKED NULL — exact D-033 taker-flow compression against M0
+  on identical support. Checkpoint A `79851be` was `CLEARED_CHECKPOINT_A`
+  pre-effect; the one-shot sealed at `7fa0709` and evidence banked at
+  `7ab09aa`. Parked without retry; no active work follows.
 
 ## Active path (order locked)
 
@@ -131,7 +131,7 @@ D-019 provenance are banked. P4 was later separately commissioned and banked
 `BLOCKED_SOURCE`; stop for Chair review before any M1, M2+, replacement impact
 source, or other authorization.
 
-### Direct EXP-005 commission — **ACTIVE: CHECKPOINT B**
+### Direct EXP-005 commission — **BANKED NULL; STOPPED**
 
 D-037 permits one standalone literature-anchored replication of exact D-033
 `flow_compression_T` against seven-column `M0_COMMON` on identical support. It
@@ -139,10 +139,15 @@ does not shrink/unblock M1 or authorize M2+. The pre-effect source audit banked
 at `79851be`: all source/causality/provenance gates clear, all four period flow
 and joint-coverage floors pass, and no month has zero joint coverage.
 
-Only the frozen immutable implementation and development-only firewall now run.
-Validation/test outcomes or effects remain unconstructed and uninspected until
-one clean pre-OOS SHA is sealed. Then one exact-SHA receipt may be consumed.
-The EXP stops with one mechanical model verdict or a later integrity block.
+The development firewall passed at candidate `3e71902`; empty seal
+`7fa0709011f451d0fc5ef95b5f4b5e7baf8152ed` preserved its exact tree. One
+receipt was consumed and the valid no-refit run banked at evidence commit
+`7ab09aa62b4392c61aa93d40752ca1ec3bd86efb`. Fixed/twin family Brier lift was
+`0.1785% / -0.0040%` validation, `0.2180% / 0.0309%` test-2025, and
+`0.1346% / -0.0305%` test-2026-01..07: all below the +1% PASS floor and far
+from the stable -1% FAIL rule. Primary alert gates also miss. The mechanical
+verdict is **NULL**. Park the construct; no alternate window, transform,
+threshold, rerun, M1 change, or M2+ authorization follows.
 
 ## Post-authorization only (not self-starting)
 
