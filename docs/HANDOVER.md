@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Codex CTO; EXP-005 BLOCKED_RUN_INTEGRITY; STOPPED)
+## State as of 2026-08-25 (v0 EOD checkpoint; operationally closed, scientifically inconclusive; STOPPED)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -17,6 +17,21 @@ That file is gitignored and must never be committed; this repository is public.
   immutable raw-data root; has a repo clone, venv, tmux, uv, aws-cli, lz4.
 - Requester-pays S3 access to the Hyperliquid archive works after an org-level
   SCP edit (details local).
+
+### Programme checkpoint (D-038)
+
+- The authoritative synthesis is
+  `docs/briefs/2026-08-25-v0-evidence-synthesis.md`; the authoritative route is
+  `docs/glide_path.md` v2. The complete v1 route remains preserved there as
+  history.
+- Operational v0 status: **operationally closed but scientifically
+  inconclusive**. No valid fuel-plus-impact interaction was run, so the
+  mechanism is neither supported nor falsified.
+- No implementation, acquisition, feature, experiment, model, or science beat
+  is active. All EXP-000 through EXP-005 dispositions remain unchanged.
+- Single recommendation awaiting Chair/CEO authorization: decide whether to
+  authorize one governance-only beat to formulate exactly one narrower v1
+  research question. The recommendation is not authorization.
 
 ### Data on hand (data host raw root)
 
@@ -246,48 +261,45 @@ only, streams per `source_path` to avoid a global-sort OOM, replays the EXP-001 
 or CI without the data host, the parity script writes a `MISSING_DATA` report
 and exits non-zero; do not invent passing parity numbers.
 
-### Next work (in order)
+### Next owner judgment (single)
 
-Authoritative sequence remains `docs/glide_path.md`. There is no active
-implementation or science commission after this seat close.
+Chair/CEO decides whether to authorize one governance-only design beat that
+formulates exactly one narrower v1 question with one comparator, belief change,
+materiality rule, source/as-of gate, untouched-OOS requirement, and hard stop.
+Until that decision, nothing self-starts. The proposed beat would not authorize
+data acquisition, a source hunt, market-data inspection, a feature, model,
+EXP-006, or any other EXP.
 
-1. **Next judgment point:** Chair reviews EXP-005 `BLOCKED_RUN_INTEGRITY` at
-   correction commit `4791ddd2e6d2da02b3464162037969d654bd9bcb`; its
-   immutable conditional-NULL evidence is banked at
-   commit `7ab09aa62b4392c61aa93d40752ca1ec3bd86efb`. Exact D-033 flow
-   compression has no predictive verdict; no rerun or window/transform change
-   is authorized. Nothing self-starts.
-2. EXP-003 remains `BLOCKED_SOURCE`. A future quoted-impact attempt requires
-   authoritative versioned notional history and row-level as-of semantics;
-   narrowing to the later regime is a contract change.
-3. The earlier EXP-004 M0 verdict remains NULL. If qualifying M1 publication
-   evidence is ever supplied and a new commission is granted, apply D-033
-   unchanged. Do not shrink M1, invent a lag, substitute
-   Hyperliquid/parked fuel, or reuse the consumed M0 execution authorization.
-4. No M1, M2+, EXP-003 rescue, replacement impact proxy, fuel retry, new feature
-   family, dashboard, live service, or trading work is active.
+### Dormant resume conditions (not active work)
+
+- EXP-003 requires authoritative versioned historical impact notional and
+  row-level quote-as-of semantics. Its efficacy remains untested.
+- Complete M1 requires qualifying historical publication/receive evidence or an
+  authoritative latency guarantee for both OI and funding under D-033 unchanged.
+- Any future fuel path must be a materially distinct construct with its own
+  causal source and construct-validity proof. EXP-001 and EXP-002 do not revive.
+- H5 and any M2+ reporting require a point-in-time external-event/news protocol.
+- EXP-004 M0 and EXP-005 may not be rerun or retuned; EXP-005 remains formally
+  `BLOCKED_RUN_INTEGRITY` and its receipt is consumed.
 
 ### Glide path (authoritative sequence)
 
-Active research sequence is `docs/glide_path.md` (v1). **P3 BANKED NULL**
-(reports `d591f9b`, verdict `1b249da`). **P5 BANKED** (corrected D-032;
-contracts `2319b07`, inventory `54e7166`). **D-033 contract/audit BANKED**
-(`21fbfd4`, `04edc6b`, `c430f8f`). **EXP-004 M0 BANKED NULL** (pre-OOS
-`680f2af`, evidence `826ea19`, verdict `8704454`). **M1 BLOCKED_ASOF; all later
-rungs unauthorized.** **EXP-003 P4 BANKED BLOCKED_SOURCE** (contract
-`8e23b80`, evidence `23c838e`); no census or score. **EXP-005 BANKED
-BLOCKED_RUN_INTEGRITY** (pre-OOS `7fa0709`, evidence `7ab09aa`); consumed
-conditional-NULL computation, no predictive verdict or rerun.
-Census: `reports/p1_eligibility_census.json`. No M2.
+`docs/glide_path.md` v2 is authoritative. It preserves the complete v1 history
+and banks the current ledger: EXP-000 `PASS`; EXP-001 `FAIL`; EXP-002 `NULL`;
+EXP-003 `BLOCKED_SOURCE`; EXP-004 M0 `NULL`; EXP-004 M1 `BLOCKED_ASOF`; and
+EXP-005 `BLOCKED_RUN_INTEGRITY`. No M2-M5 beat occurred. No science beat is
+active, and the single v1-design recommendation remains an unauthorized owner
+proposal.
 
 
 ### Seat note (2026-08-25)
 
-Codex completed EXP-005's exact-SHA one-shot, then surfaced and banked its own
-pre-seal validation-outcome firewall breach as `BLOCKED_RUN_INTEGRITY`. The
-receipt is consumed and no rerun is authorized. The next seat inherits no
-active implementation commission. Thin orchestration is provider-neutral: the
-lead owns research judgment; subagents perform only fenced mechanical work.
+Codex closed the day with a committed-evidence-only synthesis, D-038, and glide
+path v2. The v0 interaction route is operationally closed but scientifically
+inconclusive; prior verdicts are unchanged. The next seat inherits no active
+implementation, acquisition, or science commission and must stop before any
+new feature or EXP. Thin orchestration remains provider-neutral: the lead owns
+research judgment; subagents perform only fenced mechanical work.
 
 ### Operating notes
 
@@ -304,9 +316,9 @@ lead owns research judgment; subagents perform only fenced mechanical work.
 - Venue APIs can serve censored tape: the Kraken Trades API omitted a
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
-- Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 281 tests passed (7 skipped) and Ruff passed before the EXP-005
-  status close; rerun after any handover-only commit.
-- Known open decisions are listed at the bottom of `docs/DECISIONS.md`. The
-  precondition impulse, large-cluster weighting, and D-026 twin estimator are
-  closed by corrected D-032.
+- Verification for the v2 close: `python -m unittest discover` passed 281 tests
+  (7 skipped), and `ruff check .` passed. Rerun after any result-affecting edit.
+- Dormant unresolved decisions are listed at the bottom of
+  `docs/DECISIONS.md`; they are not active work. The precondition impulse,
+  large-cluster weighting, and D-026 twin estimator are closed by corrected
+  D-032.

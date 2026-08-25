@@ -8,6 +8,14 @@ study:
     - kraken_xbtusd_spot_1m
     - coinbase_btcusd_spot_1m
 
+programme:
+  glide_path_version: 2
+  v0_status: operationally_closed_scientifically_inconclusive
+  active_science_beat: none
+  recommended_owner_judgment: authorize_or_decline_one_v1_question_design_beat
+  recommendation_status: awaiting_chair_ceo_authorization
+  new_experiment_authorized: false
+
 labels:
   source_grid_seconds: 60
   canonical_timestamp: interval_end

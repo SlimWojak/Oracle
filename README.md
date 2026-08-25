@@ -99,15 +99,17 @@ mismatches.
 
 ## Current status
 
-Active sequence: [`docs/glide_path.md`](docs/glide_path.md) (v1). P0, P1, P2,
-P3, and P5 are **BANKED**. P3 / EXP-002 closed **NULL** and
-`cex_oi_cohort_v0` is parked. P5 banks the corrected prospective D-032
-evaluation freeze. D-034 authorized only the frozen EXP-004 M0 rung; D-035 now
-banks its one-shot **NULL**. P4 / EXP-003 was later commissioned through its
-source gate only: EXP-003 is now
-**BLOCKED_SOURCE** before eligibility or effects because the historical impact
-notional is unversioned/multi-regime and quote-at-T publication semantics are
-unproven. M1 remains `BLOCKED_ASOF`, and no later ladder rung is authorized.
+Authoritative sequence: [`docs/glide_path.md`](docs/glide_path.md) (v2).
+The v0 interaction programme is **operationally closed but scientifically
+inconclusive**; the committed-evidence synthesis is
+[`docs/briefs/2026-08-25-v0-evidence-synthesis.md`](docs/briefs/2026-08-25-v0-evidence-synthesis.md).
+EXP-000 is `PASS`; EXP-001 is `FAIL`; EXP-002 is `NULL`; EXP-003 is
+`BLOCKED_SOURCE`; EXP-004 M0 is `NULL` while complete M1 is `BLOCKED_ASOF`;
+and EXP-005 is formally `BLOCKED_RUN_INTEGRITY`. No M2-M5 interaction or
+ignition beat occurred, no science beat is active, and no later rung is
+authorized. The single recommendation awaiting Chair/CEO judgment is whether
+to authorize a governance-only beat to formulate exactly one narrower v1
+question; that recommendation is not authorization.
 
 
 EXP-000 closed **PASS** (2026-08-24): D-022 consolidated index labels, D-023
@@ -138,9 +140,9 @@ history do not carry historical publication/receive timestamps or an
 authoritative latency bound, so D-033 marks the required complete M1 rung
 `BLOCKED_ASOF` before fitting. Premium and taker-flow candidates clear the
 existing D-017 kline interval-end convention. M1 was not implemented or scored.
-The repository is stopped for Chair review. P4 has no matcher, score, or
-one-shot run; M1, M2+, replacement impact work, and all other science beats are
-unauthorized.
+The repository is stopped awaiting the single v1-design owner judgment. P4 has
+no matcher, score, or one-shot run; M1, M2+, replacement impact work, EXP-005
+rerun, and all other science beats are unauthorized.
 
 Implemented primitives include consolidated-index construction, venue-replication
 gate, Kraken trades-to-bars, Hyperliquid fill normalization (`hyperliquid_fills`,

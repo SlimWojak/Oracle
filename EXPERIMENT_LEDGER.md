@@ -320,13 +320,18 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   accuracy. Fill tape retained for realized liquidation mass (book/backstop split)
   and construct validation of other challengers.
 - **Artifacts:** `reports/exp001/stratification_census.{json,md}` (+ provenance);
-  `reports/exp001/reconstruction_{window}.{json,md}` and
+  `reports/exp001/reconstruction_{window}.md` and
   `reports/exp001/reconstruction_summary.{json,md}` (+ provenance).
 - **Correction notes (2026-08-24):** Phase 1 census v1 used pre-fill
   `startPosition` for cross-asset detection (inflated stratum c) and omitted
   market-method liquidations tagged `Close Long`/`Close Short` from tractable
   stratum (b). v2 uses post-fill net position and the market-close rule above.
 - **Correction notes (2026-08-24, CTO bank):** Phase 2 `reconstruction_summary.provenance.json` records `repo_commit` `9d7bab3` (dexter working tree ahead of / not equal to the later bank commit). Counts and FAIL verdict are unchanged; treat that sidecar as run metadata for the dexter execution, not as the banked tip SHA. D-024 records the demotion as executed.
+- **Correction note (2026-08-25, v0 evidence checkpoint):** the three
+  per-window reconstruction artifacts are committed as Markdown only; the
+  machine-readable evidence is the banked summary JSON. The earlier
+  `{json,md}` per-window cross-reference was inaccurate. No result or verdict
+  changes.
 
 
 ## EXP-002 — CEX-inferred directional fuel proxy (construct)

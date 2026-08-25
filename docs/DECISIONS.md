@@ -632,7 +632,32 @@ remains `NULL` in immutable evidence, but it cannot serve as the experiment's
 predictive verdict. EXP-005 therefore closes **BLOCKED_RUN_INTEGRITY**. The
 receipt stays consumed and no corrected rerun is authorized; return to Chair.
 
-## Open decisions
+## D-038 — v0 evidence checkpoint and glide path v2
+
+**Accepted** (2026-08-25, Codex CTO; governance synthesis only). The committed
+EXP-000 through EXP-005 record is reconciled in
+`docs/briefs/2026-08-25-v0-evidence-synthesis.md`, and
+`docs/glide_path.md` v2 is now the authoritative programme route. Every prior
+experiment disposition remains unchanged.
+
+The operational v0 interaction programme is **operationally closed but
+scientifically inconclusive**. No predictive fuel challenger survives; quoted
+impact and complete M1 are source/as-of blocked; M0 is a broad risk-state result
+but `NULL` for selective warning; and EXP-005 is formally
+`BLOCKED_RUN_INTEGRITY`. M2-M5, armed occupancy, ignition, and a valid
+fuel-plus-impact interaction were never run, so this checkpoint does not
+falsify or rewrite the underlying market mechanism.
+
+No science beat is active. The single recommendation is that the Chair/CEO
+decide whether to authorize one governance-only design beat to formulate
+exactly one narrower v1 research question. This decision records the proposal;
+it does **not** authorize that beat, data acquisition, a source hunt, a feature,
+implementation, scoring, EXP-006, or any other EXP.
+
+## Dormant unresolved decisions (not active work)
+
+These are resume conditions or future owner choices, not concurrent next
+actions. D-038's single Chair/CEO judgment is the only proposed next decision.
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
   conventions for derived layers pending).

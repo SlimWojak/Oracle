@@ -1,7 +1,147 @@
-# Oracle glide path (v1)
+# Oracle glide path (v2)
 
-Banked 2026-08-24 (CTO + Chair synthesis). This is the active research sequence.
-Completion of one beat does not self-authorize the next science beat.
+Banked 2026-08-25 from the committed EXP-000 through EXP-005 evidence
+checkpoint. This is the authoritative programme route. The complete banked v1
+route is preserved below as history; none of its historical next-step language
+is current authorization.
+
+## North star (unchanged)
+
+Identify causal, point-in-time market states that reliably change the OOS
+distribution of meaningful BTC moves: direction, magnitude, timing, and path.
+Produce decision-relevant evidence, not trade instructions.
+
+## Present programme status
+
+The v0 interaction programme is **operationally closed but scientifically
+inconclusive**.
+
+- It is operationally closed because no predictive fuel challenger survives,
+  quoted impact stopped before effects, complete M1 is blocked before fit, and
+  no later ladder rung is authorized.
+- It is scientifically inconclusive because no valid fuel-plus-impact
+  interaction, armed occupancy, or ignition test was run. Measurement failure
+  and source failure do not falsify the underlying market mechanism.
+- **No science beat is active.** No implementation, source acquisition, feature,
+  model, rerun, or EXP is authorized.
+
+The broader Oracle laboratory remains open under its unchanged north star. v0
+closure is a programme boundary, not closure of the lab and not a trading or
+production decision.
+
+## Compact banked evidence ledger
+
+| Beat | Banked disposition | Durable programme meaning | Controlling evidence |
+|---|---|---|---|
+| EXP-000 | `PASS` | D-022 labels, D-014 clusters, and D-023 chronological splits are reusable. | `reports/exp000/index_clusters.json`; evidence `9d7bab3`; verdict `84567c6` |
+| EXP-001 | `FAIL` | Fill-only HL pre-state fuel reconstruction is killed; realized mass and routing remain reusable diagnostics. | `reports/exp001/*`; evidence/verdict `dfc9261` |
+| EXP-002 | `NULL` | `cex_oi_cohort_v0` is directionally negative and parked with no retry. | reports `d591f9b`; verdict `1b249da` |
+| EXP-003 | `BLOCKED_SOURCE` | Quoted book-walk efficacy is untested; historical notional versioning and quote-as-of semantics failed first. | contract `8e23b80`; evidence `23c838e`; verdict `82a9d94` |
+| EXP-004 M0 | `NULL` | Positive broad probability skill, but no selective-warning PASS; frozen M0 remains the reusable comparator. | pre-OOS `680f2af`; evidence `826ea19`; verdict `8704454` |
+| EXP-004 M1 | `BLOCKED_ASOF` | Complete generic baseline was not fitted; OI/funding publication evidence is missing. | contract `21fbfd4`; evidence `c430f8f` |
+| EXP-005 | `BLOCKED_RUN_INTEGRITY` | Immutable computation emitted conditional `NULL` and is directionally immaterial for prioritization only; no predictive verdict or rerun. | Checkpoint A `79851be`; seal `7fa0709`; evidence `7ab09aa`; verdict `4791ddd` |
+
+The authoritative narrative and H1-H5 accounting are in
+`docs/briefs/2026-08-25-v0-evidence-synthesis.md`. Existing experiment verdicts
+remain unchanged.
+
+## Single recommended next owner judgment
+
+The only recommended judgment is:
+
+> **Chair/CEO decides whether to authorize one governance-only design beat that
+> formulates exactly one narrower Oracle v1 research question.**
+
+This is a proposal awaiting authorization, not authorization itself. If granted,
+the beat may use banked evidence to write one question, comparator, belief
+change, materiality rule, source/as-of gate, untouched-OOS requirement, and hard
+stop. It may not acquire data, hunt vendors, implement a feature, inspect market
+data, fit a model, or create EXP-006 or any other EXP. The next Chair decision
+after that memo would be to authorize, reject, or park its single proposed v1
+question.
+
+## Bounded-travel rules for any later commission
+
+1. One written commission may carry one named question only. Completion does
+   not self-authorize implementation, scoring, or the next beat.
+2. State belief change, materiality, causal as-of proof, common support,
+   dependence, and untouched-OOS requirements before any feature or outcome
+   inspection.
+3. Stop at the first failed source, publication, coverage, construct, integrity,
+   or support gate. A stop is not a redesign license.
+4. Preserve experiment semantics: `FAIL`, `NULL`, source/as-of blocks, and
+   run-integrity blocks are not interchangeable.
+5. Previously inspected OOS periods are banked context, never fresh confirmation
+   or retuning material. A consumed receipt remains consumed.
+6. No feature family or EXP stub is created until the Chair separately
+   authorizes it. No agent may convert this recommendation into authorization.
+7. Oracle remains isolated from production, brokers, execution, dashboards,
+   daemons, schedulers, and the user's other projects.
+
+## Conditions required to resume source-blocked paths
+
+- **EXP-004 M1:** historical point-in-time publication/receive evidence or an
+  authoritative latency guarantee for both required OI and funding families;
+  D-033's complete four-family M1 remains unchanged. A separate commission is
+  required before implementation or fit.
+- **EXP-003 quoted impact:** authoritative versioned impact-notional history
+  across the proposed history and row-level proof that each quote was publicly
+  knowable by `T`. Narrowing to the later regime is a contract change, not a
+  resume condition, and requires a new owner decision.
+- **H5 and any M2+ reporting:** a point-in-time external-event/news corpus and
+  taxonomy frozen before evaluation. `NEWS_NOT_AVAILABLE` is not retrospectively
+  repairable through post-hoc tagging.
+- **Any future fuel path:** a materially distinct causal construct with its own
+  source/as-of and construct-validity proof. Existing HL and CEX paths do not
+  revive merely because another period or model is available.
+
+None of these conditions is an acquisition or implementation instruction.
+
+## Retired and parked paths; no-rescue rules
+
+- Fill-only Hyperliquid pre-state reconstruction is retired as predictive fuel.
+  Do not infer missing cross-margin account state or authorize `replica_cmds`
+  without a separate sized owner decision.
+- `cex_oi_cohort_v0` is parked. No floor relaxation, band change, LSR reskin,
+  extra horizon, or static/path reinterpretation rescues EXP-002.
+- M0 is closed `NULL` for selective warning. No pooled-period, fixed-only,
+  threshold, slice, or rerun rescue; retain it only as the frozen comparator and
+  broad risk-thermostat evidence.
+- EXP-005's receipt is consumed. No corrected rerun, alternate window,
+  transform, threshold, or status promotion. Every mention of its conditional
+  computation must carry `BLOCKED_RUN_INTEGRITY`.
+- EXP-003 cannot be rescued by an inferred notional schedule, later-only history,
+  realized-impact substitution, or an alternate timestamp inside the same EXP.
+- M1 cannot be shrunk, lag-invented, or spliced with Hyperliquid or a parked fuel
+  proxy.
+
+## Daily poll packet
+
+Every upward status packet uses exactly:
+
+1. **Active beat:** `NONE` unless a later Chair authorization names one.
+2. **Evidence banked:** artifact paths, evidence/verdict commits, and whether the
+   evidence is predictive, construct, source-only, or conditional.
+3. **Deviations / blockers:** preserve `FAIL` / `NULL` / source-as-of / integrity
+   distinctions and state whether effects were ever inspected.
+4. **Next judgment point:** one owner decision only.
+5. **Proposed next bounded action:** authorization state, permitted outputs, hard
+   stop, and explicit non-authorizations.
+
+## Explicit stop
+
+Stop here. No new feature, source, collector, EXP, raw-data read, model, or
+science beat begins from glide path v2. The next action is only the proposed
+Chair/CEO judgment above.
+
+---
+
+# Oracle glide path (v1) — complete banked history
+
+Banked 2026-08-24 (CTO + Chair synthesis). This was the active research
+sequence at the v1 checkpoint. Completion of one beat did not self-authorize the
+next science beat. The text below is preserved to retain the route and every
+disposition that produced v2; it is historical, not current authorization.
 
 ## North star
 
