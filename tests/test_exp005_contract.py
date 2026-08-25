@@ -16,6 +16,7 @@ CONFIG = (ROOT / "configs" / "v0.yaml").read_text(encoding="utf-8")
 RESEARCH_CONTRACT = (ROOT / "RESEARCH_CONTRACT.md").read_text(encoding="utf-8")
 DECISIONS = (ROOT / "docs" / "DECISIONS.md").read_text(encoding="utf-8")
 LEDGER = (ROOT / "EXPERIMENT_LEDGER.md").read_text(encoding="utf-8")
+GLIDE_PATH = (ROOT / "docs" / "glide_path.md").read_text(encoding="utf-8")
 BRIEF = (
     ROOT / "docs" / "briefs" / "2026-08-25-exp005-flow-compression-replication.md"
 ).read_text(encoding="utf-8")
@@ -105,15 +106,23 @@ class Exp005ContractTest(unittest.TestCase):
     def assert_config(self, path: tuple[str, ...], expected: str) -> None:
         self.assertEqual(_mapping_value(CONFIG, path), expected)
 
-    def test_checkpoint_a_status_and_effect_fence_are_sealed(self) -> None:
+    def test_checkpoint_b_authority_and_effect_fence_are_sealed(self) -> None:
         self.assert_config(("evaluation", "status"), "exp005_checkpoint_a_pre_effect")
-        self.assert_config(("exp005", "status"), "planned_checkpoint_a_pre_effect")
+        self.assert_config(
+            ("exp005", "status"),
+            "checkpoint_a_cleared_checkpoint_b_authorized",
+        )
         self.assert_config(("exp005", "decision"), "D-037")
         self.assert_config(("exp005", "exact_d033_feature"), "true")
         self.assert_config(
-            ("exp005", "label_effect_inspection_authorized"),
+            ("exp005", "development_only_firewall_authorized"),
+            "true",
+        )
+        self.assert_config(
+            ("exp005", "oos_effect_inspection_authorized"),
             "false",
         )
+        self.assertNotIn("label_effect_inspection_authorized:", CONFIG)
         self.assertIn(
             "Checkpoint A may read causal price/source inputs and availability "
             "metadata. It must not construct or inspect labels, future outcomes, "
@@ -121,10 +130,14 @@ class Exp005ContractTest(unittest.TestCase):
             _one_line(BRIEF),
         )
         self.assertIn(
-            "PLANNED (Checkpoint A; no label/effect inspection)",
+            "RUNNING (Checkpoint A cleared pre-effect; Checkpoint B authorized)",
             EXP005_LEDGER,
         )
         self.assertIn("before label/effect inspection", _one_line(D037))
+        for record in (D037, EXP005_LEDGER, GLIDE_PATH):
+            with self.subTest(record=record[:40]):
+                self.assertIn("79851be", record)
+                self.assertIn("CLEARED_CHECKPOINT_A", record)
 
     def test_exact_d033_flow_fields_windows_and_cutoff_are_sealed(self) -> None:
         expected = {

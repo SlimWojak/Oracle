@@ -121,12 +121,13 @@ exp004:
     news: news_not_available_non_gating_m0_m1
 
 exp005:
-  status: planned_checkpoint_a_pre_effect
+  status: checkpoint_a_cleared_checkpoint_b_authorized
   contract: docs/briefs/2026-08-25-exp005-flow-compression-replication.md
   decision: D-037
   exact_d033_feature: true
   m1_unchanged_blocked_asof: true
-  label_effect_inspection_authorized: false
+  development_only_firewall_authorized: true
+  oos_effect_inspection_authorized: false
   source_audit:
     flow_availability_floor: 0.90
     m0_flow_joint_availability_floor: 0.85

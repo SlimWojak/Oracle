@@ -584,6 +584,18 @@ M2+, waive D-029's later untouched confirmation, or support a definitive
 predictive headline. No alternate flow measure, window, lag, transform,
 threshold, rerun, or post-hoc rescue is authorized.
 
+**Checkpoint A clearance (2026-08-25; still pre-effect).** The D-019 audit at
+implementation SHA `079a0e0ba8e856a679267bac38ecca08359b2bb0`, evidence commit
+`79851be`, reverified all 79 selected USD-M one-minute archives and all 11,770
+D-022 source inputs. Flow coverage was 99.82% development, 99.83% validation,
+99.77% test-2025, and 100% test-2026-01..07. Seven-M0-plus-flow joint coverage
+was 99.58%, 99.83%, 99.77%, and 100%, respectively, with no zero-coverage
+month. Schema, hashes, exact block membership, interval-end causality, T-5m,
+duplicate/conflict handling, and paired support identifiers all clear. The
+audit constructed no labels, outcomes, fits, scores, or effects. The frozen
+Checkpoint A disposition is `CLEARED_CHECKPOINT_A`, so Checkpoint B is
+authorized unchanged; no later checkpoint is yet consumed.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest

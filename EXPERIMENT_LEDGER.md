@@ -503,7 +503,7 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-005 — Taker-flow variance-compression replication
 
-- **Status:** PLANNED (Checkpoint A; no label/effect inspection)
+- **Status:** RUNNING (Checkpoint A cleared pre-effect; Checkpoint B authorized)
 - **Frozen question:** Does the exact D-033 `flow_compression_T` construct add
   prospective OOS information and useful event selectivity beyond M0 on
   identical support?
@@ -557,7 +557,16 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   effects. If cleared, one exact clean-SHA execution receives the mechanical
   model disposition in Materiality. No pooled-period, fixed-only, slice,
   coefficient, bootstrap, or subjective rescue.
-- **Result:** —
+- **Result:** Checkpoint A `CLEARED_CHECKPOINT_A` at source-audit SHA
+  `079a0e0ba8e856a679267bac38ecca08359b2bb0`, evidence commit `79851be`.
+  All 79 USD-M one-minute archives and 11,770 D-022 source inputs reverified.
+  Flow coverage was 99.82% / 99.83% / 99.77% / 100%, and seven-M0-plus-flow
+  joint coverage was 99.58% / 99.83% / 99.77% / 100%, for development /
+  validation / test-2025 / test-2026-01..07. No full month had zero joint
+  coverage. Exact block membership, interval-end causality, the T-5m cutoff,
+  conflict-as-missing, and paired support hashes cleared. No label, outcome,
+  fit, score, or effect was constructed or inspected. Model result remains
+  blank pending the frozen development firewall and one-shot execution.
 - **Verdict:** —
 - **Limitations:** A PASS is a bounded operational replication, not a definitive
   predictive headline, and does not waive D-029's untouched confirmation. M1

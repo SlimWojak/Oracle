@@ -34,6 +34,10 @@ as doctrine. The north star outlives any single v0 hypothesis.
   unversioned ~5,000→20,000-USDC historical notional change and no authoritative
   quote-at-T publication semantics. No eligibility census, score, or one-shot
   run exists.
+- D-037 / EXP-005 ACTIVE — direct standalone commission of exact D-033 taker-flow
+  compression against M0 on identical support. Checkpoint A source evidence
+  `79851be` is `CLEARED_CHECKPOINT_A`; no label/effect was inspected. Checkpoint
+  B immutable implementation is the only active work.
 
 ## Active path (order locked)
 
@@ -126,6 +130,19 @@ causality. Do not shrink M1 or invent a lag. Nothing after M0 is authorized.
 D-019 provenance are banked. P4 was later separately commissioned and banked
 `BLOCKED_SOURCE`; stop for Chair review before any M1, M2+, replacement impact
 source, or other authorization.
+
+### Direct EXP-005 commission — **ACTIVE: CHECKPOINT B**
+
+D-037 permits one standalone literature-anchored replication of exact D-033
+`flow_compression_T` against seven-column `M0_COMMON` on identical support. It
+does not shrink/unblock M1 or authorize M2+. The pre-effect source audit banked
+at `79851be`: all source/causality/provenance gates clear, all four period flow
+and joint-coverage floors pass, and no month has zero joint coverage.
+
+Only the frozen immutable implementation and development-only firewall now run.
+Validation/test outcomes or effects remain unconstructed and uninspected until
+one clean pre-OOS SHA is sealed. Then one exact-SHA receipt may be consumed.
+The EXP stops with one mechanical model verdict or a later integrity block.
 
 ## Post-authorization only (not self-starting)
 
