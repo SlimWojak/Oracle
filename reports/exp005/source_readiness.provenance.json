@@ -1,0 +1,128 @@
+{
+  "repo_commit": "079a0e0ba8e856a679267bac38ecca08359b2bb0",
+  "generated_at_utc": "2026-08-25T11:07:25Z",
+  "config": {
+    "experiment": "EXP-005",
+    "checkpoint": "A_PRE_EFFECT",
+    "audit_version": "exp005_source_readiness_v1",
+    "contract_commit": "613b2106ddce63cc8c94cf81eb7b0a65f9f96b15",
+    "contracts": [
+      "D-037",
+      "docs/briefs/2026-08-25-exp005-flow-compression-replication.md"
+    ],
+    "selected_manifest_identifier": "manifests/binance_vision_fetch.jsonl",
+    "selected_um_archive_count": 79,
+    "selected_um_archive_identities_sha256": "9750f765513212b513c8a34f063481d752b9852e740f497297447a7baccfcdb4",
+    "d022_source_manifest_identifier": "reports/exp000/index_catalogue.provenance.json",
+    "periods": [
+      {
+        "name": "development",
+        "start": "2020-01-01T00:00:00Z",
+        "end": "2023-12-31T23:00:00Z"
+      },
+      {
+        "name": "validation_2024",
+        "start": "2024-01-01T00:00:00Z",
+        "end": "2024-12-31T23:00:00Z"
+      },
+      {
+        "name": "test_2025",
+        "start": "2025-01-01T00:00:00Z",
+        "end": "2025-12-31T23:00:00Z"
+      },
+      {
+        "name": "test_2026_01_07",
+        "start": "2026-01-01T00:00:00Z",
+        "end": "2026-07-31T23:00:00Z"
+      }
+    ],
+    "flow_coverage_floor": 0.9,
+    "m0_flow_joint_coverage_floor": 0.85,
+    "zero_joint_full_month_allowed": false,
+    "m0_columns_ordered": [
+      "trend_4h",
+      "range_4h",
+      "rv_24h",
+      "hour_sin",
+      "hour_cos",
+      "weekday_sin",
+      "weekday_cos"
+    ],
+    "flow": {
+      "block_minutes": 5,
+      "detrend_points": 96,
+      "residual_points": 24,
+      "variance_ddof": 0,
+      "newest_block_lag_minutes": 5,
+      "epsilon": null,
+      "partial_windows": false,
+      "forward_fill": false
+    },
+    "forbidden_reads": [
+      "labels",
+      "outcomes",
+      "clusters",
+      "fits",
+      "effects",
+      "scores"
+    ]
+  },
+  "config_sha256": "4fb32e9fc8d6a380add89f2c1db898d289920c1bf21c3345d94aaea47c2dbc06",
+  "inputs": [
+    {
+      "path": "manifests/binance_vision_fetch.jsonl",
+      "bytes": 697393,
+      "sha256": "14c35b3b7df6af6da75ab017abdfb6fad87240358697f6192e3b71086ec1297b"
+    },
+    {
+      "path": "reports/exp000/index_catalogue.provenance.json",
+      "bytes": 2250728,
+      "sha256": "371a7063041f03dd3a6020bea6154a36258cd7e522edddc16f34df5278874d6c"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "source_readiness.json",
+      "bytes": 47805,
+      "sha256": "b7ef50118671650b2a9f83122a91874556b23304fe5e3f17f18ba2de5ab3cb27"
+    },
+    {
+      "path": "source_readiness.md",
+      "bytes": 2496,
+      "sha256": "34fe8506f561d7fcef2554183c9106d6e7d3e8e593887c884a1de1b78d0fea19"
+    }
+  ],
+  "selected_um_archive_identities_sha256": "167103b56cc2804d69eda6d8e7995f11b8f7a82071de8274ce1b91be5c83385e",
+  "d022_ordered_input_identity_sha256": "f48606a8d7ac7fe324386775ded3924494ce7b92f70f9a027026e91734e81ede",
+  "ordered_support_hashes": {
+    "development": {
+      "candidate": "27f926cf4fa7dafdb13b4e31de38485600cc190f6d0ae530140583fa2091c1e7",
+      "flow": "6d9aa09073ba878874e3dfecbbfca4d292cc1d0b54ddfac6eeefee87f0c45bec",
+      "m0": "29f9b1faca7f48075b51c280f7cf77f9102038ab63d422f794e98f948af65a43",
+      "joint": "5793a844a17476f683506bce4155ba955b3161da85a8054ea25960b374a5fb78",
+      "d023_four_hour_boundary_purge": "e1e0e581bd4e505243eaf36c38e70bf9855e6150ba3321eee2c73f6cc005ed6d"
+    },
+    "validation_2024": {
+      "candidate": "305f49260e70f76935024c31083cf75e38278cb7e739b2d7bf3a15ebde56286e",
+      "flow": "e7592b5cc3e1ed07ce9d0978436ecd05b78f63078801c20fc4bcb4049a684d11",
+      "m0": "305f49260e70f76935024c31083cf75e38278cb7e739b2d7bf3a15ebde56286e",
+      "joint": "e7592b5cc3e1ed07ce9d0978436ecd05b78f63078801c20fc4bcb4049a684d11",
+      "d023_four_hour_boundary_purge": "cd3aca278a0b80ac80a5b1e07c4283bf30f415d2b92895de62938a2afeaba0ee"
+    },
+    "test_2025": {
+      "candidate": "df0bd25d75e7fdc9bc900e2402d53bbb848b925f3055d2230fd26764910589f4",
+      "flow": "6c976acd218cdb797d45aae05231402a378bc0c219bf24c79abc1a53004efb4a",
+      "m0": "df0bd25d75e7fdc9bc900e2402d53bbb848b925f3055d2230fd26764910589f4",
+      "joint": "6c976acd218cdb797d45aae05231402a378bc0c219bf24c79abc1a53004efb4a",
+      "d023_four_hour_boundary_purge": "b0aa8960d887a549461fcf3c33e1dff6f182232ade436afb396a7d2d95e4930d"
+    },
+    "test_2026_01_07": {
+      "candidate": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c",
+      "flow": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c",
+      "m0": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c",
+      "joint": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c",
+      "d023_four_hour_boundary_purge": "6d6087f1dcfe9332783c878e42487a2150bf45c331516f8c18c2be6ecdd1d908"
+    }
+  },
+  "checkpoint_a_disposition": "CLEARED_CHECKPOINT_A"
+}

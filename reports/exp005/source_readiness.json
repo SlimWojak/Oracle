@@ -1,0 +1,1293 @@
+{
+  "aligned_five_minute_census": {
+    "candidate_blocks": 692459,
+    "membership": "five exact 1m interval ends in (s-5m,s]",
+    "q_valid_blocks": 692273,
+    "reason_counts": {
+      "MISSING_MINUTE": 120,
+      "NONPOSITIVE_BUY": 66,
+      "VALID_Q": 692273
+    },
+    "structurally_valid_blocks": 692339
+  },
+  "audit_config_sha256": "4fb32e9fc8d6a380add89f2c1db898d289920c1bf21c3345d94aaea47c2dbc06",
+  "audit_version": "exp005_source_readiness_v1",
+  "availability": {
+    "coverage_clearance": true,
+    "periods": {
+      "development": {
+        "candidate_hours": 35064,
+        "candidate_support_sha256": "27f926cf4fa7dafdb13b4e31de38485600cc190f6d0ae530140583fa2091c1e7",
+        "coverage_clearance": true,
+        "d023_four_hour_boundary_purge": {
+          "excluded_candidate_hours": 9,
+          "ordered_support_sha256": "e1e0e581bd4e505243eaf36c38e70bf9855e6150ba3321eee2c73f6cc005ed6d",
+          "seconds": 14400,
+          "semantics": "clock-only report; no labels, outcomes, or cluster straddles read"
+        },
+        "flow": {
+          "available_hours": 35002,
+          "coverage_fraction": 0.9982318046999772,
+          "floor": 0.9,
+          "floor_pass": true,
+          "ordered_support_sha256": "6d9aa09073ba878874e3dfecbbfca4d292cc1d0b54ddfac6eeefee87f0c45bec"
+        },
+        "m0_exact_seven_columns": {
+          "available_hours": 34970,
+          "ordered_columns": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos"
+          ],
+          "ordered_support_sha256": "29f9b1faca7f48075b51c280f7cf77f9102038ab63d422f794e98f948af65a43"
+        },
+        "m0_flow_joint": {
+          "available_hours": 34918,
+          "coverage_fraction": 0.9958361852612366,
+          "floor": 0.85,
+          "floor_pass": true,
+          "ordered_columns": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos",
+            "flow_compression_T"
+          ],
+          "ordered_support_sha256": "5793a844a17476f683506bce4155ba955b3161da85a8054ea25960b374a5fb78"
+        },
+        "monthly_joint": {
+          "2020-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2020-02": {
+            "candidate_hours": 696,
+            "full_calendar_month": true,
+            "joint_hours": 684
+          },
+          "2020-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 738
+          },
+          "2020-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 710
+          },
+          "2020-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2020-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 713
+          },
+          "2020-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 736
+          },
+          "2020-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 739
+          },
+          "2020-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2020-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 740
+          },
+          "2020-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 716
+          },
+          "2020-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2021-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2021-02": {
+            "candidate_hours": 672,
+            "full_calendar_month": true,
+            "joint_hours": 672
+          },
+          "2021-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 734
+          },
+          "2021-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 716
+          },
+          "2021-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2021-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2021-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2021-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 738
+          },
+          "2021-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 716
+          },
+          "2021-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2021-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2021-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-02": {
+            "candidate_hours": 672,
+            "full_calendar_month": true,
+            "joint_hours": 672
+          },
+          "2022-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2022-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 723
+          },
+          "2022-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2022-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2022-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2022-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-02": {
+            "candidate_hours": 672,
+            "full_calendar_month": true,
+            "joint_hours": 672
+          },
+          "2023-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2023-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2023-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 710
+          },
+          "2023-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 709
+          },
+          "2023-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          }
+        },
+        "paired_rung_support": {
+          "identical": true,
+          "m0_common_ordered_support_sha256": "5793a844a17476f683506bce4155ba955b3161da85a8054ea25960b374a5fb78",
+          "m0_flow_ordered_support_sha256": "5793a844a17476f683506bce4155ba955b3161da85a8054ea25960b374a5fb78"
+        },
+        "zero_joint_full_months": []
+      },
+      "test_2025": {
+        "candidate_hours": 8760,
+        "candidate_support_sha256": "df0bd25d75e7fdc9bc900e2402d53bbb848b925f3055d2230fd26764910589f4",
+        "coverage_clearance": true,
+        "d023_four_hour_boundary_purge": {
+          "excluded_candidate_hours": 9,
+          "ordered_support_sha256": "b0aa8960d887a549461fcf3c33e1dff6f182232ade436afb396a7d2d95e4930d",
+          "seconds": 14400,
+          "semantics": "clock-only report; no labels, outcomes, or cluster straddles read"
+        },
+        "flow": {
+          "available_hours": 8740,
+          "coverage_fraction": 0.997716894977169,
+          "floor": 0.9,
+          "floor_pass": true,
+          "ordered_support_sha256": "6c976acd218cdb797d45aae05231402a378bc0c219bf24c79abc1a53004efb4a"
+        },
+        "m0_exact_seven_columns": {
+          "available_hours": 8760,
+          "ordered_columns": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos"
+          ],
+          "ordered_support_sha256": "df0bd25d75e7fdc9bc900e2402d53bbb848b925f3055d2230fd26764910589f4"
+        },
+        "m0_flow_joint": {
+          "available_hours": 8740,
+          "coverage_fraction": 0.997716894977169,
+          "floor": 0.85,
+          "floor_pass": true,
+          "ordered_columns": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos",
+            "flow_compression_T"
+          ],
+          "ordered_support_sha256": "6c976acd218cdb797d45aae05231402a378bc0c219bf24c79abc1a53004efb4a"
+        },
+        "monthly_joint": {
+          "2025-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 734
+          },
+          "2025-02": {
+            "candidate_hours": 672,
+            "full_calendar_month": true,
+            "joint_hours": 672
+          },
+          "2025-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2025-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2025-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2025-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2025-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2025-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 734
+          },
+          "2025-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2025-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2025-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2025-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          }
+        },
+        "paired_rung_support": {
+          "identical": true,
+          "m0_common_ordered_support_sha256": "6c976acd218cdb797d45aae05231402a378bc0c219bf24c79abc1a53004efb4a",
+          "m0_flow_ordered_support_sha256": "6c976acd218cdb797d45aae05231402a378bc0c219bf24c79abc1a53004efb4a"
+        },
+        "zero_joint_full_months": []
+      },
+      "test_2026_01_07": {
+        "candidate_hours": 5088,
+        "candidate_support_sha256": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c",
+        "coverage_clearance": true,
+        "d023_four_hour_boundary_purge": {
+          "excluded_candidate_hours": 9,
+          "ordered_support_sha256": "6d6087f1dcfe9332783c878e42487a2150bf45c331516f8c18c2be6ecdd1d908",
+          "seconds": 14400,
+          "semantics": "clock-only report; no labels, outcomes, or cluster straddles read"
+        },
+        "flow": {
+          "available_hours": 5088,
+          "coverage_fraction": 1.0,
+          "floor": 0.9,
+          "floor_pass": true,
+          "ordered_support_sha256": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c"
+        },
+        "m0_exact_seven_columns": {
+          "available_hours": 5088,
+          "ordered_columns": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos"
+          ],
+          "ordered_support_sha256": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c"
+        },
+        "m0_flow_joint": {
+          "available_hours": 5088,
+          "coverage_fraction": 1.0,
+          "floor": 0.85,
+          "floor_pass": true,
+          "ordered_columns": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos",
+            "flow_compression_T"
+          ],
+          "ordered_support_sha256": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c"
+        },
+        "monthly_joint": {
+          "2026-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2026-02": {
+            "candidate_hours": 672,
+            "full_calendar_month": true,
+            "joint_hours": 672
+          },
+          "2026-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2026-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2026-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2026-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2026-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          }
+        },
+        "paired_rung_support": {
+          "identical": true,
+          "m0_common_ordered_support_sha256": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c",
+          "m0_flow_ordered_support_sha256": "2fd69c77525e6bec0b8c334c4d74f9de5b963c6e939a6af25c03447f8eab0d1c"
+        },
+        "zero_joint_full_months": []
+      },
+      "validation_2024": {
+        "candidate_hours": 8784,
+        "candidate_support_sha256": "305f49260e70f76935024c31083cf75e38278cb7e739b2d7bf3a15ebde56286e",
+        "coverage_clearance": true,
+        "d023_four_hour_boundary_purge": {
+          "excluded_candidate_hours": 9,
+          "ordered_support_sha256": "cd3aca278a0b80ac80a5b1e07c4283bf30f415d2b92895de62938a2afeaba0ee",
+          "seconds": 14400,
+          "semantics": "clock-only report; no labels, outcomes, or cluster straddles read"
+        },
+        "flow": {
+          "available_hours": 8769,
+          "coverage_fraction": 0.9982923497267759,
+          "floor": 0.9,
+          "floor_pass": true,
+          "ordered_support_sha256": "e7592b5cc3e1ed07ce9d0978436ecd05b78f63078801c20fc4bcb4049a684d11"
+        },
+        "m0_exact_seven_columns": {
+          "available_hours": 8784,
+          "ordered_columns": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos"
+          ],
+          "ordered_support_sha256": "305f49260e70f76935024c31083cf75e38278cb7e739b2d7bf3a15ebde56286e"
+        },
+        "m0_flow_joint": {
+          "available_hours": 8769,
+          "coverage_fraction": 0.9982923497267759,
+          "floor": 0.85,
+          "floor_pass": true,
+          "ordered_columns": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos",
+            "flow_compression_T"
+          ],
+          "ordered_support_sha256": "e7592b5cc3e1ed07ce9d0978436ecd05b78f63078801c20fc4bcb4049a684d11"
+        },
+        "monthly_joint": {
+          "2024-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2024-02": {
+            "candidate_hours": 696,
+            "full_calendar_month": true,
+            "joint_hours": 696
+          },
+          "2024-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2024-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2024-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2024-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2024-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2024-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2024-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2024-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 729
+          },
+          "2024-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2024-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          }
+        },
+        "paired_rung_support": {
+          "identical": true,
+          "m0_common_ordered_support_sha256": "e7592b5cc3e1ed07ce9d0978436ecd05b78f63078801c20fc4bcb4049a684d11",
+          "m0_flow_ordered_support_sha256": "e7592b5cc3e1ed07ce9d0978436ecd05b78f63078801c20fc4bcb4049a684d11"
+        },
+        "zero_joint_full_months": []
+      }
+    },
+    "support_hash_encoding": "oracle-exp005-ordered-utc-epoch-seconds-v1 followed by newline-delimited integer epoch seconds",
+    "zero_joint_full_months": []
+  },
+  "causal_ruling": {
+    "causal_interval_end_is_open_time_plus_60s": true,
+    "epsilon": null,
+    "five_minute_blocks_complete_before_use": true,
+    "forward_fill": false,
+    "latest_block_ends_at_t_minus_5m": true,
+    "partial_windows": false,
+    "post_t_inputs_permitted": false,
+    "raw_open_time_is_interval_start": true,
+    "source_rows_are_interval_bars": true
+  },
+  "checkpoint": "A_PRE_EFFECT",
+  "checkpoint_a_disposition": "CLEARED_CHECKPOINT_A",
+  "contract_commit": "613b2106ddce63cc8c94cf81eb7b0a65f9f96b15",
+  "d022_index": {
+    "construction": "D-022 componentwise median, >=2 of 3, no fill",
+    "interval_end_support_sha256": "3e997f68c25212686fd6b17e7d5ee59abeb31324feae2d50b1d2ab1922c6744d",
+    "interval_start_range": {
+      "first": "2020-01-01T00:00:00Z",
+      "last": "2026-07-31T23:59:00Z"
+    },
+    "m0_columns_ordered": [
+      "trend_4h",
+      "range_4h",
+      "rv_24h",
+      "hour_sin",
+      "hour_cos",
+      "weekday_sin",
+      "weekday_cos"
+    ],
+    "m0_feature_reason_counts": {
+      "MISSING_RANGE_BAR": 81,
+      "MISSING_RV": 13,
+      "MISSING_TREND_ENDPOINT": 2,
+      "VALID": 57602
+    },
+    "reconstructed": true,
+    "rows": 3461652,
+    "rows_2_of_3": 56147,
+    "rows_3_of_3": 3405505,
+    "source_timestamp_semantics": "member timestamps are interval starts; M0 decision timestamps are +60s"
+  },
+  "d022_source_inputs": {
+    "all_inputs_verified": true,
+    "bytes": 2250728,
+    "config_verified": true,
+    "duplicate_input_paths": 0,
+    "effect_artifact_outputs_read": false,
+    "expected_input_count": 11770,
+    "failures": [],
+    "identifier": "reports/exp000/index_catalogue.provenance.json",
+    "loader_identity_set_exact": true,
+    "manifest_repo_commit": "9eed16c949d55bf4560b9f3df6f0f78fb332909e",
+    "ordered_input_identity_sha256": "f48606a8d7ac7fe324386775ded3924494ce7b92f70f9a027026e91734e81ede",
+    "sha256": "371a7063041f03dd3a6020bea6154a36258cd7e522edddc16f34df5278874d6c",
+    "verified_input_bytes": 653828637,
+    "verified_input_count": 11770
+  },
+  "effect_inspection_performed": false,
+  "experiment": "EXP-005",
+  "hourly_flow_feature_census": {
+    "candidate_hours": 57696,
+    "detrend_points": 96,
+    "newest_block_lag_seconds": 300,
+    "raw_lookback_seconds": 35940,
+    "reasons": {
+      "INCOMPLETE_24_RESIDUAL_WINDOW": 97,
+      "VALID": 57599
+    },
+    "residual_points": 24,
+    "valid_hours": 57599,
+    "variance_ddof": 0
+  },
+  "manifest": {
+    "bytes": 697393,
+    "duplicate_selected_manifest_records": 0,
+    "exact_selected_identity_set": true,
+    "expected_selected_identities": 79,
+    "failures": [],
+    "full_manifest_records": 1962,
+    "identifier": "manifests/binance_vision_fetch.jsonl",
+    "nonselected_manifest_records_ignored": 1883,
+    "parse_errors": [],
+    "retrieval_range": {
+      "first": "2026-08-23T04:01:06.543656+00:00",
+      "last": "2026-08-23T04:01:27.014522+00:00"
+    },
+    "selected_archive_identities_sha256": "167103b56cc2804d69eda6d8e7995f11b8f7a82071de8274ce1b91be5c83385e",
+    "selected_archives": [
+      {
+        "bytes": 1829116,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-01.zip",
+        "retrieved_at": "2026-08-23T04:01:06.747397+00:00",
+        "sha256": "b4e13ea185ba96c413ac9167cfbb6e238eb5eae119a7a77f41f4c61c5e099d03"
+      },
+      {
+        "bytes": 1726957,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-02.zip",
+        "retrieved_at": "2026-08-23T04:01:06.772018+00:00",
+        "sha256": "f32b20168ea590cd7d04a2995bc5ec500ea06331c8174f7fd14f29c1078e5ed2"
+      },
+      {
+        "bytes": 1908886,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-03.zip",
+        "retrieved_at": "2026-08-23T04:01:06.742014+00:00",
+        "sha256": "15790b4b031cbc5f59cae30e523fb8341588d279fe3839ba1224c7fe8a6bc929"
+      },
+      {
+        "bytes": 1833303,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-04.zip",
+        "retrieved_at": "2026-08-23T04:01:06.543656+00:00",
+        "sha256": "f45228183c21030fc3a787109eada99187d9ba8c4d5d7ea5c178967150fa7467"
+      },
+      {
+        "bytes": 1917755,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-05.zip",
+        "retrieved_at": "2026-08-23T04:01:07.662994+00:00",
+        "sha256": "bc5bdae217f9ef6a32ffcc7653e3d45e007a2d9b2e93b752bdc7805254446821"
+      },
+      {
+        "bytes": 1790292,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-06.zip",
+        "retrieved_at": "2026-08-23T04:01:07.902668+00:00",
+        "sha256": "91f18492445c0a9609d70bd4603c73c8588a88c06105ade34082417f8b2e7e6d"
+      },
+      {
+        "bytes": 1808294,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-07.zip",
+        "retrieved_at": "2026-08-23T04:01:07.693446+00:00",
+        "sha256": "4cb7dcf6e1adb17e8ab8787c459f3f645b7070633f530485f0f93dd45a9de693"
+      },
+      {
+        "bytes": 1883510,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-08.zip",
+        "retrieved_at": "2026-08-23T04:01:08.068504+00:00",
+        "sha256": "7596de0f26df44d782713475f97af34f27a287faf084c73bdcc61819215b060a"
+      },
+      {
+        "bytes": 1816087,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-09.zip",
+        "retrieved_at": "2026-08-23T04:01:09.065760+00:00",
+        "sha256": "9f2d575ffc17a14320bc08a99d51a5580fd7f058f1495cfec598fbbd959792c2"
+      },
+      {
+        "bytes": 1865118,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-10.zip",
+        "retrieved_at": "2026-08-23T04:01:09.035301+00:00",
+        "sha256": "f35bc01dc1bba142c87033b33055c34a0ba37c2a2abd6c115af6a9c4f238dd03"
+      },
+      {
+        "bytes": 1905251,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-11.zip",
+        "retrieved_at": "2026-08-23T04:01:09.192806+00:00",
+        "sha256": "8eb55b2a547c35d792f88186168774804346426b82289bc9b1633406c0ff9e40"
+      },
+      {
+        "bytes": 1974734,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2020-12.zip",
+        "retrieved_at": "2026-08-23T04:01:08.831218+00:00",
+        "sha256": "72cfa1e9aeb851871af0168eb7ee22d334b5efb3aa4a76d7382754dac5e885d8"
+      },
+      {
+        "bytes": 2057786,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-01.zip",
+        "retrieved_at": "2026-08-23T04:01:10.154360+00:00",
+        "sha256": "ba7aeda6a99e0828b39da1b0605aaefcb40882fe9d44034598c4404f8a07783f"
+      },
+      {
+        "bytes": 1851915,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-02.zip",
+        "retrieved_at": "2026-08-23T04:01:10.357146+00:00",
+        "sha256": "0a270f354b15b053824a7bb87c652aa95acb4a255fc968fe0a24bdc9e785223e"
+      },
+      {
+        "bytes": 2053085,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-03.zip",
+        "retrieved_at": "2026-08-23T04:01:10.186936+00:00",
+        "sha256": "15a2676410d5104fac1ea15f7302addbf4d0de14f6db8ce10a4930c3f5d5e7fa"
+      },
+      {
+        "bytes": 1971044,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-04.zip",
+        "retrieved_at": "2026-08-23T04:01:10.353435+00:00",
+        "sha256": "d957fcde82f9b5a9a05264a9602e5deae03472aa0d424ddb0f27a04e58723217"
+      },
+      {
+        "bytes": 2087690,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-05.zip",
+        "retrieved_at": "2026-08-23T04:01:11.469195+00:00",
+        "sha256": "dcf7c567cbde49a5e564b29f01be95e28d32f12cb68c40b2a14da75930187dc8"
+      },
+      {
+        "bytes": 2015140,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-06.zip",
+        "retrieved_at": "2026-08-23T04:01:11.233204+00:00",
+        "sha256": "a640c7f935a1136d2f65f28f9606f0e063185c500f982aec273bb2ed3f61bfc5"
+      },
+      {
+        "bytes": 2037166,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-07.zip",
+        "retrieved_at": "2026-08-23T04:01:10.846717+00:00",
+        "sha256": "1367b5cd230474b0ecc6031b9e18cffe66e011c8fdd01c3325985a39c5d5ed48"
+      },
+      {
+        "bytes": 2049960,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-08.zip",
+        "retrieved_at": "2026-08-23T04:01:11.047025+00:00",
+        "sha256": "a864bdf38c9d06b7a6a1dc07c5593bbe7387cec3b869e9ebee020da053d94f37"
+      },
+      {
+        "bytes": 1970475,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-09.zip",
+        "retrieved_at": "2026-08-23T04:01:11.780435+00:00",
+        "sha256": "6e7bbfe650e6c56e189e78d521b3714feffd38468d1268b706a6626737326676"
+      },
+      {
+        "bytes": 2040146,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-10.zip",
+        "retrieved_at": "2026-08-23T04:01:12.176973+00:00",
+        "sha256": "4b78dd0174890c975effca2ed078163d6e9b4f7437f692e2c430c724b7eafc24"
+      },
+      {
+        "bytes": 1963552,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-11.zip",
+        "retrieved_at": "2026-08-23T04:01:11.721678+00:00",
+        "sha256": "67da3342f014166d2af97321599e0011453c4bd5a9282ef12c1a6131efd12993"
+      },
+      {
+        "bytes": 2033812,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-12.zip",
+        "retrieved_at": "2026-08-23T04:01:12.585009+00:00",
+        "sha256": "c905c5c8ff36d0dfac3a0581225ab305f72d1e11e634953d8d3a136161d10956"
+      },
+      {
+        "bytes": 2029103,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-01.zip",
+        "retrieved_at": "2026-08-23T04:01:12.395774+00:00",
+        "sha256": "9cdbcf68903434c850f9bec60d8174c2cfd105dd24a7566965b442ec15124e04"
+      },
+      {
+        "bytes": 1795701,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-02.zip",
+        "retrieved_at": "2026-08-23T04:01:12.926020+00:00",
+        "sha256": "63672d552f98ec125ac4d90d82154313fb9832b7e1aaed196101816bd61bfb89"
+      },
+      {
+        "bytes": 1922190,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-03.zip",
+        "retrieved_at": "2026-08-23T04:01:13.092398+00:00",
+        "sha256": "4532faf2f92d205fac79b7d25327d2045843b60a4494e00b0962e6b7f028bc06"
+      },
+      {
+        "bytes": 1833665,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-04.zip",
+        "retrieved_at": "2026-08-23T04:01:13.681814+00:00",
+        "sha256": "0f509e296da62eed5f4e903507ced0de9738ea96a7a885e76dd2394b8049e689"
+      },
+      {
+        "bytes": 1926294,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-05.zip",
+        "retrieved_at": "2026-08-23T04:01:13.889235+00:00",
+        "sha256": "768bdbbd11b08d935b3753ecfee7f1e351a346c71b11cf68a4a51296d694f368"
+      },
+      {
+        "bytes": 1875823,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-06.zip",
+        "retrieved_at": "2026-08-23T04:01:14.029379+00:00",
+        "sha256": "8587319eaf1b1f6d73fd34446acdecdc72c47b23ecfd2d88e2a6dd2a35470565"
+      },
+      {
+        "bytes": 1925230,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-07.zip",
+        "retrieved_at": "2026-08-23T04:01:14.214476+00:00",
+        "sha256": "6fc45fa135a6be85679a6ab0b1268fbd1f8258079295cd134b9a4c535c6b6b65"
+      },
+      {
+        "bytes": 1897142,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-08.zip",
+        "retrieved_at": "2026-08-23T04:01:14.815208+00:00",
+        "sha256": "806ee1d6efa856984fe79453d17f04c0fb5e447413fe828cbd3ec2df9a1f5fc4"
+      },
+      {
+        "bytes": 1842043,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-09.zip",
+        "retrieved_at": "2026-08-23T04:01:15.174079+00:00",
+        "sha256": "fa1adecbe41b530c12f481882115511297ac7b78a9a7ae9d9d21b11c745649a4"
+      },
+      {
+        "bytes": 1847485,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-10.zip",
+        "retrieved_at": "2026-08-23T04:01:15.324348+00:00",
+        "sha256": "0f2d2cd67b30ab186bf3db5a07acfe835f1d74335c6493c80e9e4f0598e29b2c"
+      },
+      {
+        "bytes": 1801135,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-11.zip",
+        "retrieved_at": "2026-08-23T04:01:14.901434+00:00",
+        "sha256": "96916aba47f230a9bc68cd3fd98d0d352e1fd8f23c16c515107c4d965a2067a3"
+      },
+      {
+        "bytes": 1765742,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-12.zip",
+        "retrieved_at": "2026-08-23T04:01:16.104200+00:00",
+        "sha256": "0f4788019cdb29f4db7b03d9efefce099d7adf49c0daf70a144b814b292bf577"
+      },
+      {
+        "bytes": 1824474,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-01.zip",
+        "retrieved_at": "2026-08-23T04:01:16.209872+00:00",
+        "sha256": "b7b04483464b36c89f519bf35d6461d278c709577562108b6a00fb786b92e6a6"
+      },
+      {
+        "bytes": 1688103,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-02.zip",
+        "retrieved_at": "2026-08-23T04:01:15.669334+00:00",
+        "sha256": "b62ca5df57b1715109cb1fd57097529b28410fb36b0db5bd41dbefe7e070db68"
+      },
+      {
+        "bytes": 1907895,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-03.zip",
+        "retrieved_at": "2026-08-23T04:01:16.625914+00:00",
+        "sha256": "1cb47aae71e941d3e9d333f9c96723eb35c8b4a7ec90e819c59a7c02f89b03bb"
+      },
+      {
+        "bytes": 1810833,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-04.zip",
+        "retrieved_at": "2026-08-23T04:01:16.581031+00:00",
+        "sha256": "2c22e2e460bf0e41884bf71031eebf60224ba470b25777a4d17ddc9298390650"
+      },
+      {
+        "bytes": 1859563,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-05.zip",
+        "retrieved_at": "2026-08-23T04:01:17.216564+00:00",
+        "sha256": "cf9e0ab390e3872ddb9d807ad161933a28e374e09dbee2b9addf659856d1e656"
+      },
+      {
+        "bytes": 1806762,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-06.zip",
+        "retrieved_at": "2026-08-23T04:01:17.310556+00:00",
+        "sha256": "8dac3fe301198e752b257817542a7ded393dbe00b604f67aba6bc0090778ae95"
+      },
+      {
+        "bytes": 1805388,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-07.zip",
+        "retrieved_at": "2026-08-23T04:01:17.519889+00:00",
+        "sha256": "5cc84c767c9f4d1fa3cb3d33bd009a0b5e3a445e9c89ad2ef259c90b0365cbc3"
+      },
+      {
+        "bytes": 1781029,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-08.zip",
+        "retrieved_at": "2026-08-23T04:01:17.793610+00:00",
+        "sha256": "8d77e6f898fba3aa5bf643d128e0aaa1b722ea6881cd26a3d19088705117a1d7"
+      },
+      {
+        "bytes": 1729534,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-09.zip",
+        "retrieved_at": "2026-08-23T04:01:18.495001+00:00",
+        "sha256": "ea43f6e612b54e165c47ea30955b8d9e825b1d3ad1846f12c03ad0f0fced9029"
+      },
+      {
+        "bytes": 1829597,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-10.zip",
+        "retrieved_at": "2026-08-23T04:01:17.993628+00:00",
+        "sha256": "153f1322695d16a12cab261b7798045323d9f893b19d35d95ffe94a62530b4de"
+      },
+      {
+        "bytes": 1783820,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-11.zip",
+        "retrieved_at": "2026-08-23T04:01:18.806036+00:00",
+        "sha256": "63aa156170b2316927ae4c4928cc78866934a02b4bbc14c730b5fe4790383a80"
+      },
+      {
+        "bytes": 1874380,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-12.zip",
+        "retrieved_at": "2026-08-23T04:01:18.914099+00:00",
+        "sha256": "947ea9b1c5dfa301f1d5ff89d28f3ee49bc73eef2cfa1f0dc4024048458eb60b"
+      },
+      {
+        "bytes": 1898532,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-01.zip",
+        "retrieved_at": "2026-08-23T04:01:19.269943+00:00",
+        "sha256": "21eeac04a76a7a35b10467e5e752fb2f8cff77cdeb57df6b50a23ce8d69bb190"
+      },
+      {
+        "bytes": 1770127,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-02.zip",
+        "retrieved_at": "2026-08-23T04:01:19.778894+00:00",
+        "sha256": "1407acbf8ad99911bdf582805699b7e85fdbc346dbe12618ce8b6369f0d8058d"
+      },
+      {
+        "bytes": 1950611,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-03.zip",
+        "retrieved_at": "2026-08-23T04:01:20.098904+00:00",
+        "sha256": "040b8e448e4243072b88b0d9908dfebed91bba943b75f4e831fa5337a2e1dab9"
+      },
+      {
+        "bytes": 1870249,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-04.zip",
+        "retrieved_at": "2026-08-23T04:01:20.251360+00:00",
+        "sha256": "6a41f002da0c8e3f60bd46c841ea4ed766fb195764ad3b6b10e4f508d29c2eb7"
+      },
+      {
+        "bytes": 1896566,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-05.zip",
+        "retrieved_at": "2026-08-23T04:01:20.549777+00:00",
+        "sha256": "42de617ed643def54b5a2c3fceb7cd2edec91aafaa01104a097b2ded5c5122d4"
+      },
+      {
+        "bytes": 1789499,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-06.zip",
+        "retrieved_at": "2026-08-23T04:01:21.043412+00:00",
+        "sha256": "93499da4990fec5471bb0d73c91116e7d20a8b2697d7a4491665d6d1b8e85c85"
+      },
+      {
+        "bytes": 1912408,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-07.zip",
+        "retrieved_at": "2026-08-23T04:01:21.368050+00:00",
+        "sha256": "97f9cd5104a33828c5c2d8d03a2796d600102ab88737d1c6da515b9609540c3c"
+      },
+      {
+        "bytes": 1919190,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-08.zip",
+        "retrieved_at": "2026-08-23T04:01:21.575880+00:00",
+        "sha256": "f69dbcebfd7108dc97825bd6c35d8d9a51745082f66617cb69de888e867e8e89"
+      },
+      {
+        "bytes": 1829434,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-09.zip",
+        "retrieved_at": "2026-08-23T04:01:21.638476+00:00",
+        "sha256": "16fe2e13728236bfbd3efee99671612daadeea3b62dfd55d8874feae9faa4946"
+      },
+      {
+        "bytes": 1878910,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-10.zip",
+        "retrieved_at": "2026-08-23T04:01:22.130286+00:00",
+        "sha256": "aa8c79ad120a8d870e23276d1ad5966f99f59bc0a1886ef5927a3808a5efee36"
+      },
+      {
+        "bytes": 1876449,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-11.zip",
+        "retrieved_at": "2026-08-23T04:01:22.337599+00:00",
+        "sha256": "9c3dad038f4b043ec51d4200f57d15a0a07b3fc32b3ea3dca6a96543b9624941"
+      },
+      {
+        "bytes": 1929835,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-12.zip",
+        "retrieved_at": "2026-08-23T04:01:22.144128+00:00",
+        "sha256": "bfce141d2a152c2b94d85b797fe18ebfa195fa0e6091a7ccc06663ae1309466f"
+      },
+      {
+        "bytes": 1917878,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip",
+        "retrieved_at": "2026-08-23T04:01:22.938001+00:00",
+        "sha256": "b69ca5b2c2d1ae00d68d2790d09138cb2a44085ff19e0da5dc98b569ea7e489e"
+      },
+      {
+        "bytes": 1718529,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-02.zip",
+        "retrieved_at": "2026-08-23T04:01:23.390510+00:00",
+        "sha256": "d84ca981d06ee6491e16597f8d43955f62cab399a9f4b6efc2ee1b4d3a37f0fc"
+      },
+      {
+        "bytes": 1919175,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-03.zip",
+        "retrieved_at": "2026-08-23T04:01:23.261558+00:00",
+        "sha256": "4837163333c9c9978255b8870a5a6de1bc48bd22a6c72fef54665a8d4e70b4df"
+      },
+      {
+        "bytes": 1846549,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-04.zip",
+        "retrieved_at": "2026-08-23T04:01:23.214552+00:00",
+        "sha256": "87bca047ca7e8b1d27913091255018e121210276726c5aa445e85da6f56e2dcc"
+      },
+      {
+        "bytes": 1904964,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-05.zip",
+        "retrieved_at": "2026-08-23T04:01:24.016984+00:00",
+        "sha256": "7acab7e40a74db53a2d6c35373ebe327eefa85b98f8c92fbe58755881e3841ee"
+      },
+      {
+        "bytes": 1817901,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-06.zip",
+        "retrieved_at": "2026-08-23T04:01:23.884539+00:00",
+        "sha256": "78872b32c4d0bbc2d89a0459539b90cff47de08a9a56fdf8d233943a32e78efc"
+      },
+      {
+        "bytes": 1868400,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-07.zip",
+        "retrieved_at": "2026-08-23T04:01:23.754602+00:00",
+        "sha256": "cf5fe0891c80e68d2d613eb5457100b7d886eee8cc913ccdd96ef45e757a5aaf"
+      },
+      {
+        "bytes": 1871971,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-08.zip",
+        "retrieved_at": "2026-08-23T04:01:24.499897+00:00",
+        "sha256": "eaf41354fc1aa96eac94ee50b3fda603cd595f95030ebf30b2ab5bea7a4462c3"
+      },
+      {
+        "bytes": 1782066,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-09.zip",
+        "retrieved_at": "2026-08-23T04:01:24.653299+00:00",
+        "sha256": "c296ba45c215934e9750ca82846c7b5d14be661649d8e4423eac834cf57330dc"
+      },
+      {
+        "bytes": 1913274,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-10.zip",
+        "retrieved_at": "2026-08-23T04:01:25.174325+00:00",
+        "sha256": "bb7f53350fe27b6d8e38b5856ffc43f9ecda9d568d5bf31d0db0cd011da7100f"
+      },
+      {
+        "bytes": 1856815,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-11.zip",
+        "retrieved_at": "2026-08-23T04:01:25.313849+00:00",
+        "sha256": "981da0b054f99b959fe6245fb363336b46908d358f37251d59bad308f375bc54"
+      },
+      {
+        "bytes": 1868657,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-12.zip",
+        "retrieved_at": "2026-08-23T04:01:25.776298+00:00",
+        "sha256": "2d5b2e1887dac1dfe450010877de7203a72e19df7a771067b980bbb07ad3069c"
+      },
+      {
+        "bytes": 1852279,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-01.zip",
+        "retrieved_at": "2026-08-23T04:01:25.915782+00:00",
+        "sha256": "58e9c620a6acda209d25766b3cf4262f3104649f5c26f247d933e0da8bb7946f"
+      },
+      {
+        "bytes": 1743792,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-02.zip",
+        "retrieved_at": "2026-08-23T04:01:25.830350+00:00",
+        "sha256": "805626ad2dc5b704d52c211996d12e9e4b1be234998f3dba4b3d34ff79be0337"
+      },
+      {
+        "bytes": 1911731,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-03.zip",
+        "retrieved_at": "2026-08-23T04:01:26.600337+00:00",
+        "sha256": "c472a865f230bf1b5b17e124770a83c083144e3e11a115733288fb8f3e3b8baa"
+      },
+      {
+        "bytes": 1810071,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-04.zip",
+        "retrieved_at": "2026-08-23T04:01:26.255882+00:00",
+        "sha256": "515b86570f0c6924f6dc2cf90589d3db90f3de9c6bfd9a22dde0429995dc5405"
+      },
+      {
+        "bytes": 1845894,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-05.zip",
+        "retrieved_at": "2026-08-23T04:01:26.741805+00:00",
+        "sha256": "d91548e94220d5211bb32447cc4b604ee266d145f2092edc5ec613328cbbc20a"
+      },
+      {
+        "bytes": 1838455,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-06.zip",
+        "retrieved_at": "2026-08-23T04:01:27.014522+00:00",
+        "sha256": "9b214199eb5063585c7ed0f59ba19323326d68ac024b85106713989399204490"
+      },
+      {
+        "bytes": 1844583,
+        "relative_path": "futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-07.zip",
+        "retrieved_at": "2026-08-23T04:01:26.789585+00:00",
+        "sha256": "f18440bb58f0c7e1ff63cbb906132002877c4914540c8aebab920da6937cff73"
+      }
+    ],
+    "selected_integrity_valid": 79,
+    "selected_manifest_records": 79,
+    "selection": "only Binance USD-M BTCUSDT monthly 1m klines, 2020-01..2026-07",
+    "sha256": "14c35b3b7df6af6da75ab017abdfb6fad87240358697f6192e3b71086ec1297b"
+  },
+  "scope": "source/support only; no labels, outcomes, clusters, fits, effects, or scores",
+  "source_integrity_clear": true,
+  "um_kline_source": {
+    "archive_errors": [],
+    "archives_read": 79,
+    "duplicates": {
+      "conflicting_timestamps": 0,
+      "duplicate_rows": 0,
+      "handling": "identical raw rows collapse once; differing rows are missing",
+      "identical_duplicate_timestamps": 0
+    },
+    "epoch_unit_contract_pass": true,
+    "epoch_units": {
+      "epoch_ms": 3461760
+    },
+    "expected_open_time_epoch_unit": "epoch_ms",
+    "field_audit": {
+      "quote_volume": {
+        "finite": 3461760,
+        "negative": 0,
+        "nonfinite": 0,
+        "null": 0,
+        "zero": 369
+      },
+      "taker_buy_quote_volume": {
+        "finite": 3461760,
+        "negative": 0,
+        "nonfinite": 0,
+        "null": 0,
+        "zero": 403
+      }
+    },
+    "interval_semantics": {
+      "causal_interval_end": "normalized open_time + 60s",
+      "complete_before_use": true,
+      "latest_feature_block": "T-5m",
+      "off_grid_rows": 0,
+      "raw_open_time": "interval_start"
+    },
+    "normalized_open_time_range": {
+      "first": "2020-01-01T00:00:00Z",
+      "last": "2026-07-31T23:59:00Z"
+    },
+    "ordering_and_gaps": {
+      "no_fill": true,
+      "normalized_gap_runs": 0,
+      "normalized_missing_minutes": 0,
+      "raw_out_of_order_rows": 0
+    },
+    "raw_close_time": {
+      "after_nominal_end": 0,
+      "before_open": 0,
+      "causal": 3461760,
+      "nonstandard_offset": 0,
+      "standard_offset": 3461760,
+      "unparseable": 0
+    },
+    "rows": 3461760,
+    "schema": {
+      "expected_positions": 12,
+      "headerless_archives": 24,
+      "headers": {
+        "open_time,open,high,low,close,volume,close_time,quote_volume,count,taker_buy_volume,taker_buy_quote_volume,ignore": 55
+      },
+      "invalid_rows": 0,
+      "ordered_positions": [
+        "open_time",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "close_time",
+        "quote_volume",
+        "trade_count",
+        "taker_buy_volume",
+        "taker_buy_quote_volume",
+        "ignore"
+      ],
+      "valid_rows": 3461760
+    }
+  },
+  "um_source_integrity_clear": true
+}
