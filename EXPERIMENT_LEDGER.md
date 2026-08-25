@@ -205,6 +205,11 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   validated methodology, but no official bars exist for that span); the
   challenger-history table still reflects the Binance-only catalogue and
   should be regenerated from `index_clusters.json` before ladder work.
+- **Limitation-resolution note (2026-08-25, P5):** Corrected D-032 closes the
+  twin estimator, dependence/weighting, and prospective sampling decisions.
+  `challenger_history.*` was regenerated from `index_clusters.json` with D-019
+  provenance (contract/code `2319b07`; evidence `54e7166`). The thin 2024
+  validation period and Kraken Apr-Jul source boundary remain limitations.
 
 ## EXP-001 — Hyperliquid fuel-surface reconstruction feasibility
 

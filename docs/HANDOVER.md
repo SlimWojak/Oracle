@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Grok Bot CTO; P5 authorized, P4 deferred)
+## State as of 2026-08-25 (Codex CTO; P5 banked, P4/P6 not authorized)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -72,8 +72,8 @@ Full trail in the ledger. Load-bearing outcomes:
 - Splits frozen as D-023: dev 2020-2023, val 2024, test 2025..2026-07 as
   two contiguous OOS periods; straddle-drop boundary rule; per-challenger
   ladders share the final test.
-- Debt: challenger_history.* still derives from the Binance-only
-  clusters.json; regenerate from index_clusters.json before ladder work.
+- The challenger-history debt is closed. `challenger_history.*` now derives
+  from `index_clusters.json` with D-019 provenance.
 
 ### EXP-001: CLOSED, FAIL (2026-08-24)
 
@@ -82,6 +82,34 @@ Phase 1 tractable share 39.06%; Phase 2 combined reconstruction accuracy 8.02%
 wallet state). D-018 demotion: HL challenger is realized-mass diagnostics only.
 Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruction_*`.
 
+### P3 / EXP-002: CLOSED, NULL (2026-08-25)
+
+`cex_oi_cohort_v0` is parked and directionally negative. Reports bank
+`d591f9b`; verdict bank `1b249da`. No floor relaxation, reskin, or fuel retry.
+
+### P5 / D-032: BANKED (2026-08-25)
+
+- The original positive-cluster-only EXP-004 unit was invalid: it selected on
+  the outcome and had no non-events. It was superseded before any fit, score, or
+  validation/test effect inspection.
+- Correct unit: causal D-022 states at fixed UTC-hour interval ends. Outcomes are
+  joint first-cause `{UP, DOWN, NONE}` with opposite direction an explicit
+  competing event; ambiguous bars and future feed gaps are unscored and counted.
+- Precondition rule: require
+  `abs(log(P_T/P_{T-15m})) < log(1.005)` on exact index endpoints. Same support
+  for fixed and volatility-twin labels.
+- Probability rows weight 1; alert episodes weight 1 for precision; direction x
+  horizon event clusters weight 1 for recall/lead time. Family-wide UTC-week
+  blocks preserve linked rows. Brier/calibration and fixed-budget alert metrics
+  replace event-only Spearman.
+- Contract/code bank: `2319b07`. D-022 challenger inventory bank: `54e7166`.
+  The sidecar cites full commit `2319b07e8dc34336e943c09cac657c3a7211f613`,
+  config hash `c2b240bf...`, and input/output hashes.
+- Regenerated cluster-history counts (1h / 4h): price `1658 / 1935`, CEX
+  history `983 / 1313`, HL impact context `556 / 820`, HL fills `164 / 287`.
+- EXP-004 remains PLANNED, with empty Result/Verdict. No fitting or scoring was
+  performed. P5 close does not authorize P6.
+
 ### D-012 derived HL fills store
 
 P0 BANKED (main `656c4fb`). Canonical analytical source:
@@ -89,15 +117,16 @@ P0 BANKED (main `656c4fb`). Canonical analytical source:
 `date=YYYY-MM-DD/hour=HH` with `zstd` Parquet by default. Install opt-in deps
 with `python -m pip install -e '.[dev,hyperliquid,analytics]'`.
 
-Run on the data host:
+Run on the data host, supplying the external Oracle data root from the local
+handover:
 
 ```bash
 python scripts/build_hl_btc_liquidations.py \
-  --data-root /home/a8ra_dgx/oracle-data \
+  --data-root <oracle-data-root> \
   --overwrite
 
 python scripts/run_hl_parquet_census_parity.py \
-  --data-root /home/a8ra_dgx/oracle-data
+  --data-root <oracle-data-root>
 ```
 
 The builder writes `manifest.json` and `manifest.provenance.json` beside the
@@ -109,33 +138,40 @@ and exits non-zero; do not invent passing parity numbers.
 
 ### Next work (in order)
 
-Authoritative sequence remains `docs/glide_path.md`. Current beat is **P5**.
+Authoritative sequence remains `docs/glide_path.md`. There is no active science
+commission after P5.
 
-1. EXP-002 reports bank `d591f9b`; verdict bank `1b249da` (NULL,
-   directionally negative). `cex_oi_cohort_v0` parked.
-2. P5 freeze: `docs/briefs/2026-08-25-p5-eval-unit.md` (D-032). EXP-004
-   stub only. No scoring. Engineer idle unless commissioned for inventory
-   regen.
-3. P4 / EXP-003 deferred until after M0/M1 review. P6 not authorized.
+1. **Next judgment point:** project owner/reviewer decides whether to authorize a
+   bounded P6 implementation commission under corrected D-032. Do not begin it
+   implicitly.
+2. Before any authorized P6 score, freeze the exact causal as-of definitions and
+   availability audit for every required M1 input (OI, funding, premium,
+   taker-flow variance) and the joint probability estimator. Missing honest M1
+   inputs block M1; they do not shrink it silently. M0 may be commissioned alone.
+3. P4 / EXP-003 remains deferred until after M0/M1 review. EXP-003 stays PLANNED.
+   No P6, P4, EXP-003, M2+, fuel retry, or new feature family is active.
 
 ### Glide path (authoritative sequence)
 
 Active research sequence is `docs/glide_path.md` (v1). **P3 BANKED NULL**
-(reports `d591f9b`, verdict `1b249da`). **P5 authorized** (D-032).
-**P4 deferred.** Census: `reports/p1_eligibility_census.json`. No P6, no M2.
+(reports `d591f9b`, verdict `1b249da`). **P5 BANKED** (corrected D-032;
+contracts `2319b07`, inventory `54e7166`). **P4 deferred. P6 not authorized.**
+Census: `reports/p1_eligibility_census.json`. No M2.
 
 
-### Seat note (2026-08-24)
+### Seat note (2026-08-25)
 
-Grok Bot Chief of Staff is CTO seat. Oracle Engineer implements frozen specs
-only. Cursor Phase 2 complete; EXP-001 banked from this rotation.
+Codex completed the CTO transition and P5 close. The next seat inherits no active
+implementation commission. Thin orchestration is provider-neutral: the lead owns
+research judgment; subagents perform only fenced mechanical work.
 
 ### Operating notes
 
-- Thin orchestration per AGENTS.md: delegate mechanical work (Composer for
-  plumbing, Grok high for tricky vectorization) with tight specs; lead seat
-  reviews everything; contracts/ledger/decisions never delegated. Property
-  tests against `labels.first_passage` are the pattern for any new labeller.
+- Thin orchestration per AGENTS.md: select subagents by required capability,
+  reliability, and cost/latency with tight specs; lead seat reviews everything;
+  contracts, experiment semantics, ledger verdicts, and decisions are never
+  delegated. Property tests against `labels.first_passage` are the pattern for
+  any new labeller.
 - An external advisory/red-team seat exists (read-only); its first 2026-08-23
   review produced D-016..D-019, EXP-001, and the D-017 timestamp fix; its
   second (same day) endorsed the Kraken escalation, requested the blind
@@ -145,7 +181,7 @@ only. Cursor Phase 2 complete; EXP-001 banked from this rotation.
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 191 tests (7 skipped) green at P3 Phase A bank.
-- Known open decisions listed at the bottom of `docs/DECISIONS.md`. Settle
-  the large-cluster weight policy before any M2 scoring; regenerate the
-  challenger-history table from the index inventory before ladder design.
+  handing off. 197 tests passed (7 skipped) and Ruff passed at the P5 close.
+- Known open decisions are listed at the bottom of `docs/DECISIONS.md`. The
+  precondition impulse, large-cluster weighting, and D-026 twin estimator are
+  closed by corrected D-032.
