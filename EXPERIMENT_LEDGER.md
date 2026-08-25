@@ -376,8 +376,8 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-004 — M0/M1 prospective baseline ladder
 
-- **Status:** IN PROGRESS (D-034 M0-only authorization; implementation frozen;
-  no validation/test effect inspected; M1 remains `BLOCKED_ASOF`)
+- **Status:** M0 COMPLETE — NULL (D-035, one-shot run banked 2026-08-25;
+  M1 remains `BLOCKED_ASOF`; later rungs unauthorized)
 - **Frozen question:** On a causal hourly precondition risk set containing events
   and non-events, do price-only M0 and generic leverage/flow M1 improve OOS joint
   cumulative-incidence probabilities for the first `UP` / `DOWN` barrier cause?
@@ -432,22 +432,41 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   above. `FAIL` requires family Brier skill <=-1% in both label families in all
   three OOS periods. Every other valid outcome is `NULL`. No pooled, slice,
   fixed-only, or subjective rescue is allowed.
-- **Result:**
-- **Verdict:**
+- **Result:** Exact clean pre-OOS implementation SHA
+  `680f2af101f88b55e761945390f6da020c9e9a71`; one-shot receipt consumed. The
+  D-019 run reverified all 11,770 D-022 source inputs (653,828,637 bytes) and
+  three committed catalogue outputs. Common score rows were 8,243 validation,
+  8,439 test-2025, and 4,871 test-2026-01..07 per horizon. Family relative
+  Brier skill was positive and above the 1% point gate in every period/family:
+  fixed/twin `3.8968% / 1.9171%` validation, `6.9481% / 1.4413%` test-2025,
+  and `6.2367% / 1.0884%` test-2026-01..07. The all-cell alert gates did not
+  pass: primary-cell cluster recall remained below 10% throughout, multiple
+  cells had zero episode precision or undefined lead, and two fixed 1h cells
+  in 2026 had fewer than 30 eligible clusters. Full metrics, calibration,
+  slices, accounting, bootstrap intervals, frozen fit state, and provenance are
+  in `reports/exp004/m0_*`.
+- **Verdict:** **NULL.** The run is valid, so `BLOCKED` does not apply. It is
+  not `FAIL` because the frozen adverse family-skill condition is false. It is
+  not `PASS` because every period/family/cell alert materiality gate was
+  required and several failed. No pooled-period, fixed-only, bootstrap, or
+  slice rescue was applied. M1 is still the pre-fit availability status
+  `BLOCKED_ASOF`, not an M0 verdict and not authority for a partial M1.
 - **Limitations:** The source inventory is complete, but the Binance metrics and
   funding archives contain source/event stamps and bulk retrieval time, not
   historical publication or receive time. Under D-033 the complete M1 rung is
   therefore `BLOCKED_ASOF` before fitting. This is an input-availability status,
   not an EXP-004 model verdict. No surviving fuel measure; 2024 is thin (D-023);
   hourly sampling estimates the frozen sampled population, not continuous time.
-- **Artifacts:** D-032; D-033; D-034; both P5/P6 freeze briefs;
+- **Artifacts:** D-032; D-033; D-034; D-035; both P5/P6 freeze briefs;
   `reports/exp000/challenger_history.{json,md}` with D-019 provenance; source-only
-  `reports/exp004/m1_availability.{json,md}` with D-019 provenance.
+  `reports/exp004/m1_availability.{json,md}` with D-019 provenance; frozen M0
+  `reports/exp004/m0_frozen_state.json`, `m0_result.{json,md}`, and
+  `m0_result.provenance.json`.
 - **Correction notes:** The original event-only stub was superseded before any fit
   or score. D-033 then froze exact M0/M1 sources, transforms, complete-case support,
   joint estimator, verdicts, and slices without reading labels or effects.
-  D-034 later authorized M0 alone. The pre-OOS implementation is frozen but no
-  validation/test effect has yet been inspected. M1 stays `BLOCKED_ASOF`.
+  D-034 later authorized M0 alone. D-035 banks its one-shot NULL without
+  retuning. M1 stays `BLOCKED_ASOF`; nothing later is authorized.
 
 ## Experiment template
 

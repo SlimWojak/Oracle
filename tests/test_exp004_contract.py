@@ -117,12 +117,17 @@ class Exp004ContractTest(unittest.TestCase):
             "competing_first_cause_up_down_none",
         )
 
-    def test_historical_stop_is_retained_and_current_authorization_is_m0_only(self) -> None:
-        self.assert_config(("exp004", "status"), "m0_implementation_frozen_unscored")
+    def test_historical_stop_is_retained_and_m0_execution_is_consumed(self) -> None:
+        self.assert_config(("exp004", "status"), "m0_complete_null_m1_blocked_asof")
         self.assert_config(("exp004", "implementation_authorized"), "true")
-        self.assert_config(("exp004", "authorized_rung"), "m0_only")
+        self.assert_config(("exp004", "execution_authorization_consumed"), "true")
+        self.assert_config(("exp004", "authorized_rung"), "none_m0_completed")
         self.assert_config(("exp004", "later_rungs_authorized"), "false")
-        self.assert_config(("exp004", "m0", "status"), "implementation_complete_unscored")
+        self.assert_config(("exp004", "m0", "status"), "complete_null")
+        self.assert_config(
+            ("exp004", "m0", "pre_oos_implementation_sha"),
+            "680f2af101f88b55e761945390f6da020c9e9a71",
+        )
         self.assertIn("P6 is not\nauthorized", P5_BRIEF)
         self.assertIn("EXP-004 remains PLANNED and unscored", P6_BRIEF)
         self.assertIn("No fitting. No scoring.", P5_BRIEF)

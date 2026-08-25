@@ -102,9 +102,9 @@ mismatches.
 Active sequence: [`docs/glide_path.md`](docs/glide_path.md) (v1). P0, P1, P2,
 P3, and P5 are **BANKED**. P3 / EXP-002 closed **NULL** and
 `cex_oi_cohort_v0` is parked. P5 banks the corrected prospective D-032
-evaluation freeze; EXP-004 remains **PLANNED and unscored**. P4 / EXP-003 is
-deferred. D-033 banks the exact M0/M1 implementation contract and label-blind
-source audit, but P6 implementation is not authorized.
+evaluation freeze. D-034 authorized only the frozen EXP-004 M0 rung; D-035 now
+banks its one-shot **NULL**. P4 / EXP-003 remains deferred, M1 remains
+`BLOCKED_ASOF`, and no later ladder rung is authorized.
 
 
 EXP-000 closed **PASS** (2026-08-24): D-022 consolidated index labels, D-023
@@ -122,15 +122,21 @@ groups positive outcomes but is not the sampling frame. Challenger-history
 inventory now derives from `reports/exp000/index_clusters.json` with D-019
 provenance.
 
+M0 ran once from immutable pre-OOS SHA
+`680f2af101f88b55e761945390f6da020c9e9a71`. Family Brier skill was positive
+in validation, 2025, and 2026-01..07 for fixed and twin, but the frozen PASS
+rule also required every alert cell's precision, recall, lead, and cluster
+floor. Those gates failed, so the only mechanical verdict is **NULL**. Results
+and D-019 provenance are in `reports/exp004/m0_*`; no retuning or rerun occurred.
+
 The M1 archive inventory is complete and checksum-verified, but source
 completeness is not publication-time provenance. Binance metrics OI and funding
 history do not carry historical publication/receive timestamps or an
 authoritative latency bound, so D-033 marks the required complete M1 rung
 `BLOCKED_ASOF` before fitting. Premium and taker-flow candidates clear the
-existing D-017 kline interval-end convention. No feature builder, estimator,
-fit, score, or validation/test effect was produced. The next owner decision is
-point-in-time evidence/replacement sources for OI and funding, or a separately
-authorized M0-only implementation commission.
+existing D-017 kline interval-end convention. M1 was not implemented or scored.
+The repository is stopped for Chair review; P4, M1, M2+, and all other science
+beats remain unstarted.
 
 Implemented primitives include consolidated-index construction, venue-replication
 gate, Kraken trades-to-bars, Hyperliquid fill normalization (`hyperliquid_fills`,

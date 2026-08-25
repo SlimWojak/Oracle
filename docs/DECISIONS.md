@@ -495,6 +495,29 @@ slice rescue is permitted. M1 stays `BLOCKED_ASOF` and unimplemented.
 At this decision point no validation or test effect has been constructed or
 inspected. Result and verdict remain blank until the exact-SHA run is banked.
 
+## D-035 — EXP-004 M0 closes NULL; stop at the rung boundary
+
+**Accepted** (2026-08-25, mechanical D-033 disposition after the D-034 one-shot
+commission). Evidence:
+`reports/exp004/m0_result.{json,md}`, `m0_frozen_state.json`, and
+`m0_result.provenance.json`.
+
+The development-only firewall passed before the immutable pre-OOS SHA
+`680f2af101f88b55e761945390f6da020c9e9a71` was sealed. The exact clean-SHA run
+then consumed one local receipt and reverified 11,770 D-022 inputs. It is valid.
+M0 family relative Brier skill is positive and at least 1% for fixed and twin
+in validation, test-2025, and test-2026-01..07. That does not satisfy PASS:
+the frozen rule requires every primary cell's alert precision, cluster recall,
+lead, and 30-cluster floor in every period and both label families. Cluster
+recall is below 10% in every cell, with additional precision, lead, and count
+misses. The adverse all-period/all-family `<= -1%` skill rule is also false.
+The only permitted disposition is therefore **NULL**.
+
+No threshold, scaler, model, support, slice, or metric was changed after OOS
+inspection. There is no pooled, fixed-only, or descriptive-slice rescue. M1
+remains `BLOCKED_ASOF` before fit; this result does not authorize a partial M1,
+M2+, EXP-003/P4, a new feature, or a rerun. Return to Chair review.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
