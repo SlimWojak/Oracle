@@ -518,6 +518,36 @@ inspection. There is no pooled, fixed-only, or descriptive-slice rescue. M1
 remains `BLOCKED_ASOF` before fit; this result does not authorize a partial M1,
 M2+, EXP-003/P4, a new feature, or a rerun. Return to Chair review.
 
+## D-036 — EXP-003/P4 blocks at the pre-effect source gate
+
+**Accepted** (2026-08-25, CTO mechanical disposition under the direct P4
+commission). Contract:
+`docs/briefs/2026-08-25-p1-impact-construct.md` v4, commit
+`8e23b80366c9414d754afd84dbbf49e13c4e0983`. Evidence:
+`reports/exp003/source_readiness.*`, banked at
+`23c838e5721bdde90b4797fda72b51ec9950fa38`.
+
+The raw `asset_ctxs` schema is stable and names exact mark, impact-bid, and
+impact-ask fields, but it carries neither impact notional/source-semantics
+version nor receive/publication time. Hyperliquid's available official contract
+specifications document 20,000 USDC for BTC/ETH from the earliest authoritative
+capture found (2024-03-24). Fixed, effect-blind walks of the venue's own L2
+archive instead reproduce an approximately 5,000-USDC regime through
+2023-05-30 and 20,000 USDC after a transition in
+`(2023-05-31T01:32:00Z, 2023-05-31T01:32:22Z]`. The early regime has no
+authoritative versioned specification. Separately, the archive and live API do
+not establish that a CSV row stamped `T` was publicly knowable no later than
+`T`; archive upload occurs later and is not market-time provenance.
+
+Both defects independently fail the frozen one-stable-authoritative-notional and
+causal-as-of gates. EXP-003 is therefore **BLOCKED_SOURCE before effects**. The
+next-60-second eligibility census, VWAP/slippage construction, correlation,
+bootstrap, implementation SHA, and one-shot receipt are all `NOT_RUN`. No
+later-only history restriction, inferred notional schedule, alternate timestamp,
+order size, window, or proxy may rescue this EXP. A materially revised source
+contract requires Chair review and a new decision; this block does not revive
+fuel, authorize M3/M4, or promote trailing realized impact.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
@@ -526,5 +556,8 @@ M2+, EXP-003/P4, a new feature, or a rerun. Return to Chair review.
   required EXP-004 OI and funding families (D-033 blocks M1; no acquisition is
   authorized).
 - Point-in-time historical source selection for any future fuel challenger.
+- Authoritative versioned impact-notional history and row-level as-of semantics
+  for any future quoted-impact attempt. Narrowing EXP-003 to the later regime is
+  a contract change and is not authorized by D-036.
 - Concrete news-tagging protocol before M2+ (source list, tag taxonomy, freeze
   procedure); EXP-004 M0/M1 records `NEWS_NOT_AVAILABLE`.

@@ -30,6 +30,10 @@ as doctrine. The north star outlives any single v0 hypothesis.
   availability audit. M1 is `BLOCKED_ASOF` because OI/funding archives do not
   prove historical publication time.
 - D-035 / EXP-004 M0 BANKED NULL — one exact-SHA run; no retune or rerun.
+- D-036 / EXP-003 P4 BANKED BLOCKED — the pre-effect source audit found an
+  unversioned ~5,000→20,000-USDC historical notional change and no authoritative
+  quote-at-T publication semantics. No eligibility census, score, or one-shot
+  run exists.
 
 ## Active path (order locked)
 
@@ -84,13 +88,20 @@ PLANNED and unscored. No M0/M1 scoring. No P6 authorization.
 regenerated from `index_clusters.json` with D-019 provenance; status and handover
 synchronized; verification green. Inventory is not a scoring license.
 
-### P4 — First impact construct gate — **DEFERRED**
+### P4 — First impact construct gate — **BANKED BLOCKED_SOURCE 2026-08-25**
 
-EXP-003 stays frozen. Commission only after M0/M1 review. Cannot revive
-fuel, authorize M4, or inherit an interaction claim.
+The post-M0 P4 commission froze the implementation-ready v4 contract at
+`8e23b80`, then stopped at Checkpoint A. Evidence `23c838e` shows that the raw
+quote schema contains no impact-notional/source-version or receive/publication
+field. Effect-blind official L2 walks reproduce ~5,000 USDC in the first quoted
+history and 20,000 USDC after a 2023-05-31 transition; available official
+contract captures document 20,000 only and do not version the earlier regime.
+Raw `time` is not authoritative public-availability evidence.
 
-**Done when:** PASS / FAIL / NULL recorded. Book≠backstop discipline preserved
-wherever mass is referenced.
+**Disposition:** EXP-003 `BLOCKED`. Eligibility census, scorer, correlation,
+bootstrap, immutable implementation SHA, and one-shot receipt are all
+`NOT_RUN_SOURCE_BLOCK`. No later-regime restriction, inferred schedule, or
+trailing-realized-impact substitution is authorized. Return to Chair.
 
 ### P6 — Bank M0→M1, then stop — **M0-ONLY BANKED NULL; STOPPED**
 
@@ -112,8 +123,9 @@ latency guarantee. Kline-derived premium and taker-flow inputs clear interval-en
 causality. Do not shrink M1 or invent a lag. Nothing after M0 is authorized.
 
 **Done for the authorized rung:** M0 metrics, frozen state, NULL verdict, and
-D-019 provenance are banked. Stop for Chair review before any M1, M2+, P4, or
-other authorization.
+D-019 provenance are banked. P4 was later separately commissioned and banked
+`BLOCKED_SOURCE`; stop for Chair review before any M1, M2+, replacement impact
+source, or other authorization.
 
 ## Post-authorization only (not self-starting)
 

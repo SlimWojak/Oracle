@@ -19,6 +19,12 @@ P5_BRIEF = (
 P6_BRIEF = (
     ROOT / "docs" / "briefs" / "2026-08-25-p6-implementation-freeze.md"
 ).read_text(encoding="utf-8")
+P4_BRIEF = (
+    ROOT / "docs" / "briefs" / "2026-08-25-p1-impact-construct.md"
+).read_text(encoding="utf-8")
+P4_SOURCE_REPORT = (
+    ROOT / "reports" / "exp003" / "source_readiness.json"
+).read_text(encoding="utf-8")
 
 
 def _mapping_value(text: str, path: tuple[str, ...]) -> str:
@@ -222,15 +228,19 @@ class Exp004ContractTest(unittest.TestCase):
             "unavailable_no_verified_asof_history",
         )
 
-    def test_deferred_work_and_stale_config_forms_are_rejected(self) -> None:
+    def test_blocked_impact_work_and_stale_config_forms_are_rejected(self) -> None:
         self.assert_config(
             ("feature_families", "impact_susceptibility", "status"),
-            "exp003_planned_p4_deferred",
+            "exp003_blocked_source_pre_effect",
         )
         self.assert_config(
             ("feature_families", "ignition", "status"), "unauthorized"
         )
         self.assertIn("EXP-003 / P4 remains deferred", P5_BRIEF)
+        self.assertIn("implementation freeze v4", P4_BRIEF)
+        self.assertIn('"status": "BLOCKED_SOURCE"', P4_SOURCE_REPORT)
+        self.assertIn('"eligibility_census": "NOT_RUN_SOURCE_BLOCK"', P4_SOURCE_REPORT)
+        self.assertIn('"correlations_calculated": false', P4_SOURCE_REPORT)
         self.assertNotIn("decision_required", CONFIG)
         self.assertNotIn("status: provisional", CONFIG)
         self.assertNotRegex(CONFIG, r"(?m)^\s+challengers:\s*\n\s+- ")

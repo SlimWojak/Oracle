@@ -136,7 +136,7 @@ feature_families:
         status: unavailable_no_verified_asof_history
     combine_challengers: false
   impact_susceptibility:
-    status: exp003_planned_p4_deferred
+    status: exp003_blocked_source_pre_effect
     candidates:
       - visible_book_walk
       - trailing_realized_impact

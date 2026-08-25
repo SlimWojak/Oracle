@@ -68,6 +68,15 @@ raw interval-start stamp.
 - The Hyperliquid fill log attaches the liquidation object to both legs of each
   forced trade. All liquidation totals must be deduplicated by the
   liquidated-user leg or they double-count.
+- Hyperliquid `asset_ctxs` CSV rows carry a point-snapshot `time`, but no
+  receive/publication timestamp, block number, sequence, impact-notional field,
+  or source-semantics version. Some early rows are off the UTC-minute grid and
+  flooring creates conflicting quote collisions. D-036 also finds source-only
+  evidence of an early approximately 5,000-USDC impact regime followed by
+  20,000 USDC, while the available authoritative specification is not versioned
+  over the full history. Never floor, forward-fill, infer a historical notional
+  schedule, or claim public availability at raw `time` without new source
+  evidence.
 - The Hyperliquid fill log begins 2025-05-25. No observed fuel surface exists
   before that date; earlier periods may only use inferred or vendor challengers.
 

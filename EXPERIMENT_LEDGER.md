@@ -353,25 +353,58 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-003 — Quoted book-walk impact proxy (construct)
 
-- **Status:** PLANNED (P1 v3; **D-031 Accepted**; Chair 2026-08-25 deferred until after M0/M1 review)
+- **Status:** BLOCKED (closed pre-effect 2026-08-25; `BLOCKED_SOURCE`; D-036)
 - **Frozen question:** Do Hyperliquid published impact prices, at the venue-published impact notional, predict realized slippage in the immediately following epoch-aligned 60-second bucket?
 - **Hypothesis:** Visible quoted walk ranks same-bucket matched slippage better than a trailing-range / trailing-vol baseline.
 - **Belief change:** PASS → M3-eligible. FAIL → path dies. NULL → park.
-- **Materiality:** Spearman(qwalk, slip) minus path baseline; deterministic floor recipe. Unmatched = missing.
+  BLOCKED → the source condition returned before effects; no score exists.
+- **Materiality:** v4 freezes one equal-weight two-side incremental-Spearman
+  family, one normalized trailing-range/realized-vol baseline, the deterministic
+  weekly floor recipe, and 30 covered pure 4h clusters per side in every primary
+  period. Unmatched = missing.
 - **Data manifest:** HL `asset_ctxs` published impact prices; HL fills Parquet v1.
 - **Development period:** 2025-05-25 .. 2025-08-31.
 - **Validation period:** 2025-09-01 .. 2025-12-31.
-- **Final test period:** 2026-01-01 .. 2026-07-31; second confirmation 2026-08-01 .. 2026-12-31.
-- **Features available as of:** published quotes knowable at T. Probe returns to CTO if published notional is unstable.
-- **Method:** `docs/briefs/2026-08-25-p1-impact-construct.md` v3. Only `(T, T+60s]`. Buy → impact ask; sell → impact bid. Dedup by `tid`. Fuel bands are not primary cells.
-- **Baselines:** trailing-range / trailing-realized-vol.
-- **Metrics:** incremental Spearman; Sep–Dec sign stability.
-- **Pass/fail contract:** mechanical NULL / FAIL / PASS.
-- **Result:**
-- **Verdict:**
-- **Limitations:** one-minute match horizon is harsh; published size must be stable or probe returns.
-- **Artifacts:** brief v3; D-031.
-- **Correction notes:** Chair approved for banking once immediate-next-bucket and bid/ask mapping were in the brief. 2026-08-25: `1b249da` accidentally copied EXP-002 Result/Verdict into this stub. Restored blank. EXP-003 stays PLANNED; implementation deferred until after M0/M1 review. Cannot revive fuel, authorize M4, or inherit an interaction claim.
+- **Final test period:** 2026-01-01 .. 2026-07-31; incomplete 2026-08..12
+  confirmation is `NOT_AVAILABLE` and forbidden by v4.
+- **Features available as of:** v4 requires an exact quote publicly knowable at
+  `T`. D-036 finds that the archive does not prove this condition.
+- **Method:** `docs/briefs/2026-08-25-p1-impact-construct.md` v4. Only
+  `(T, T+60s]`. Buy → impact ask; sell → impact bid. Dedup by `tid`. Fuel bands
+  are not primary cells. Checkpoint A must clear one stable authoritative
+  notional and causal quote-at-T semantics before the eligibility census or any
+  effect construction.
+- **Baselines:** one scalar only: exact HL-mark 4h log range divided by exact
+  24h realized volatility, with no missing-minute fill.
+- **Metrics:** equal-weight two-side incremental Spearman family `F`; weekly
+  block interval/floor; Sep-Oct and Nov-Dec sign stability.
+- **Pass/fail contract:** v4 mechanical BLOCKED / NULL / FAIL / PASS with source
+  and coverage gates before effects.
+- **Result:** Checkpoint A source-only audit at contract commit `8e23b80` and
+  evidence commit `23c838e` found one stable 12-column schema across 1,168 daily
+  files and 1,658,847 BTC rows, but no impact-notional/source-version field and
+  no receive/publication timestamp. Official specifications document 20,000
+  USDC from the earliest authoritative capture found. Fixed effect-blind L2
+  walks reproduce ~5,000 USDC through 2023-05-30 and 20,000 USDC after a
+  2023-05-31 01:32 transition. The early regime is unversioned, and raw `time`
+  is not authoritative public-availability evidence. No fills, eligibility
+  census, VWAP/slippage, correlation, bootstrap, implementation, or one-shot
+  receipt was run.
+- **Verdict:** **BLOCKED.** `BLOCKED_SOURCE` before effects. Both the stable
+  authoritative-notional gate and causal timestamp/as-of gate fail. Do not
+  narrow history or infer a notional schedule to rescue the path.
+- **Limitations:** The L2 reproduction is strong source-only corroboration, not
+  an authoritative version record; asset-context and L2 clocks are not
+  transactionally synchronized. One daily asset-context file (2026-07-08) is
+  absent, but that is not the load-bearing block.
+- **Artifacts:** brief v4; D-031; D-036;
+  `reports/exp003/source_readiness.{json,md}` and provenance.
+- **Correction notes:** Chair approved v3 for banking once immediate-next-bucket
+  and bid/ask mapping were explicit, then deferred implementation until after
+  M0/M1 review. The later P4 commission authorized Checkpoint A; D-036 records
+  its terminal source block. 2026-08-25: `1b249da` accidentally copied EXP-002
+  Result/Verdict into this stub; it was restored blank before this valid block.
+  EXP-003 cannot revive fuel, authorize M3/M4, or inherit an interaction claim.
 
 
 ## EXP-004 — M0/M1 prospective baseline ladder
