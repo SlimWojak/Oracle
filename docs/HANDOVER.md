@@ -170,7 +170,8 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
 
 - Implementation-ready v4 contract commit:
   `8e23b80366c9414d754afd84dbbf49e13c4e0983`. Pre-effect evidence commit:
-  `23c838e5721bdde90b4797fda72b51ec9950fa38`.
+  `23c838e5721bdde90b4797fda72b51ec9950fa38`. Status/verdict commit:
+  `82a9d944d3804541599f1176415fbbfe5f02bada`.
 - All 1,168 available `asset_ctxs` files share the exact 12-column schema and
   expose `mark_px`, `impact_bid_px`, and `impact_ask_px`, but no impact-notional
   version or receive/publication timestamp. One date, 2026-07-08, is absent.
@@ -217,10 +218,10 @@ Authoritative sequence remains `docs/glide_path.md`. There is no active
 implementation or science commission after this seat close.
 
 1. **Next judgment point:** Chair reviews the banked EXP-003 `BLOCKED_SOURCE` at
-   evidence commit `23c838e5721bdde90b4797fda72b51ec9950fa38`. A future quoted
+   status/verdict commit `82a9d944d3804541599f1176415fbbfe5f02bada`. A future quoted
    impact attempt requires authoritative versioned notional history and
-   row-level as-of semantics; narrowing to the later regime is a contract change.
-   Nothing self-starts.
+   row-level as-of semantics; narrowing to the later regime is a contract
+   change. Nothing self-starts.
 2. The earlier EXP-004 M0 verdict remains NULL. If qualifying M1 publication
    evidence is ever supplied and a new commission is granted, apply D-033
    unchanged. Do not shrink M1, invent a lag, substitute
