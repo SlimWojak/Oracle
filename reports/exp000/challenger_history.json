@@ -1,12 +1,12 @@
 {
-  "source": "reports/exp000/clusters.json",
+  "source": "reports/exp000/index_clusters.json",
   "membership_rule": "cluster start_timestamp >= window start (straddlers excluded)",
   "windows": [
     {
       "key": "price_controls",
       "label": "Price-only controls (M0)",
       "start": "2020-01-01",
-      "note": "Binance spot 1m klines; context baseline, never a comparable score (D-016)."
+      "note": "D-022 consolidated BTC spot index 1m bars; context baseline, never a comparable score (D-016)."
     },
     {
       "key": "cex_inferred",
@@ -33,61 +33,61 @@
       "horizon_bars": 60,
       "windows": {
         "price_controls": {
-          "total": 1679,
-          "up": 560,
-          "down": 568,
-          "mixed": 551,
+          "total": 1658,
+          "up": 558,
+          "down": 558,
+          "mixed": 542,
           "first_cluster": "2020-01-02T16:02:00Z",
           "last_cluster": "2026-07-31T13:11:00Z",
           "per_year": {
-            "2020": 282,
-            "2021": 440,
-            "2022": 304,
-            "2023": 174,
-            "2024": 237,
-            "2025": 144,
+            "2020": 278,
+            "2021": 431,
+            "2022": 301,
+            "2023": 172,
+            "2024": 235,
+            "2025": 143,
             "2026": 98
           }
         },
         "cex_inferred": {
-          "total": 991,
-          "up": 343,
-          "down": 361,
-          "mixed": 287,
+          "total": 983,
+          "up": 342,
+          "down": 358,
+          "mixed": 283,
           "first_cluster": "2021-12-01T13:30:00Z",
           "last_cluster": "2026-07-31T13:11:00Z",
           "per_year": {
             "2021": 34,
-            "2022": 304,
-            "2023": 174,
-            "2024": 237,
-            "2025": 144,
+            "2022": 301,
+            "2023": 172,
+            "2024": 235,
+            "2025": 143,
             "2026": 98
           }
         },
         "hl_impact_context": {
-          "total": 561,
-          "up": 204,
-          "down": 201,
-          "mixed": 156,
+          "total": 556,
+          "up": 203,
+          "down": 200,
+          "mixed": 153,
           "first_cluster": "2023-05-24T13:07:00Z",
           "last_cluster": "2026-07-31T13:11:00Z",
           "per_year": {
-            "2023": 82,
-            "2024": 237,
-            "2025": 144,
+            "2023": 80,
+            "2024": 235,
+            "2025": 143,
             "2026": 98
           }
         },
         "hl_fills": {
-          "total": 163,
+          "total": 164,
           "up": 62,
-          "down": 66,
+          "down": 67,
           "mixed": 35,
-          "first_cluster": "2025-06-12T23:25:00Z",
+          "first_cluster": "2025-06-12T23:26:00Z",
           "last_cluster": "2026-07-31T13:11:00Z",
           "per_year": {
-            "2025": 65,
+            "2025": 66,
             "2026": 98
           }
         }
@@ -97,62 +97,62 @@
       "horizon_bars": 240,
       "windows": {
         "price_controls": {
-          "total": 1940,
-          "up": 588,
-          "down": 538,
-          "mixed": 814,
+          "total": 1935,
+          "up": 594,
+          "down": 534,
+          "mixed": 807,
           "first_cluster": "2020-01-02T13:02:00Z",
-          "last_cluster": "2026-07-31T10:21:00Z",
+          "last_cluster": "2026-07-31T10:11:00Z",
           "per_year": {
-            "2020": 308,
-            "2021": 342,
-            "2022": 332,
-            "2023": 241,
-            "2024": 318,
-            "2025": 231,
-            "2026": 168
+            "2020": 317,
+            "2021": 344,
+            "2022": 335,
+            "2023": 239,
+            "2024": 309,
+            "2025": 228,
+            "2026": 163
           }
         },
         "cex_inferred": {
-          "total": 1329,
-          "up": 406,
-          "down": 398,
-          "mixed": 525,
-          "first_cluster": "2021-12-01T06:05:00Z",
-          "last_cluster": "2026-07-31T10:21:00Z",
+          "total": 1313,
+          "up": 396,
+          "down": 397,
+          "mixed": 520,
+          "first_cluster": "2021-12-01T10:21:00Z",
+          "last_cluster": "2026-07-31T10:11:00Z",
           "per_year": {
             "2021": 39,
-            "2022": 332,
-            "2023": 241,
-            "2024": 318,
-            "2025": 231,
-            "2026": 168
+            "2022": 335,
+            "2023": 239,
+            "2024": 309,
+            "2025": 228,
+            "2026": 163
           }
         },
         "hl_impact_context": {
-          "total": 835,
-          "up": 268,
-          "down": 261,
-          "mixed": 306,
+          "total": 820,
+          "up": 258,
+          "down": 257,
+          "mixed": 305,
           "first_cluster": "2023-05-22T23:21:00Z",
-          "last_cluster": "2026-07-31T10:21:00Z",
+          "last_cluster": "2026-07-31T10:11:00Z",
           "per_year": {
-            "2023": 118,
-            "2024": 318,
-            "2025": 231,
-            "2026": 168
+            "2023": 120,
+            "2024": 309,
+            "2025": 228,
+            "2026": 163
           }
         },
         "hl_fills": {
-          "total": 292,
-          "up": 103,
+          "total": 287,
+          "up": 99,
           "down": 98,
-          "mixed": 91,
-          "first_cluster": "2025-05-25T21:23:00Z",
-          "last_cluster": "2026-07-31T10:21:00Z",
+          "mixed": 90,
+          "first_cluster": "2025-05-25T21:24:00Z",
+          "last_cluster": "2026-07-31T10:11:00Z",
           "per_year": {
             "2025": 124,
-            "2026": 168
+            "2026": 163
           }
         }
       }

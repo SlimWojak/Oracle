@@ -1,13 +1,13 @@
 {
-  "repo_commit": "07963f8f044adbc3e47891ebc81344fbd5778afb",
-  "generated_at_utc": "2026-08-23T14:20:14Z",
+  "repo_commit": "2319b07e8dc34336e943c09cac657c3a7211f613",
+  "generated_at_utc": "2026-08-25T07:16:06Z",
   "config": {
     "windows": [
       {
         "key": "price_controls",
         "label": "Price-only controls (M0)",
         "start": "2020-01-01",
-        "note": "Binance spot 1m klines; context baseline, never a comparable score (D-016)."
+        "note": "D-022 consolidated BTC spot index 1m bars; context baseline, never a comparable score (D-016)."
       },
       {
         "key": "cex_inferred",
@@ -30,23 +30,24 @@
     ],
     "membership_rule": "cluster start_timestamp >= window start (straddlers excluded)"
   },
+  "config_sha256": "c2b240bff18bfa7b0137249d56d882c8a4ea93e37fdfe45d5d27e98f4b699565",
   "inputs": [
     {
-      "path": "reports/exp000/clusters.json",
-      "bytes": 1081533,
-      "sha256": "f569190d34d920fdc860252dca4fdf6bbabb35b3e46222bd86db2ec2c347eaea"
+      "path": "reports/exp000/index_clusters.json",
+      "bytes": 1074050,
+      "sha256": "3e636f10ae5096f7239ad2d57b2e1dd4472508d8e8cdcbcd3cc608bad03795a8"
     }
   ],
   "outputs": [
     {
       "path": "challenger_history.json",
-      "bytes": 4435,
-      "sha256": "2f95a25a49c847ba930d2ce2a34df7beb4199b36ecd029a6f29f217baaf88c09"
+      "bytes": 4459,
+      "sha256": "05c11d080c26d806099c502a8e75025e7b3e45b2a778d7c4ea45d18927d45eb9"
     },
     {
       "path": "challenger_history.md",
-      "bytes": 2431,
-      "sha256": "b553bf71472bb880cbaa9bb8779b5085c329bdfc3cce937e605d4579a1402e60"
+      "bytes": 2542,
+      "sha256": "0e6a7dd2636c47105d3c1d8189b424811d1337334b26b2f809eeee13c0680bc9"
     }
   ]
 }
