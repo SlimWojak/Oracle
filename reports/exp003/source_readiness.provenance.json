@@ -1,0 +1,110 @@
+{
+  "repo_commit": "0a2ac5bdb3561b326fbe01c92657982caf2599f6",
+  "contract_commit": "8e23b80366c9414d754afd84dbbf49e13c4e0983",
+  "evidence_bank_base_commit": "8e23b80366c9414d754afd84dbbf49e13c4e0983",
+  "generated_at_utc": "2026-08-25T10:17:33Z",
+  "config": {
+    "audit": "exp003_p4_checkpoint_a_source_readiness",
+    "contract_commit": "8e23b80366c9414d754afd84dbbf49e13c4e0983",
+    "asset_ctxs_date_range": [
+      "2023-05-20",
+      "2026-07-31"
+    ],
+    "candidate_notionals_usdc": [
+      5000,
+      10000,
+      20000
+    ],
+    "l2_selection": "nearest_raw_data_time_fixed_samples",
+    "prohibited": [
+      "fills",
+      "eligibility_census",
+      "vwap_slip",
+      "qwalk",
+      "correlations",
+      "effects"
+    ],
+    "mechanical_stop": "BLOCKED_SOURCE"
+  },
+  "config_sha256": "8c23de2d737e5b572e9c48f9826b0015f9f5da451489819e73e06872769d1ac8",
+  "input_manifest_identifiers": {
+    "asset_ctxs": "official requester-pays archive; 1168 daily files found for 2023-05-20..2026-07-31; one missing date recorded in report",
+    "l2_book": "official requester-pays BTC l2Book archive; fixed effect-blind sample hours only",
+    "official_contract_capture_count": 17,
+    "official_contract_capture_range": [
+      "2024-03-24",
+      "2026-05-20"
+    ],
+    "official_sdk_commit": "2fdb18f9517675ea03695a0962bd19eece9c83f0"
+  },
+  "inputs": [
+    {
+      "path": "raw/hyperliquid/asset_ctxs/20230520.csv.lz4",
+      "bytes": 1004923,
+      "sha256": "f3f4efa5834bd8d032bcfebb62f89e0fdb1fb831b3262521255f7b5ff25e4b27"
+    },
+    {
+      "path": "raw/hyperliquid/asset_ctxs/20230531.csv.lz4",
+      "bytes": 1394900,
+      "sha256": "04260d8e5e090e579b863f0638a3073712d865b15c51639a7dad49568cf51f16"
+    },
+    {
+      "path": "raw/hyperliquid/asset_ctxs/20240101.csv.lz4",
+      "bytes": 6020129,
+      "sha256": "5618df881400facab0c4f7a8aa4d436065a25a00fafba50a6cc69bf382b49edb"
+    },
+    {
+      "path": "raw/hyperliquid/asset_ctxs/20260731.csv.lz4",
+      "bytes": 10679189,
+      "sha256": "9443bbd0250092cbf36ce16e6d8d0fc4d51547562bf6453981565c7a563093c0"
+    },
+    {
+      "path": "raw/hyperliquid/market_data/20230520/12/l2Book/BTC.lz4",
+      "bytes": 154156,
+      "sha256": "8436e528c673d3385c686fea1076236c38c6fdf916aac21dcb48cdb506c26baa"
+    },
+    {
+      "path": "raw/hyperliquid/market_data/20230531/1/l2Book/BTC.lz4",
+      "bytes": 144368,
+      "sha256": "2fe6045ba4b1dbe995f9d0bcd55014e49bedad05c8fc75d840c31ba3706d64b4"
+    },
+    {
+      "path": "raw/hyperliquid/market_data/20240101/12/l2Book/BTC.lz4",
+      "bytes": 309355,
+      "sha256": "cafac0d790370f65f1e44083b39e869e8e2801918ebe04c387b5c7461f52b746"
+    },
+    {
+      "path": "raw/hyperliquid/market_data/20260731/12/l2Book/BTC.lz4",
+      "bytes": 237780,
+      "sha256": "088f4ba2230a263a255bea89cfb5d9436719d621cc4707b6afcb35db0c8b5b3d"
+    }
+  ],
+  "official_sources": [
+    "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/funding",
+    "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/contract-specifications",
+    "https://hyperliquid.gitbook.io/hyperliquid-docs/historical-data",
+    "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/robust-price-indices",
+    "https://web.archive.org/web/20240324125006id_/https://hyperliquid.gitbook.io/hyperliquid-docs/trading/contract-specifications",
+    "https://github.com/hyperliquid-dex/hyperliquid-python-sdk/blob/2fdb18f9517675ea03695a0962bd19eece9c83f0/hyperliquid/utils/types.py#L99-L112"
+  ],
+  "run_notes": {
+    "host_role": "oracle_data_host",
+    "scan_form": "read-only streaming lz4/csv audit plus fixed L2 sample walks",
+    "raw_data_modified": false,
+    "effects_inspected": false,
+    "eligibility_census_run": false,
+    "machine_local_paths_committed": false
+  },
+  "outputs": [
+    {
+      "path": "source_readiness.json",
+      "bytes": 7674,
+      "sha256": "71b2815663e9f4e375a3f85eff384d1d50cf98b5a1a51a79df6dc478cab22fb6"
+    },
+    {
+      "path": "source_readiness.md",
+      "bytes": 4845,
+      "sha256": "5292547cfbde0d00bf722b5ce56f49995bd22109ef8921a7366b9f4e74336c12"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "experiment": "EXP-003",
+  "checkpoint": "A_SOURCE_READINESS",
+  "status": "BLOCKED_SOURCE",
+  "stage": "PRE_EFFECT",
+  "contract_commit": "8e23b80366c9414d754afd84dbbf49e13c4e0983",
+  "source_scan_commit": "0a2ac5bdb3561b326fbe01c92657982caf2599f6",
+  "effects_inspected": false,
+  "eligibility_census": "NOT_RUN_SOURCE_BLOCK",
+  "slippage_constructed": false,
+  "correlations_calculated": false,
+  "one_shot_execution": "NOT_RUN_SOURCE_BLOCK",
+  "block_reasons": [
+    "HISTORICAL_IMPACT_NOTIONAL_MULTI_REGIME_UNVERSIONED",
+    "ASOF_PUBLICATION_SEMANTICS_UNPROVEN"
+  ],
+  "asset_ctxs": {
+    "date_range": [
+      "2023-05-20",
+      "2026-07-31"
+    ],
+    "expected_daily_files": 1169,
+    "found_daily_files": 1168,
+    "missing_daily_files": [
+      "20260708.csv.lz4"
+    ],
+    "stable_header": [
+      "time",
+      "coin",
+      "funding",
+      "open_interest",
+      "prev_day_px",
+      "day_ntl_vlm",
+      "premium",
+      "oracle_px",
+      "mark_px",
+      "mid_px",
+      "impact_bid_px",
+      "impact_ask_px"
+    ],
+    "all_asset_rows": 259948917,
+    "btc_rows": 1658847,
+    "btc_first_timestamp": "2023-05-20T02:50:04Z",
+    "btc_last_timestamp": "2026-07-31T23:59:00Z",
+    "exact_minute_rows": 1657605,
+    "off_grid_rows": 1242,
+    "minute_floor_collisions": 161,
+    "minute_floor_conflicting_quote_collisions": 144,
+    "minute_floor_identical_quote_collisions": 17,
+    "raw_exact_duplicate_timestamps": 0,
+    "raw_conflicting_duplicate_timestamps": 0,
+    "raw_out_of_order_rows": 0,
+    "filename_date_conflicts": 0,
+    "wrong_width_rows": 0,
+    "timestamp_parse_errors": 0,
+    "numeric_parse_errors": 0,
+    "nonfinite_rows": 0,
+    "null_key_rows": 0,
+    "nonpositive_key_rows": 147,
+    "nonpositive_rows_all_before_fill_history": true,
+    "mark_px_is_decision_price": true,
+    "impact_bid_field": "impact_bid_px",
+    "impact_ask_field": "impact_ask_px",
+    "impact_notional_field_present": false,
+    "source_semantics_version_field_present": false,
+    "receive_timestamp_present": false,
+    "publication_timestamp_present": false
+  },
+  "exact_minute_coverage": {
+    "pre_fills_descriptive": {
+      "exact": 1036782,
+      "expected": 1059669,
+      "coverage": 0.978402,
+      "missing": 22887,
+      "max_gap_minutes": 594
+    },
+    "construct_dev": {
+      "exact": 142374,
+      "expected": 142560,
+      "coverage": 0.998695,
+      "missing": 186,
+      "max_gap_minutes": 31
+    },
+    "construct_val": {
+      "exact": 175662,
+      "expected": 175680,
+      "coverage": 0.999898,
+      "missing": 18,
+      "max_gap_minutes": 2
+    },
+    "first_look": {
+      "exact": 302787,
+      "expected": 305280,
+      "coverage": 0.991834,
+      "missing": 2493,
+      "max_gap_minutes": 1440
+    }
+  },
+  "authoritative_source_evidence": {
+    "funding_url": "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/funding",
+    "contract_specification_url": "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/contract-specifications",
+    "historical_data_url": "https://hyperliquid.gitbook.io/hyperliquid-docs/historical-data",
+    "robust_price_url": "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/robust-price-indices",
+    "earliest_contract_capture": "https://web.archive.org/web/20240324125006id_/https://hyperliquid.gitbook.io/hyperliquid-docs/trading/contract-specifications",
+    "captures_checked": 17,
+    "capture_range": [
+      "2024-03-24",
+      "2026-05-20"
+    ],
+    "documented_btc_eth_notional_usdc": 20000,
+    "authoritative_versioned_spec_before_2024_03_24_found": false,
+    "sdk_commit": "2fdb18f9517675ea03695a0962bd19eece9c83f0",
+    "sdk_types_url": "https://github.com/hyperliquid-dex/hyperliquid-python-sdk/blob/2fdb18f9517675ea03695a0962bd19eece9c83f0/hyperliquid/utils/types.py#L99-L112",
+    "sdk_context_has_notional": false,
+    "sdk_context_has_observation_timestamp": false
+  },
+  "effect_blind_l2_corroboration": {
+    "method": "nearest official BTC L2 raw.data.time; consume min(remaining_usdc, px*sz) on bids and asks; compare summed bid/ask absolute VWAP price error normalized by their mean in basis points",
+    "candidate_notionals_usdc": [
+      5000,
+      10000,
+      20000
+    ],
+    "early_sample": {
+      "asset_ctx_timestamp": "2023-05-20T12:00:00Z",
+      "l2_lag_ms": 48,
+      "error_bps": {
+        "5000": 0.283,
+        "10000": 2.797,
+        "20000": 13.702
+      },
+      "winner_usdc": 5000
+    },
+    "daily_noon_2023_05_20_through_2023_05_30": {
+      "sample_count": 11,
+      "winner_usdc": 5000,
+      "winner_count": 11
+    },
+    "hourly_2023_05_30": {
+      "sample_count": 24,
+      "winner_usdc": 5000,
+      "winner_count": 24
+    },
+    "transition": {
+      "lower_open": "2023-05-31T01:32:00Z",
+      "upper_closed": "2023-05-31T01:32:22Z",
+      "samples": [
+        {
+          "timestamp": "2023-05-31T01:32:00Z",
+          "error_bps_5000": 0.27,
+          "error_bps_20000": 4.85,
+          "winner_usdc": 5000
+        },
+        {
+          "timestamp": "2023-05-31T01:32:22Z",
+          "error_bps_5000": 4.12,
+          "error_bps_20000": 0.03,
+          "winner_usdc": 20000
+        },
+        {
+          "timestamp": "2023-05-31T01:33:00Z",
+          "error_bps_5000": 5.03,
+          "error_bps_20000": 0.05,
+          "winner_usdc": 20000
+        }
+      ]
+    },
+    "mid_sample": {
+      "asset_ctx_timestamp": "2024-01-01T12:33:00Z",
+      "l2_lag_ms": -210,
+      "error_bps": {
+        "5000": 0.0676,
+        "10000": 0.0221,
+        "20000": 0.0007
+      },
+      "winner_usdc": 20000
+    },
+    "late_sample": {
+      "asset_ctx_timestamp": "2026-07-31T12:26:00Z",
+      "l2_lag_ms": -1862,
+      "error_bps": {
+        "5000": 0.5023,
+        "10000": 0.2586,
+        "20000": 0.0119
+      },
+      "winner_usdc": 20000
+    },
+    "interpretation": "strong source-only corroboration of an early approximately 5000-USDC regime followed by 20000 USDC; not authoritative because the two snapshot clocks are not transactionally synchronized"
+  },
+  "timestamp_asof": {
+    "raw_time_behaves_as_point_snapshot": true,
+    "raw_time_is_not_a_completed_minute_stamp": true,
+    "official_archive_defines_csv_publication_semantics": false,
+    "official_live_context_contains_timestamp": false,
+    "row_publicly_knowable_no_later_than_raw_time_proven": false,
+    "archive_upload_cadence": "approximately_monthly_no_timeliness_guarantee"
+  },
+  "sample_input_sha256": {
+    "raw/hyperliquid/asset_ctxs/20230520.csv.lz4": "f3f4efa5834bd8d032bcfebb62f89e0fdb1fb831b3262521255f7b5ff25e4b27",
+    "raw/hyperliquid/asset_ctxs/20230531.csv.lz4": "04260d8e5e090e579b863f0638a3073712d865b15c51639a7dad49568cf51f16",
+    "raw/hyperliquid/asset_ctxs/20240101.csv.lz4": "5618df881400facab0c4f7a8aa4d436065a25a00fafba50a6cc69bf382b49edb",
+    "raw/hyperliquid/asset_ctxs/20260731.csv.lz4": "9443bbd0250092cbf36ce16e6d8d0fc4d51547562bf6453981565c7a563093c0",
+    "raw/hyperliquid/market_data/20230520/12/l2Book/BTC.lz4": "8436e528c673d3385c686fea1076236c38c6fdf916aac21dcb48cdb506c26baa",
+    "raw/hyperliquid/market_data/20230531/1/l2Book/BTC.lz4": "2fe6045ba4b1dbe995f9d0bcd55014e49bedad05c8fc75d840c31ba3706d64b4",
+    "raw/hyperliquid/market_data/20240101/12/l2Book/BTC.lz4": "cafac0d790370f65f1e44083b39e869e8e2801918ebe04c387b5c7461f52b746",
+    "raw/hyperliquid/market_data/20260731/12/l2Book/BTC.lz4": "088f4ba2230a263a255bea89cfb5d9436719d621cc4707b6afcb35db0c8b5b3d"
+  },
+  "mechanical_disposition": {
+    "stable_authoritative_notional_gate": false,
+    "causal_timestamp_semantics_gate": false,
+    "result": "BLOCKED_SOURCE",
+    "action": "STOP_WITHOUT_ELIGIBILITY_CENSUS_IMPLEMENTATION_OR_SCORE"
+  }
+}
