@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Codex CTO; P5 banked, P4/P6 not authorized)
+## State as of 2026-08-25 (Codex CTO; P5 and D-033 banked; P4/P6 unstarted)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -22,7 +22,10 @@ That file is gitignored and must never be committed; this repository is public.
 
 - Binance Vision: spot+UM perp 1m klines and funding 2020-01..2026-07, UM
   daily metrics 2021-12..2026-08. 1,962 files, checksum-verified, manifested.
-  99.97% bar coverage.
+  D-019 M1 source audit at `c430f8f`; all archives rehashed. Source-only
+  four-family hourly joint coverage is 99.69% M1-dev, 99.32% validation,
+  99.74% test-2025, and 100% test-2026. Coverage clears; publication as-of does
+  not.
 - Hyperliquid asset_ctxs: per-minute contexts (incl. quoted impact prices, OI,
   premium) 2023-05-20..present, ~9GB.
 - Hyperliquid node_fills: full fill history 2025-05-25..2026-08-23, two
@@ -55,6 +58,16 @@ That file is gitignored and must never be committed; this repository is public.
 - Binance klines stamp interval START; Binance metrics dumps stamp interval
   END (-5 min realignment required, see DATA_CONTRACT). Kline open_time is ms
   before 2025-01, us after (loader handles it).
+- Exact D-033 audit: spot switches ms to us at 2025-01; USD-M remains ms. Spot
+  has 15 gap runs / 2,325 missing minutes and 8 nonstandard raw close times;
+  USD-M 1m is complete. Metrics has 145 nominal missing slots, 143 off-grid
+  rows, two conflicting duplicate timestamps, and 2,866 raw out-of-order rows
+  across official daily files; audit normalization sorts within each daily file
+  while preserving that diagnostic. Funding has 3,224 millisecond-jittered
+  `calc_time` values and no missing nominal settlements.
+- Metrics/funding bulk archives have source/event time and 2026 retrieval time,
+  not historical publication/receive time or an authoritative latency bound.
+  D-033 therefore blocks the complete M1 rung before fit. Do not invent a lag.
 - Canonical decision timestamp is interval END (D-017); the catalogue was
   rebuilt after an advisor caught the interval-start stamping defect.
 
@@ -110,6 +123,26 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
 - EXP-004 remains PLANNED, with empty Result/Verdict. No fitting or scoring was
   performed. P5 close does not authorize P6.
 
+### D-033 / EXP-004 implementation contract: BANKED, UNSCORED (2026-08-25)
+
+- Exact contract: `docs/briefs/2026-08-25-p6-implementation-freeze.md`.
+  Contract commit `21fbfd4`; official-metrics source-order correction
+  `04edc6b`; D-019 audit evidence commit `c430f8f`.
+- M0 is exactly seven price/calendar columns. M1 adds exactly OI level, realized
+  funding, same-venue premium, and taker-flow variance compression. No fuel or
+  parked proxy enters either rung.
+- Future estimator is deterministic three-cause ridge multinomial logistic,
+  `NONE` reference, development-only scaling, fixed `lambda=1e-4`, and exact
+  `M0_COMMON`/M1 complete-case support. Mechanical PASS/FAIL/NULL/BLOCKED rules,
+  volatility/session/morphology slices, and `NEWS_NOT_AVAILABLE` are frozen.
+- The source-only audit verified all 1,962 manifest entries and on-disk hashes.
+  Every coverage floor passes and no full month has zero joint coverage. OI and
+  funding nevertheless lack historical publication evidence; complete M1 is
+  `BLOCKED_ASOF`. Premium and taker flow clear D-017 interval-end causality.
+- No risk-set builder, feature builder, estimator, fit, alert threshold, score,
+  or validation/test effect exists. `EXP-004` remains PLANNED with blank
+  Result/Verdict. This was a contract/evidence commission, not P6 implementation.
+
 ### D-012 derived HL fills store
 
 P0 BANKED (main `656c4fb`). Canonical analytical source:
@@ -138,32 +171,36 @@ and exits non-zero; do not invent passing parity numbers.
 
 ### Next work (in order)
 
-Authoritative sequence remains `docs/glide_path.md`. There is no active science
-commission after P5.
+Authoritative sequence remains `docs/glide_path.md`. There is no active
+implementation or science commission after this seat close.
 
-1. **Next judgment point:** project owner/reviewer decides whether to authorize a
-   bounded P6 implementation commission under corrected D-032. Do not begin it
-   implicitly.
-2. Before any authorized P6 score, freeze the exact causal as-of definitions and
-   availability audit for every required M1 input (OI, funding, premium,
-   taker-flow variance) and the joint probability estimator. Missing honest M1
-   inputs block M1; they do not shrink it silently. M0 may be commissioned alone.
-3. P4 / EXP-003 remains deferred until after M0/M1 review. EXP-003 stays PLANNED.
-   No P6, P4, EXP-003, M2+, fuel retry, or new feature family is active.
+1. **Next judgment point:** project owner/reviewer chooses one of two bounded
+   paths: provide qualifying historical publication evidence/replacement sources
+   for both required OI and funding inputs, or authorize an M0-only P6
+   implementation commission. Do not start either implicitly.
+2. If M1 evidence is supplied, apply D-033's frozen candidates; do not shrink the
+   family, invent a lag, substitute Hyperliquid/parked fuel, or inspect effects
+   while resolving availability.
+3. P4 / EXP-003 remains deferred until after an actual M0/M1 review. EXP-003
+   stays PLANNED. No P6 implementation, P4, EXP-003, M2+, fuel retry, new feature
+   family, dashboard, live service, or trading work is active.
 
 ### Glide path (authoritative sequence)
 
 Active research sequence is `docs/glide_path.md` (v1). **P3 BANKED NULL**
 (reports `d591f9b`, verdict `1b249da`). **P5 BANKED** (corrected D-032;
-contracts `2319b07`, inventory `54e7166`). **P4 deferred. P6 not authorized.**
+contracts `2319b07`, inventory `54e7166`). **D-033 contract/audit BANKED**
+(`21fbfd4`, `04edc6b`, `c430f8f`). **P4 deferred. P6 implementation not
+authorized.**
 Census: `reports/p1_eligibility_census.json`. No M2.
 
 
 ### Seat note (2026-08-25)
 
-Codex completed the CTO transition and P5 close. The next seat inherits no active
-implementation commission. Thin orchestration is provider-neutral: the lead owns
-research judgment; subagents perform only fenced mechanical work.
+Codex completed the CTO transition, verified the prior P5 close, and banked the
+D-033 implementation contract plus M1 source audit. The next seat inherits no
+active implementation commission. Thin orchestration is provider-neutral: the
+lead owns research judgment; subagents perform only fenced mechanical work.
 
 ### Operating notes
 
@@ -181,7 +218,8 @@ research judgment; subagents perform only fenced mechanical work.
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 197 tests passed (7 skipped) and Ruff passed at the P5 close.
+  handing off. 211 tests passed (7 skipped) and Ruff passed before the D-033
+  evidence bank; rerun after this handover-only commit.
 - Known open decisions are listed at the bottom of `docs/DECISIONS.md`. The
   precondition impulse, large-cluster weighting, and D-026 twin estimator are
   closed by corrected D-032.
