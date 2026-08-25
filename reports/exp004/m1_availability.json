@@ -1,0 +1,853 @@
+{
+  "audit_config_sha256": "876536d5916ad466de911d989abffcbf9de70eebac8ef2cbcab6399fb483ae49",
+  "audit_version": "exp004_m1_availability_v1",
+  "availability": {
+    "coverage_cannot_override_publication_gate": true,
+    "coverage_clearance": true,
+    "periods": {
+      "M1_DEV": {
+        "candidate_hours": 18263,
+        "families": {
+          "funding": {
+            "available_hours": 18263,
+            "candidate_hours": 18263,
+            "coverage_fraction": 1.0,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "open_interest": {
+            "available_hours": 18250,
+            "candidate_hours": 18263,
+            "coverage_fraction": 0.9992881782839621,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "perpetual_premium": {
+            "available_hours": 18261,
+            "candidate_hours": 18263,
+            "coverage_fraction": 0.9998904889667634,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "taker_flow_variance_compression": {
+            "available_hours": 18221,
+            "candidate_hours": 18263,
+            "coverage_fraction": 0.9977002683020314,
+            "floor": 0.9,
+            "floor_pass": true
+          }
+        },
+        "joint": {
+          "available_hours": 18206,
+          "coverage_fraction": 0.996878935552757,
+          "floor": 0.85,
+          "floor_pass": true
+        },
+        "monthly_joint": {
+          "2021-12": {
+            "candidate_hours": 743,
+            "full_calendar_month": false,
+            "joint_hours": 743
+          },
+          "2022-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-02": {
+            "candidate_hours": 672,
+            "full_calendar_month": true,
+            "joint_hours": 672
+          },
+          "2022-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 734
+          },
+          "2022-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2022-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 723
+          },
+          "2022-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2022-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2022-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2022-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2022-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-02": {
+            "candidate_hours": 672,
+            "full_calendar_month": true,
+            "joint_hours": 672
+          },
+          "2023-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 742
+          },
+          "2023-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 719
+          },
+          "2023-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2023-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 710
+          },
+          "2023-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2023-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 707
+          },
+          "2023-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          }
+        },
+        "zero_joint_full_months": []
+      },
+      "TEST_2025": {
+        "candidate_hours": 8760,
+        "families": {
+          "funding": {
+            "available_hours": 8760,
+            "candidate_hours": 8760,
+            "coverage_fraction": 1.0,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "open_interest": {
+            "available_hours": 8757,
+            "candidate_hours": 8760,
+            "coverage_fraction": 0.9996575342465753,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "perpetual_premium": {
+            "available_hours": 8760,
+            "candidate_hours": 8760,
+            "coverage_fraction": 1.0,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "taker_flow_variance_compression": {
+            "available_hours": 8740,
+            "candidate_hours": 8760,
+            "coverage_fraction": 0.997716894977169,
+            "floor": 0.9,
+            "floor_pass": true
+          }
+        },
+        "joint": {
+          "available_hours": 8737,
+          "coverage_fraction": 0.9973744292237443,
+          "floor": 0.85,
+          "floor_pass": true
+        },
+        "monthly_joint": {
+          "2025-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 734
+          },
+          "2025-02": {
+            "candidate_hours": 672,
+            "full_calendar_month": true,
+            "joint_hours": 672
+          },
+          "2025-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2025-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 718
+          },
+          "2025-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2025-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2025-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 743
+          },
+          "2025-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 734
+          },
+          "2025-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2025-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2025-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2025-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          }
+        },
+        "zero_joint_full_months": []
+      },
+      "TEST_2026": {
+        "candidate_hours": 5088,
+        "families": {
+          "funding": {
+            "available_hours": 5088,
+            "candidate_hours": 5088,
+            "coverage_fraction": 1.0,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "open_interest": {
+            "available_hours": 5088,
+            "candidate_hours": 5088,
+            "coverage_fraction": 1.0,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "perpetual_premium": {
+            "available_hours": 5088,
+            "candidate_hours": 5088,
+            "coverage_fraction": 1.0,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "taker_flow_variance_compression": {
+            "available_hours": 5088,
+            "candidate_hours": 5088,
+            "coverage_fraction": 1.0,
+            "floor": 0.9,
+            "floor_pass": true
+          }
+        },
+        "joint": {
+          "available_hours": 5088,
+          "coverage_fraction": 1.0,
+          "floor": 0.85,
+          "floor_pass": true
+        },
+        "monthly_joint": {
+          "2026-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2026-02": {
+            "candidate_hours": 672,
+            "full_calendar_month": true,
+            "joint_hours": 672
+          },
+          "2026-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2026-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2026-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2026-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2026-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          }
+        },
+        "zero_joint_full_months": []
+      },
+      "VALIDATION": {
+        "candidate_hours": 8784,
+        "families": {
+          "funding": {
+            "available_hours": 8784,
+            "candidate_hours": 8784,
+            "coverage_fraction": 1.0,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "open_interest": {
+            "available_hours": 8739,
+            "candidate_hours": 8784,
+            "coverage_fraction": 0.9948770491803278,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "perpetual_premium": {
+            "available_hours": 8784,
+            "candidate_hours": 8784,
+            "coverage_fraction": 1.0,
+            "floor": 0.9,
+            "floor_pass": true
+          },
+          "taker_flow_variance_compression": {
+            "available_hours": 8769,
+            "candidate_hours": 8784,
+            "coverage_fraction": 0.9982923497267759,
+            "floor": 0.9,
+            "floor_pass": true
+          }
+        },
+        "joint": {
+          "available_hours": 8724,
+          "coverage_fraction": 0.9931693989071039,
+          "floor": 0.85,
+          "floor_pass": true
+        },
+        "monthly_joint": {
+          "2024-01": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2024-02": {
+            "candidate_hours": 696,
+            "full_calendar_month": true,
+            "joint_hours": 685
+          },
+          "2024-03": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2024-04": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 713
+          },
+          "2024-05": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2024-06": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2024-07": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 717
+          },
+          "2024-08": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          },
+          "2024-09": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2024-10": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 729
+          },
+          "2024-11": {
+            "candidate_hours": 720,
+            "full_calendar_month": true,
+            "joint_hours": 720
+          },
+          "2024-12": {
+            "candidate_hours": 744,
+            "full_calendar_month": true,
+            "joint_hours": 744
+          }
+        },
+        "zero_joint_full_months": []
+      }
+    },
+    "zero_joint_full_months": []
+  },
+  "candidate_contracts": {
+    "funding": {
+      "as_of": "exactly three rows in (T-24h-5m, T-5m], each interval=8h",
+      "effective_raw_start": "2020-01",
+      "field_unit": "last_funding_rate, dimensionless realized settlement rate",
+      "missingness": "not exactly three unique finite 8h settlements => missing",
+      "publication_evidence": "BLOCKED_ASOF_NO_PUBLICATION_TIME",
+      "source": "Binance USD-M BTCUSDT monthly funding history",
+      "timestamp": "raw millisecond calc_time event stamp; never rounded or floored",
+      "transform": "funding_24h_T = sum(last_funding_rate)"
+    },
+    "open_interest": {
+      "as_of": "exact raw row at T-5m",
+      "effective_raw_start": "2021-12-01",
+      "field_unit": "sum_open_interest_value, USDT quote notional",
+      "missingness": "missing, conflicted, off-grid, nonfinite, or nonpositive row => missing",
+      "publication_evidence": "BLOCKED_ASOF_NO_PUBLICATION_TIME",
+      "source": "Binance USD-M BTCUSDT five-minute metrics",
+      "timestamp": "raw create_time; candidate interval end; off-grid rows unusable",
+      "transform": "oi_level_T = log(sum_open_interest_value[T-5m])"
+    },
+    "perpetual_premium": {
+      "as_of": "both exact one-minute bars ending at T",
+      "effective_raw_start": "2020-01",
+      "field_unit": "perpetual and spot close, USDT per BTC",
+      "missingness": "either exact bar missing/conflicted/nonfinite/nonpositive => missing",
+      "publication_evidence": "CLEARED_INTERVAL_END",
+      "source": "Binance USD-M and spot BTCUSDT one-minute klines",
+      "timestamp": "open_time interval start; decision-time interval end = open_time+60s",
+      "transform": "premium_T = log(perp_close_T / spot_close_T)"
+    },
+    "taker_flow_variance_compression": {
+      "as_of": "96 complete q points per 8h residual and 24 complete residuals per 2h variance",
+      "effective_raw_start": "2020-01 plus frozen lookbacks",
+      "field_unit": "quote_volume and taker_buy_quote_volume, USDT",
+      "missingness": "any absent/nonfinite input, B<=0, S<=0, or variance<=0 => missing",
+      "publication_evidence": "CLEARED_INTERVAL_END",
+      "source": "Binance USD-M BTCUSDT one-minute kline quote-volume fields",
+      "timestamp": "five complete 1m bars per UTC-aligned block; newest block ends T-5m",
+      "transform": "q=log(B/(Q-B)); 8h mean residual; -log(population variance over 2h)"
+    }
+  },
+  "manifest": {
+    "bytes": 697393,
+    "exact_identity_set": true,
+    "failures": [],
+    "identifier": "manifests/binance_vision_fetch.jsonl",
+    "parse_errors": [],
+    "records": 1962,
+    "retrieval_range": {
+      "first": "2026-08-23T04:00:44.158480+00:00",
+      "last": "2026-08-23T04:05:27.355891+00:00"
+    },
+    "sha256": "14c35b3b7df6af6da75ab017abdfb6fad87240358697f6192e3b71086ec1297b",
+    "sources": {
+      "funding": {
+        "expected": 79,
+        "integrity_valid": 79,
+        "manifest_present": 79,
+        "manifest_valid": 79,
+        "on_disk": 79
+      },
+      "metrics": {
+        "expected": 1725,
+        "integrity_valid": 1725,
+        "manifest_present": 1725,
+        "manifest_valid": 1725,
+        "on_disk": 1725
+      },
+      "spot_klines_1m": {
+        "expected": 79,
+        "integrity_valid": 79,
+        "manifest_present": 79,
+        "manifest_valid": 79,
+        "on_disk": 79
+      },
+      "um_klines_1m": {
+        "expected": 79,
+        "integrity_valid": 79,
+        "manifest_present": 79,
+        "manifest_valid": 79,
+        "on_disk": 79
+      }
+    },
+    "unexpected_archive_identities": [],
+    "unique_archive_identities": 1962
+  },
+  "overall_m1_status": "BLOCKED_ASOF",
+  "overall_reason": "OI and funding lack historical publication/receive-time evidence; coverage cannot clear the as-of gate",
+  "publication_evidence": {
+    "funding": "BLOCKED_ASOF_NO_PUBLICATION_TIME",
+    "open_interest": "BLOCKED_ASOF_NO_PUBLICATION_TIME",
+    "perpetual_premium": "CLEARED_INTERVAL_END",
+    "taker_flow_variance_compression": "CLEARED_INTERVAL_END"
+  },
+  "scope": "source-only; no D-022, labels, clusters, outcomes, fits, effects, or scores",
+  "sources": {
+    "funding": {
+      "archive_errors": [],
+      "archives_read": 79,
+      "close_time_audit": {
+        "after_interval_end": 0,
+        "at_or_before_interval_end": 0,
+        "before_interval_start": 0,
+        "nonstandard_offset": 0,
+        "standard_offset": 0,
+        "unparseable": 0
+      },
+      "duplicates": {
+        "conflicting_timestamps": 0,
+        "duplicate_rows": 0,
+        "out_of_order_rows": 0
+      },
+      "field_audit": {
+        "funding_interval_hours": {
+          "finite": 0,
+          "negative": 0,
+          "nonfinite": 0,
+          "nonpositive": 0,
+          "null": 0,
+          "valid": 7212,
+          "zero": 0
+        },
+        "last_funding_rate": {
+          "finite": 7212,
+          "negative": 1031,
+          "nonfinite": 0,
+          "nonpositive": 0,
+          "null": 0,
+          "zero": 0
+        }
+      },
+      "field_units": {
+        "funding_interval_hours": "hours",
+        "last_funding_rate": "dimensionless settlement rate"
+      },
+      "headerless_archives": 0,
+      "headers": {
+        "calc_time,funding_interval_hours,last_funding_rate": 79
+      },
+      "normalized_timestamp_range": {
+        "first": "2020-01-01T00:00:00Z",
+        "last": "2026-07-31T16:00:00Z"
+      },
+      "off_grid_rows": 3224,
+      "path": "raw/binance_vision/futures/um/monthly/fundingRate/BTCUSDT",
+      "raw_settlement_delta_ms": {
+        "greater_than_8h_count": 2222,
+        "maximum": 28800047,
+        "minimum": 28799955,
+        "nominal_grid_rounding_applied": false
+      },
+      "raw_timestamp_gaps": {
+        "gap_count": 0,
+        "missing_intervals": 0,
+        "semantics": "consecutive raw normalized timestamp deltas; off-grid rows are reported separately"
+      },
+      "rows": 7212,
+      "schema": [
+        "calc_time",
+        "funding_interval_hours",
+        "last_funding_rate"
+      ],
+      "timestamp_semantics": "raw calc_time millisecond event stamp; never rounded",
+      "timestamp_units": {
+        "epoch_ms": 7212
+      }
+    },
+    "metrics": {
+      "archive_errors": [],
+      "archives_read": 1725,
+      "close_time_audit": {
+        "after_interval_end": 0,
+        "at_or_before_interval_end": 0,
+        "before_interval_start": 0,
+        "nonstandard_offset": 0,
+        "standard_offset": 0,
+        "unparseable": 0
+      },
+      "duplicates": {
+        "conflicting_timestamps": 2,
+        "duplicate_rows": 2,
+        "out_of_order_rows": 2866
+      },
+      "field_audit": {
+        "sum_open_interest_value": {
+          "finite": 496657,
+          "negative": 0,
+          "nonfinite": 0,
+          "nonpositive": 475,
+          "null": 0,
+          "zero": 475
+        },
+        "symbol": {
+          "BTCUSDT": 496657,
+          "finite": 0,
+          "negative": 0,
+          "nonfinite": 0,
+          "nonpositive": 0,
+          "null": 0,
+          "zero": 0
+        }
+      },
+      "field_units": {
+        "sum_open_interest_value": "USDT quote notional"
+      },
+      "headerless_archives": 0,
+      "headers": {
+        "create_time,symbol,sum_open_interest,sum_open_interest_value,count_toptrader_long_short_ratio,sum_toptrader_long_short_ratio,count_long_short_ratio,sum_taker_long_short_vol_ratio": 1725
+      },
+      "normalized_timestamp_range": {
+        "first": "2021-12-01T00:00:00Z",
+        "last": "2026-08-21T23:55:00Z"
+      },
+      "off_grid_rows": 143,
+      "path": "raw/binance_vision/futures/um/daily/metrics/BTCUSDT",
+      "raw_timestamp_gaps": {
+        "gap_count": 153,
+        "missing_intervals": 145,
+        "semantics": "consecutive raw normalized timestamp deltas; off-grid rows are reported separately"
+      },
+      "rows": 496657,
+      "schema": [
+        "create_time",
+        "symbol",
+        "sum_open_interest_value"
+      ],
+      "timestamp_semantics": "raw create_time candidate interval end; never floored",
+      "timestamp_units": {
+        "iso": 496657
+      }
+    },
+    "spot_klines_1m": {
+      "archive_errors": [],
+      "archives_read": 79,
+      "close_time_audit": {
+        "after_interval_end": 0,
+        "at_or_before_interval_end": 3459435,
+        "before_interval_start": 1,
+        "nonstandard_offset": 8,
+        "standard_offset": 3459427,
+        "unparseable": 0
+      },
+      "duplicates": {
+        "conflicting_timestamps": 0,
+        "duplicate_rows": 0,
+        "out_of_order_rows": 0
+      },
+      "field_audit": {
+        "close": {
+          "finite": 3459435,
+          "negative": 0,
+          "nonfinite": 0,
+          "nonpositive": 0,
+          "null": 0,
+          "zero": 0
+        },
+        "quote_volume": {
+          "finite": 3459435,
+          "negative": 0,
+          "nonfinite": 0,
+          "nonpositive": 0,
+          "null": 0,
+          "zero": 211
+        },
+        "taker_buy_quote_volume": {
+          "finite": 3459435,
+          "negative": 0,
+          "nonfinite": 0,
+          "nonpositive": 0,
+          "null": 0,
+          "zero": 211
+        }
+      },
+      "field_units": {
+        "close": "USDT per BTC"
+      },
+      "headerless_archives": 79,
+      "headers": {},
+      "normalized_timestamp_range": {
+        "first": "2020-01-01T00:00:00Z",
+        "last": "2026-07-31T23:59:00Z"
+      },
+      "off_grid_rows": 0,
+      "path": "raw/binance_vision/spot/monthly/klines/BTCUSDT/1m",
+      "raw_timestamp_gaps": {
+        "gap_count": 15,
+        "missing_intervals": 2325,
+        "semantics": "consecutive raw normalized timestamp deltas; off-grid rows are reported separately"
+      },
+      "rows": 3459435,
+      "schema": [
+        "open_time",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "close_time",
+        "quote_volume",
+        "trade_count",
+        "taker_buy_volume",
+        "taker_buy_quote_volume",
+        "ignore"
+      ],
+      "timestamp_semantics": "open_time is interval start; interval end is +60s",
+      "timestamp_units": {
+        "epoch_ms": 2628555,
+        "epoch_us": 830880
+      }
+    },
+    "um_klines_1m": {
+      "archive_errors": [],
+      "archives_read": 79,
+      "close_time_audit": {
+        "after_interval_end": 0,
+        "at_or_before_interval_end": 3461760,
+        "before_interval_start": 0,
+        "nonstandard_offset": 0,
+        "standard_offset": 3461760,
+        "unparseable": 0
+      },
+      "duplicates": {
+        "conflicting_timestamps": 0,
+        "duplicate_rows": 0,
+        "out_of_order_rows": 0
+      },
+      "field_audit": {
+        "close": {
+          "finite": 3461760,
+          "negative": 0,
+          "nonfinite": 0,
+          "nonpositive": 0,
+          "null": 0,
+          "zero": 0
+        },
+        "quote_volume": {
+          "finite": 3461760,
+          "negative": 0,
+          "nonfinite": 0,
+          "nonpositive": 0,
+          "null": 0,
+          "zero": 369
+        },
+        "taker_buy_quote_volume": {
+          "finite": 3461760,
+          "negative": 0,
+          "nonfinite": 0,
+          "nonpositive": 0,
+          "null": 0,
+          "zero": 403
+        }
+      },
+      "field_units": {
+        "close": "USDT per BTC",
+        "quote_volume": "USDT",
+        "taker_buy_quote_volume": "USDT"
+      },
+      "headerless_archives": 24,
+      "headers": {
+        "open_time,open,high,low,close,volume,close_time,quote_volume,count,taker_buy_volume,taker_buy_quote_volume,ignore": 55
+      },
+      "normalized_timestamp_range": {
+        "first": "2020-01-01T00:00:00Z",
+        "last": "2026-07-31T23:59:00Z"
+      },
+      "off_grid_rows": 0,
+      "path": "raw/binance_vision/futures/um/monthly/klines/BTCUSDT/1m",
+      "raw_timestamp_gaps": {
+        "gap_count": 0,
+        "missing_intervals": 0,
+        "semantics": "consecutive raw normalized timestamp deltas; off-grid rows are reported separately"
+      },
+      "rows": 3461760,
+      "schema": [
+        "open_time",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "close_time",
+        "quote_volume",
+        "trade_count",
+        "taker_buy_volume",
+        "taker_buy_quote_volume",
+        "ignore"
+      ],
+      "timestamp_semantics": "open_time is interval start; interval end is +60s",
+      "timestamp_units": {
+        "epoch_ms": 3461760
+      }
+    }
+  }
+}
