@@ -1,0 +1,379 @@
+{
+  "bundles": [
+    {
+      "alert_thresholds_up_down_strict": [
+        0.1301303580741254,
+        0.15872867817291444
+      ],
+      "development_climatology_up_down_none": [
+        0.015257329809991192,
+        0.019472757015225873,
+        0.965269913174783
+      ],
+      "development_support_count": 31788,
+      "horizon_seconds": 3600,
+      "label_family": "fixed",
+      "model": {
+        "causes_in_probability_order": [
+          "UP",
+          "DOWN",
+          "NONE"
+        ],
+        "final_gradient_infinity_norm": 6.802993329990988e-08,
+        "intercepts_up_down": [
+          -4.560908926264587,
+          -4.295914723134867
+        ],
+        "none_is_reference": true,
+        "objective": 0.15137774951005542,
+        "optimizer": {
+          "ftol": 1e-12,
+          "gtol": 1e-08,
+          "initialization": "all_zero",
+          "iterations": 20,
+          "maxiter": 2000,
+          "method": "L-BFGS-B"
+        },
+        "ridge_penalty_slopes_only": 0.0001,
+        "slopes_up_down": [
+          [
+            0.03626057886477473,
+            0.3181399648047759,
+            0.5277605393885082,
+            -0.21611175024678259,
+            -0.0783979869031344,
+            0.12502776699522536,
+            0.09393488508339064
+          ],
+          [
+            -0.13393216876370584,
+            0.2757965916002794,
+            0.5541601768041894,
+            -0.17975686722176898,
+            -0.09732390788591286,
+            0.0453999017151546,
+            0.01167980625723776
+          ]
+        ],
+        "standardizer": {
+          "column_names": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos"
+          ],
+          "means": [
+            0.00042735205488021505,
+            0.017176616936147453,
+            0.028818961404561326,
+            0.012469233423829064,
+            0.0036984139756602646,
+            -0.010756600711526244,
+            0.0014395114456862348
+          ],
+          "population_scales_ddof0": [
+            0.011917932909253956,
+            0.013422779589847271,
+            0.01645550084152477,
+            0.7086514296644854,
+            0.7054388642443685,
+            0.7094696728274932,
+            0.7046524013199835
+          ]
+        },
+        "support_identifier": "6094e7903a5b342071d87dff2c0ee79d036119bcbcb3842eaf09fc63e8f67e83"
+      },
+      "rv_tertile_cutpoints_linear": [
+        0.021235940739787015,
+        0.031206682650519728
+      ]
+    },
+    {
+      "alert_thresholds_up_down_strict": [
+        0.046844338596300626,
+        0.03615872061913147
+      ],
+      "development_climatology_up_down_none": [
+        0.011513778784446961,
+        0.012992324147477035,
+        0.975493897068076
+      ],
+      "development_support_count": 31788,
+      "horizon_seconds": 3600,
+      "label_family": "twin",
+      "model": {
+        "causes_in_probability_order": [
+          "UP",
+          "DOWN",
+          "NONE"
+        ],
+        "final_gradient_infinity_norm": 2.799453487415776e-08,
+        "intercepts_up_down": [
+          -4.862956532235598,
+          -4.5252206911507695
+        ],
+        "none_is_reference": true,
+        "objective": 0.12576803668692868,
+        "optimizer": {
+          "ftol": 1e-12,
+          "gtol": 1e-08,
+          "initialization": "all_zero",
+          "iterations": 23,
+          "maxiter": 2000,
+          "method": "L-BFGS-B"
+        },
+        "ridge_penalty_slopes_only": 0.0001,
+        "slopes_up_down": [
+          [
+            0.507569602372746,
+            0.11319552519638278,
+            -1.019053928489306,
+            -0.28552906035556597,
+            -0.04231458528377029,
+            0.20297053085506045,
+            0.1267216495156519
+          ],
+          [
+            -0.1794635346049661,
+            0.36198948366640943,
+            -0.8632072254424571,
+            -0.18699355041486515,
+            -0.08728167191739994,
+            0.08426917778793049,
+            0.08711990015033125
+          ]
+        ],
+        "standardizer": {
+          "column_names": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos"
+          ],
+          "means": [
+            0.00042735205488021505,
+            0.017176616936147453,
+            0.028818961404561326,
+            0.012469233423829064,
+            0.0036984139756602646,
+            -0.010756600711526244,
+            0.0014395114456862348
+          ],
+          "population_scales_ddof0": [
+            0.011917932909253956,
+            0.013422779589847271,
+            0.01645550084152477,
+            0.7086514296644854,
+            0.7054388642443685,
+            0.7094696728274932,
+            0.7046524013199835
+          ]
+        },
+        "support_identifier": "fe663936de2819f0df9187a01beda895e12f9e5f5453e81638eed13f22b2fbeb"
+      },
+      "rv_tertile_cutpoints_linear": [
+        0.021235940739787015,
+        0.031206682650519728
+      ]
+    },
+    {
+      "alert_thresholds_up_down_strict": [
+        0.41293947372413636,
+        0.4752575725381109
+      ],
+      "development_climatology_up_down_none": [
+        0.09602722031441983,
+        0.10349390378374973,
+        0.8004788759018304
+      ],
+      "development_support_count": 31741,
+      "horizon_seconds": 14400,
+      "label_family": "fixed",
+      "model": {
+        "causes_in_probability_order": [
+          "UP",
+          "DOWN",
+          "NONE"
+        ],
+        "final_gradient_infinity_norm": 1.1596894639266588e-07,
+        "intercepts_up_down": [
+          -2.3303086851839545,
+          -2.2607477543761205
+        ],
+        "none_is_reference": true,
+        "objective": 0.5599595171463069,
+        "optimizer": {
+          "ftol": 1e-12,
+          "gtol": 1e-08,
+          "initialization": "all_zero",
+          "iterations": 15,
+          "maxiter": 2000,
+          "method": "L-BFGS-B"
+        },
+        "ridge_penalty_slopes_only": 0.0001,
+        "slopes_up_down": [
+          [
+            0.00820348147653778,
+            0.30548658684738444,
+            0.7632282443842895,
+            -0.11224117291633934,
+            -0.23818064330015717,
+            0.17352181303514003,
+            0.10590861752143557
+          ],
+          [
+            -0.10807690706116661,
+            0.2975661492299842,
+            0.7863792225115388,
+            -0.16323276212825916,
+            -0.21068187124764004,
+            0.11217042584437449,
+            0.06437262707320722
+          ]
+        ],
+        "standardizer": {
+          "column_names": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos"
+          ],
+          "means": [
+            0.00042379904936102925,
+            0.01717965626439961,
+            0.0288228071510295,
+            0.012033550958902843,
+            0.003399851638694325,
+            -0.010467324493916023,
+            0.0014375998139347804
+          ],
+          "population_scales_ddof0": [
+            0.01191576715515563,
+            0.013425015420362228,
+            0.01646457228797334,
+            0.7085991877581692,
+            0.7055004080568856,
+            0.7093850213788805,
+            0.7047419810595806
+          ]
+        },
+        "support_identifier": "a0396b7052756439dc69af2b98a142980e6aab82d5ba61f0c2f63d39f111593e"
+      },
+      "rv_tertile_cutpoints_linear": [
+        0.021234486688010826,
+        0.031223500644839444
+      ]
+    },
+    {
+      "alert_thresholds_up_down_strict": [
+        0.18817505655500946,
+        0.18999946297612236
+      ],
+      "development_climatology_up_down_none": [
+        0.07794335402161243,
+        0.08311017296241455,
+        0.838946473015973
+      ],
+      "development_support_count": 31741,
+      "horizon_seconds": 14400,
+      "label_family": "twin",
+      "model": {
+        "causes_in_probability_order": [
+          "UP",
+          "DOWN",
+          "NONE"
+        ],
+        "final_gradient_infinity_norm": 1.1171322104533969e-08,
+        "intercepts_up_down": [
+          -2.5258009754687194,
+          -2.4083219287204187
+        ],
+        "none_is_reference": true,
+        "objective": 0.5326458360139383,
+        "optimizer": {
+          "ftol": 1e-12,
+          "gtol": 1e-08,
+          "initialization": "all_zero",
+          "iterations": 18,
+          "maxiter": 2000,
+          "method": "L-BFGS-B"
+        },
+        "ridge_penalty_slopes_only": 0.0001,
+        "slopes_up_down": [
+          [
+            0.20045685940047966,
+            0.13982799486928277,
+            -0.6120330987576437,
+            -0.23688068305475615,
+            -0.21012016025596444,
+            0.14690395024449285,
+            0.15313786365008974
+          ],
+          [
+            -0.19679725813508128,
+            0.20853256773394033,
+            -0.4861325158393254,
+            -0.19553603768881095,
+            -0.18228237462025526,
+            0.08894663236909947,
+            0.14531212952363304
+          ]
+        ],
+        "standardizer": {
+          "column_names": [
+            "trend_4h",
+            "range_4h",
+            "rv_24h",
+            "hour_sin",
+            "hour_cos",
+            "weekday_sin",
+            "weekday_cos"
+          ],
+          "means": [
+            0.00042379904936102925,
+            0.01717965626439961,
+            0.0288228071510295,
+            0.012033550958902843,
+            0.003399851638694325,
+            -0.010467324493916023,
+            0.0014375998139347804
+          ],
+          "population_scales_ddof0": [
+            0.01191576715515563,
+            0.013425015420362228,
+            0.01646457228797334,
+            0.7085991877581692,
+            0.7055004080568856,
+            0.7093850213788805,
+            0.7047419810595806
+          ]
+        },
+        "support_identifier": "ddb0de0afc64c49ce0f94e5c6eba6ec1308dc877c064452c4a6e7f2175cddcd1"
+      },
+      "rv_tertile_cutpoints_linear": [
+        0.021234486688010826,
+        0.031223500644839444
+      ]
+    }
+  ],
+  "kappa_six_decimals": 0.771724,
+  "m0_columns_ordered": [
+    "trend_4h",
+    "range_4h",
+    "rv_24h",
+    "hour_sin",
+    "hour_cos",
+    "weekday_sin",
+    "weekday_cos"
+  ],
+  "rung": "M0"
+}

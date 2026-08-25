@@ -1,0 +1,108 @@
+{
+  "repo_commit": "680f2af101f88b55e761945390f6da020c9e9a71",
+  "generated_at_utc": "2026-08-25T09:06:15Z",
+  "config": {
+    "experiment": "EXP-004",
+    "rung": "M0",
+    "stage": "full",
+    "implementation_sha": "680f2af101f88b55e761945390f6da020c9e9a71",
+    "risk_clock": "exact_utc_hour_interval_end",
+    "periods": [
+      "development",
+      "validation",
+      "test_2025",
+      "test_2026"
+    ],
+    "horizons_seconds": [
+      3600,
+      14400
+    ],
+    "label_families": [
+      "fixed",
+      "twin"
+    ],
+    "m0_columns_ordered": [
+      "trend_4h",
+      "range_4h",
+      "rv_24h",
+      "hour_sin",
+      "hour_cos",
+      "weekday_sin",
+      "weekday_cos"
+    ],
+    "estimator": "frozen_baseline_category_multinomial_lbfgsb",
+    "bootstrap": {
+      "draws": 1000,
+      "seed": 20250825
+    },
+    "m1": "BLOCKED_ASOF",
+    "later_rungs": "UNAUTHORIZED",
+    "contracts": [
+      "docs/briefs/2026-08-25-p5-eval-unit.md",
+      "docs/briefs/2026-08-25-p6-implementation-freeze.md"
+    ]
+  },
+  "config_sha256": "17e9a38e1ab355a501856003e553e93e8eb881a20b336ab24b498e65e151152c",
+  "inputs": [
+    {
+      "path": "reports/exp000/index_catalogue.provenance.json",
+      "bytes": 2250728,
+      "sha256": "371a7063041f03dd3a6020bea6154a36258cd7e522edddc16f34df5278874d6c"
+    },
+    {
+      "path": "reports/exp000/index_clusters.json",
+      "bytes": 1074050,
+      "sha256": "3e636f10ae5096f7239ad2d57b2e1dd4472508d8e8cdcbcd3cc608bad03795a8"
+    },
+    {
+      "path": "configs/v0.yaml",
+      "bytes": 4585,
+      "sha256": "a6942fee97a868f0e94b5f5052480dcdf38b405fe9932290922250684b777ea0"
+    },
+    {
+      "path": "docs/briefs/2026-08-25-p5-eval-unit.md",
+      "bytes": 12136,
+      "sha256": "d45102e0336154386bf6ea13a43eaf3ac7a475d8f463447829f2453fad9235e3"
+    },
+    {
+      "path": "docs/briefs/2026-08-25-p6-implementation-freeze.md",
+      "bytes": 13525,
+      "sha256": "f658c7d2076125d47345a35f928aead672739156d1b77ac2c5aeabc62f5c05bf"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "m0_frozen_state.json",
+      "bytes": 10415,
+      "sha256": "da79c747026827ff1ecde78059eb0db201d7d1d0cee915ee49c26ab3a4575b55"
+    },
+    {
+      "path": "m0_result.json",
+      "bytes": 310780,
+      "sha256": "606b0287047800ddc22e52cbeb36d36e77fd11c96f66e84ac0b17824cc4afcad"
+    },
+    {
+      "path": "m0_result.md",
+      "bytes": 3698,
+      "sha256": "9e5ed3bdb38f88d3ce96cb168ae8dee682e9b69e068420d06c386db60ceb8cfa"
+    }
+  ],
+  "pre_oos_implementation_sha": "680f2af101f88b55e761945390f6da020c9e9a71",
+  "source_manifest_verification": {
+    "manifest": "reports/exp000/index_catalogue.provenance.json",
+    "manifest_sha256": "371a7063041f03dd3a6020bea6154a36258cd7e522edddc16f34df5278874d6c",
+    "manifest_repo_commit": "9eed16c949d55bf4560b9f3df6f0f78fb332909e",
+    "verified_input_count": 11770,
+    "verified_input_bytes": 653828637,
+    "verified_output_count": 3,
+    "all_entries_verified": true
+  },
+  "runtime": {
+    "python": "3.13.13",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform_machine": "aarch64"
+  },
+  "one_shot_oos_execution": true,
+  "receipt": "LOCAL_UNCOMMITTED_CONSUMPTION_RECORD"
+}
