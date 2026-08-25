@@ -1,0 +1,91 @@
+{
+  "repo_commit": "1df5bb2274030b71463fca1dad6cc04ad3ef85fc",
+  "generated_at_utc": "2026-08-25T06:17:56Z",
+  "config": {
+    "gate": "exp002_p3_construct_gate_phase_b",
+    "script": "scripts/run_p3_construct_gate.py",
+    "data_root": "/home/a8ra_dgx/oracle-data",
+    "clusters": "reports/exp000/index_clusters.json",
+    "metrics_dir": "/home/a8ra_dgx/oracle-data/raw/binance_vision/futures/um/daily/metrics/BTCUSDT",
+    "hl_fills_root": "/home/a8ra_dgx/oracle-data/derived/hyperliquid/fills/v1/all_fills",
+    "primary_cells": {
+      "horizon_seconds": 14400,
+      "directions": [
+        "up",
+        "down"
+      ],
+      "bands": [
+        "(0,1%)",
+        "[1,2%)"
+      ]
+    },
+    "windows": [
+      {
+        "key": "construct_dev",
+        "label": "construct-dev",
+        "start_timestamp": 1748131200,
+        "end_timestamp": 1756684800,
+        "min_cell_count": 10
+      },
+      {
+        "key": "construct_val",
+        "label": "construct-val",
+        "start_timestamp": 1756684800,
+        "end_timestamp": 1767225600,
+        "min_cell_count": 15
+      },
+      {
+        "key": "stability_sep_oct",
+        "label": "stability Sep-Oct",
+        "start_timestamp": 1756684800,
+        "end_timestamp": 1761955200,
+        "min_cell_count": 10
+      },
+      {
+        "key": "stability_nov_dec",
+        "label": "stability Nov-Dec",
+        "start_timestamp": 1761955200,
+        "end_timestamp": 1767225600,
+        "min_cell_count": 10
+      }
+    ],
+    "bootstrap": {
+      "seed": 20250825,
+      "draws": 1000
+    },
+    "target": "book_hitting_usd",
+    "backstop_policy": "reported only; never enters Spearman",
+    "config_sha256": "4b73a83adc346954c7519e5ceda0aca3158e8437d5bd6225a4d52f68f8db1f42"
+  },
+  "inputs": [
+    {
+      "path": "reports/exp000/index_clusters.json",
+      "bytes": 1074050,
+      "sha256": "3e636f10ae5096f7239ad2d57b2e1dd4472508d8e8cdcbcd3cc608bad03795a8"
+    },
+    {
+      "path": "scripts/run_p3_construct_gate.py",
+      "bytes": 11321,
+      "sha256": "fc3ab97293bdef205dc65fb42c3e117d302001256ba3c41333972d91a4e80fb5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "construct_gate.json",
+      "bytes": 113686,
+      "sha256": "8872df7a3aad3ba8880133d1a3ac97ffb72ce98c5df258614a0eb69f9f7c28c4"
+    },
+    {
+      "path": "construct_gate.md",
+      "bytes": 940,
+      "sha256": "6fe55f1ba39c50b56ca0ad4345ddde83ddfe36ba72ef61cb3586951a9163f9b8"
+    }
+  ],
+  "config_sha256": "4b73a83adc346954c7519e5ceda0aca3158e8437d5bd6225a4d52f68f8db1f42",
+  "input_manifest_identifiers": {
+    "data_root": "/home/a8ra_dgx/oracle-data",
+    "metrics_dir": "/home/a8ra_dgx/oracle-data/raw/binance_vision/futures/um/daily/metrics/BTCUSDT",
+    "hl_fills_root": "/home/a8ra_dgx/oracle-data/derived/hyperliquid/fills/v1/all_fills",
+    "clusters": "reports/exp000/index_clusters.json"
+  }
+}
