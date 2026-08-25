@@ -166,6 +166,7 @@ def make_fixture(
     metric_time_ms = (epoch_seconds(decision) - 300) * 1_000
     metric_rows = [[metric_time_ms, "BTCUSDT", 50_000.0]]
     if conflicting_metrics:
+        metric_rows.append([metric_time_ms - 300_000, "BTCUSDT", 49_999.0])
         metric_rows.append([metric_time_ms, "BTCUSDT", 50_001.0])
     written["metrics"] = write_zip(
         data_root,
@@ -310,6 +311,7 @@ class AvailabilityAuditTests(unittest.TestCase):
         metrics = payload["sources"]["metrics"]
         self.assertEqual(metrics["duplicates"]["duplicate_rows"], 1)
         self.assertEqual(metrics["duplicates"]["conflicting_timestamps"], 1)
+        self.assertEqual(metrics["duplicates"]["out_of_order_rows"], 1)
         period = payload["availability"]["periods"]["SYNTHETIC"]
         self.assertEqual(period["families"]["open_interest"]["available_hours"], 0)
         self.assertFalse(payload["availability"]["coverage_clearance"])

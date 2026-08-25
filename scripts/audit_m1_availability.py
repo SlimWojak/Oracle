@@ -713,6 +713,8 @@ def _parse_kline_rows(paths: Sequence[Path], stats: SourceStats) -> Iterator[Kli
 
 def _parse_metrics_rows(paths: Sequence[Path], stats: SourceStats) -> Iterator[MetricsRow]:
     for path in paths:
+        parsed_rows: list[MetricsRow] = []
+        previous_raw_time_us: int | None = None
         for payload in _csv_rows(path, stats, header_required=True):
             values = payload["values"]
             header = payload["header"]
@@ -723,6 +725,9 @@ def _parse_metrics_rows(paths: Sequence[Path], stats: SourceStats) -> Iterator[M
                 create_time_us, unit = parse_epoch_us_exact(
                     values[positions["create_time"]], field_name="create_time"
                 )
+                if previous_raw_time_us is not None and create_time_us < previous_raw_time_us:
+                    stats.out_of_order_rows += 1
+                previous_raw_time_us = create_time_us
                 stats.observe_timestamp(create_time_us, unit)
                 if create_time_us % (300 * 1_000_000):
                     stats.off_grid_rows += 1
@@ -736,15 +741,21 @@ def _parse_metrics_rows(paths: Sequence[Path], stats: SourceStats) -> Iterator[M
                     stats.field_counter("sum_open_interest_value"),
                     positive=True,
                 )
-                yield MetricsRow(
-                    create_time_us=create_time_us,
-                    value=value,
-                    fingerprint=tuple(value.strip() for value in values),
+                parsed_rows.append(
+                    MetricsRow(
+                        create_time_us=create_time_us,
+                        value=value,
+                        fingerprint=tuple(value.strip() for value in values),
+                    )
                 )
             except (IndexError, ValueError) as exc:
                 stats.archive_errors.append(
                     {"archive": payload["archive"], "reason": f"row_error:{exc}"}
                 )
+        # Some official daily metrics archives are internally out of order. Sort
+        # only the current small daily file so conflict grouping and nominal gap
+        # accounting remain exact without retaining the full history in memory.
+        yield from sorted(parsed_rows, key=lambda row: row.create_time_us)
 
 
 def _parse_funding_rows(paths: Sequence[Path], stats: SourceStats) -> Iterator[FundingRow]:
