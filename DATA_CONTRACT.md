@@ -53,6 +53,18 @@ raw interval-start stamp.
   bar ahead of returns and has produced published spurious-causality results.
   A -5 minute realignment of the metrics feed is required and must be asserted
   by a lag-correlation audit in the normalization layer.
+- The D-033 audit found that Binance spot monthly klines switch raw epoch units
+  from milliseconds to microseconds at 2025-01, while USD-M klines remain in
+  milliseconds. Normalize units explicitly before joins. Preserve anomalous raw
+  `close_time` values; do not rewrite them to the nominal interval end.
+- Binance funding `calc_time` can occur milliseconds after the nominal eight-hour
+  boundary, and Binance metrics can occur seconds off the five-minute grid.
+  Causal joins use raw timestamps without flooring. Differing duplicate metrics
+  timestamps are conflicts/missing for EXP-004, never last-file-wins revisions.
+- Binance metrics and funding bulk archives do not provide historical
+  publication/receive time. Their source/event timestamps and a later bulk
+  retrieval timestamp do not, by themselves, clear the feature as-of gate
+  (D-033). Do not manufacture causality with an arbitrary delay.
 - The Hyperliquid fill log attaches the liquidation object to both legs of each
   forced trade. All liquidation totals must be deduplicated by the
   liquidated-user leg or they double-count.
@@ -115,4 +127,3 @@ time, and output content hashes.
 - Treating account-count long/short ratios as dollar exposure.
 - Random train/test splits across market time.
 - Imputing across cascade-period feed loss without an explicit sensitivity analysis.
-

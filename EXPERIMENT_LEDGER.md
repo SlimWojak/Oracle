@@ -376,63 +376,76 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-004 — M0/M1 prospective baseline ladder
 
-- **Status:** PLANNED (corrected P5 freeze 2026-08-25; D-032; unscored)
+- **Status:** PLANNED (D-032/D-033 contract frozen 2026-08-25; implementation
+  not authorized; unscored)
 - **Frozen question:** On a causal hourly precondition risk set containing events
   and non-events, do price-only M0 and generic leverage/flow M1 improve OOS joint
   cumulative-incidence probabilities for the first `UP` / `DOWN` barrier cause?
 - **Hypothesis:** Trailing path/vol/range and the complete generic M1 family are the
   comparison objects any later Oracle-specific EXP must beat. They are not fuel
   and are not the central thesis.
-- **Belief change:** Banked M0/M1 become the prospective probability comparison
-  contract for later EXPs. They do not revive EXP-002, authorize M2/M4, or make a
-  trading claim. Honest absence of any required causal M1 input blocks M1 rather
-  than silently shrinking it; M0 may still bank.
-- **Materiality:** On the four D-032 primary cells, equal-weight family relative
-  Brier skill >=1% over the preceding rung, alert-episode precision >=2x the
-  scoreable base event rate at the development-frozen 1% alert-time budget,
-  event-cluster recall >=10%, and median lead >=15m (1h) / >=60m (4h). The twin
-  is required for any PASS headline (D-026). These are frozen gates, not results.
-- **Data manifest:** D-022 consolidated index as the prospective sampling frame;
-  `reports/exp000/index_clusters.json` only for fixed-event grouping and D-016
-  inventory; point-in-time Binance inputs for the complete M1 family if its causal
-  availability audit passes. No HL-fills predictive features.
-- **Development period:** D-023 development 2020-01-01 .. 2023-12-31.
+- **Belief change:** Banked M0/M1 would become the prospective probability
+  comparators for later EXPs. They do not revive EXP-002, authorize M2/M4, or make
+  a trading claim. A missing causal M1 input blocks M1 rather than shrinking it;
+  M0 may be commissioned alone by a later owner decision.
+- **Materiality:** Separately for validation, 2025, and 2026-01..07, and for both
+  fixed and twin families: equal-weight four-cell relative Brier skill >=1%; each
+  direction x horizon cell has alert-episode precision >=2x its same-cell base
+  event rate at the development-frozen 1% alert budget, cluster recall >=10%,
+  median lead >=15m (1h) / >=60m (4h), and >=30 eligible clusters. Every gate in
+  every period/family is required for PASS. These are frozen gates, not results.
+- **Data manifest:** D-022 consolidated index is the prospective sampling frame;
+  `reports/exp000/index_clusters.json` only groups positive outcomes. Candidate
+  M1 inputs are Binance USD-M five-minute OI notional, realized funding history,
+  paired USD-M/spot one-minute closes, and USD-M one-minute taker/total quote
+  volume. `reports/exp004/m1_availability.*` is the source-only D-019 audit. No
+  HL-fills predictive feature and no parked fuel proxy enters M1.
+- **Development period:** D-023 development 2020-01-01 .. 2023-12-31. M1 cannot
+  begin before its 2021-12 OI source boundary.
 - **Validation period:** D-023 validation 2024-01-01 .. 2024-12-31.
 - **Final test period:** D-023 final test 2025-01-01 .. 2026-07-31, reported as
   2025 and 2026-01..07 separately; no pooled-only headline.
 - **Features available as of:** Fixed UTC-hour interval-end `T`; all risk
   eligibility, impulse filtering, barriers, and features use information at or
-  before `T`. Outcome windows are strictly after `T`.
-- **Method:** Corrected `docs/briefs/2026-08-25-p5-eval-unit.md`. Hourly D-022
-  risk set; exact price precondition `abs(log(P_T/P_{T-15m})) < log(1.005)`;
-  categorical competing-risk outcome; fixed and causal vol-twin families; D-023
-  purge/embargo and D-014 outcome grouping. P5 implements and scores none of it.
-- **Baselines:** M0 is trailing 4h signed return, trailing 4h range, causal 24h
-  realized volatility, and causal calendar-time controls. M1 is M0 plus the full
-  contract family: OI, funding, premium, and taker-flow variance. M0/M1 incremental
-  comparison uses identical complete-case rows (D-016).
-- **Metrics:** Per-cell Brier/calibration; relative Brier skill over preceding
-  rung; precision at the development-frozen 99th-percentile alert threshold;
+  before `T`. Outcome windows are strictly after `T`. D-033 does not accept an
+  economic/event timestamp as proof of historical publication time.
+- **Method:** Corrected P5 unit in
+  `docs/briefs/2026-08-25-p5-eval-unit.md`; exact feature/source/estimator contract
+  in `docs/briefs/2026-08-25-p6-implementation-freeze.md`. The future estimator
+  is a deterministic ridge baseline-category multinomial logistic model with
+  `NONE` reference, one joint `(p_up,p_down,p_none)` vector, development-only
+  standardization, and no hyperparameter search. No implementation exists here.
+- **Baselines:** M0 is exactly seven columns: 4h signed log return, 4h log range,
+  causal 24h RV, and UTC hour/weekday sine/cosine controls. M1 adds exactly four:
+  OI notional log level, 24h realized funding sum, same-venue perpetual premium,
+  and taker-flow residual-variance compression. `M0_COMMON` and M1 fit and score
+  on identical M1 complete-case rows; long-support M0 is context only.
+- **Metrics:** Per-cell Brier/calibration; relative Brier skill over the preceding
+  rung; precision at the development-frozen 99th-percentile strict alert threshold;
   event-cluster recall; median cluster lead time; equal-weight four-cell family
-  summary. Fixed and twin reported together with timestamp/episode/cluster counts.
-- **Pass/fail contract:** When authorized, `PASS` requires the frozen materiality
-  gates and stable direction across validation and both contiguous test periods;
-  `NULL` is a valid score below materiality; `FAIL` is valid adverse evidence;
-  `BLOCKED` records missing causal inputs or an invalid probability/risk-set
-  implementation. No verdict is assigned in P5.
+  summary. Fixed and twin are reported together. Volatility/session/morphology
+  slices are descriptive and non-gating. `NEWS_NOT_AVAILABLE` is recorded for
+  M0/M1; a point-in-time news protocol remains mandatory before M2+.
+- **Pass/fail contract:** `BLOCKED` is an integrity/source disposition, not a
+  predictive result. `PASS` is exactly the all-period/all-family materiality rule
+  above. `FAIL` requires family Brier skill <=-1% in both label families in all
+  three OOS periods. Every other valid outcome is `NULL`. No pooled, slice,
+  fixed-only, or subjective rescue is allowed.
 - **Result:**
 - **Verdict:**
-- **Limitations:** No surviving fuel measure; M1's exact as-of input estimators
-  still require a future authorized implementation freeze; 2024 validation is
-  thin (D-023); hourly sampling estimates the frozen sampled risk population,
-  not continuous-time deployment.
-- **Artifacts:** Corrected D-032; corrected P5 brief; regenerated
-  `reports/exp000/challenger_history.{json,md}` plus D-019 sidecar.
-- **Correction notes:** The initial stub selected one pure-direction positive
-  cluster x horizon and proposed Spearman on event-only rows. Corrected before any
-  fit or score because that population selected on the outcome, contained no
-  non-events, omitted competing risks, and could not satisfy the research
-  contract's calibration/alert metrics. EXP-004 remains PLANNED and unscored.
+- **Limitations:** The source inventory is complete, but the Binance metrics and
+  funding archives contain source/event stamps and bulk retrieval time, not
+  historical publication or receive time. Under D-033 the complete M1 rung is
+  therefore `BLOCKED_ASOF` before fitting. This is an input-availability status,
+  not an EXP-004 model verdict. No surviving fuel measure; 2024 is thin (D-023);
+  hourly sampling estimates the frozen sampled population, not continuous time.
+- **Artifacts:** D-032; D-033; both P5/P6 freeze briefs;
+  `reports/exp000/challenger_history.{json,md}` with D-019 provenance; source-only
+  `reports/exp004/m1_availability.{json,md}` with D-019 provenance.
+- **Correction notes:** The original event-only stub was superseded before any fit
+  or score. D-033 then froze exact M0/M1 sources, transforms, complete-case support,
+  joint estimator, verdicts, and slices without reading labels or effects.
+  EXP-004 remains PLANNED and unscored; P6 remains unimplemented.
 
 ## Experiment template
 

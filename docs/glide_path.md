@@ -27,6 +27,9 @@ as doctrine. The north star outlives any single v0 hypothesis.
 - EXP-002 NULL — `cex_oi_cohort_v0` parked; no retry
 - P5 BANKED — corrected prospective evaluation freeze; EXP-004 remains PLANNED
   and unscored
+- D-033 BANKED — exact M0/M1 implementation contract and source-only D-019
+  availability audit. No implementation or score. M1 is `BLOCKED_ASOF` because
+  OI/funding archives do not prove historical publication time.
 
 ## Active path (order locked)
 
@@ -89,13 +92,23 @@ fuel, authorize M4, or inherit an interaction claim.
 **Done when:** PASS / FAIL / NULL recorded. Book≠backstop discipline preserved
 wherever mass is referenced.
 
-### P6 — Bank M0→M1, then stop — **NOT AUTHORIZED**
+### P6 — Bank M0→M1, then stop — **CONTRACT FROZEN; NOT AUTHORIZED**
 
 Price-only and generic leverage/flow baselines on D-023 splits under the
-frozen evaluation unit.
+frozen evaluation unit. D-033 freezes the seven-column M0, complete four-column
+M1, deterministic joint multinomial estimator, common-support rule, reporting
+slices, and mechanical rung dispositions. The label-blind source audit is banked
+under `reports/exp004/m1_availability.*`.
+
+M1 is currently `BLOCKED_ASOF`: Binance metrics/funding bulk history has source
+event timestamps but no historical publication/receive record or authoritative
+latency guarantee. Kline-derived premium and taker-flow inputs clear interval-end
+causality. Do not shrink M1 or invent a lag. The next owner judgment is whether
+to supply qualifying point-in-time evidence/replacement sources or authorize an
+M0-only implementation commission.
 
 **Done when:** baseline metrics banked; stop for Chair/CEO review before any
-M2+ authorization.
+M2+ authorization. This done condition has not been reached.
 
 ## Post-authorization only (not self-starting)
 

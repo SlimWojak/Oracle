@@ -419,9 +419,68 @@ competing-risk semantics, precondition impulse exclusion, dependence/weighting,
 and evaluation yardstick. EXP-004 remains PLANNED and unscored. No P6, P4, or
 EXP-003 work is authorized by the correction.
 
+## D-033 — EXP-004 implementation contract frozen; M1 as-of evidence blocked
+
+**Accepted** (2026-08-25, Codex CTO seat; contract and availability commission
+only). Details:
+`docs/briefs/2026-08-25-p6-implementation-freeze.md` and
+`reports/exp004/m1_availability.*`.
+
+M0 is exactly seven causal columns on D-022: trailing 4h signed log return,
+trailing 4h log high/low range, D-032 24h realized volatility, and sine/cosine
+controls for UTC hour and weekday. M1 adds exactly four generic columns, with no
+substitution: Binance USD-M OI-notional log level, 24h realized funding sum,
+same-venue USD-M/spot log-close premium, and taker-flow residual-variance
+compression reconstructed from USD-M kline quote-volume fields. The latter uses
+the same five-minute buy/sell-flow construct as the motivating study, with one
+frozen 8h detrend and 2h variance window rather than a parameter sweep
+(https://arxiv.org/abs/2607.27070). The companion study describes 25–70% OI
+clearing as an in-cascade signature, so EXP-004 uses a precondition OI level and
+does not leak OI collapse into a predictor
+(https://arxiv.org/abs/2608.03616).
+
+The D-019 source audit verified all 1,962 manifest entries and on-disk hashes:
+79 monthly spot kline, 79 monthly USD-M kline, 79 monthly funding, and 1,725
+daily metrics archives. It also banks their exact schemas, mixed spot ms/us
+timestamp seam, raw close-time anomalies, funding millisecond jitter, metrics
+gaps/off-grid rows, two conflicting duplicate metrics timestamps, and
+same-interval spot/perpetual coverage. Those facts freeze explicit unit
+normalization, no-flooring, conflict-as-missing, and complete-case rules.
+
+Raw completeness is not point-in-time publication evidence. Kline interval
+completion is accepted under D-017 for premium and taker flow because it is the
+same causal exchange-bar convention already required for Oracle price inputs.
+The metrics and funding archives expose `create_time` / `calc_time` and bulk
+retrieval time, but no historical publication/receive timestamp or authoritative
+latency bound. A made-up safety delay would not cure that defect. OI and funding
+therefore fail the publication-evidence gate, and the complete M1 rung is
+`BLOCKED_ASOF` before any fit. Do not shrink M1, substitute Hyperliquid or a
+parked fuel proxy, acquire a new family inside this commission, or treat this as
+a predictive verdict. A later owner may supply point-in-time evidence or
+authorize M0 alone.
+
+The future estimator, if separately authorized, is one deterministic
+baseline-category multinomial logistic regression per rung x horizon x label
+family, `NONE` reference, development-only standardization, fixed ridge
+coefficient `1e-4`, and exact common support for `M0_COMMON` versus M1. No
+hyperparameter search or OOS refit is allowed. D-032 Brier/calibration and alert
+metrics are completed by all-period/all-family mechanical PASS gates, stable
+adverse FAIL gates, and NULL otherwise. Volatility, UTC session, and positive
+cluster morphology are non-gating descriptive slices. EXP-004 records
+`NEWS_NOT_AVAILABLE` for M0/M1 because no frozen point-in-time corpus exists;
+D-015 still requires a news protocol before M2+.
+
+No feature builder, risk-set implementation, estimator, fit, threshold, score,
+or validation/test effect was produced. EXP-004 remains PLANNED with blank
+Result/Verdict. P6 and P4 / EXP-003 remain unstarted.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
   conventions for derived layers pending).
-- Point-in-time historical source selection for fuel challengers.
-- Concrete news-tagging protocol (source list, tag taxonomy, freeze procedure).
+- Point-in-time publication evidence or a replacement source decision for the
+  required EXP-004 OI and funding families (D-033 blocks M1; no acquisition is
+  authorized).
+- Point-in-time historical source selection for any future fuel challenger.
+- Concrete news-tagging protocol before M2+ (source list, tag taxonomy, freeze
+  procedure); EXP-004 M0/M1 records `NEWS_NOT_AVAILABLE`.

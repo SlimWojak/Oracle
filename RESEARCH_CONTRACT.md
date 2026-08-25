@@ -47,6 +47,15 @@ four hours, and does aligned ignition add incremental timing information?
 
 No layer may be skipped in the reported ablation.
 
+D-033 and `docs/briefs/2026-08-25-p6-implementation-freeze.md` freeze the
+implementation contract for M0/M1 without authorizing a fit. M0 has exactly
+seven columns: trailing 4h signed log return, trailing 4h log high/low range,
+causal 24h realized volatility, and sine/cosine controls for UTC hour and UTC
+weekday. M1 adds exactly four generic columns: OI notional log level, realized
+24h funding sum, same-venue perpetual premium, and taker-flow residual-variance
+compression. Missing one required family blocks M1; it does not license a
+smaller rung.
+
 Taker-flow variance compression sits in M1 deliberately: it is the only
 placebo-tested cross-event precursor in the motivating studies, so every
 Oracle-specific family must demonstrate increment over it, not merely over price
@@ -150,6 +159,11 @@ Failure here rejects the measurement implementation, not the market mechanism.
 6. **Frozen news protocol.** News tags used in slicing are produced by a
    protocol frozen before model evaluation on that period. Tagging events
    after seeing model performance is prohibited.
+
+For EXP-004 M0/M1 only, D-033 records `NEWS_NOT_AVAILABLE` as a non-gating
+reporting status: no frozen point-in-time corpus exists and automated news
+classification is excluded from v0. This is not permission for post-hoc tags.
+A news protocol remains mandatory before any M2+ implementation.
 
 ## Interpretation matrix
 

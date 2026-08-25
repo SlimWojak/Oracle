@@ -1,8 +1,7 @@
 study:
   name: oracle_v0
   asset: BTC
-  # D-013 escalation triggered (5.90% / 4.26% disagreement vs Kraken);
-  # D-022: labels use a median-of-three consolidated index, frozen blind.
+  status: research_only
   label_price: consolidated_median_of_three
   label_index_members:
     - binance_btcusdt_spot_1m
@@ -10,51 +9,134 @@ study:
     - coinbase_btcusd_spot_1m
 
 labels:
+  source_grid_seconds: 60
+  canonical_timestamp: interval_end
   fixed_first_passage:
     threshold_fraction: 0.02
-    horizons_seconds:
-      - 3600
-      - 14400
-    directions:
-      - up
-      - down
-    same_bar_policy: ambiguous
+    horizons_seconds: [3600, 14400]
+    outcome: competing_first_cause_up_down_none
+    same_bar_policy: ambiguous_unscored
+    future_gap_policy: censored_gap_unscored
   volatility_normalized:
-    status: decision_required
+    status: accepted_d032
+    estimator: kappa_times_causal_rv24h
+    min_consecutive_returns: 720
+    annualized: false
+    kappa_rule: 0.02_over_development_median_sigma
+    kappa_decimal_places: 6
+    common_support_with_fixed: true
 
 sampling:
-  decision_clock_seconds: 60
-  group_by_event_cluster: true
+  risk_clock_seconds: 3600
+  risk_clock_phase: utc_hour_end
+  precondition_impulse:
+    lookback_seconds: 900
+    rule: abs_log_close_return_strictly_below
+    threshold: log_1.005
+    exact_endpoints: true
+    missing_policy: exclude_no_imputation
+  group_positive_outcomes_by_event_cluster: true
+  event_clusters_define_risk_set: false
 
 evaluation:
+  status: contract_frozen_unimplemented
   split_method: chronological_purged
-  embargo_seconds: label_horizon
+  boundary_purge_seconds: 14400
+  outcome_window_must_remain_in_period: true
   require_multiple_oos_periods: true
-  report_timestamp_and_cluster_counts: true
+  test_reporting_periods: [2025, 2026_01_through_07]
+  probability_row_weight: 1
+  precision_unit: alert_episode
+  recall_lead_unit: direction_horizon_event_cluster
+  bootstrap:
+    block: utc_week_family_wide
+    draws: 1000
+    seed: 20250825
+    se_ddof: 1
+  primary_cells:
+    horizons_seconds: [3600, 14400]
+    directions: [up, down]
+  alert_budget:
+    development_quantile: 0.99
+    quantile_method: higher
+    strict_exceedance: true
+  dispositions:
+    family_relative_brier_skill_pass: 0.01
+    family_relative_brier_skill_fail: -0.01
+    precision_multiple_of_cell_base_rate: 2.0
+    cluster_recall: 0.10
+    median_lead_seconds_1h: 900
+    median_lead_seconds_4h: 3600
+    minimum_primary_cell_clusters_for_pass: 30
+    periods_and_label_families_must_all_pass: true
+
+exp004:
+  status: planned_unscored
+  implementation_authorized: false
+  contract: docs/briefs/2026-08-25-p6-implementation-freeze.md
+  m0:
+    features:
+      - trailing_4h_signed_log_return
+      - trailing_4h_log_high_low_range
+      - causal_24h_realized_volatility
+      - utc_hour_sin
+      - utc_hour_cos
+      - utc_weekday_sin
+      - utc_weekday_cos
+  m1:
+    status: blocked_asof_no_publication_time
+    complete_family_required: true
+    features:
+      - binance_um_oi_notional_log_level_lag_5m
+      - binance_um_realized_funding_24h_sum_lag_5m
+      - binance_um_vs_spot_log_close_premium
+      - binance_um_taker_flow_variance_compression
+    source_coverage_floor_per_family: 0.90
+    source_coverage_floor_joint: 0.85
+    zero_joint_month_allowed: false
+  estimator:
+    family: baseline_category_multinomial_logistic
+    reference_cause: none
+    standardization: development_mean_population_sd
+    l2_lambda: 0.0001
+    intercept_penalized: false
+    optimizer: lbfgsb_deterministic_zero_start
+    maxiter: 2000
+    ftol: 1.0e-12
+    gtol: 1.0e-8
+    max_gradient_inf_norm: 1.0e-6
+  slices:
+    volatility: development_rv24h_tertiles
+    utc_sessions:
+      asia: [0, 8]
+      europe: [8, 16]
+      americas: [16, 24]
+    cluster_morphology: recall_and_lead_only
+    news: news_not_available_non_gating_m0_m1
 
 feature_families:
+  generic_leverage_flow:
+    status: m1_required_blocked_asof
   fuel:
+    status: no_active_predictive_challenger
     challengers:
-      # hyperliquid_observed is provisional pending EXP-001 (D-018) and runs
-      # no predictive ladder this cycle (D-020).
-      - hyperliquid_observed
-      - cex_inferred
-      - vendor_model
-    price_bands_bps:
-      - 50
-      - 100
-      - 200
+      hyperliquid_observed:
+        status: demoted_realized_mass_only
+        decision: D-024
+      cex_oi_cohort_v0:
+        status: parked_null_no_retry
+        experiment: EXP-002
+      vendor_model:
+        status: unavailable_no_verified_asof_history
     combine_challengers: false
   impact_susceptibility:
+    status: exp003_planned_p4_deferred
     candidates:
       - visible_book_walk
       - trailing_realized_impact
     combine_candidates: false
-  flow_state:
-    clock: precondition
-    candidates:
-      - taker_flow_variance_compression
   ignition:
+    status: unauthorized
     candidates:
       - signed_ofi_acceleration
       - signed_cvd_acceleration
@@ -72,4 +154,3 @@ excluded_from_v0:
   - dashboard
   - live_service
   - execution
-

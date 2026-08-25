@@ -103,7 +103,8 @@ Active sequence: [`docs/glide_path.md`](docs/glide_path.md) (v1). P0, P1, P2,
 P3, and P5 are **BANKED**. P3 / EXP-002 closed **NULL** and
 `cex_oi_cohort_v0` is parked. P5 banks the corrected prospective D-032
 evaluation freeze; EXP-004 remains **PLANNED and unscored**. P4 / EXP-003 is
-deferred. P6 is not authorized.
+deferred. D-033 banks the exact M0/M1 implementation contract and label-blind
+source audit, but P6 implementation is not authorized.
 
 
 EXP-000 closed **PASS** (2026-08-24): D-022 consolidated index labels, D-023
@@ -120,6 +121,16 @@ volatility twin, and Brier/calibration/alert metrics. The event-cluster catalogu
 groups positive outcomes but is not the sampling frame. Challenger-history
 inventory now derives from `reports/exp000/index_clusters.json` with D-019
 provenance.
+
+The M1 archive inventory is complete and checksum-verified, but source
+completeness is not publication-time provenance. Binance metrics OI and funding
+history do not carry historical publication/receive timestamps or an
+authoritative latency bound, so D-033 marks the required complete M1 rung
+`BLOCKED_ASOF` before fitting. Premium and taker-flow candidates clear the
+existing D-017 kline interval-end convention. No feature builder, estimator,
+fit, score, or validation/test effect was produced. The next owner decision is
+point-in-time evidence/replacement sources for OI and funding, or a separately
+authorized M0-only implementation commission.
 
 Implemented primitives include consolidated-index construction, venue-replication
 gate, Kraken trades-to-bars, Hyperliquid fill normalization (`hyperliquid_fills`,
