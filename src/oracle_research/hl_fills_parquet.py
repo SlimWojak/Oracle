@@ -96,6 +96,9 @@ def _schema():
     )
 
 
+fills_parquet_schema = _schema
+
+
 @dataclass(frozen=True, slots=True)
 class ParquetWriteResult:
     """Metadata for one Parquet output file."""
