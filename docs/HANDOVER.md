@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Codex CTO; P5 and D-033 banked; P4/P6 unstarted)
+## State as of 2026-08-25 (Codex CTO; EXP-004 M0 CLOSED NULL; STOPPED)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -120,8 +120,8 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
   config hash `c2b240bf...`, and input/output hashes.
 - Regenerated cluster-history counts (1h / 4h): price `1658 / 1935`, CEX
   history `983 / 1313`, HL impact context `556 / 820`, HL fills `164 / 287`.
-- EXP-004 remains PLANNED, with empty Result/Verdict. No fitting or scoring was
-  performed. P5 close does not authorize P6.
+- At the P5 close, EXP-004 remained PLANNED with empty Result/Verdict. D-034
+  later supplied a separate M0-only authorization; see D-035 below.
 
 ### D-033 / EXP-004 implementation contract: BANKED, UNSCORED (2026-08-25)
 
@@ -139,9 +139,31 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
   Every coverage floor passes and no full month has zero joint coverage. OI and
   funding nevertheless lack historical publication evidence; complete M1 is
   `BLOCKED_ASOF`. Premium and taker flow clear D-017 interval-end causality.
-- No risk-set builder, feature builder, estimator, fit, alert threshold, score,
-  or validation/test effect exists. `EXP-004` remains PLANNED with blank
-  Result/Verdict. This was a contract/evidence commission, not P6 implementation.
+- At the D-033 close, no risk-set builder, estimator, fit, threshold, score, or
+  validation/test effect existed. D-034/D-035 later superseded that stop only
+  for the exact frozen M0 rung.
+
+### D-034 / D-035 / EXP-004 M0: CLOSED, NULL (2026-08-25)
+
+- Pre-OOS implementation SHA:
+  `680f2af101f88b55e761945390f6da020c9e9a71`. The preceding identical tree
+  passed the real development-only firewall on the data host: all 11,770 D-022
+  inputs verified, only the development period was present, four models
+  converged below the `1e-6` gradient gate, and no OOS outcome was constructed.
+- The exact clean-SHA OOS run consumed one local receipt and was not rerun.
+  Evidence commit: `826ea19e82ab05b10d7ee64830627fe763e8e4d8`.
+  Verdict/status commit: `87044541517d46bb38a56dbcb4d4b0a3e053fb0f`.
+- M0 disposition is **NULL**. Family Brier skill fixed/twin was
+  `3.8968% / 1.9171%` validation, `6.9481% / 1.4413%` test-2025, and
+  `6.2367% / 1.0884%` test-2026-01..07. These clear the point skill floor but
+  cannot rescue the rung: cluster recall was below 10% in every primary cell,
+  with additional precision, lead, and minimum-cluster misses.
+- Banked artifacts: `reports/exp004/m0_frozen_state.json`,
+  `m0_result.{json,md}`, and `m0_result.provenance.json`. Provenance names the
+  pre-OOS SHA, exact config hash, verified source manifest, runtime, and output
+  hashes. No machine-local path is committed.
+- M1 remains `BLOCKED_ASOF` and unimplemented. No M1, M2+, P4/EXP-003, feature
+  addition, rerun, or other ladder rung is authorized.
 
 ### D-012 derived HL fills store
 
@@ -174,33 +196,35 @@ and exits non-zero; do not invent passing parity numbers.
 Authoritative sequence remains `docs/glide_path.md`. There is no active
 implementation or science commission after this seat close.
 
-1. **Next judgment point:** project owner/reviewer chooses one of two bounded
-   paths: provide qualifying historical publication evidence/replacement sources
-   for both required OI and funding inputs, or authorize an M0-only P6
-   implementation commission. Do not start either implicitly.
-2. If M1 evidence is supplied, apply D-033's frozen candidates; do not shrink the
-   family, invent a lag, substitute Hyperliquid/parked fuel, or inspect effects
-   while resolving availability.
-3. P4 / EXP-003 remains deferred until after an actual M0/M1 review. EXP-003
-   stays PLANNED. No P6 implementation, P4, EXP-003, M2+, fuel retry, new feature
-   family, dashboard, live service, or trading work is active.
+1. **Next judgment point:** Chair reviews the banked M0 NULL at verdict commit
+   `87044541517d46bb38a56dbcb4d4b0a3e053fb0f` and decides whether EXP-004 stops
+   here or whether a later, separate decision addresses the already-frozen M1
+   publication-evidence block. Nothing self-starts.
+2. If qualifying M1 publication evidence is ever supplied and a new commission
+   is granted, apply D-033 unchanged. Do not shrink M1, invent a lag, substitute
+   Hyperliquid/parked fuel, or reuse the consumed M0 execution authorization.
+3. P4 / EXP-003 remains deferred for Chair review. No M1, M2+, P4, EXP-003,
+   fuel retry, new feature family, dashboard, live service, or trading work is
+   active.
 
 ### Glide path (authoritative sequence)
 
 Active research sequence is `docs/glide_path.md` (v1). **P3 BANKED NULL**
 (reports `d591f9b`, verdict `1b249da`). **P5 BANKED** (corrected D-032;
 contracts `2319b07`, inventory `54e7166`). **D-033 contract/audit BANKED**
-(`21fbfd4`, `04edc6b`, `c430f8f`). **P4 deferred. P6 implementation not
-authorized.**
+(`21fbfd4`, `04edc6b`, `c430f8f`). **EXP-004 M0 BANKED NULL** (pre-OOS
+`680f2af`, evidence `826ea19`, verdict `8704454`). **M1 BLOCKED_ASOF; P4 and all
+later rungs unauthorized.**
 Census: `reports/p1_eligibility_census.json`. No M2.
 
 
 ### Seat note (2026-08-25)
 
-Codex completed the CTO transition, verified the prior P5 close, and banked the
-D-033 implementation contract plus M1 source audit. The next seat inherits no
-active implementation commission. Thin orchestration is provider-neutral: the
-lead owns research judgment; subagents perform only fenced mechanical work.
+Codex completed the M0-only D-034 commission, banked D-035 NULL, synchronized
+the public status surface, and stopped at the rung boundary. The next seat
+inherits no active implementation commission. Thin orchestration is
+provider-neutral: the lead owns research judgment; subagents perform only
+fenced mechanical work.
 
 ### Operating notes
 
@@ -218,8 +242,8 @@ lead owns research judgment; subagents perform only fenced mechanical work.
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 211 tests passed (7 skipped) and Ruff passed before the D-033
-  evidence bank; rerun after this handover-only commit.
+  handing off. 244 tests passed (7 skipped) and Ruff passed at verdict commit
+  `8704454`; rerun after this handover-only commit.
 - Known open decisions are listed at the bottom of `docs/DECISIONS.md`. The
   precondition impulse, large-cluster weighting, and D-026 twin estimator are
   closed by corrected D-032.
