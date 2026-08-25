@@ -40,24 +40,20 @@ working-tree SHA `086d9a8`; harness equivalent is main `7e2fab2`.
 **Blocker lifted** for HL-derived science that *reads* the store. Next science
 beat is still P1 (CTO freeze) — not self-authorized.
 
-### P1 — Freeze construct designs
+### P1 — Freeze construct designs — **BANKED 2026-08-25**
 
-CTO freezes short designs for:
+Chair four-cell ruling. D-029, D-030, D-031 accepted. Census banked with
+D-019 provenance. 1h and `[2,4%)` parked (non-confirmatory).
 
-1. Fuel construct: challenger vs subsequently traversed realized liquidation
-   mass (book-hitting and backstop mass remain separate).
-2. Impact construct: impact proxy vs matched realized slippage.
+**Primary family:** 4h × {up, down} × {(0,1%), [1,2%)}.
 
-**Done when:** brief(s) + ledger EXP stubs (PLANNED) with pass/fail metrics and
-actionability contracts (below).
+### P2 — Implement CEX-inferred fuel measurement path — **AUTHORIZED**
 
-### P2 — Implement CEX-inferred fuel measurement path
+Frozen spec: `docs/briefs/2026-08-25-p2-cex-fuel-path.md`.
+Implements `cex_oi_cohort_v0` + P3 hooks only. No M2 fit. No P3 scoring.
 
-First predictive-path fuel family with usable history (D-016 / D-020).
-Point-in-time public metrics → causal fuel features. No vendor heatmap yet.
+**Done when:** feature code, as-of rules, and P3-gate hooks exist on main.
 
-**Done when:** feature code, as-of rules, and hooks for the P3 gate exist.
-No M2 fit until construct has a recorded verdict.
 
 ### P3 — Execute fuel construct gate
 

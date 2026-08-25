@@ -311,6 +311,71 @@ artifacts `reports/infra_hl_parquet_v1/parity.*`). Full-tape LZ4 scans are no
 longer the default path for census-class work. Raw LZ4 remains the immutable
 source of truth for rebuilds.
 
+## D-029 — Construct / predictive test-period firewall
+
+**Accepted** (2026-08-25, Chair signed the written policy). Hyperliquid fill ground truth begins 2025-05-25 and lies
+inside the D-023 final-test region. Realized liquidation mass and ±2% labels
+are correlated.
+
+Frozen policy:
+
+1. Construct-dev (SE / coverage / floor lock only): 2025-05-25 .. 2025-08-31.
+2. Construct-val (P3 / P4 locked score): 2025-09-01 .. 2025-12-31.
+3. First predictive look: 2026-01-01 .. 2026-07-31. Untouched for kernels,
+   bands, sizes, windows, or floors.
+4. **Second confirmation: 2026-08-01 .. 2026-12-31.** No definitive
+   predictive PASS headline before this window closes and meets the frozen
+   cluster floors (30 eligible clusters per direction×horizon).
+5. 2025 D-023 OOS is spent for construct and must not also tune predictive
+   features.
+
+Rejected alternatives: a joint no-adaptation gatekeeping test on the whole
+final-test region (spends 2026); declaring the entire final-test spent;
+leaving “a later contiguous period” unspecified.
+
+## D-030 — CEX fuel is a four-cell quantity-cohort proxy
+
+**Accepted** (2026-08-25, Chair four-cell ruling). Pre-outcome feasibility
+correction: the path-only eligibility census inspected no fuel values and
+no HL liquidation mass.
+
+Challenger `cex_oi_cohort_v0`: causal entry-price cohort memory of signed
+Binance UM `sum_open_interest` quantity changes, side-split by
+`sum_toptrader_long_short_ratio`. Opening stock sits in an unallocated
+no-price bucket. Surviving quantities valued at P_T.
+`sum_open_interest_value` is the OI-only USD baseline, never the cohort Δ.
+
+**Primary family:** 4h × {up, down} × {(0,1%), [1,2%)}. Coverage:
+construct-dev ≥10 per cell, construct-val ≥15. No further relaxation.
+PASS is M2-eligibility for these 4h cells only. 1h and `[2,4%)` are
+parked and non-confirmatory. F is the equal-weight four-cell statistic.
+Shape: m3≥m1 in ≥3/4 cells, zero hard flips. Bootstrap: one family-wide
+weekly draw carrying linked rows across both bands. Stability: Sep–Oct
+and Nov–Dec 2025 (≥10/cell, defined F, positive incremental F). If a
+primary cell later falls below its floor, NULL, not a redesign.
+
+Details: `docs/briefs/2026-08-25-p1-fuel-construct.md` v5, EXP-002,
+`reports/p1_eligibility_census.json`.
+
+## D-031 — First impact proxy is quoted book-walk; match unit frozen
+
+**Accepted** (2026-08-25, Chair: both prior conditions satisfied; approved
+for banking). Bank with the P1 commit once D-030 is signed.
+
+EXP-003 is designed now and implemented only after EXP-002 has a recorded
+verdict. First proxy is Hyperliquid published impact prices at the
+venue-published impact notional. Engineer may inspect schema; Engineer may
+not choose the match design. Unstable published notional → probe returns
+to CTO, no score.
+
+Frozen match: unique taker/crossed fills deduplicated by `tid`, **only
+the immediately following epoch-aligned 60s bucket `(T, T+60s]`**, no
+forward search, eligibility `[0.5×, 2×]`, unmatched = missing, backstop
+excluded. Aggressive buy uses published impact **ask**; aggressive sell
+uses impact **bid**. Fuel distance bands are not EXP-003 primary cells.
+Trailing realized impact is a later independent candidate. Details in
+`docs/briefs/2026-08-25-p1-impact-construct.md` v3.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
@@ -318,7 +383,7 @@ source of truth for rebuilds.
 - Point-in-time historical source selection for fuel challengers.
 - Volatility-normalized barrier **estimator** (requirement and finding-blocker locked in D-026; estimator choice still open).
 - Precondition-clock impulse exclusion.
-- Normalized book-walk sizing rule.
+- Normalized book-walk sizing rule — **proposed closed by D-031** (venue-published impact notional; unstable published size returns to CTO). Not accepted until D-031 is.
 - Training/scoring weight policy for large clusters (thousands of anchor votes
   vs capped weight vs one episode-level contribution).
 - Concrete news-tagging protocol (source list, tag taxonomy, freeze procedure).

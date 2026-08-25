@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-24 (seat 3; EXP-001 RUNNING)
+## State as of 2026-08-25 (Grok Bot CTO; P1 banked, P2 authorized)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -84,7 +84,7 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
 
 ### D-012 derived HL fills store
 
-This branch adds the one-time materializer for the primary all-fills table:
+P0 BANKED (main `656c4fb`). Canonical analytical source:
 `{data_root}/derived/hyperliquid/fills/v1/all_fills`, Hive-partitioned by UTC
 `date=YYYY-MM-DD/hour=HH` with `zstd` Parquet by default. Install opt-in deps
 with `python -m pip install -e '.[dev,hyperliquid,analytics]'`.
@@ -109,23 +109,19 @@ and exits non-zero; do not invent passing parity numbers.
 
 ### Next work (in order)
 
-1. Run the D-012 builder/parity gate on the data host and bank the parity
-   artifacts if the hard EXP-001 census comparison passes.
-2. Construct validation design (realized liquidation mass with book/backstop
-   split; fuel challengers vs traversed mass; impact vs slippage) — runs on
-   the derived store.
-3. Regenerate challenger_history from index_clusters.json before ladder work.
-4. CEX-inferred fuel challenger path (HL-observed demoted per D-024).
-5. Pre-model descriptive gates before any M4 interaction work.
+Authoritative sequence remains `docs/glide_path.md`. Current beat is **P2**.
+
+1. Engineer: `docs/briefs/2026-08-25-p2-cex-fuel-path.md` only. PR, no merge.
+2. P3 is not self-authorized. No M2.
+3. Still debt, later: regenerate `challenger_history` from
+   `index_clusters.json` (P5); large-cluster weight policy before M2.
 
 ### Glide path (authoritative sequence)
 
-Active research sequence is `docs/glide_path.md` (v1). **P0 BANKED 2026-08-25**
-(D-012 Parquet + hard census parity PASS). Next CTO commission is P1 construct
-design freeze — not self-starting. Post-P0 hygiene completed on branch
-`cursor/golden-byte-pins-171c`: five tiny golden pins cover first-passage,
-event-cluster, median-index, HL liquidation extraction/strata, and HL fills
-Parquet schema contracts.
+Active research sequence is `docs/glide_path.md` (v1). **P1 BANKED**
+(four-cell `cex_oi_cohort_v0`; D-029/030/031 accepted). **P2 authorized.**
+Census: `reports/p1_eligibility_census.json`. Golden pins are on main
+`e5b6dfd`. Engineer implements the P2 brief only. No P3 scoring, no M2.
 
 
 ### Seat note (2026-08-24)

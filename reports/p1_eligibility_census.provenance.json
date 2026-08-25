@@ -1,0 +1,55 @@
+{
+  "repo_commit": "656c4fb643076836cc3fd4b5ca146d5a1e948f5e",
+  "generated_at_utc": "2026-08-25T03:01:09Z",
+  "config": {
+    "gate": "p1_path_only_eligibility_census",
+    "script": "scripts/run_p1_eligibility_census.py",
+    "script_sha256": "48b7276d6b2b14a615c7fe6d58b43799b1745b31043d15599cbe58932e0978c8",
+    "rule": "pure-direction clusters; earliest T in [start,end] with far-edge first-passage; no fuel; no HL mass",
+    "bands": [
+      "(0,1%)",
+      "[1,2%)",
+      "[2,4%)"
+    ],
+    "horizons_seconds": [
+      3600,
+      14400
+    ],
+    "windows": {
+      "construct_dev": [
+        "2025-05-25T00:00:00Z",
+        "2025-09-01T00:00:00Z"
+      ],
+      "construct_val": [
+        "2025-09-01T00:00:00Z",
+        "2026-01-01T00:00:00Z"
+      ]
+    },
+    "index_bars": 3499404,
+    "index_first": "2019-12-01T00:00:00Z",
+    "index_last": "2026-07-31T23:59:00Z"
+  },
+  "inputs": [
+    {
+      "path": "reports/exp000/index_clusters.json",
+      "bytes": 1074050,
+      "sha256": "3e636f10ae5096f7239ad2d57b2e1dd4472508d8e8cdcbcd3cc608bad03795a8"
+    },
+    {
+      "path": "scripts/run_p1_eligibility_census.py",
+      "bytes": 5757,
+      "sha256": "48b7276d6b2b14a615c7fe6d58b43799b1745b31043d15599cbe58932e0978c8"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/p1_eligibility_census.json",
+      "bytes": 5497,
+      "sha256": "d015ea33ac3f485385428ce4f5cb2a425627c2945c69779dd273ab9eb7645e6e"
+    }
+  ],
+  "correction_notes": [
+    "repo_commit is the dexter working-tree SHA at run time (656c4fb), equal to then-main and behind the later P1 bank commit. Treat as run metadata, not the banked tip.",
+    "Index was rebuilt in-process from Binance/Kraken/Coinbase raw under /home/a8ra_dgx/oracle-data; raw object hashes are not restated here (same inputs as EXP-000 index_catalogue)."
+  ]
+}

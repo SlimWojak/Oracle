@@ -323,6 +323,51 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   stratum (b). v2 uses post-fill net position and the market-close rule above.
 - **Correction notes (2026-08-24, CTO bank):** Phase 2 `reconstruction_summary.provenance.json` records `repo_commit` `9d7bab3` (dexter working tree ahead of / not equal to the later bank commit). Counts and FAIL verdict are unchanged; treat that sidecar as run metadata for the dexter execution, not as the banked tip SHA. D-024 records the demotion as executed.
 
+
+## EXP-002 — CEX-inferred directional fuel proxy (construct)
+
+- **Status:** PLANNED (P1 v5 **banked** 2026-08-25; D-030 Accepted; P2 authorized)
+- **Frozen question:** Does `cex_oi_cohort_v0` rank subsequent Hyperliquid book-hitting BTC liquidation notional on the **four primary 4h cells** `{up,down} × {(0,1%),[1,2%)}` when the named adverse-entry-distance band is far-edge traversed?
+- **Hypothesis:** Time-varying adverse-band shape from quantity cohorts carries incremental within-band information beyond OI-only USD and trailing-price-path, on those four cells only.
+- **Belief change:** PASS → M2-eligible **only for these 4h cells** (validates neither 1h nor `[2,4%)`). FAIL → this path dies. NULL → park. If any primary cell later falls below its coverage floor, NULL, not a redesign. Single cross-venue miss: *fails the observable construct gate; cause unresolved.*
+- **Materiality:** F = equal-weight four-cell incremental Spearman. Shape: m3≥m1 in ≥3/4 cells, zero hard flips. Stability: Sep–Oct and Nov–Dec 2025, each ≥10/cell, defined F, positive challenger-minus-OI F. Floor: `max(0.10, 2*SE)` via `numpy.random.default_rng(20250825)`, **one family-wide** UTC-week draw carrying linked rows across both bands, B=1000, ddof=1. Coverage: construct-dev ≥10/cell, construct-val ≥15/cell. No further relaxation.
+- **Data manifest:** Binance Vision UM 5-minute metrics (`sum_open_interest`, `sum_toptrader_long_short_ratio`; `sum_open_interest_value` for USD baseline only). D-022 index. HL fills Parquet v1 for target only. Census: `reports/p1_eligibility_census.json` + provenance.
+- **Development period:** burn-in 2021-12 .. 2025-05-24 (unallocated opening stock; unscored). Construct-dev 2025-05-25 .. 2025-08-31.
+- **Validation period:** 2025-09-01 .. 2025-12-31.
+- **Final test period:** 2026-01-01 .. 2026-07-31 first look; 2026-08-01 .. 2026-12-31 second confirmation (D-029).
+- **Features available as of:** last 5-minute metrics row with interval end ≤ T.
+- **Method:** `docs/briefs/2026-08-25-p1-fuel-construct.md` v5.
+- **Baselines:** OI-only USD; trailing-price-path (4h); `cex_oi_band_static` two-band weights (0.75, 0.25).
+- **Metrics:** four-cell F and the PASS clauses.
+- **Pass/fail contract:** mechanical NULL / FAIL / PASS in the v5 brief.
+- **Result:**
+- **Verdict:**
+- **Limitations:** LSR reweights the same contract stock; adverse-entry is not a liq-price offset; 1h and `[2,4%)` are parked and non-confirmatory; construct-dev up cell is 12 (above the 10 floor, thin).
+- **Artifacts:** brief v5; census + D-019 sidecar; D-030.
+- **Correction notes:** v5 is the Chair four-cell feasibility correction (path-only census; no fuel/mass inspected). 12-cell family retired as theatre.
+
+## EXP-003 — Quoted book-walk impact proxy (construct)
+
+- **Status:** PLANNED (P1 v3; **D-031 Accepted** 2026-08-25; implement after EXP-002 verdict)
+- **Frozen question:** Do Hyperliquid published impact prices, at the venue-published impact notional, predict realized slippage in the immediately following epoch-aligned 60-second bucket?
+- **Hypothesis:** Visible quoted walk ranks same-bucket matched slippage better than a trailing-range / trailing-vol baseline.
+- **Belief change:** PASS → M3-eligible. FAIL → path dies. NULL → park.
+- **Materiality:** Spearman(qwalk, slip) minus path baseline; deterministic floor recipe. Unmatched = missing.
+- **Data manifest:** HL `asset_ctxs` published impact prices; HL fills Parquet v1.
+- **Development period:** 2025-05-25 .. 2025-08-31.
+- **Validation period:** 2025-09-01 .. 2025-12-31.
+- **Final test period:** 2026-01-01 .. 2026-07-31; second confirmation 2026-08-01 .. 2026-12-31.
+- **Features available as of:** published quotes knowable at T. Probe returns to CTO if published notional is unstable.
+- **Method:** `docs/briefs/2026-08-25-p1-impact-construct.md` v3. Only `(T, T+60s]`. Buy → impact ask; sell → impact bid. Dedup by `tid`. Fuel bands are not primary cells.
+- **Baselines:** trailing-range / trailing-realized-vol.
+- **Metrics:** incremental Spearman; Sep–Dec sign stability.
+- **Pass/fail contract:** mechanical NULL / FAIL / PASS.
+- **Result:**
+- **Verdict:**
+- **Limitations:** one-minute match horizon is harsh; published size must be stable or probe returns.
+- **Artifacts:** brief v3; D-031.
+- **Correction notes:** Chair approved for banking once immediate-next-bucket and bid/ask mapping were in the brief.
+
 ## Experiment template
 
 ```text
