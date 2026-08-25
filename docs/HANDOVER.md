@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Grok Bot CTO; P3 Phase B authorized)
+## State as of 2026-08-25 (Grok Bot CTO; P3 Phase B OOM, streaming addendum)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -113,10 +113,9 @@ Authoritative sequence remains `docs/glide_path.md`. Current beat is **P3 Phase 
 
 1. P2 banked on main `ed508e7` (PR #4).
 2. P3 Phase A banked on main `889ea56` (PR #5): scoring lib + runner, 191 tests.
-3. Engineer: Phase B on dexter from `889ea56`:
-   `python scripts/run_p3_construct_gate.py --data-root /home/a8ra_dgx/oracle-data`.
-   PR only `reports/exp002/construct_gate.{json,md,provenance.json}`.
-   No ledger verdicts. No P4.
+3. Phase B OOM (earlyoom ~116 GiB) on retain-all snapshots. Addendum:
+   `docs/briefs/2026-08-25-p3-phase-b-oom.md`. Engineer: streaming as-of
+   PR, no merge, no tape rerun until CTO merges. Then Phase B rerun.
 4. Still debt, later: regenerate `challenger_history` from
    `index_clusters.json` (P5); large-cluster weight policy before M2.
 
