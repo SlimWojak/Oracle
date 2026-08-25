@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import math
 import unittest
+import zipfile
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from oracle_research.cex_fuel import (
     BAND_0_1,
@@ -15,6 +19,7 @@ from oracle_research.cex_fuel import (
     fuel_usd_for_band,
     hl_target_for_cluster_row,
     join_metrics_to_kline_start_grid,
+    load_metrics_zip,
     run_cex_oi_cohort_v0,
 )
 from oracle_research.hyperliquid_fills import HlFill
@@ -65,6 +70,29 @@ def fill(
 
 
 class CexFuelStateMachineTests(unittest.TestCase):
+    def test_metrics_loader_keeps_position_lsr_and_nulls_non_positive_lsr(self) -> None:
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "BTCUSDT-metrics-2021-12-01.zip"
+            csv_text = "\n".join(
+                [
+                    (
+                        "create_time,sum_open_interest,sum_open_interest_value,"
+                        "sum_toptrader_long_short_ratio,count_toptrader_long_short_ratio"
+                    ),
+                    "1609459500000,100,10000,1.5,9.9",
+                    "1609459800000,110,11000,0,8.8",
+                ]
+            )
+            with zipfile.ZipFile(path, "w") as archive:
+                archive.writestr("BTCUSDT-metrics-2021-12-01.csv", csv_text)
+
+            loaded = load_metrics_zip(path)
+
+        self.assertEqual(loaded.interval_end.tolist(), [1_609_459_500, 1_609_459_800])
+        self.assertEqual(loaded.sum_open_interest.tolist(), [100.0, 110.0])
+        self.assertEqual(loaded.sum_toptrader_long_short_ratio[0], 1.5)
+        self.assertTrue(math.isnan(loaded.sum_toptrader_long_short_ratio[1]))
+
     def test_conservation_after_add_and_pro_rata_reduction(self) -> None:
         rows = [metric(0, 100, 1), metric(300, 120, 1), metric(600, 100, 1)]
         snapshots = run_cex_oi_cohort_v0(
