@@ -369,27 +369,65 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 - **Correction notes:** Chair approved for banking once immediate-next-bucket and bid/ask mapping were in the brief. 2026-08-25: `1b249da` accidentally copied EXP-002 Result/Verdict into this stub. Restored blank. EXP-003 stays PLANNED; implementation deferred until after M0/M1 review. Cannot revive fuel, authorize M4, or inherit an interaction claim.
 
 
-## EXP-004 — M0/M1 baseline ladder (eval-unit inventory)
+## EXP-004 — M0/M1 prospective baseline ladder
 
-- **Status:** PLANNED (P5 freeze 2026-08-25; D-032; no fitting, no scoring)
-- **Frozen question:** Under the frozen evaluation unit, do price-only (M0) and generic leverage/flow (M1) baselines change OOS first-passage hazard on the primary cells?
-- **Hypothesis:** Trailing path/vol/range and taker-flow variance compression are the comparison objects any later fuel/impact EXP must beat. They are not the thesis.
-- **Belief change:** Banked M0/M1 become the comparison contract for later EXPs. They do not revive EXP-002 or authorize M2/M4.
-- **Materiality:** family incremental Spearman on the D-032 primary cells; twin required for any PASS headline (D-026). Exact P6 floor is not locked here.
-- **Data manifest:** D-022 index; `reports/exp000/index_clusters.json`; Binance kline taker fields if M1 is unblocked. No HL-fills predictive features.
+- **Status:** PLANNED (corrected P5 freeze 2026-08-25; D-032; unscored)
+- **Frozen question:** On a causal hourly precondition risk set containing events
+  and non-events, do price-only M0 and generic leverage/flow M1 improve OOS joint
+  cumulative-incidence probabilities for the first `UP` / `DOWN` barrier cause?
+- **Hypothesis:** Trailing path/vol/range and the complete generic M1 family are the
+  comparison objects any later Oracle-specific EXP must beat. They are not fuel
+  and are not the central thesis.
+- **Belief change:** Banked M0/M1 become the prospective probability comparison
+  contract for later EXPs. They do not revive EXP-002, authorize M2/M4, or make a
+  trading claim. Honest absence of any required causal M1 input blocks M1 rather
+  than silently shrinking it; M0 may still bank.
+- **Materiality:** On the four D-032 primary cells, equal-weight family relative
+  Brier skill >=1% over the preceding rung, alert-episode precision >=2x the
+  scoreable base event rate at the development-frozen 1% alert-time budget,
+  event-cluster recall >=10%, and median lead >=15m (1h) / >=60m (4h). The twin
+  is required for any PASS headline (D-026). These are frozen gates, not results.
+- **Data manifest:** D-022 consolidated index as the prospective sampling frame;
+  `reports/exp000/index_clusters.json` only for fixed-event grouping and D-016
+  inventory; point-in-time Binance inputs for the complete M1 family if its causal
+  availability audit passes. No HL-fills predictive features.
 - **Development period:** D-023 development 2020-01-01 .. 2023-12-31.
 - **Validation period:** D-023 validation 2024-01-01 .. 2024-12-31.
-- **Final test period:** D-023 final test 2025-01-01 .. 2026-07-31 as two contiguous OOS periods.
-- **Features available as of:** cluster.start (catalogue already D-017 interval-end).
-- **Method:** `docs/briefs/2026-08-25-p5-eval-unit.md`. P5 may only regenerate deterministic `challenger_history` from `index_clusters.json`. Scoring is P6, not this EXP's current beat.
-- **Baselines:** M0 trailing 4h return / 4h range / 24h realized vol; M1 taker-flow variance compression (D-009) if as-of history exists.
-- **Metrics:** four-cell family Spearman on `{1h,4h}×{up,down}`; vol-twin reported alongside.
-- **Pass/fail contract:** mechanical NULL / FAIL / PASS under D-032; no score in P5.
+- **Final test period:** D-023 final test 2025-01-01 .. 2026-07-31, reported as
+  2025 and 2026-01..07 separately; no pooled-only headline.
+- **Features available as of:** Fixed UTC-hour interval-end `T`; all risk
+  eligibility, impulse filtering, barriers, and features use information at or
+  before `T`. Outcome windows are strictly after `T`.
+- **Method:** Corrected `docs/briefs/2026-08-25-p5-eval-unit.md`. Hourly D-022
+  risk set; exact price precondition `abs(log(P_T/P_{T-15m})) < log(1.005)`;
+  categorical competing-risk outcome; fixed and causal vol-twin families; D-023
+  purge/embargo and D-014 outcome grouping. P5 implements and scores none of it.
+- **Baselines:** M0 is trailing 4h signed return, trailing 4h range, causal 24h
+  realized volatility, and causal calendar-time controls. M1 is M0 plus the full
+  contract family: OI, funding, premium, and taker-flow variance. M0/M1 incremental
+  comparison uses identical complete-case rows (D-016).
+- **Metrics:** Per-cell Brier/calibration; relative Brier skill over preceding
+  rung; precision at the development-frozen 99th-percentile alert threshold;
+  event-cluster recall; median cluster lead time; equal-weight four-cell family
+  summary. Fixed and twin reported together with timestamp/episode/cluster counts.
+- **Pass/fail contract:** When authorized, `PASS` requires the frozen materiality
+  gates and stable direction across validation and both contiguous test periods;
+  `NULL` is a valid score below materiality; `FAIL` is valid adverse evidence;
+  `BLOCKED` records missing causal inputs or an invalid probability/risk-set
+  implementation. No verdict is assigned in P5.
 - **Result:**
 - **Verdict:**
-- **Limitations:** no surviving fuel measure; M1 may block if taker as-of history is incomplete; 2024 val is thin (D-023).
-- **Artifacts:** D-032; P5 brief.
-- **Correction notes:** created as the Chair-authorized P5 stub only. Not a commission to fit or score.
+- **Limitations:** No surviving fuel measure; M1's exact as-of input estimators
+  still require a future authorized implementation freeze; 2024 validation is
+  thin (D-023); hourly sampling estimates the frozen sampled risk population,
+  not continuous-time deployment.
+- **Artifacts:** Corrected D-032; corrected P5 brief; regenerated
+  `reports/exp000/challenger_history.{json,md}` plus D-019 sidecar.
+- **Correction notes:** The initial stub selected one pure-direction positive
+  cluster x horizon and proposed Spearman on event-only rows. Corrected before any
+  fit or score because that population selected on the outcome, contained no
+  non-events, omitted competing risks, and could not satisfy the research
+  contract's calibration/alert metrics. EXP-004 remains PLANNED and unscored.
 
 ## Experiment template
 
@@ -414,4 +452,3 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 - Artifacts:
 - Correction notes:
 ```
-

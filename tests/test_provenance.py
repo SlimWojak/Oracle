@@ -20,6 +20,17 @@ class Sha256FileTests(unittest.TestCase):
             self.assertEqual(provenance.sha256_file(path), KNOWN_SHA256)
 
 
+class CanonicalConfigSha256Tests(unittest.TestCase):
+    def test_digest_is_stable_across_mapping_order(self) -> None:
+        first = {"threshold": 0.02, "nested": {"z": 1, "a": [2, 3]}}
+        reordered = {"nested": {"a": [2, 3], "z": 1}, "threshold": 0.02}
+        self.assertEqual(
+            provenance.canonical_config_sha256(first),
+            provenance.canonical_config_sha256(reordered),
+        )
+        self.assertEqual(len(provenance.canonical_config_sha256(first)), 64)
+
+
 class FileEntryTests(unittest.TestCase):
     def test_name_only_without_base(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -64,6 +75,10 @@ class BuildProvenanceTests(unittest.TestCase):
             self.assertEqual(record["repo_commit"], "abc123deadbeef")
             self.assertEqual(record["generated_at_utc"], "2026-08-23T12:00:00Z")
             self.assertEqual(record["config"], {"threshold": 0.02})
+            self.assertEqual(
+                record["config_sha256"],
+                provenance.canonical_config_sha256({"threshold": 0.02}),
+            )
             self.assertEqual(len(record["inputs"]), 1)
             self.assertEqual(record["inputs"][0]["path"], "in.txt")
             self.assertEqual(record["outputs"][0]["path"], "out.txt")

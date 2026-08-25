@@ -17,6 +17,11 @@ four hours, and does aligned ignition add incremental timing information?
   observation `AMBIGUOUS`; never guess.
 - Adjacent positive timestamps belonging to one move form an event cluster for
   splitting, resampling, and inference.
+- Predictive evaluation samples a prospective risk set containing event and
+  non-event states; event clusters group positive outcomes and never define the
+  sampling frame. The first barrier touched is a categorical competing-risk
+  outcome (`UP`, `DOWN`, `NONE`, or unscored `AMBIGUOUS`/gap censoring) per the
+  corrected D-032 freeze.
 
 ## Hypotheses
 
@@ -67,8 +72,11 @@ Before any interaction modelling (M4):
 ### Precondition clock
 
 Samples market states before a material immediate impulse. It tests vulnerability
-and advance warning. The exact impulse exclusion threshold is a research decision
-that must be frozen before evaluation.
+and advance warning. D-032 freezes the v0 exclusion: on the D-022 index, an hourly
+decision timestamp is eligible only when the absolute trailing 15-minute
+close-to-close log return is strictly below `log(1.005)`. Both endpoints must exist
+exactly as of the decision time; no forward fill. The same rule applies to fixed
+and volatility-twin labels.
 
 ### Ignition clock
 
@@ -98,6 +106,10 @@ Failure here rejects the measurement implementation, not the market mechanism.
 - Require results across multiple contiguous OOS periods.
 - Report calibration, precision at a fixed alert budget, recall, median lead time,
   and lift over each preceding model.
+- Probability metrics use all scoreable prospective risk-set rows with equal base
+  weight; alert precision uses alert episodes, while recall and lead time give one
+  equal-weight contribution per direction x horizon x event cluster. Opposite-first
+  passages are competing events (binary target 0), not censored observations.
 - Inspect descriptive monotonicity before fitting nonlinear models.
 - Stratify results by direction, horizon, volatility regime, and event tag.
 
@@ -130,10 +142,11 @@ Failure here rejects the measurement implementation, not the market mechanism.
    population. The long price-only history is context, never a comparable
    score.
 5. **Episode-level evaluation.** Alert quality is scored on contiguous alert
-   episodes and event clusters, never on repeated minute-level wins. A 4h
-   cluster can last weeks; whether large clusters carry capped weight or one
-   episode-level contribution is an open decision that must be settled before
-   M2 scoring.
+   episodes and event clusters, never on repeated minute-level wins. Probability
+   calibration still describes the prospective timestamp population. D-032 gives
+   each scoreable hourly state base weight 1, each alert episode weight 1 for
+   precision, and each direction x horizon x event cluster weight 1 for recall and
+   lead time; no duration, anchor-count, class, or large-cluster weights.
 6. **Frozen news protocol.** News tags used in slicing are produced by a
    protocol frozen before model evaluation on that period. Tagging events
    after seeing model performance is prohibited.
@@ -162,4 +175,3 @@ Failure here rejects the measurement implementation, not the market mechanism.
 - dashboards or live services;
 - trading and execution integration;
 - a canonical monolithic score.
-

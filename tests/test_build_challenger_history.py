@@ -47,6 +47,15 @@ FAKE_CLUSTERS = {
 
 
 class WindowStatsTests(unittest.TestCase):
+    def test_cli_defaults_to_consolidated_inventory(self) -> None:
+        self.assertEqual(history.parse_args([]).clusters, history.DEFAULT_CLUSTERS)
+
+    def test_default_source_is_consolidated_inventory(self) -> None:
+        payload = history.build_payload(FAKE_CLUSTERS)
+        self.assertEqual(payload["source"], "reports/exp000/index_clusters.json")
+        self.assertIn("D-022 consolidated BTC spot index", payload["windows"][0]["note"])
+        self.assertNotIn("Binance spot 1m klines", payload["windows"][0]["note"])
+
     def test_straddler_exclusion_and_counts(self) -> None:
         payload = history.build_payload(FAKE_CLUSTERS)
         windows = payload["horizons"][0]["windows"]
@@ -69,6 +78,16 @@ class WindowStatsTests(unittest.TestCase):
         for window in history.WINDOWS:
             self.assertIn(window.start, text)
         self.assertIn("Vendor/model challenger", text)
+        self.assertIn("reports/exp000/index_clusters.json", text)
+
+    def test_payload_and_markdown_are_deterministic(self) -> None:
+        first_payload = history.build_payload(FAKE_CLUSTERS)
+        second_payload = history.build_payload(FAKE_CLUSTERS)
+        self.assertEqual(first_payload, second_payload)
+        self.assertEqual(
+            history.render_markdown(first_payload),
+            history.render_markdown(second_payload),
+        )
 
 
 if __name__ == "__main__":

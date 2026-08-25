@@ -99,15 +99,27 @@ mismatches.
 
 ## Current status
 
-Active sequence: [`docs/glide_path.md`](docs/glide_path.md) (v1). P0 **BANKED**. P1 **BANKED** (four-cell family, D-029/030/031). P2 authorized.
+Active sequence: [`docs/glide_path.md`](docs/glide_path.md) (v1). P0, P1, P2,
+P3, and P5 are **BANKED**. P3 / EXP-002 closed **NULL** and
+`cex_oi_cohort_v0` is parked. P5 banks the corrected prospective D-032
+evaluation freeze; EXP-004 remains **PLANNED and unscored**. P4 / EXP-003 is
+deferred. P6 is not authorized.
 
 
 EXP-000 closed **PASS** (2026-08-24): D-022 consolidated index labels, D-023
 chronological splits, per-cluster inventory in `reports/exp000/`.
 
 EXP-001 closed **FAIL** (2026-08-24): HL-observed fuel demoted per D-018. Phase 1
-tractable share 39%; Phase 2 reconstruction accuracy 8%. Construct validation and
-normalization layer are next.
+tractable share 39%; Phase 2 reconstruction accuracy 8%.
+
+P5 closed (2026-08-25) without fitting or scoring. The evaluation population is
+now a causal UTC-hour D-022 risk set containing events and non-events, with
+categorical competing-risk outcomes, a frozen precondition impulse exclusion,
+explicit timestamp/episode/cluster weights, the fixed ±2% label plus causal
+volatility twin, and Brier/calibration/alert metrics. The event-cluster catalogue
+groups positive outcomes but is not the sampling frame. Challenger-history
+inventory now derives from `reports/exp000/index_clusters.json` with D-019
+provenance.
 
 Implemented primitives include consolidated-index construction, venue-replication
 gate, Kraken trades-to-bars, Hyperliquid fill normalization (`hyperliquid_fills`,

@@ -59,9 +59,10 @@ construction. Git is the only bridge; data never enters the repository.
 ## D-011 — Thin orchestration
 
 **Accepted.** The lead agent holds research judgment and reviews everything;
-mechanical, well-specified work is delegated to lighter Cursor-native models.
-Contract documents, experiment design, and verdicts are never delegated. Details
-in `AGENTS.md`.
+mechanical, well-specified work is delegated to subagents selected for the needed
+capability, reliability, and cost/latency profile. No model vendor or named provider
+is part of the architecture. Contract documents, experiment design, and verdicts
+are never delegated. Details in `AGENTS.md`.
 
 ## D-012 — Analytical store
 
@@ -382,22 +383,45 @@ Trailing realized impact is a later independent candidate. Details in
 **Accepted** (2026-08-25, Chair: swap P5 ahead of P4; authorize P5 only).
 Details: `docs/briefs/2026-08-25-p5-eval-unit.md`.
 
-Inferential unit is one pure-direction cluster × horizon; weight 1 per
-cluster; no intra-cluster iid. D-023 straddle-drop stays. Twin estimator:
-24h realized-vol barrier `x_t = κ σ_t` with κ locked on D-023 development
-so median `x_t` equals 2%. Primary M0/M1 cells: `{1h,4h}×{up,down}`; twin
-is a required companion family. M0/M1 use D-023 splits. EXP-004 is the
-PLANNED baseline stub; no P6 scoring in this beat.
+**Correction (2026-08-25, Codex CTO seat, before any EXP-004 fit or score).**
+The first text incorrectly made pure-direction positive clusters the evaluation
+population. That future-conditioned event-only sample has no non-events and cannot
+estimate prospective probability, calibration, or alert precision. It is
+superseded, not retained as an alternative.
 
-Closes the D-026 estimator choice and the large-cluster weight decision.
+The prospective sampling frame is the D-022 index at fixed UTC-hour interval-end
+timestamps. Direction is a categorical first cause (`UP`, `DOWN`, `NONE`; same-bar
+`AMBIGUOUS` and future data gaps unscored), with the opposite barrier an explicit
+competing event. Pure and mixed clusters group positive outcomes after sampling;
+they never select rows. Scoreable hourly states carry base weight 1 for probability
+metrics; alert episodes carry weight 1 for precision; direction x horizon event
+clusters carry weight 1 for recall and lead time. One family-wide UTC-week block
+bootstrap keeps all linked rows and episode/cluster contributions together.
+
+The v0 precondition rule is frozen causally: require
+`abs(log(P_T/P_{T-15m})) < log(1.005)` on exact D-022 endpoints. No forward fill;
+the same risk set applies to fixed and twin families. D-023 periods and four-hour
+boundary purge/embargo remain binding.
+
+The twin remains `x_T = kappa * sigma_T`, with causal 24h realized volatility and
+`kappa = 0.02 / median(sigma_T)` locked to six decimals on eligible D-023
+development hourly timestamps before outcomes. Primary M0/M1 cells remain
+`{1h,4h} x {up,down}`; the twin is a required companion family.
+
+Primary probability lift is equal-weight four-cell relative Brier skill over the
+preceding rung, accompanied by calibration, precision at a development-frozen 1%
+alert-time budget, event-cluster recall, and median lead time. Spearman on
+event-only rows is not an evaluation metric. Exact outcome, missingness, materiality,
+and episode rules are in the corrected brief.
+
+This closes the D-026 estimator choice, prospective evaluation population,
+competing-risk semantics, precondition impulse exclusion, dependence/weighting,
+and evaluation yardstick. EXP-004 remains PLANNED and unscored. No P6, P4, or
+EXP-003 work is authorized by the correction.
 
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
   conventions for derived layers pending).
 - Point-in-time historical source selection for fuel challengers.
-- Precondition-clock impulse exclusion.
-- Normalized book-walk sizing rule — closed by D-031 (venue-published impact
-  notional; unstable published size returns to CTO).
 - Concrete news-tagging protocol (source list, tag taxonomy, freeze procedure).
-

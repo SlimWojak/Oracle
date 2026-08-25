@@ -24,6 +24,9 @@ as doctrine. The north star outlives any single v0 hypothesis.
   and construct-validation evidence only; no HL-fills predictive ladder this
   cycle (D-020)
 - D-012 BANKED — HL fills Parquet/DuckDB; census parity PASS (13/13 exact)
+- EXP-002 NULL — `cex_oi_cohort_v0` parked; no retry
+- P5 BANKED — corrected prospective evaluation freeze; EXP-004 remains PLANNED
+  and unscored
 
 ## Active path (order locked)
 
@@ -64,14 +67,19 @@ dev week-draws undefined on n=12 up cells). Path parked. No silent retry.
 **Kill:** failed paths do not enter predictive ladders. A materially changed
 estimator re-enters only as a new EXP, never as a silent retry.
 
-### P5 — Freeze evaluation unit (before baselines) — **AUTHORIZED 2026-08-25**
+### P5 — Freeze evaluation unit (before baselines) — **BANKED 2026-08-25**
 
 Chair swap: P5 ahead of P4. Frozen spec:
-`docs/briefs/2026-08-25-p5-eval-unit.md` (D-032). EXP-004 stub only.
-No M0/M1 scoring. No P6.
+`docs/briefs/2026-08-25-p5-eval-unit.md` (corrected D-032). The original
+event-only cluster unit was invalid and was superseded before any fit or score.
+The banked unit is a causal hourly D-022 risk set with events and non-events,
+categorical competing risks, a frozen price-impulse exclusion, explicit
+timestamp/episode/cluster weights, and research-contract metrics. EXP-004 stays
+PLANNED and unscored. No M0/M1 scoring. No P6 authorization.
 
-**Done when:** D-032 recorded and this brief on main. Inventory regen
-is a mechanical close, not a scoring license.
+**Done:** corrected D-032 and EXP-004 recorded; deterministic challenger history
+regenerated from `index_clusters.json` with D-019 provenance; status and handover
+synchronized; verification green. Inventory is not a scoring license.
 
 ### P4 — First impact construct gate — **DEFERRED**
 
@@ -81,7 +89,7 @@ fuel, authorize M4, or inherit an interaction claim.
 **Done when:** PASS / FAIL / NULL recorded. Book≠backstop discipline preserved
 wherever mass is referenced.
 
-### P6 — Bank M0→M1, then stop
+### P6 — Bank M0→M1, then stop — **NOT AUTHORIZED**
 
 Price-only and generic leverage/flow baselines on D-023 splits under the
 frozen evaluation unit.
@@ -116,7 +124,7 @@ Ladder PASS headlines may cite primary cells only (D-025).
 - platform, dashboards, live services, trading/execution
 - averaging or quietly reviving dead challengers
 - silent estimator retries after FAIL
-- Owl/autonomy loops that widen path without CTO/Slim
+- autonomy loops that widen the path without lead/reviewer authorization
 - PASS headlines from exploratory cells or fixed-barrier-only claims (D-025, D-026)
 
 ## Post-P0 hygiene (not a science beat)
@@ -132,14 +140,15 @@ Completing a beat does not self-authorize the next science beat.
 
 Agents may finish mechanical subtasks inside the active frozen commission.
 A construct verdict, kill/park trigger, or ladder boundary returns judgment to
-the CTO. CEO/Chair review is periodic, not required for routine execution.
+the lead research seat. Reviewer sign-off is periodic, not required for routine
+execution.
 
 ## Operating roles
 
-- **CTO:** one frozen commission at a time; bank verdicts; keep path.
-- **Engineer:** execute frozen specs only; no contract/ledger verdicts.
-- **Advisors (Owl/Chair):** decision-shaped takes only; cannot widen path.
-- **CEO (Slim):** poll freely; not in the critical path of P0–P5.
+- **Lead research seat:** one frozen commission at a time; bank verdicts; keep path.
+- **Implementing subagents:** execute frozen specs only; no contract/ledger verdicts.
+- **Advisory/reviewer seats:** decision-shaped takes only; cannot widen path.
+- **Project owner:** may poll freely; not in the routine implementation path.
 
 ## EXP stub minimum (actionability contract)
 

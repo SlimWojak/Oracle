@@ -64,7 +64,8 @@ Reserved for the lead agent (never delegated):
   split, or leakage semantics;
 - review of all delegated output before it is committed.
 
-Delegate to lighter Cursor-native models (Composer, Grok) via subagents:
+Delegate mechanical work to subagents selected for the required capability,
+reliability, and cost/latency profile:
 
 - scaffolding, plumbing, and download/ingest scripts written to a frozen spec;
 - mechanical refactors, formatting, boilerplate tests from a given spec;

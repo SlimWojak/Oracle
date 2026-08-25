@@ -11,6 +11,13 @@ from pathlib import Path
 _CHUNK_BYTES = 1024 * 1024
 
 
+def canonical_config_sha256(config: dict) -> str:
+    """Hash ``config`` using a stable canonical JSON representation."""
+
+    encoded = json.dumps(config, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def sha256_file(path: Path) -> str:
     """Return the hex SHA-256 digest of ``path`` (streaming, 1 MiB chunks)."""
 
@@ -61,6 +68,7 @@ def build_provenance(
         "repo_commit": git_commit(repo_root),
         "generated_at_utc": datetime.now(tz=UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "config": config,
+        "config_sha256": canonical_config_sha256(config),
         "inputs": [file_entry(path, input_base) for path in inputs],
         "outputs": [file_entry(path, output_base) for path in outputs],
     }

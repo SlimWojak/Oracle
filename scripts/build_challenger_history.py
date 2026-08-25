@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""EXP-000 per-fuel-challenger usable history table (D-016 common support).
+"""EXP-000 per-challenger usable history table (D-016 common support).
 
-Reads the committed per-cluster inventory (``reports/exp000/clusters.json``)
+Reads the committed D-022 consolidated-index cluster inventory
+(``reports/exp000/index_clusters.json``)
 and reports, for each fuel challenger / feature family, how many independent
 event clusters fall inside its usable point-in-time history. A cluster counts
 toward a window only when its start timestamp is at or after the window start:
@@ -23,6 +24,8 @@ from pathlib import Path
 from oracle_research.provenance import build_provenance, write_provenance_sidecar
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_CLUSTERS = Path("reports/exp000/index_clusters.json")
+DEFAULT_SOURCE = "reports/exp000/index_clusters.json"
 
 
 @dataclass(frozen=True, slots=True)
@@ -39,7 +42,10 @@ WINDOWS: tuple[ChallengerWindow, ...] = (
         key="price_controls",
         label="Price-only controls (M0)",
         start="2020-01-01",
-        note="Binance spot 1m klines; context baseline, never a comparable score (D-016).",
+        note=(
+            "D-022 consolidated BTC spot index 1m bars; context baseline, "
+            "never a comparable score (D-016)."
+        ),
     ),
     ChallengerWindow(
         key="cex_inferred",
@@ -89,7 +95,9 @@ def _window_stats(clusters: list[dict[str, object]], start_epoch: int) -> dict[s
     }
 
 
-def build_payload(clusters_payload: dict[str, object]) -> dict[str, object]:
+def build_payload(
+    clusters_payload: dict[str, object], source: str = DEFAULT_SOURCE
+) -> dict[str, object]:
     horizons_out = []
     for horizon in clusters_payload["horizons"]:
         clusters = horizon["clusters"]
@@ -103,7 +111,7 @@ def build_payload(clusters_payload: dict[str, object]) -> dict[str, object]:
             }
         )
     return {
-        "source": "reports/exp000/clusters.json",
+        "source": source,
         "membership_rule": "cluster start_timestamp >= window start (straddlers excluded)",
         "windows": [
             {"key": w.key, "label": w.label, "start": w.start, "note": w.note} for w in WINDOWS
@@ -116,6 +124,8 @@ def build_payload(clusters_payload: dict[str, object]) -> dict[str, object]:
 def render_markdown(payload: dict[str, object]) -> str:
     lines = [
         "# EXP-000 per-fuel-challenger usable history",
+        "",
+        f"Source inventory: `{payload['source']}` (D-022 consolidated BTC spot index).",
         "",
         f"Membership rule: {payload['membership_rule']}. Window starts are raw",
         "acquisition starts; effective starts move later once feature lookbacks",
@@ -150,7 +160,7 @@ def render_markdown(payload: dict[str, object]) -> str:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--clusters", default=Path("reports/exp000/clusters.json"), type=Path)
+    parser.add_argument("--clusters", default=DEFAULT_CLUSTERS, type=Path)
     parser.add_argument("--out-dir", default=Path("reports/exp000"), type=Path)
     return parser.parse_args(argv)
 
@@ -159,7 +169,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     clusters_path = args.clusters.resolve()
     clusters_payload = json.loads(clusters_path.read_text(encoding="utf-8"))
-    payload = build_payload(clusters_payload)
+    source = str(clusters_path.relative_to(REPO_ROOT))
+    payload = build_payload(clusters_payload, source=source)
     args.out_dir.mkdir(parents=True, exist_ok=True)
     json_path = args.out_dir / "challenger_history.json"
     md_path = args.out_dir / "challenger_history.md"
