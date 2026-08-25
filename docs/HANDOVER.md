@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Grok Bot CTO; P3 Phase B rerun authorized)
+## State as of 2026-08-25 (Grok Bot CTO; EXP-002 NULL, P4 held)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -109,26 +109,19 @@ and exits non-zero; do not invent passing parity numbers.
 
 ### Next work (in order)
 
-Authoritative sequence remains `docs/glide_path.md`. Current beat is **P3 Phase B**.
+Authoritative sequence remains `docs/glide_path.md`. Current beat is **P3 BANKED NULL**.
 
-1. P2 banked on main `ed508e7` (PR #4).
-2. P3 Phase A banked on main `889ea56` (PR #5): scoring lib + runner, 191 tests.
-3. Streaming as-of banked on main `69a2e89` (PR #6). Engineer: Phase B
-   rerun on dexter from that SHA:
-   `python scripts/run_p3_construct_gate.py --data-root /home/a8ra_dgx/oracle-data`.
-   PR only `reports/exp002/construct_gate.{json,md,provenance.json}`.
-   Stop + ETA if wall looks > ~8h after first attach. No ledger.
+1. EXP-002 NULL on main `d591f9b`. `cex_oi_cohort_v0` parked.
+2. Engineer idle. No silent retry. No family redesign.
+3. P4 / EXP-003 not self-authorized.
 4. Still debt, later: regenerate `challenger_history` from
    `index_clusters.json` (P5); large-cluster weight policy before M2.
 
 ### Glide path (authoritative sequence)
 
-Active research sequence is `docs/glide_path.md` (v1). **P1 BANKED**
-(four-cell `cex_oi_cohort_v0`; D-029/030/031 accepted). **P2 BANKED**
-(`ed508e7`). **P3 Phase A BANKED** (`889ea56`). **Phase B authorized.** Brief:
-`docs/briefs/2026-08-25-p3-fuel-construct-gate.md`. Census:
-`reports/p1_eligibility_census.json`. Golden pins on main `e5b6dfd`.
-No P4, no M2.
+Active research sequence is `docs/glide_path.md` (v1). **P1 BANKED**.
+**P2 BANKED** (`ed508e7`). **P3 BANKED NULL** (`d591f9b`). EXP-002 parked.
+Census: `reports/p1_eligibility_census.json`. No P4, no M2.
 
 
 ### Seat note (2026-08-24)

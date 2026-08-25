@@ -326,7 +326,7 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-002 — CEX-inferred directional fuel proxy (construct)
 
-- **Status:** RUNNING (P3 authorized 2026-08-25; D-030; P2 banked `ed508e7`)
+- **Status:** NULL (closed 2026-08-25; P3 construct gate; D-030)
 - **Frozen question:** Does `cex_oi_cohort_v0` rank subsequent Hyperliquid book-hitting BTC liquidation notional on the **four primary 4h cells** `{up,down} × {(0,1%),[1,2%)}` when the named adverse-entry-distance band is far-edge traversed?
 - **Hypothesis:** Time-varying adverse-band shape from quantity cohorts carries incremental within-band information beyond OI-only USD and trailing-price-path, on those four cells only.
 - **Belief change:** PASS → M2-eligible **only for these 4h cells** (validates neither 1h nor `[2,4%)`). FAIL → this path dies. NULL → park. If any primary cell later falls below its coverage floor, NULL, not a redesign. Single cross-venue miss: *fails the observable construct gate; cause unresolved.*
@@ -340,10 +340,10 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 - **Baselines:** OI-only USD; trailing-price-path (4h); `cex_oi_band_static` two-band weights (0.75, 0.25).
 - **Metrics:** four-cell F and the PASS clauses.
 - **Pass/fail contract:** mechanical NULL / FAIL / PASS in the v5 brief.
-- **Result:**
-- **Verdict:**
+- **Result:** Phase B on dexter from `1df5bb2` / reports `d591f9b`. 172 targeted 4h cluster-rows. Construct-dev counts 12/12/23/23 (integrity True); construct-val 28/28/23/23 (integrity True). Dev family F_vs_oi=0.0165, F_vs_path=0.0201, F_static=0.0213. Val F_vs_oi=0.0607, F_vs_path=-0.0652, F_static=0.0986. Dev bootstrap B=1000, 14 weeks, 15 undefined draws → floor not locked. Val CI95 of both F statistics includes 0. Shape passed (4/4 m3≥m1, 0 hard flips). Both stability blocks passed (Sep–Oct F_vs_oi=0.250; Nov–Dec 0.133). Wall 1h02m, max RSS 3.22 GiB.
+- **Verdict:** NULL. `cex_oi_cohort_v0` parked. No silent retry. No family redesign. P4 / EXP-003 not self-authorized.
 - **Limitations:** LSR reweights the same contract stock; adverse-entry is not a liq-price offset; 1h and `[2,4%)` are parked and non-confirmatory; construct-dev up cell is 12 (above the 10 floor, thin).
-- **Artifacts:** brief v5; census + D-019 sidecar; D-030.
+- **Artifacts:** brief v5; census + D-019 sidecar; D-030; `reports/exp002/construct_gate.{json,md,provenance.json}` (`d591f9b`).
 - **Correction notes:** v5 is the Chair four-cell feasibility correction (path-only census; no fuel/mass inspected). 12-cell family retired as theatre.
 
 ## EXP-003 — Quoted book-walk impact proxy (construct)
@@ -362,8 +362,8 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 - **Baselines:** trailing-range / trailing-realized-vol.
 - **Metrics:** incremental Spearman; Sep–Dec sign stability.
 - **Pass/fail contract:** mechanical NULL / FAIL / PASS.
-- **Result:**
-- **Verdict:**
+- **Result:** Phase B on dexter from `1df5bb2` / reports `d591f9b`. 172 targeted 4h cluster-rows. Construct-dev counts 12/12/23/23 (integrity True); construct-val 28/28/23/23 (integrity True). Dev family F_vs_oi=0.0165, F_vs_path=0.0201, F_static=0.0213. Val F_vs_oi=0.0607, F_vs_path=-0.0652, F_static=0.0986. Dev bootstrap B=1000, 14 weeks, 15 undefined draws → floor not locked. Val CI95 of both F statistics includes 0. Shape passed (4/4 m3≥m1, 0 hard flips). Both stability blocks passed (Sep–Oct F_vs_oi=0.250; Nov–Dec 0.133). Wall 1h02m, max RSS 3.22 GiB.
+- **Verdict:** NULL. `cex_oi_cohort_v0` parked. No silent retry. No family redesign. P4 / EXP-003 not self-authorized.
 - **Limitations:** one-minute match horizon is harsh; published size must be stable or probe returns.
 - **Artifacts:** brief v3; D-031.
 - **Correction notes:** Chair approved for banking once immediate-next-bucket and bid/ask mapping were in the brief.

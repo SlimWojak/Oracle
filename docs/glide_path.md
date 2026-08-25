@@ -53,11 +53,11 @@ Frozen spec: `docs/briefs/2026-08-25-p2-cex-fuel-path.md`.
 Main `ed508e7` (PR #4): `cex_oi_cohort_v0` + 4h cluster-row + HL target hook.
 No F. No P3 scoring in P2.
 
-### P3 — Execute fuel construct gate — **AUTHORIZED 2026-08-25**
+### P3 — Execute fuel construct gate — **BANKED NULL 2026-08-25**
 
 Frozen spec: `docs/briefs/2026-08-25-p3-fuel-construct-gate.md`.
-Run the frozen four-cell EXP-002 construct. Engineer implements scoring
-and the dexter run; CTO banks the ledger verdict.
+Reports `d591f9b`. Ledger EXP-002 **NULL**. Floor not locked (15/1000
+dev week-draws undefined on n=12 up cells). Path parked. No silent retry.
 
 **Done when:** PASS / FAIL / NULL recorded in the ledger.
 
