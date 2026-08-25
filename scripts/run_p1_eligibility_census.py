@@ -70,7 +70,9 @@ def main() -> int:
     high = np.asarray(index.klines.high, dtype=np.float64)
     low = np.asarray(index.klines.low, dtype=np.float64)
     close = np.asarray(index.klines.close, dtype=np.float64)
-    print(f"index bars={len(ts_arr)} {datetime.fromtimestamp(int(ts_arr[0]), UTC)} .. {datetime.fromtimestamp(int(ts_arr[-1]), UTC)}", flush=True)
+    first_ts = datetime.fromtimestamp(int(ts_arr[0]), UTC)
+    last_ts = datetime.fromtimestamp(int(ts_arr[-1]), UTC)
+    print(f"index bars={len(ts_arr)} {first_ts} .. {last_ts}", flush=True)
 
     labels_by_key: dict[tuple[int, float], np.ndarray] = {}
     for horizon in (3600, 14400):
@@ -135,14 +137,26 @@ def main() -> int:
     any_below = any(row["below_15"] for row in detail)
     report = {
         "status": "SPARSE" if any_below else "COVERED",
-        "rule": "pure-direction clusters; earliest T in [start,end] with far-edge first-passage in that direction; no fuel; no HL mass",
+        "rule": (
+            "pure-direction clusters; earliest T in [start,end] with far-edge "
+            "first-passage in that direction; no fuel; no HL mass"
+        ),
         "bands": [b[0] for b in BANDS],
         "any_cell_below_15": any_below,
         "cells": detail,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=2) + "\n")
-    print(json.dumps({"status": report["status"], "any_cell_below_15": any_below, "out": str(args.out)}), flush=True)
+    print(
+        json.dumps(
+            {
+                "status": report["status"],
+                "any_cell_below_15": any_below,
+                "out": str(args.out),
+            }
+        ),
+        flush=True,
+    )
     return 0
 
 
