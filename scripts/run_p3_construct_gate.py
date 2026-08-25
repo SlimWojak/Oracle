@@ -238,7 +238,10 @@ def main(argv: list[str] | None = None) -> int:
         payload = {
             "status": "MISSING_DATA",
             "harness_status": "NULL",
-            "note": "Phase A dry-run note; full tape was not run and no PASS numbers were invented.",
+            "note": (
+                "Phase A dry-run note; full tape was not run and no PASS numbers "
+                "were invented."
+            ),
             "missing_paths": [str(path) for path in missing],
             "config": config,
         }

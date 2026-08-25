@@ -164,15 +164,25 @@ class BootstrapTests(unittest.TestCase):
         )
         bootstrap = weekly_bootstrap(rows, CONSTRUCT_DEV, draws=1, seed=4)
         weeks = sorted({item.week_start_timestamp for item in rows})
-        sampled = np.random.default_rng(4).choice(np.asarray(weeks, dtype=np.int64), size=2, replace=True)
-        sampled_rows = [item for week in sampled.tolist() for item in rows if item.week_start_timestamp == week]
+        sampled = np.random.default_rng(4).choice(
+            np.asarray(weeks, dtype=np.int64),
+            size=2,
+            replace=True,
+        )
+        sampled_rows = [
+            item
+            for week in sampled.tolist()
+            for item in rows
+            if item.week_start_timestamp == week
+        ]
 
         for week in sampled.tolist():
             self.assertEqual(
                 {item.band for item in sampled_rows if item.week_start_timestamp == week},
                 set(PRIMARY_CELL_BANDS),
             )
-        self.assertEqual(bootstrap.values[0], score_window(sampled_rows, CONSTRUCT_DEV).family.f_vs_oi)
+        manual_score = score_window(sampled_rows, CONSTRUCT_DEV)
+        self.assertEqual(bootstrap.values[0], manual_score.family.f_vs_oi)
 
     def test_seeded_bootstrap_reproducibility_and_floor_recipe(self) -> None:
         rows: list[TargetedFuelRow] = []
@@ -223,7 +233,9 @@ class ShapeTests(unittest.TestCase):
                     rows.append(
                         row(
                             cluster_index=cluster_index,
-                            cluster_start_timestamp=CONSTRUCT_VAL.start_timestamp + cluster_index * 60,
+                            cluster_start_timestamp=(
+                                CONSTRUCT_VAL.start_timestamp + cluster_index * 60
+                            ),
                             direction=direction,
                             band=band,
                             fuel_usd=float(offset + 1),

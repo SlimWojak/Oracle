@@ -262,7 +262,7 @@ class BootstrapResult:
         if self.ci95 is None:
             return False
         low, high = self.ci95
-        return 0.0 < low or 0.0 > high
+        return low > 0.0 or high < 0.0
 
     def to_dict(self, *, include_values: bool = False) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -440,7 +440,9 @@ def spearman(x_values: Sequence[float], y_values: Sequence[float]) -> float | No
     y_rank = average_ranks(y)
     x_centered = x_rank - float(np.mean(x_rank))
     y_centered = y_rank - float(np.mean(y_rank))
-    denominator = math.sqrt(float(np.sum(x_centered * x_centered) * np.sum(y_centered * y_centered)))
+    denominator = math.sqrt(
+        float(np.sum(x_centered * x_centered) * np.sum(y_centered * y_centered))
+    )
     if not math.isfinite(denominator) or denominator <= 0.0:
         return None
     rho = float(np.sum(x_centered * y_centered) / denominator)
@@ -464,7 +466,8 @@ def static_usd_by_row(rows: Sequence[TargetedFuelRow]) -> dict[int, float]:
 
     fuel_by_key: dict[tuple[int, Direction, int, str], float] = {}
     for row in rows:
-        fuel_by_key[(row.cluster_index, row.direction, row.decision_timestamp, row.band)] = row.fuel_usd
+        key = (row.cluster_index, row.direction, row.decision_timestamp, row.band)
+        fuel_by_key[key] = row.fuel_usd
 
     static: dict[int, float] = {}
     for index, row in enumerate(rows):
@@ -484,7 +487,11 @@ def _cell_rows(
     direction: Direction,
     band: str,
 ) -> list[tuple[int, TargetedFuelRow]]:
-    return [(index, row) for index, row in enumerate(rows) if row.direction is direction and row.band == band]
+    return [
+        (index, row)
+        for index, row in enumerate(rows)
+        if row.direction is direction and row.band == band
+    ]
 
 
 def score_window(
@@ -550,7 +557,10 @@ def family_stats(cells: Sequence[CellScore]) -> FamilyStats:
     )
 
 
-def _statistic_value(score: WindowScore, statistic: Literal["F_vs_oi", "F_vs_path"]) -> float | None:
+def _statistic_value(
+    score: WindowScore,
+    statistic: Literal["F_vs_oi", "F_vs_path"],
+) -> float | None:
     if statistic == "F_vs_oi":
         return score.family.f_vs_oi
     if statistic == "F_vs_path":
@@ -618,6 +628,11 @@ def weekly_bootstrap(
             ci95=None,
         )
     array = np.asarray(values, dtype=np.float64)
+    se = float(np.std(array, ddof=1)) if array.shape[0] > 1 else None
+    ci95 = (
+        float(np.percentile(array, 2.5)),
+        float(np.percentile(array, 97.5)),
+    )
     return BootstrapResult(
         statistic=statistic,
         seed=seed,
@@ -625,11 +640,8 @@ def weekly_bootstrap(
         week_count=len(weeks),
         values=tuple(float(value) for value in array.tolist()),
         undefined_draws=0,
-        se=float(np.std(array, ddof=1)),
-        ci95=(
-            float(np.percentile(array, 2.5)),
-            float(np.percentile(array, 97.5)),
-        ),
+        se=se,
+        ci95=ci95,
     )
 
 
@@ -651,7 +663,11 @@ def score_shape(rows: Sequence[TargetedFuelRow], window: GateWindow = CONSTRUCT_
     cells: list[ShapeCell] = []
     for direction in PRIMARY_CELL_DIRECTIONS:
         for band in PRIMARY_CELL_BANDS:
-            selected = [row for row in window_rows if row.direction is direction and row.band == band]
+            selected = [
+                row
+                for row in window_rows
+                if row.direction is direction and row.band == band
+            ]
             ordered = sorted(
                 selected,
                 key=lambda row: (row.fuel_usd, row.cluster_index, row.decision_timestamp),
@@ -778,7 +794,9 @@ def score_construct_gate(
     floor = floor_lock.floor
     pass_clauses = {
         "construct_val_F_vs_oi_ge_floor": bool(
-            floor is not None and val_score.family.f_vs_oi is not None and val_score.family.f_vs_oi >= floor
+            floor is not None
+            and val_score.family.f_vs_oi is not None
+            and val_score.family.f_vs_oi >= floor
         ),
         "construct_val_F_vs_oi_ci95_excludes_zero": bool(
             val_bootstrap_oi is not None and val_bootstrap_oi.ci95_excludes_zero
