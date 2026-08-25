@@ -326,7 +326,7 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-002 — CEX-inferred directional fuel proxy (construct)
 
-- **Status:** PLANNED (P1 v5 **banked** 2026-08-25; D-030 Accepted; P2 authorized)
+- **Status:** RUNNING (P3 authorized 2026-08-25; D-030; P2 banked `ed508e7`)
 - **Frozen question:** Does `cex_oi_cohort_v0` rank subsequent Hyperliquid book-hitting BTC liquidation notional on the **four primary 4h cells** `{up,down} × {(0,1%),[1,2%)}` when the named adverse-entry-distance band is far-edge traversed?
 - **Hypothesis:** Time-varying adverse-band shape from quantity cohorts carries incremental within-band information beyond OI-only USD and trailing-price-path, on those four cells only.
 - **Belief change:** PASS → M2-eligible **only for these 4h cells** (validates neither 1h nor `[2,4%)`). FAIL → this path dies. NULL → park. If any primary cell later falls below its coverage floor, NULL, not a redesign. Single cross-venue miss: *fails the observable construct gate; cause unresolved.*

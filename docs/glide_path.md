@@ -47,17 +47,17 @@ D-019 provenance. 1h and `[2,4%)` parked (non-confirmatory).
 
 **Primary family:** 4h × {up, down} × {(0,1%), [1,2%)}.
 
-### P2 — Implement CEX-inferred fuel measurement path — **AUTHORIZED**
+### P2 — Implement CEX-inferred fuel measurement path — **BANKED 2026-08-25**
 
 Frozen spec: `docs/briefs/2026-08-25-p2-cex-fuel-path.md`.
-Implements `cex_oi_cohort_v0` + P3 hooks only. No M2 fit. No P3 scoring.
+Main `ed508e7` (PR #4): `cex_oi_cohort_v0` + 4h cluster-row + HL target hook.
+No F. No P3 scoring in P2.
 
-**Done when:** feature code, as-of rules, and P3-gate hooks exist on main.
+### P3 — Execute fuel construct gate — **AUTHORIZED 2026-08-25**
 
-
-### P3 — Execute fuel construct gate
-
-Run the frozen fuel construct EXP.
+Frozen spec: `docs/briefs/2026-08-25-p3-fuel-construct-gate.md`.
+Run the frozen four-cell EXP-002 construct. Engineer implements scoring
+and the dexter run; CTO banks the ledger verdict.
 
 **Done when:** PASS / FAIL / NULL recorded in the ledger.
 
