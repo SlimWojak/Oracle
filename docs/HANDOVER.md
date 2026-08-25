@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (GPT-5.5 Cloud; P3 Phase A PR open)
+## State as of 2026-08-25 (Grok Bot CTO; P3 Phase B authorized)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -109,28 +109,22 @@ and exits non-zero; do not invent passing parity numbers.
 
 ### Next work (in order)
 
-Authoritative sequence remains `docs/glide_path.md`. Current beat is **P3**.
+Authoritative sequence remains `docs/glide_path.md`. Current beat is **P3 Phase B**.
 
 1. P2 banked on main `ed508e7` (PR #4).
-2. Engineer: `docs/briefs/2026-08-25-p3-fuel-construct-gate.md` Phase A only.
-   Draft PR #5 (`cursor/p3-construct-gate-aa70`, tip `b7660c5`) adds
-   `oracle_research.construct_gate`, `scripts/run_p3_construct_gate.py`, and
-   synthetic tests. No full tape run. Verification on cloud:
-   `python3 -m unittest discover` ran 191 tests (7 skipped) green;
-   `ruff check .` green; missing-data dry-run wrote to `/tmp` only.
-3. After CTO review/merge of Phase A, run Phase B on the data host from the
-   merged SHA:
+2. P3 Phase A banked on main `889ea56` (PR #5): scoring lib + runner, 191 tests.
+3. Engineer: Phase B on dexter from `889ea56`:
    `python scripts/run_p3_construct_gate.py --data-root /home/a8ra_dgx/oracle-data`.
-   PR only the three `reports/exp002/` files. Do not edit ledger verdicts.
-4. P4 / EXP-003 not authorized. No 2026 look. No ledger verdicts.
-5. Still debt, later: regenerate `challenger_history` from
+   PR only `reports/exp002/construct_gate.{json,md,provenance.json}`.
+   No ledger verdicts. No P4.
+4. Still debt, later: regenerate `challenger_history` from
    `index_clusters.json` (P5); large-cluster weight policy before M2.
 
 ### Glide path (authoritative sequence)
 
 Active research sequence is `docs/glide_path.md` (v1). **P1 BANKED**
 (four-cell `cex_oi_cohort_v0`; D-029/030/031 accepted). **P2 BANKED**
-(`ed508e7`). **P3 Phase A in review** in PR #5. Brief:
+(`ed508e7`). **P3 Phase A BANKED** (`889ea56`). **Phase B authorized.** Brief:
 `docs/briefs/2026-08-25-p3-fuel-construct-gate.md`. Census:
 `reports/p1_eligibility_census.json`. Golden pins on main `e5b6dfd`.
 No P4, no M2.
@@ -156,7 +150,7 @@ only. Cursor Phase 2 complete; EXP-001 banked from this rotation.
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 183 tests (7 skipped) green at P2 bank.
+  handing off. 191 tests (7 skipped) green at P3 Phase A bank.
 - Known open decisions listed at the bottom of `docs/DECISIONS.md`. Settle
   the large-cluster weight policy before any M2 scoring; regenerate the
   challenger-history table from the index inventory before ladder design.
