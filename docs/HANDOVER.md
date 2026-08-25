@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Grok Bot CTO; P1 banked, P2 authorized)
+## State as of 2026-08-25 (Grok Bot CTO; P2 banked, P3 held)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -109,21 +109,19 @@ and exits non-zero; do not invent passing parity numbers.
 
 ### Next work (in order)
 
-Authoritative sequence remains `docs/glide_path.md`. Current beat is **P2**.
+Authoritative sequence remains `docs/glide_path.md`. Current beat is **P2 BANKED**.
 
-1. Engineer: `docs/briefs/2026-08-25-p2-cex-fuel-path.md` only. PR, no merge.
-2. P3 is not self-authorized. No M2.
+1. P2 on main `ed508e7` (PR #4): `cex_oi_cohort_v0` + 4h cluster-row + HL target hook.
+2. P3 is not self-authorized. Engineer idle. No F, no M2.
 3. Still debt, later: regenerate `challenger_history` from
    `index_clusters.json` (P5); large-cluster weight policy before M2.
-
-P2 implementation is on PR #4 (`cursor/p2-cex-fuel-path-9992`); no P3 scoring run.
 
 ### Glide path (authoritative sequence)
 
 Active research sequence is `docs/glide_path.md` (v1). **P1 BANKED**
-(four-cell `cex_oi_cohort_v0`; D-029/030/031 accepted). **P2 authorized.**
-Census: `reports/p1_eligibility_census.json`. Golden pins are on main
-`e5b6dfd`. Engineer implements the P2 brief only. No P3 scoring, no M2.
+(four-cell `cex_oi_cohort_v0`; D-029/030/031 accepted). **P2 BANKED**
+(`ed508e7`). Census: `reports/p1_eligibility_census.json`. Golden pins are
+on main `e5b6dfd`. Engineer idle. No P3 scoring, no M2.
 
 
 ### Seat note (2026-08-24)
@@ -146,7 +144,7 @@ only. Cursor Phase 2 complete; EXP-001 banked from this rotation.
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 172 tests green at handover.
+  handing off. 183 tests (7 skipped) green at P2 bank.
 - Known open decisions listed at the bottom of `docs/DECISIONS.md`. Settle
   the large-cluster weight policy before any M2 scoring; regenerate the
   challenger-history table from the index inventory before ladder design.
