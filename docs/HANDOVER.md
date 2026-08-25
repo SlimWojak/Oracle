@@ -122,8 +122,10 @@ and exits non-zero; do not invent passing parity numbers.
 
 Active research sequence is `docs/glide_path.md` (v1). **P0 BANKED 2026-08-25**
 (D-012 Parquet + hard census parity PASS). Next CTO commission is P1 construct
-design freeze — not self-starting. Post-P0 hygiene still open: golden
-byte-identity pins on deterministic primitives.
+design freeze — not self-starting. Post-P0 hygiene completed on branch
+`cursor/golden-byte-pins-171c`: five tiny golden pins cover first-passage,
+event-cluster, median-index, HL liquidation extraction/strata, and HL fills
+Parquet schema contracts.
 
 
 ### Seat note (2026-08-24)
@@ -146,7 +148,7 @@ only. Cursor Phase 2 complete; EXP-001 banked from this rotation.
   906-second cascade window that official bars contained; always validate
   trades-derived bars against an official overlap before trusting them.
 - Run `python -m unittest discover` and `ruff check .` (use repo venv) before
-  handing off. 162 tests green at handover.
+  handing off. 172 tests green at handover.
 - Known open decisions listed at the bottom of `docs/DECISIONS.md`. Settle
   the large-cluster weight policy before any M2 scoring; regenerate the
   challenger-history table from the index inventory before ladder design.
