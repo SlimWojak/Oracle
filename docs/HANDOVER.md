@@ -206,6 +206,7 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
   development candidate). One local experiment-wide receipt was consumed and
   completed valid; no OOS refit or retry occurred.
 - Evidence commit: `7ab09aa62b4392c61aa93d40752ca1ec3bd86efb`.
+  Verdict/status commit: `87f3d27b9d1cade37958205b469efa320b27b2fe`.
   Fixed/twin family Brier lift was `0.1785% / -0.0040%` validation,
   `0.2180% / 0.0309%` test-2025, and `0.1346% / -0.0305%`
   test-2026-01..07. All miss the +1% PASS floor; the stable -1% FAIL rule is
