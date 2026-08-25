@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Grok Bot CTO; EXP-002 NULL, P4 held)
+## State as of 2026-08-25 (Grok Bot CTO; P5 authorized, P4 deferred)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -109,19 +109,20 @@ and exits non-zero; do not invent passing parity numbers.
 
 ### Next work (in order)
 
-Authoritative sequence remains `docs/glide_path.md`. Current beat is **P3 BANKED NULL**.
+Authoritative sequence remains `docs/glide_path.md`. Current beat is **P5**.
 
-1. EXP-002 NULL on main `d591f9b`. `cex_oi_cohort_v0` parked.
-2. Engineer idle. No silent retry. No family redesign.
-3. P4 / EXP-003 not self-authorized.
-4. Still debt, later: regenerate `challenger_history` from
-   `index_clusters.json` (P5); large-cluster weight policy before M2.
+1. EXP-002 reports bank `d591f9b`; verdict bank `1b249da` (NULL,
+   directionally negative). `cex_oi_cohort_v0` parked.
+2. P5 freeze: `docs/briefs/2026-08-25-p5-eval-unit.md` (D-032). EXP-004
+   stub only. No scoring. Engineer idle unless commissioned for inventory
+   regen.
+3. P4 / EXP-003 deferred until after M0/M1 review. P6 not authorized.
 
 ### Glide path (authoritative sequence)
 
-Active research sequence is `docs/glide_path.md` (v1). **P1 BANKED**.
-**P2 BANKED** (`ed508e7`). **P3 BANKED NULL** (`d591f9b`). EXP-002 parked.
-Census: `reports/p1_eligibility_census.json`. No P4, no M2.
+Active research sequence is `docs/glide_path.md` (v1). **P3 BANKED NULL**
+(reports `d591f9b`, verdict `1b249da`). **P5 authorized** (D-032).
+**P4 deferred.** Census: `reports/p1_eligibility_census.json`. No P6, no M2.
 
 
 ### Seat note (2026-08-24)

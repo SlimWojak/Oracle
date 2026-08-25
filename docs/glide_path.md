@@ -64,29 +64,22 @@ dev week-draws undefined on n=12 up cells). Path parked. No silent retry.
 **Kill:** failed paths do not enter predictive ladders. A materially changed
 estimator re-enters only as a new EXP, never as a silent retry.
 
-### P4 — Implement and execute first impact construct gate
+### P5 — Freeze evaluation unit (before baselines) — **AUTHORIZED 2026-08-25**
 
-Build the first impact proxy path, then run its frozen construct EXP.
+Chair swap: P5 ahead of P4. Frozen spec:
+`docs/briefs/2026-08-25-p5-eval-unit.md` (D-032). EXP-004 stub only.
+No M0/M1 scoring. No P6.
+
+**Done when:** D-032 recorded and this brief on main. Inventory regen
+is a mechanical close, not a scoring license.
+
+### P4 — First impact construct gate — **DEFERRED**
+
+EXP-003 stays frozen. Commission only after M0/M1 review. Cannot revive
+fuel, authorize M4, or inherit an interaction claim.
 
 **Done when:** PASS / FAIL / NULL recorded. Book≠backstop discipline preserved
 wherever mass is referenced.
-
-### P5 — Freeze evaluation unit (before baselines)
-
-Settle before any M0/M1 banking:
-
-- timestamp / risk-set construction and negative dependence
-- cluster or episode weighting
-- alert-episode scoring
-- volatility-normalized barrier twin **estimator** (D-026: twin is a finding
-  blocker — no PASS headline on fixed ±2% alone)
-- primary vs exploratory cell budget for ladder reports (D-025)
-- regenerate `challenger_history` from `index_clusters.json`
-
-Open as decision debt when P0 banks; must be settled before P6 scoring.
-
-**Done when:** decisions recorded in `docs/DECISIONS.md` (and inventory regen
-committed if required).
 
 ### P6 — Bank M0→M1, then stop
 

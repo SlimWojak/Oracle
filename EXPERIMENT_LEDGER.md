@@ -341,14 +341,14 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 - **Metrics:** four-cell F and the PASS clauses.
 - **Pass/fail contract:** mechanical NULL / FAIL / PASS in the v5 brief.
 - **Result:** Phase B on dexter from `1df5bb2` / reports `d591f9b`. 172 targeted 4h cluster-rows. Construct-dev counts 12/12/23/23 (integrity True); construct-val 28/28/23/23 (integrity True). Dev family F_vs_oi=0.0165, F_vs_path=0.0201, F_static=0.0213. Val F_vs_oi=0.0607, F_vs_path=-0.0652, F_static=0.0986. Dev bootstrap B=1000, 14 weeks, 15 undefined draws → floor not locked. Val CI95 of both F statistics includes 0. Shape passed (4/4 m3≥m1, 0 hard flips). Both stability blocks passed (Sep–Oct F_vs_oi=0.250; Nov–Dec 0.133). Wall 1h02m, max RSS 3.22 GiB.
-- **Verdict:** NULL. `cex_oi_cohort_v0` parked. No silent retry. No family redesign. P4 / EXP-003 not self-authorized.
+- **Verdict:** NULL. `cex_oi_cohort_v0` parked. No silent retry. No family redesign.
 - **Limitations:** LSR reweights the same contract stock; adverse-entry is not a liq-price offset; 1h and `[2,4%)` are parked and non-confirmatory; construct-dev up cell is 12 (above the 10 floor, thin).
-- **Artifacts:** brief v5; census + D-019 sidecar; D-030; `reports/exp002/construct_gate.{json,md,provenance.json}` (`d591f9b`).
-- **Correction notes:** v5 is the Chair four-cell feasibility correction (path-only census; no fuel/mass inspected). 12-cell family retired as theatre.
+- **Artifacts:** brief v5; census + D-019 sidecar; D-030; reports bank `d591f9b`; verdict bank `1b249da`.
+- **Correction notes:** v5 is the Chair four-cell feasibility correction (path-only census; no fuel/mass inspected). 12-cell family retired as theatre. 2026-08-25 Chair: treat NULL as **directionally negative**, not underpowered (misses materiality; loses to path and static; both val CIs include 0). No floor relaxation or LSR reskin.
 
 ## EXP-003 — Quoted book-walk impact proxy (construct)
 
-- **Status:** PLANNED (P1 v3; **D-031 Accepted** 2026-08-25; implement after EXP-002 verdict)
+- **Status:** PLANNED (P1 v3; **D-031 Accepted**; Chair 2026-08-25 deferred until after M0/M1 review)
 - **Frozen question:** Do Hyperliquid published impact prices, at the venue-published impact notional, predict realized slippage in the immediately following epoch-aligned 60-second bucket?
 - **Hypothesis:** Visible quoted walk ranks same-bucket matched slippage better than a trailing-range / trailing-vol baseline.
 - **Belief change:** PASS → M3-eligible. FAIL → path dies. NULL → park.
@@ -362,11 +362,34 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 - **Baselines:** trailing-range / trailing-realized-vol.
 - **Metrics:** incremental Spearman; Sep–Dec sign stability.
 - **Pass/fail contract:** mechanical NULL / FAIL / PASS.
-- **Result:** Phase B on dexter from `1df5bb2` / reports `d591f9b`. 172 targeted 4h cluster-rows. Construct-dev counts 12/12/23/23 (integrity True); construct-val 28/28/23/23 (integrity True). Dev family F_vs_oi=0.0165, F_vs_path=0.0201, F_static=0.0213. Val F_vs_oi=0.0607, F_vs_path=-0.0652, F_static=0.0986. Dev bootstrap B=1000, 14 weeks, 15 undefined draws → floor not locked. Val CI95 of both F statistics includes 0. Shape passed (4/4 m3≥m1, 0 hard flips). Both stability blocks passed (Sep–Oct F_vs_oi=0.250; Nov–Dec 0.133). Wall 1h02m, max RSS 3.22 GiB.
-- **Verdict:** NULL. `cex_oi_cohort_v0` parked. No silent retry. No family redesign. P4 / EXP-003 not self-authorized.
+- **Result:**
+- **Verdict:**
 - **Limitations:** one-minute match horizon is harsh; published size must be stable or probe returns.
 - **Artifacts:** brief v3; D-031.
-- **Correction notes:** Chair approved for banking once immediate-next-bucket and bid/ask mapping were in the brief.
+- **Correction notes:** Chair approved for banking once immediate-next-bucket and bid/ask mapping were in the brief. 2026-08-25: `1b249da` accidentally copied EXP-002 Result/Verdict into this stub. Restored blank. EXP-003 stays PLANNED; implementation deferred until after M0/M1 review. Cannot revive fuel, authorize M4, or inherit an interaction claim.
+
+
+## EXP-004 — M0/M1 baseline ladder (eval-unit inventory)
+
+- **Status:** PLANNED (P5 freeze 2026-08-25; D-032; no fitting, no scoring)
+- **Frozen question:** Under the frozen evaluation unit, do price-only (M0) and generic leverage/flow (M1) baselines change OOS first-passage hazard on the primary cells?
+- **Hypothesis:** Trailing path/vol/range and taker-flow variance compression are the comparison objects any later fuel/impact EXP must beat. They are not the thesis.
+- **Belief change:** Banked M0/M1 become the comparison contract for later EXPs. They do not revive EXP-002 or authorize M2/M4.
+- **Materiality:** family incremental Spearman on the D-032 primary cells; twin required for any PASS headline (D-026). Exact P6 floor is not locked here.
+- **Data manifest:** D-022 index; `reports/exp000/index_clusters.json`; Binance kline taker fields if M1 is unblocked. No HL-fills predictive features.
+- **Development period:** D-023 development 2020-01-01 .. 2023-12-31.
+- **Validation period:** D-023 validation 2024-01-01 .. 2024-12-31.
+- **Final test period:** D-023 final test 2025-01-01 .. 2026-07-31 as two contiguous OOS periods.
+- **Features available as of:** cluster.start (catalogue already D-017 interval-end).
+- **Method:** `docs/briefs/2026-08-25-p5-eval-unit.md`. P5 may only regenerate deterministic `challenger_history` from `index_clusters.json`. Scoring is P6, not this EXP's current beat.
+- **Baselines:** M0 trailing 4h return / 4h range / 24h realized vol; M1 taker-flow variance compression (D-009) if as-of history exists.
+- **Metrics:** four-cell family Spearman on `{1h,4h}×{up,down}`; vol-twin reported alongside.
+- **Pass/fail contract:** mechanical NULL / FAIL / PASS under D-032; no score in P5.
+- **Result:**
+- **Verdict:**
+- **Limitations:** no surviving fuel measure; M1 may block if taker as-of history is incomplete; 2024 val is thin (D-023).
+- **Artifacts:** D-032; P5 brief.
+- **Correction notes:** created as the Chair-authorized P5 stub only. Not a commission to fit or score.
 
 ## Experiment template
 

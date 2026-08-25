@@ -362,8 +362,9 @@ Details: `docs/briefs/2026-08-25-p1-fuel-construct.md` v5, EXP-002,
 **Accepted** (2026-08-25, Chair: both prior conditions satisfied; approved
 for banking). Bank with the P1 commit once D-030 is signed.
 
-EXP-003 is designed now and implemented only after EXP-002 has a recorded
-verdict. First proxy is Hyperliquid published impact prices at the
+EXP-003 is designed now. EXP-002 now has a recorded NULL. Chair 2026-08-25
+deferred implementation until after M0/M1 review (P5 then P6). It cannot
+revive fuel, authorize M4, or inherit an interaction claim. First proxy is Hyperliquid published impact prices at the
 venue-published impact notional. Engineer may inspect schema; Engineer may
 not choose the match design. Unstable published notional → probe returns
 to CTO, no score.
@@ -376,15 +377,27 @@ uses impact **bid**. Fuel distance bands are not EXP-003 primary cells.
 Trailing realized impact is a later independent candidate. Details in
 `docs/briefs/2026-08-25-p1-impact-construct.md` v3.
 
+## D-032 — Evaluation unit freeze (P5)
+
+**Accepted** (2026-08-25, Chair: swap P5 ahead of P4; authorize P5 only).
+Details: `docs/briefs/2026-08-25-p5-eval-unit.md`.
+
+Inferential unit is one pure-direction cluster × horizon; weight 1 per
+cluster; no intra-cluster iid. D-023 straddle-drop stays. Twin estimator:
+24h realized-vol barrier `x_t = κ σ_t` with κ locked on D-023 development
+so median `x_t` equals 2%. Primary M0/M1 cells: `{1h,4h}×{up,down}`; twin
+is a required companion family. M0/M1 use D-023 splits. EXP-004 is the
+PLANNED baseline stub; no P6 scoring in this beat.
+
+Closes the D-026 estimator choice and the large-cluster weight decision.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
   conventions for derived layers pending).
 - Point-in-time historical source selection for fuel challengers.
-- Volatility-normalized barrier **estimator** (requirement and finding-blocker locked in D-026; estimator choice still open).
 - Precondition-clock impulse exclusion.
-- Normalized book-walk sizing rule — **proposed closed by D-031** (venue-published impact notional; unstable published size returns to CTO). Not accepted until D-031 is.
-- Training/scoring weight policy for large clusters (thousands of anchor votes
-  vs capped weight vs one episode-level contribution).
+- Normalized book-walk sizing rule — closed by D-031 (venue-published impact
+  notional; unstable published size returns to CTO).
 - Concrete news-tagging protocol (source list, tag taxonomy, freeze procedure).
 
