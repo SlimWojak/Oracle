@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Grok Bot CTO; P3 authorized)
+## State as of 2026-08-25 (GPT-5.5 Cloud; P3 Phase A PR open)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -112,17 +112,25 @@ and exits non-zero; do not invent passing parity numbers.
 Authoritative sequence remains `docs/glide_path.md`. Current beat is **P3**.
 
 1. P2 banked on main `ed508e7` (PR #4).
-2. Engineer: `docs/briefs/2026-08-25-p3-fuel-construct-gate.md` only.
-   Phase A PR, no merge. Then Phase B dexter run after CTO merge.
-3. P4 / EXP-003 not authorized. No 2026 look. No ledger verdicts.
-4. Still debt, later: regenerate `challenger_history` from
+2. Engineer: `docs/briefs/2026-08-25-p3-fuel-construct-gate.md` Phase A only.
+   Draft PR #5 (`cursor/p3-construct-gate-aa70`, tip `b7660c5`) adds
+   `oracle_research.construct_gate`, `scripts/run_p3_construct_gate.py`, and
+   synthetic tests. No full tape run. Verification on cloud:
+   `python3 -m unittest discover` ran 191 tests (7 skipped) green;
+   `ruff check .` green; missing-data dry-run wrote to `/tmp` only.
+3. After CTO review/merge of Phase A, run Phase B on the data host from the
+   merged SHA:
+   `python scripts/run_p3_construct_gate.py --data-root /home/a8ra_dgx/oracle-data`.
+   PR only the three `reports/exp002/` files. Do not edit ledger verdicts.
+4. P4 / EXP-003 not authorized. No 2026 look. No ledger verdicts.
+5. Still debt, later: regenerate `challenger_history` from
    `index_clusters.json` (P5); large-cluster weight policy before M2.
 
 ### Glide path (authoritative sequence)
 
 Active research sequence is `docs/glide_path.md` (v1). **P1 BANKED**
 (four-cell `cex_oi_cohort_v0`; D-029/030/031 accepted). **P2 BANKED**
-(`ed508e7`). **P3 authorized.** Brief:
+(`ed508e7`). **P3 Phase A in review** in PR #5. Brief:
 `docs/briefs/2026-08-25-p3-fuel-construct-gate.md`. Census:
 `reports/p1_eligibility_census.json`. Golden pins on main `e5b6dfd`.
 No P4, no M2.
