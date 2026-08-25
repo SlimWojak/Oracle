@@ -61,6 +61,14 @@ placebo-tested cross-event precursor in the motivating studies, so every
 Oracle-specific family must demonstrate increment over it, not merely over price
 controls.
 
+D-037 separately authorizes EXP-005 to test that exact frozen D-033
+`flow_compression_T` construct as a standalone literature-replication object
+against the seven-column M0 on identical flow-complete support. This narrow
+replication does not remove flow compression from M1, shrink or unblock M1,
+alter the validation ladder, or authorize M2+. It receives its own one-shot
+PASS/FAIL/NULL/BLOCKED disposition under the frozen D-032/D-033 population,
+estimator, dependence, and reporting rules.
+
 ## Pre-model descriptive gates
 
 Before any interaction modelling (M4):

@@ -39,7 +39,7 @@ sampling:
   event_clusters_define_risk_set: false
 
 evaluation:
-  status: m0_complete_null
+  status: exp005_checkpoint_a_pre_effect
   split_method: chronological_purged
   boundary_purge_seconds: 14400
   outcome_window_must_remain_in_period: true
@@ -119,6 +119,38 @@ exp004:
       americas: [16, 24]
     cluster_morphology: recall_and_lead_only
     news: news_not_available_non_gating_m0_m1
+
+exp005:
+  status: planned_checkpoint_a_pre_effect
+  contract: docs/briefs/2026-08-25-exp005-flow-compression-replication.md
+  decision: D-037
+  exact_d033_feature: true
+  m1_unchanged_blocked_asof: true
+  label_effect_inspection_authorized: false
+  source_audit:
+    flow_availability_floor: 0.90
+    m0_flow_joint_availability_floor: 0.85
+    zero_joint_month_allowed: false
+  rungs:
+    common: m0_common_exact_seven_columns
+    challenger: m0_flow_add_only_flow_compression
+    identical_timestamp_support_required: true
+  flow_compression:
+    source: binance_um_btcusdt_1m_klines
+    quote_volume_field: quote_volume
+    taker_buy_quote_volume_field: taker_buy_quote_volume
+    block_minutes: 5
+    detrend_points: 96
+    detrend_hours: 8
+    variance_residuals: 24
+    variance_hours: 2
+    variance_ddof: 0
+    newest_block_lag_minutes: 5
+    epsilon: none
+    partial_windows: false
+    forward_fill: false
+  one_shot_execution_consumed: false
+  later_rungs_authorized: false
 
 feature_families:
   generic_leverage_flow:

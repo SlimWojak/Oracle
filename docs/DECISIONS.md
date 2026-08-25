@@ -548,6 +548,42 @@ order size, window, or proxy may rescue this EXP. A materially revised source
 contract requires Chair review and a new decision; this block does not revive
 fuel, authorize M3/M4, or promote trailing realized impact.
 
+## D-037 — Exact D-033 flow compression receives one standalone replication
+
+**Accepted** (2026-08-25, direct EXP-005 commission; before label/effect
+inspection). EXP-005 asks one bounded question: does the exact D-033
+`flow_compression_T` precursor add prospective OOS information and useful event
+selectivity beyond the seven-column M0 on identical support? The construct is
+anchored to the taker buy/sell-flow variance-compression precursor reported in
+the motivating cascade study (https://arxiv.org/abs/2607.27070); Oracle's
+pre-frozen 8h detrend and 2h variance window are an operational replication on
+the broader D-032 +/-2% population, not a new parameter search.
+
+The comparison is `M0_COMMON` versus `M0_FLOW`, fitted separately by horizon and
+label family. `M0_COMMON` is the exact seven D-033 M0 columns on flow-complete
+rows; `M0_FLOW` adds only the exact D-033 flow-compression column. Both rungs
+must fit and score on byte-identical timestamp support. The estimator, splits,
+purge, labels, weights, bootstrap, alert mechanics, slices, and integrity gates
+remain D-032/D-033 unchanged. Long-support banked M0 is context only.
+
+Checkpoint A is pre-effect. It freezes the EXP-005 brief and runs a D-019
+source audit of the Binance USD-M one-minute klines, exact five-minute blocks,
+and hourly common support without constructing or inspecting any label
+relationship. Each period requires at least 90% flow availability, at least 85%
+`M0_FLOW` joint availability, and no zero-coverage calendar month. A causal,
+provenance, or source failure banks `BLOCKED_SOURCE`; valid but sub-floor
+coverage banks `NULL_COVERAGE`; either stops the EXP before effects.
+
+Only a cleared Checkpoint A authorizes the immutable implementation and one
+development-only firewall specified in
+`docs/briefs/2026-08-25-exp005-flow-compression-replication.md`. A clean pre-OOS
+implementation SHA is required before one exact-SHA OOS execution consumes one
+local receipt. PASS/FAIL/NULL/BLOCKED is mechanical under that brief. A PASS
+validates only this standalone comparator; it does not unblock M1, authorize
+M2+, waive D-029's later untouched confirmation, or support a definitive
+predictive headline. No alternate flow measure, window, lag, transform,
+threshold, rerun, or post-hoc rescue is authorized.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest

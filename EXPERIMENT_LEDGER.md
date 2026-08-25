@@ -501,6 +501,74 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   D-034 later authorized M0 alone. D-035 banks its one-shot NULL without
   retuning. M1 stays `BLOCKED_ASOF`; nothing later is authorized.
 
+## EXP-005 — Taker-flow variance-compression replication
+
+- **Status:** PLANNED (Checkpoint A; no label/effect inspection)
+- **Frozen question:** Does the exact D-033 `flow_compression_T` construct add
+  prospective OOS information and useful event selectivity beyond M0 on
+  identical support?
+- **Hypothesis:** The literature-backed compression of taker buy/sell-flow
+  variance generalizes from the motivating cascade sample to Oracle's broader
+  prospective +/-2% first-passage population.
+- **Belief change:** PASS -> the frozen precursor becomes a validated standalone
+  comparator, without unblocking M1 or authorizing M2+. FAIL -> reject this
+  operational replication because it is consistently harmful OOS. NULL -> park
+  it as valid but immaterial, inconsistent, insufficiently selective, or short
+  of the frozen cluster floor; no alternate window or transform. BLOCKED -> a
+  source, support, solver, provenance, or run-integrity failure prevents a
+  predictive verdict.
+- **Materiality:** Separately in validation-2024, test-2025, and
+  test-2026-01..07, and in both fixed and twin families: `M0_FLOW` family
+  relative Brier skill versus `M0_COMMON` >=1%; every direction x horizon
+  primary cell has alert-episode precision >=2x its same-cell base rate,
+  cluster recall >=10%, median lead >=15m (1h) / >=60m (4h), and >=30 eligible
+  clusters. Every gate must pass in every period and family. FAIL requires a
+  valid run with family relative Brier skill <=-1% for both label families in
+  all three OOS periods. Every other valid result is NULL.
+- **Data manifest:** Binance USD-M BTCUSDT one-minute klines from the existing
+  D-019-verified Binance Vision manifest; D-022 consolidated index for the
+  unchanged D-032 prospective population. Raw and bulk derived data remain
+  external to the repository.
+- **Development period:** D-023 development, 2020-01-01 .. 2023-12-31.
+- **Validation period:** D-023 validation, 2024-01-01 .. 2024-12-31.
+- **Final test period:** D-023 final test, reported separately as 2025 and
+  2026-01..07.
+- **Features available as of:** At hourly `T`, every flow input is from exact
+  complete USD-M one-minute bars. The newest five-minute block ends at `T-5m`;
+  no post-`T` data, forward fill, partial window, epsilon, or alternate field is
+  permitted.
+- **Method:**
+  `docs/briefs/2026-08-25-exp005-flow-compression-replication.md`. Exact D-033
+  5m buy/sell log-ratio, 96-point/8h detrend, 24-residual/2h population
+  variance, and negative-log transform. `M0_COMMON` is the exact seven M0
+  columns on flow-complete support; `M0_FLOW` adds only flow compression. Fit
+  separately by horizon and label family with the unchanged deterministic
+  D-033 estimator.
+- **Baselines:** `M0_COMMON` on identical timestamps. Banked long-support M0 is
+  context only and cannot be the incremental comparator.
+- **Metrics:** D-032/D-033 probability, calibration, alert episode,
+  direction-horizon cluster, lead-time, slice, and family-wide UTC-week
+  bootstrap reports. `NEWS_NOT_AVAILABLE` is non-gating for this standalone
+  baseline replication.
+- **Pass/fail contract:** Checkpoint A first requires causal/source integrity,
+  >=90% flow availability, >=85% `M0_FLOW` joint availability in every period,
+  and no zero-coverage calendar month. Source/causality/provenance failure banks
+  `BLOCKED_SOURCE`; valid sub-floor coverage banks `NULL_COVERAGE`, both before
+  effects. If cleared, one exact clean-SHA execution receives the mechanical
+  model disposition in Materiality. No pooled-period, fixed-only, slice,
+  coefficient, bootstrap, or subjective rescue.
+- **Result:** —
+- **Verdict:** —
+- **Limitations:** A PASS is a bounded operational replication, not a definitive
+  predictive headline, and does not waive D-029's untouched confirmation. M1
+  remains complete and `BLOCKED_ASOF`; EXP-005 cannot shrink or unblock it.
+- **Artifacts:** D-037; frozen EXP-005 brief; future artifacts under
+  `reports/exp005/` with D-019 provenance.
+- **Correction notes:** This is not M1-lite, partial M1, an EXP-004 rescue, M2,
+  ignition, CVD, OFI, or a new feature menu. The flow construct remains inside
+  the frozen future M1 definition while being tested here as a separate
+  literature-replication object.
+
 ## Experiment template
 
 ```text
