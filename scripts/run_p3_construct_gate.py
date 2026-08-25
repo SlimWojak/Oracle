@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Run EXP-002/P3 construct-gate scoring.
 
-Phase A provides this harness but does not require running the full tape. When
-the external data root is absent, the script writes a MISSING_DATA note instead
-of inventing construct-gate numbers.
+Phase B uses the streaming as-of cohort path. When the external data root is
+absent, the script writes a MISSING_DATA note instead of inventing construct-gate
+numbers.
 """
 
 from __future__ import annotations
@@ -17,12 +17,13 @@ from pathlib import Path
 from oracle_research.binance_klines import load_kline_dir
 from oracle_research.cex_fuel import (
     bars_from_kline_arrays,
-    build_cluster_fuel_rows,
+    build_cluster_fuel_rows_from_decisions,
     hl_target_for_cluster_row,
     load_cluster_payload,
     load_metrics_dir,
     metrics_rows_from_arrays,
-    run_cex_oi_cohort_v0,
+    run_cex_oi_cohort_v0_asof,
+    select_cluster_fuel_decisions,
 )
 from oracle_research.coinbase_candles import load_candle_dir
 from oracle_research.consolidated_index import build_median_index
@@ -63,7 +64,7 @@ def load_index(data_root: Path):
 
 def _config(args: argparse.Namespace) -> dict[str, object]:
     return {
-        "gate": "exp002_p3_construct_gate_phase_a",
+        "gate": "exp002_p3_construct_gate_phase_b",
         "script": "scripts/run_p3_construct_gate.py",
         "data_root": str(args.data_root),
         "clusters": str(args.clusters),
@@ -265,13 +266,31 @@ def main(argv: list[str] | None = None) -> int:
     )
     price_by_timestamp = {bar.timestamp: bar.close for bar in bars}
 
+    clusters_payload = load_cluster_payload(args.clusters)
+    print("selecting path-only eligible decisions", flush=True)
+    eligible_decisions = select_cluster_fuel_decisions(
+        clusters_payload,
+        bars,
+        cluster_start_min=CONSTRUCT_DEV.start_timestamp,
+        cluster_start_max=CONSTRUCT_VAL.end_timestamp,
+    )
+    decision_timestamps = {decision.decision_timestamp for decision in eligible_decisions}
+    print(f"eligible decisions={len(eligible_decisions)}", flush=True)
+
     print("loading Binance UM metrics", flush=True)
     metrics = load_metrics_dir(args.data_root / METRICS_SUBDIR)
-    snapshots = run_cex_oi_cohort_v0(metrics_rows_from_arrays(metrics), price_by_timestamp)
+    snapshots_by_decision = run_cex_oi_cohort_v0_asof(
+        metrics_rows_from_arrays(metrics),
+        price_by_timestamp,
+        decision_timestamps,
+    )
 
     print("building P2 cluster fuel rows", flush=True)
-    clusters_payload = load_cluster_payload(args.clusters)
-    fuel_rows = build_cluster_fuel_rows(clusters_payload, bars, snapshots)
+    fuel_rows = build_cluster_fuel_rows_from_decisions(
+        eligible_decisions,
+        bars,
+        snapshots_by_decision,
+    )
     print(f"cluster fuel rows={len(fuel_rows)}", flush=True)
 
     print("attaching Hyperliquid book/backstop targets", flush=True)

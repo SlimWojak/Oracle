@@ -229,6 +229,18 @@ class ClusterFuelRow:
 
 
 @dataclass(frozen=True, slots=True)
+class ClusterFuelDecision:
+    """Path-only eligible decision timestamp for one cluster and primary band."""
+
+    cluster_index: int
+    cluster_start_timestamp: int
+    cluster_end_timestamp: int
+    direction: Direction
+    band: FuelBand
+    decision_timestamp: int
+
+
+@dataclass(frozen=True, slots=True)
 class HlTargetSummary:
     """Realized HL liquidation mass in the same side and distance band."""
 
@@ -347,21 +359,38 @@ def load_metrics_zip(path: Path) -> BinanceMetricsArrays:
 
 
 def load_metrics_dir(directory: Path) -> BinanceMetricsArrays:
-    """Load every Binance Vision metrics ``*.zip`` in filename order."""
+    """Load every Binance Vision metrics ``*.zip`` in filename order.
+
+    Daily Binance metrics files can overlap at the UTC boundary. Keep the later
+    filename's row for duplicate ``interval_end`` values; known overlaps are
+    2024-04-07/08 at 1712534400 and 2024-04-30/05-01 at 1714521600.
+    """
 
     root = Path(directory)
     paths = sorted(path for path in root.glob("*.zip") if path.is_file())
     if not paths:
         raise FileNotFoundError(f"no metrics zip files in {root}")
     parts = [load_metrics_zip(path) for path in paths]
+    interval_end = np.concatenate([part.interval_end for part in parts])
+    sum_open_interest = np.concatenate([part.sum_open_interest for part in parts])
+    sum_open_interest_value = np.concatenate([part.sum_open_interest_value for part in parts])
+    sum_toptrader_long_short_ratio = np.concatenate(
+        [part.sum_toptrader_long_short_ratio for part in parts]
+    )
+    order = np.argsort(interval_end, kind="stable")
+    interval_end = interval_end[order]
+    sum_open_interest = sum_open_interest[order]
+    sum_open_interest_value = sum_open_interest_value[order]
+    sum_toptrader_long_short_ratio = sum_toptrader_long_short_ratio[order]
+    keep = np.ones(interval_end.shape[0], dtype=bool)
+    if interval_end.shape[0] > 1:
+        keep[:-1] = interval_end[:-1] != interval_end[1:]
     return BinanceMetricsArrays(
-        interval_end=np.concatenate([part.interval_end for part in parts]),
-        sum_open_interest=np.concatenate([part.sum_open_interest for part in parts]),
-        sum_open_interest_value=np.concatenate([part.sum_open_interest_value for part in parts]),
-        sum_toptrader_long_short_ratio=np.concatenate(
-            [part.sum_toptrader_long_short_ratio for part in parts]
-        ),
-        n_rows=sum(part.n_rows for part in parts),
+        interval_end=interval_end[keep],
+        sum_open_interest=sum_open_interest[keep],
+        sum_open_interest_value=sum_open_interest_value[keep],
+        sum_toptrader_long_short_ratio=sum_toptrader_long_short_ratio[keep],
+        n_rows=int(np.count_nonzero(keep)),
     )
 
 
@@ -466,24 +495,21 @@ def _max_conservation_residual(
     )
 
 
-def run_cex_oi_cohort_v0(
-    metrics: Sequence[BinanceMetricsRow],
-    price_by_timestamp: Mapping[int, float],
-    *,
-    burn_in_end: int = DEFAULT_BURN_IN_END,
-) -> list[CohortSnapshot]:
-    """Run the frozen P1 v5 quantity-cohort state machine.
-
-    Gaps over 15 minutes and invalid LSR rows produce invalid snapshots. A gap
-    resynchronizes the side stock into unallocated buckets only, so no priced
-    cohort is invented across missing metrics intervals.
-    """
-
+def _ordered_metrics(metrics: Sequence[BinanceMetricsRow]) -> list[BinanceMetricsRow]:
     ordered = sorted(metrics, key=lambda row: row.interval_end)
     if len({row.interval_end for row in ordered}) != len(ordered):
         raise ValueError("metrics interval_end values must be unique")
+    return ordered
 
-    snapshots: list[CohortSnapshot] = []
+
+def _iter_cex_oi_cohort_v0_snapshots(
+    ordered: Sequence[BinanceMetricsRow],
+    price_by_timestamp: Mapping[int, float],
+    *,
+    burn_in_end: int = DEFAULT_BURN_IN_END,
+) -> Iterator[CohortSnapshot]:
+    """Yield snapshots from the frozen P1 v5 quantity-cohort state machine."""
+
     long_side = SideCohorts(unallocated=0.0, priced=())
     short_side = SideCohorts(unallocated=0.0, priced=())
     previous_long: float | None = None
@@ -495,44 +521,40 @@ def run_cex_oi_cohort_v0(
         stocks = _side_stocks(row)
         price = price_by_timestamp.get(row.interval_end)
         if stocks is None:
-            snapshots.append(
-                CohortSnapshot(
-                    timestamp=row.interval_end,
-                    sum_open_interest=row.sum_open_interest,
-                    sum_open_interest_value=row.sum_open_interest_value,
-                    lsr=row.sum_toptrader_long_short_ratio,
-                    inferred_long=None,
-                    inferred_short=None,
-                    long_side=long_side,
-                    short_side=short_side,
-                    valid=False,
-                    after_burn_in=after_burn_in,
-                    conservation_relative_residual=None,
-                    clipped=False,
-                    gap_skipped=False,
-                    reason="invalid_lsr",
-                )
+            yield CohortSnapshot(
+                timestamp=row.interval_end,
+                sum_open_interest=row.sum_open_interest,
+                sum_open_interest_value=row.sum_open_interest_value,
+                lsr=row.sum_toptrader_long_short_ratio,
+                inferred_long=None,
+                inferred_short=None,
+                long_side=long_side,
+                short_side=short_side,
+                valid=False,
+                after_burn_in=after_burn_in,
+                conservation_relative_residual=None,
+                clipped=False,
+                gap_skipped=False,
+                reason="invalid_lsr",
             )
             continue
         if price is None or not math.isfinite(price) or price <= 0:
             inferred_long, inferred_short = stocks
-            snapshots.append(
-                CohortSnapshot(
-                    timestamp=row.interval_end,
-                    sum_open_interest=row.sum_open_interest,
-                    sum_open_interest_value=row.sum_open_interest_value,
-                    lsr=row.sum_toptrader_long_short_ratio,
-                    inferred_long=inferred_long,
-                    inferred_short=inferred_short,
-                    long_side=long_side,
-                    short_side=short_side,
-                    valid=False,
-                    after_burn_in=after_burn_in,
-                    conservation_relative_residual=None,
-                    clipped=False,
-                    gap_skipped=False,
-                    reason="missing_price",
-                )
+            yield CohortSnapshot(
+                timestamp=row.interval_end,
+                sum_open_interest=row.sum_open_interest,
+                sum_open_interest_value=row.sum_open_interest_value,
+                lsr=row.sum_toptrader_long_short_ratio,
+                inferred_long=inferred_long,
+                inferred_short=inferred_short,
+                long_side=long_side,
+                short_side=short_side,
+                valid=False,
+                after_burn_in=after_burn_in,
+                conservation_relative_residual=None,
+                clipped=False,
+                gap_skipped=False,
+                reason="missing_price",
             )
             continue
 
@@ -543,22 +565,20 @@ def run_cex_oi_cohort_v0(
             residual = _max_conservation_residual(
                 long_side, short_side, inferred_long, inferred_short
             )
-            snapshots.append(
-                CohortSnapshot(
-                    timestamp=row.interval_end,
-                    sum_open_interest=row.sum_open_interest,
-                    sum_open_interest_value=row.sum_open_interest_value,
-                    lsr=row.sum_toptrader_long_short_ratio,
-                    inferred_long=inferred_long,
-                    inferred_short=inferred_short,
-                    long_side=long_side,
-                    short_side=short_side,
-                    valid=True,
-                    after_burn_in=after_burn_in,
-                    conservation_relative_residual=residual,
-                    clipped=False,
-                    gap_skipped=False,
-                )
+            yield CohortSnapshot(
+                timestamp=row.interval_end,
+                sum_open_interest=row.sum_open_interest,
+                sum_open_interest_value=row.sum_open_interest_value,
+                lsr=row.sum_toptrader_long_short_ratio,
+                inferred_long=inferred_long,
+                inferred_short=inferred_short,
+                long_side=long_side,
+                short_side=short_side,
+                valid=True,
+                after_burn_in=after_burn_in,
+                conservation_relative_residual=residual,
+                clipped=False,
+                gap_skipped=False,
             )
             previous_long = inferred_long
             previous_short = inferred_short
@@ -573,23 +593,21 @@ def run_cex_oi_cohort_v0(
             residual = _max_conservation_residual(
                 long_side, short_side, inferred_long, inferred_short
             )
-            snapshots.append(
-                CohortSnapshot(
-                    timestamp=row.interval_end,
-                    sum_open_interest=row.sum_open_interest,
-                    sum_open_interest_value=row.sum_open_interest_value,
-                    lsr=row.sum_toptrader_long_short_ratio,
-                    inferred_long=inferred_long,
-                    inferred_short=inferred_short,
-                    long_side=long_side,
-                    short_side=short_side,
-                    valid=False,
-                    after_burn_in=after_burn_in,
-                    conservation_relative_residual=residual,
-                    clipped=False,
-                    gap_skipped=True,
-                    reason="metrics_gap",
-                )
+            yield CohortSnapshot(
+                timestamp=row.interval_end,
+                sum_open_interest=row.sum_open_interest,
+                sum_open_interest_value=row.sum_open_interest_value,
+                lsr=row.sum_toptrader_long_short_ratio,
+                inferred_long=inferred_long,
+                inferred_short=inferred_short,
+                long_side=long_side,
+                short_side=short_side,
+                valid=False,
+                after_burn_in=after_burn_in,
+                conservation_relative_residual=residual,
+                clipped=False,
+                gap_skipped=True,
+                reason="metrics_gap",
             )
             previous_long = inferred_long
             previous_short = inferred_short
@@ -601,29 +619,97 @@ def run_cex_oi_cohort_v0(
         clipped = long_clipped or short_clipped
         residual = _max_conservation_residual(long_side, short_side, inferred_long, inferred_short)
         valid = not (after_burn_in and residual > CONSERVATION_REL_TOL and not clipped)
-        snapshots.append(
-            CohortSnapshot(
-                timestamp=row.interval_end,
-                sum_open_interest=row.sum_open_interest,
-                sum_open_interest_value=row.sum_open_interest_value,
-                lsr=row.sum_toptrader_long_short_ratio,
-                inferred_long=inferred_long,
-                inferred_short=inferred_short,
-                long_side=long_side,
-                short_side=short_side,
-                valid=valid,
-                after_burn_in=after_burn_in,
-                conservation_relative_residual=residual,
-                clipped=clipped,
-                gap_skipped=False,
-                reason=None if valid else "conservation_break",
-            )
+        yield CohortSnapshot(
+            timestamp=row.interval_end,
+            sum_open_interest=row.sum_open_interest,
+            sum_open_interest_value=row.sum_open_interest_value,
+            lsr=row.sum_toptrader_long_short_ratio,
+            inferred_long=inferred_long,
+            inferred_short=inferred_short,
+            long_side=long_side,
+            short_side=short_side,
+            valid=valid,
+            after_burn_in=after_burn_in,
+            conservation_relative_residual=residual,
+            clipped=clipped,
+            gap_skipped=False,
+            reason=None if valid else "conservation_break",
         )
         previous_long = inferred_long
         previous_short = inferred_short
         previous_timestamp = row.interval_end
 
-    return snapshots
+
+def run_cex_oi_cohort_v0(
+    metrics: Sequence[BinanceMetricsRow],
+    price_by_timestamp: Mapping[int, float],
+    *,
+    burn_in_end: int = DEFAULT_BURN_IN_END,
+) -> list[CohortSnapshot]:
+    """Run the frozen P1 v5 quantity-cohort state machine.
+
+    Gaps over 15 minutes and invalid LSR rows produce invalid snapshots. A gap
+    resynchronizes the side stock into unallocated buckets only, so no priced
+    cohort is invented across missing metrics intervals.
+    """
+
+    ordered = _ordered_metrics(metrics)
+    return list(
+        _iter_cex_oi_cohort_v0_snapshots(
+            ordered,
+            price_by_timestamp,
+            burn_in_end=burn_in_end,
+        )
+    )
+
+
+def run_cex_oi_cohort_v0_asof(
+    metrics: Sequence[BinanceMetricsRow],
+    price_by_timestamp: Mapping[int, float],
+    decision_timestamps: Iterable[int],
+    *,
+    burn_in_end: int = DEFAULT_BURN_IN_END,
+) -> dict[int, CohortSnapshot]:
+    """Run the cohort walk and retain only snapshots needed by requested ``T`` values.
+
+    Returned snapshots are keyed by decision timestamp and match
+    ``asof_snapshot(run_cex_oi_cohort_v0(...), T)`` without storing the full walk.
+    """
+
+    requested = sorted({int(timestamp) for timestamp in decision_timestamps})
+    if not requested:
+        return {}
+    ordered = _ordered_metrics(metrics)
+    if not ordered:
+        return {}
+
+    snapshots_by_decision: dict[int, CohortSnapshot] = {}
+    requested_index = 0
+    for metrics_index, snapshot in enumerate(
+        _iter_cex_oi_cohort_v0_snapshots(
+            ordered,
+            price_by_timestamp,
+            burn_in_end=burn_in_end,
+        )
+    ):
+        next_timestamp = (
+            ordered[metrics_index + 1].interval_end
+            if metrics_index + 1 < len(ordered)
+            else None
+        )
+        while requested_index < len(requested) and requested[requested_index] < snapshot.timestamp:
+            requested_index += 1
+        while (
+            requested_index < len(requested)
+            and requested[requested_index] >= snapshot.timestamp
+            and (next_timestamp is None or requested[requested_index] < next_timestamp)
+        ):
+            snapshots_by_decision[requested[requested_index]] = snapshot
+            requested_index += 1
+        if requested_index >= len(requested):
+            break
+
+    return snapshots_by_decision
 
 
 def asof_snapshot(
@@ -683,6 +769,10 @@ def oi_only_usd_baseline(snapshot: CohortSnapshot, *, direction: Direction) -> f
     return snapshot.sum_open_interest_value * stock / snapshot.sum_open_interest
 
 
+def _bar_by_timestamp(bars: Sequence[Bar]) -> dict[int, Bar]:
+    return {int(bar.timestamp): bar for bar in bars}
+
+
 def _bars_arrays(bars: Sequence[Bar]) -> tuple[list[int], list[float], list[float], list[float]]:
     ordered = sorted(bars, key=lambda bar: bar.timestamp)
     timestamps = [int(bar.timestamp) for bar in ordered]
@@ -725,21 +815,19 @@ def trailing_price_path_4h(
     raise ValueError(f"unsupported direction: {direction}")
 
 
-def decision_fuel(
-    snapshots: Sequence[CohortSnapshot],
+def decision_fuel_from_snapshot(
+    snapshot: CohortSnapshot,
     bars: Sequence[Bar],
     *,
     decision_timestamp: int,
     direction: Direction,
     band: FuelBand,
 ) -> DecisionFuel | None:
-    """Attach P2 CEX fuel and baselines at one decision timestamp."""
+    """Attach P2 CEX fuel and baselines from an already-selected as-of snapshot."""
 
-    snapshot = asof_snapshot(snapshots, decision_timestamp)
-    if snapshot is None or not snapshot.valid:
+    if not snapshot.valid:
         return None
-    bar_by_timestamp = {int(bar.timestamp): bar for bar in bars}
-    bar = bar_by_timestamp.get(int(decision_timestamp))
+    bar = _bar_by_timestamp(bars).get(int(decision_timestamp))
     if bar is None:
         return None
     price = float(bar.close)
@@ -754,6 +842,28 @@ def decision_fuel(
         trailing_price_path_4h=trailing_price_path_4h(
             bars, decision_timestamp=decision_timestamp, direction=direction
         ),
+    )
+
+
+def decision_fuel(
+    snapshots: Sequence[CohortSnapshot],
+    bars: Sequence[Bar],
+    *,
+    decision_timestamp: int,
+    direction: Direction,
+    band: FuelBand,
+) -> DecisionFuel | None:
+    """Attach P2 CEX fuel and baselines at one decision timestamp."""
+
+    snapshot = asof_snapshot(snapshots, decision_timestamp)
+    if snapshot is None or not snapshot.valid:
+        return None
+    return decision_fuel_from_snapshot(
+        snapshot,
+        bars,
+        decision_timestamp=decision_timestamp,
+        direction=direction,
+        band=band,
     )
 
 
@@ -812,20 +922,22 @@ def load_cluster_payload(path: Path) -> dict[str, Any]:
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
-def build_cluster_fuel_rows(
+def select_cluster_fuel_decisions(
     clusters_payload: Mapping[str, Any],
     bars: Sequence[Bar],
-    snapshots: Sequence[CohortSnapshot],
     *,
     bands: Sequence[FuelBand] = PRIMARY_BANDS,
-) -> list[ClusterFuelRow]:
-    """Build the P2 pure-direction 4h cluster-row table.
+    cluster_start_min: int | None = None,
+    cluster_start_max: int | None = None,
+) -> list[ClusterFuelDecision]:
+    """Select path-only eligible pure-direction 4h cluster decisions.
 
     Mixed clusters are skipped. For each primary band, the earliest eligible
-    one-minute decision timestamp in the cluster span is retained.
+    one-minute decision timestamp in the cluster span is retained. No fuel
+    values or cohort snapshots are read here.
     """
 
-    rows: list[ClusterFuelRow] = []
+    decisions: list[ClusterFuelDecision] = []
     clusters = _horizon_4h_block(clusters_payload)
     bar_timestamps = {int(bar.timestamp) for bar in bars}
     for cluster_index, cluster in enumerate(clusters):
@@ -833,6 +945,10 @@ def build_cluster_fuel_rows(
         if direction is None:
             continue
         start = int(cluster["start_timestamp"])
+        if cluster_start_min is not None and start < int(cluster_start_min):
+            continue
+        if cluster_start_max is not None and start >= int(cluster_start_max):
+            continue
         end = int(cluster["end_timestamp"])
         for band in bands:
             eligible_t: int | None = None
@@ -849,31 +965,96 @@ def build_cluster_fuel_rows(
                 t += KLINE_INTERVAL_SECONDS
             if eligible_t is None:
                 continue
-            features = decision_fuel(
-                snapshots,
-                bars,
-                decision_timestamp=eligible_t,
-                direction=direction,
-                band=band,
-            )
-            if features is None:
-                continue
-            rows.append(
-                ClusterFuelRow(
+            decisions.append(
+                ClusterFuelDecision(
                     cluster_index=cluster_index,
                     cluster_start_timestamp=start,
                     cluster_end_timestamp=end,
                     direction=direction,
-                    band=band.name,
+                    band=band,
                     decision_timestamp=eligible_t,
-                    week_start_timestamp=_week_start(start),
-                    price=features.price,
-                    fuel_usd=features.fuel_usd,
-                    oi_only_usd=features.oi_only_usd,
-                    trailing_price_path_4h=features.trailing_price_path_4h,
-                    metrics_timestamp=features.metrics_timestamp,
                 )
             )
+    return decisions
+
+
+def build_cluster_fuel_rows_from_decisions(
+    decisions: Sequence[ClusterFuelDecision],
+    bars: Sequence[Bar],
+    snapshots_by_decision_timestamp: Mapping[int, CohortSnapshot],
+) -> list[ClusterFuelRow]:
+    """Attach CEX fuel to preselected path-only eligible decisions."""
+
+    rows: list[ClusterFuelRow] = []
+    for decision in decisions:
+        snapshot = snapshots_by_decision_timestamp.get(decision.decision_timestamp)
+        if snapshot is None:
+            continue
+        features = decision_fuel_from_snapshot(
+            snapshot,
+            bars,
+            decision_timestamp=decision.decision_timestamp,
+            direction=decision.direction,
+            band=decision.band,
+        )
+        if features is None:
+            continue
+        rows.append(
+            ClusterFuelRow(
+                cluster_index=decision.cluster_index,
+                cluster_start_timestamp=decision.cluster_start_timestamp,
+                cluster_end_timestamp=decision.cluster_end_timestamp,
+                direction=decision.direction,
+                band=decision.band.name,
+                decision_timestamp=decision.decision_timestamp,
+                week_start_timestamp=_week_start(decision.cluster_start_timestamp),
+                price=features.price,
+                fuel_usd=features.fuel_usd,
+                oi_only_usd=features.oi_only_usd,
+                trailing_price_path_4h=features.trailing_price_path_4h,
+                metrics_timestamp=features.metrics_timestamp,
+            )
+        )
+    return rows
+
+
+def build_cluster_fuel_rows(
+    clusters_payload: Mapping[str, Any],
+    bars: Sequence[Bar],
+    snapshots: Sequence[CohortSnapshot],
+    *,
+    bands: Sequence[FuelBand] = PRIMARY_BANDS,
+) -> list[ClusterFuelRow]:
+    """Build the P2 pure-direction 4h cluster-row table from retained snapshots."""
+
+    rows: list[ClusterFuelRow] = []
+    decisions = select_cluster_fuel_decisions(clusters_payload, bars, bands=bands)
+    for decision in decisions:
+        features = decision_fuel(
+            snapshots,
+            bars,
+            decision_timestamp=decision.decision_timestamp,
+            direction=decision.direction,
+            band=decision.band,
+        )
+        if features is None:
+            continue
+        rows.append(
+            ClusterFuelRow(
+                cluster_index=decision.cluster_index,
+                cluster_start_timestamp=decision.cluster_start_timestamp,
+                cluster_end_timestamp=decision.cluster_end_timestamp,
+                direction=decision.direction,
+                band=decision.band.name,
+                decision_timestamp=decision.decision_timestamp,
+                week_start_timestamp=_week_start(decision.cluster_start_timestamp),
+                price=features.price,
+                fuel_usd=features.fuel_usd,
+                oi_only_usd=features.oi_only_usd,
+                trailing_price_path_4h=features.trailing_price_path_4h,
+                metrics_timestamp=features.metrics_timestamp,
+            )
+        )
     return rows
 
 

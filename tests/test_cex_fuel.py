@@ -19,8 +19,10 @@ from oracle_research.cex_fuel import (
     fuel_usd_for_band,
     hl_target_for_cluster_row,
     join_metrics_to_kline_start_grid,
+    load_metrics_dir,
     load_metrics_zip,
     run_cex_oi_cohort_v0,
+    run_cex_oi_cohort_v0_asof,
 )
 from oracle_research.hyperliquid_fills import HlFill
 from oracle_research.labels import Bar, Direction
@@ -93,6 +95,35 @@ class CexFuelStateMachineTests(unittest.TestCase):
         self.assertEqual(loaded.sum_toptrader_long_short_ratio[0], 1.5)
         self.assertTrue(math.isnan(loaded.sum_toptrader_long_short_ratio[1]))
 
+    def test_metrics_dir_keeps_later_file_row_for_overlapping_interval_end(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            first = root / "BTCUSDT-metrics-2024-04-07.zip"
+            second = root / "BTCUSDT-metrics-2024-04-08.zip"
+            header = (
+                "create_time,sum_open_interest,sum_open_interest_value,"
+                "sum_toptrader_long_short_ratio"
+            )
+            with zipfile.ZipFile(first, "w") as archive:
+                archive.writestr(
+                    "BTCUSDT-metrics-2024-04-07.csv",
+                    "\n".join([header, "1712534100,100,10000,1", "1712534400,101,10100,1"]),
+                )
+            with zipfile.ZipFile(second, "w") as archive:
+                archive.writestr(
+                    "BTCUSDT-metrics-2024-04-08.csv",
+                    "\n".join([header, "1712534400,202,20200,2", "1712534700,203,20300,2"]),
+                )
+
+            loaded = load_metrics_dir(root)
+
+        self.assertEqual(
+            loaded.interval_end.tolist(),
+            [1_712_534_100, 1_712_534_400, 1_712_534_700],
+        )
+        self.assertEqual(loaded.sum_open_interest.tolist(), [100.0, 202.0, 203.0])
+        self.assertEqual(loaded.sum_toptrader_long_short_ratio.tolist(), [1.0, 2.0, 2.0])
+
     def test_conservation_after_add_and_pro_rata_reduction(self) -> None:
         rows = [metric(0, 100, 1), metric(300, 120, 1), metric(600, 100, 1)]
         snapshots = run_cex_oi_cohort_v0(
@@ -155,6 +186,25 @@ class CexFuelJoinAndBandTests(unittest.TestCase):
 
         joined = join_metrics_to_kline_start_grid([metric(300, 100, 1)], [0, 60, 120])
         self.assertEqual(joined[0].interval_end, 300)
+
+    def test_streaming_asof_walk_matches_full_walk_at_requested_timestamps(self) -> None:
+        rows = [
+            metric(300, 100, 1),
+            metric(600, 120, 1),
+            metric(900, 110, 2),
+            metric(1200, 130, 2),
+        ]
+        prices = {300: 100, 600: 105, 900: 102, 1200: 106}
+        requested = [299, 300, 599, 600, 750, 1199, 1200, 1500]
+        full_walk = run_cex_oi_cohort_v0(rows, prices, burn_in_end=-1)
+        streamed = run_cex_oi_cohort_v0_asof(rows, prices, requested, burn_in_end=-1)
+
+        for timestamp in requested:
+            expected = asof_snapshot(full_walk, timestamp)
+            if expected is None:
+                self.assertNotIn(timestamp, streamed)
+            else:
+                self.assertEqual(streamed[timestamp], expected)
 
     def test_profitable_cohort_maps_to_zero_and_misses_open_lower_band(self) -> None:
         self.assertEqual(adverse_entry_distance(Direction.DOWN, entry_price=99, price=100), 0.0)
