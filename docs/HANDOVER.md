@@ -116,6 +116,8 @@ Authoritative sequence remains `docs/glide_path.md`. Current beat is **P2**.
 3. Still debt, later: regenerate `challenger_history` from
    `index_clusters.json` (P5); large-cluster weight policy before M2.
 
+P2 implementation is on PR #4 (`cursor/p2-cex-fuel-path-9992`); no P3 scoring run.
+
 ### Glide path (authoritative sequence)
 
 Active research sequence is `docs/glide_path.md` (v1). **P1 BANKED**
