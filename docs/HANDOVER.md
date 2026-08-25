@@ -206,7 +206,8 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
   development candidate). One local experiment-wide receipt was consumed and
   completed valid; no OOS refit or retry occurred.
 - Evidence commit: `7ab09aa62b4392c61aa93d40752ca1ec3bd86efb`.
-  Verdict/status commit: `87f3d27b9d1cade37958205b469efa320b27b2fe`.
+  Initial conditional-NULL status commit: `87f3d27`. Integrity-correction
+  verdict commit: `4791ddd2e6d2da02b3464162037969d654bd9bcb`.
   Fixed/twin family Brier lift was `0.1785% / -0.0040%` validation,
   `0.2180% / 0.0309%` test-2025, and `0.1346% / -0.0305%`
   test-2026-01..07. All miss the +1% PASS floor; the stable -1% FAIL rule is
@@ -250,7 +251,8 @@ and exits non-zero; do not invent passing parity numbers.
 Authoritative sequence remains `docs/glide_path.md`. There is no active
 implementation or science commission after this seat close.
 
-1. **Next judgment point:** Chair reviews EXP-005 `BLOCKED_RUN_INTEGRITY`; its
+1. **Next judgment point:** Chair reviews EXP-005 `BLOCKED_RUN_INTEGRITY` at
+   correction commit `4791ddd2e6d2da02b3464162037969d654bd9bcb`; its
    immutable conditional-NULL evidence is banked at
    commit `7ab09aa62b4392c61aa93d40752ca1ec3bd86efb`. Exact D-033 flow
    compression has no predictive verdict; no rerun or window/transform change
