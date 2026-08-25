@@ -8,7 +8,7 @@ Operational access details (hosts, accounts, profiles, local paths, session
 identifiers) live in `docs/HANDOVER_LOCAL.md` on the canonical workstation.
 That file is gitignored and must never be committed; this repository is public.
 
-## State as of 2026-08-25 (Codex CTO; EXP-005 NULL; STOPPED)
+## State as of 2026-08-25 (Codex CTO; EXP-005 BLOCKED_RUN_INTEGRITY; STOPPED)
 
 ### Topology (abstract; specifics in the local file)
 
@@ -191,7 +191,7 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
   created. Do not narrow history, infer the schedule, substitute trailing
   realized impact, or call this FAIL/NULL.
 
-### D-037 / EXP-005 flow replication: CLOSED, NULL (2026-08-25)
+### D-037 / EXP-005 flow replication: CLOSED, BLOCKED_RUN_INTEGRITY (2026-08-25)
 
 - Checkpoint A evidence commit `79851be` cleared exact USD-M interval semantics,
   T-5m causality, archive/input hashes, and all period coverage floors before
@@ -210,9 +210,14 @@ Artifacts: `reports/exp001/stratification_census.*`, `reports/exp001/reconstruct
   Fixed/twin family Brier lift was `0.1785% / -0.0040%` validation,
   `0.2180% / 0.0309%` test-2025, and `0.1346% / -0.0305%`
   test-2026-01..07. All miss the +1% PASS floor; the stable -1% FAIL rule is
-  false; multiple primary alert gates miss. Mechanical verdict: **NULL**.
-- Park exact D-033 flow compression without another window, transform,
-  threshold, or run. It does not shrink/unblock M1 or authorize M2+.
+  false; multiple primary alert gates miss. Conditional run output: **NULL**.
+- Lead audit then found a pre-seal firewall breach: while resolving the
+  development filter, two validation-period records from the committed fixed
+  cluster artifact were printed with direction/count metadata. No scores,
+  model effects, or gate results were viewed, but this is forbidden validation
+  outcome inspection. Experiment verdict: **BLOCKED_RUN_INTEGRITY**. The
+  receipt remains consumed; no corrected run is authorized.
+- Return to Chair. The block does not shrink/unblock M1 or authorize M2+.
 
 ### D-012 derived HL fills store
 
@@ -245,10 +250,11 @@ and exits non-zero; do not invent passing parity numbers.
 Authoritative sequence remains `docs/glide_path.md`. There is no active
 implementation or science commission after this seat close.
 
-1. **Next judgment point:** Chair reviews the banked EXP-005 `NULL` at evidence
+1. **Next judgment point:** Chair reviews EXP-005 `BLOCKED_RUN_INTEGRITY`; its
+   immutable conditional-NULL evidence is banked at
    commit `7ab09aa62b4392c61aa93d40752ca1ec3bd86efb`. Exact D-033 flow
-   compression is parked; no same-family retry or window/transform change is
-   authorized. Nothing self-starts.
+   compression has no predictive verdict; no rerun or window/transform change
+   is authorized. Nothing self-starts.
 2. EXP-003 remains `BLOCKED_SOURCE`. A future quoted-impact attempt requires
    authoritative versioned notional history and row-level as-of semantics;
    narrowing to the later regime is a contract change.
@@ -267,18 +273,19 @@ contracts `2319b07`, inventory `54e7166`). **D-033 contract/audit BANKED**
 (`21fbfd4`, `04edc6b`, `c430f8f`). **EXP-004 M0 BANKED NULL** (pre-OOS
 `680f2af`, evidence `826ea19`, verdict `8704454`). **M1 BLOCKED_ASOF; all later
 rungs unauthorized.** **EXP-003 P4 BANKED BLOCKED_SOURCE** (contract
-`8e23b80`, evidence `23c838e`); no census or score. **EXP-005 BANKED NULL**
-(pre-OOS `7fa0709`, evidence `7ab09aa`); exact flow replication parked.
+`8e23b80`, evidence `23c838e`); no census or score. **EXP-005 BANKED
+BLOCKED_RUN_INTEGRITY** (pre-OOS `7fa0709`, evidence `7ab09aa`); consumed
+conditional-NULL computation, no predictive verdict or rerun.
 Census: `reports/p1_eligibility_census.json`. No M2.
 
 
 ### Seat note (2026-08-25)
 
-Codex completed EXP-005 through its exact-SHA one-shot, banked the mechanical
-`NULL`, synchronized the public status surface, and stopped. The next seat
-inherits no active implementation commission. Thin orchestration is
-provider-neutral: the lead owns research judgment; subagents perform only
-fenced mechanical work.
+Codex completed EXP-005's exact-SHA one-shot, then surfaced and banked its own
+pre-seal validation-outcome firewall breach as `BLOCKED_RUN_INTEGRITY`. The
+receipt is consumed and no rerun is authorized. The next seat inherits no
+active implementation commission. Thin orchestration is provider-neutral: the
+lead owns research judgment; subagents perform only fenced mechanical work.
 
 ### Operating notes
 

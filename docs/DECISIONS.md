@@ -618,6 +618,20 @@ other actionability gates. The only mechanical disposition is therefore
 there is no alternate window, transform, threshold, or rerun. M1 remains
 complete and `BLOCKED_ASOF`, and no M2+ or other rung is authorized.
 
+**Integrity correction (2026-08-25; overrides the predictive disposition).**
+Before the pre-OOS seal and receipt, the lead seat queried the already-committed
+fixed-cluster artifact around the 2024 boundary while resolving the development
+filter and printed two validation-period cluster records, including their
+direction/count metadata. No validation score, model effect, feature-outcome
+relationship, or gate result was viewed, and the feature, estimator, and
+disposition contract were already frozen. Nevertheless, cluster direction/count
+is validation outcome metadata, and Checkpoint B prohibited inspecting any
+validation/test outcome or effect. That firewall breach is a run-integrity
+failure under the frozen hierarchy. The consumed run's conditional computation
+remains `NULL` in immutable evidence, but it cannot serve as the experiment's
+predictive verdict. EXP-005 therefore closes **BLOCKED_RUN_INTEGRITY**. The
+receipt stays consumed and no corrected rerun is authorized; return to Chair.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest

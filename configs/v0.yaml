@@ -39,7 +39,7 @@ sampling:
   event_clusters_define_risk_set: false
 
 evaluation:
-  status: exp005_complete_null
+  status: exp005_complete_blocked_run_integrity
   split_method: chronological_purged
   boundary_purge_seconds: 14400
   outcome_window_must_remain_in_period: true
@@ -121,7 +121,7 @@ exp004:
     news: news_not_available_non_gating_m0_m1
 
 exp005:
-  status: complete_null
+  status: complete_blocked_run_integrity
   contract: docs/briefs/2026-08-25-exp005-flow-compression-replication.md
   decision: D-037
   exact_d033_feature: true
@@ -131,6 +131,8 @@ exp005:
   oos_effect_inspection_authorized: false
   pre_oos_implementation_sha: 7fa0709011f451d0fc5ef95b5f4b5e7baf8152ed
   result: reports/exp005/result.json
+  conditional_run_output: conditional_null
+  verdict: blocked_run_integrity
   source_audit:
     flow_availability_floor: 0.90
     m0_flow_joint_availability_floor: 0.85

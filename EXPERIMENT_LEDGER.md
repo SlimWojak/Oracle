@@ -503,7 +503,7 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-005 — Taker-flow variance-compression replication
 
-- **Status:** NULL (closed 2026-08-25; one exact-SHA execution; D-037)
+- **Status:** BLOCKED (closed 2026-08-25; `BLOCKED_RUN_INTEGRITY`; D-037)
 - **Frozen question:** Does the exact D-033 `flow_compression_T` construct add
   prospective OOS information and useful event selectivity beyond M0 on
   identical support?
@@ -576,10 +576,15 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   and `0.1346% / -0.0305%` test-2026-01..07. Every family misses the +1% PASS
   floor; no family approaches the stable -1% FAIL boundary. Primary alert
   cells also miss recall, cluster-count, and other actionability gates.
-- **Verdict:** **NULL.** The valid result is neither the all-period/all-family
-  PASS nor the stable adverse FAIL. Park exact D-033 flow compression without
-  another window, transform, threshold, or run. M1 stays `BLOCKED_ASOF`; no
-  later rung is authorized.
+- **Verdict:** **BLOCKED.** The consumed computation emitted conditional
+  `NULL`, but before the seal the lead printed two validation-period records
+  from the committed fixed-cluster artifact, including direction/count
+  metadata, while resolving the development boundary filter. That is
+  validation outcome inspection forbidden by Checkpoint B. No scores, model
+  effects, feature-outcome relationships, or gate results had been viewed, but
+  the firewall is absolute: `BLOCKED_RUN_INTEGRITY` overrides the predictive
+  disposition. The receipt remains consumed and no rerun is authorized. Return
+  to Chair; M1 stays `BLOCKED_ASOF` and no later rung is authorized.
 - **Limitations:** A PASS is a bounded operational replication, not a definitive
   predictive headline, and does not waive D-029's untouched confirmation. M1
   remains complete and `BLOCKED_ASOF`; EXP-005 cannot shrink or unblock it.
@@ -589,7 +594,10 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 - **Correction notes:** This is not M1-lite, partial M1, an EXP-004 rescue, M2,
   ignition, CVD, OFI, or a new feature menu. The flow construct remains inside
   the frozen future M1 definition while being tested here as a separate
-  literature-replication object.
+  literature-replication object. The initial status commit `87f3d27` banked the
+  conditional run output as NULL before the lead audit surfaced the pre-seal
+  cluster-metadata inspection. This explicit correction changes the experiment
+  verdict to BLOCKED; it does not alter or rerun the immutable evidence.
 
 ## Experiment template
 

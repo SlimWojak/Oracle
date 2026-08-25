@@ -106,11 +106,13 @@ class Exp005ContractTest(unittest.TestCase):
     def assert_config(self, path: tuple[str, ...], expected: str) -> None:
         self.assertEqual(_mapping_value(CONFIG, path), expected)
 
-    def test_closed_null_status_and_consumed_execution_are_sealed(self) -> None:
-        self.assert_config(("evaluation", "status"), "exp005_complete_null")
+    def test_closed_integrity_block_and_consumed_execution_are_sealed(self) -> None:
+        self.assert_config(
+            ("evaluation", "status"), "exp005_complete_blocked_run_integrity"
+        )
         self.assert_config(
             ("exp005", "status"),
-            "complete_null",
+            "complete_blocked_run_integrity",
         )
         self.assert_config(("exp005", "decision"), "D-037")
         self.assert_config(("exp005", "exact_d033_feature"), "true")
@@ -133,7 +135,7 @@ class Exp005ContractTest(unittest.TestCase):
             "validation/test scores, feature-outcome relationships, or model effects.",
             _one_line(BRIEF),
         )
-        self.assertIn("NULL (closed 2026-08-25", EXP005_LEDGER)
+        self.assertIn("BLOCKED (closed 2026-08-25", EXP005_LEDGER)
         self.assertIn("before label/effect inspection", _one_line(D037))
         for record in (D037, EXP005_LEDGER, GLIDE_PATH):
             with self.subTest(record=record[:40]):
@@ -141,7 +143,7 @@ class Exp005ContractTest(unittest.TestCase):
                 self.assertIn("CLEARED_CHECKPOINT_A", record)
                 self.assertIn("7fa0709", record)
                 self.assertIn("7ab09aa", record)
-                self.assertIn("NULL", record)
+                self.assertIn("BLOCKED_RUN_INTEGRITY", record)
 
     def test_exact_d033_flow_fields_windows_and_cutoff_are_sealed(self) -> None:
         expected = {
@@ -234,6 +236,11 @@ class Exp005ContractTest(unittest.TestCase):
             ("exp005", "pre_oos_implementation_sha"),
             "7fa0709011f451d0fc5ef95b5f4b5e7baf8152ed",
         )
+        self.assert_config(
+            ("exp005", "conditional_run_output"),
+            "conditional_null",
+        )
+        self.assert_config(("exp005", "verdict"), "blocked_run_integrity")
 
         for record in (BRIEF, D037, EXP005_LEDGER):
             normalized = _one_line(record)

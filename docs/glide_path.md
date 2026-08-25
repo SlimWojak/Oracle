@@ -34,10 +34,12 @@ as doctrine. The north star outlives any single v0 hypothesis.
   unversioned ~5,000→20,000-USDC historical notional change and no authoritative
   quote-at-T publication semantics. No eligibility census, score, or one-shot
   run exists.
-- D-037 / EXP-005 BANKED NULL — exact D-033 taker-flow compression against M0
+- D-037 / EXP-005 BANKED BLOCKED_RUN_INTEGRITY — exact D-033 taker-flow against M0
   on identical support. Checkpoint A `79851be` was `CLEARED_CHECKPOINT_A`
   pre-effect; the one-shot sealed at `7fa0709` and evidence banked at
-  `7ab09aa`. Parked without retry; no active work follows.
+  `7ab09aa`. The consumed computation emitted conditional NULL, but pre-seal
+  validation cluster metadata was inspected in breach of Checkpoint B. No
+  rerun; return to Chair.
 
 ## Active path (order locked)
 
@@ -131,7 +133,7 @@ D-019 provenance are banked. P4 was later separately commissioned and banked
 `BLOCKED_SOURCE`; stop for Chair review before any M1, M2+, replacement impact
 source, or other authorization.
 
-### Direct EXP-005 commission — **BANKED NULL; STOPPED**
+### Direct EXP-005 commission — **BANKED BLOCKED_RUN_INTEGRITY; STOPPED**
 
 D-037 permits one standalone literature-anchored replication of exact D-033
 `flow_compression_T` against seven-column `M0_COMMON` on identical support. It
@@ -146,8 +148,13 @@ receipt was consumed and the valid no-refit run banked at evidence commit
 `0.1785% / -0.0040%` validation, `0.2180% / 0.0309%` test-2025, and
 `0.1346% / -0.0305%` test-2026-01..07: all below the +1% PASS floor and far
 from the stable -1% FAIL rule. Primary alert gates also miss. The mechanical
-verdict is **NULL**. Park the construct; no alternate window, transform,
-threshold, rerun, M1 change, or M2+ authorization follows.
+run output is conditionally **NULL**. A subsequent lead audit found that two
+validation-period fixed-cluster records, including direction/count metadata,
+were printed before the seal while resolving the development filter. That
+violates the Checkpoint B outcome firewall even though no scores or model
+effects were viewed. The experiment verdict is therefore
+**BLOCKED_RUN_INTEGRITY**. The receipt remains consumed: no corrected rerun,
+alternate window, transform, threshold, M1 change, or M2+ authorization follows.
 
 ## Post-authorization only (not self-starting)
 
