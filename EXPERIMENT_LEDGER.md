@@ -376,8 +376,8 @@ corrections with an explicit correction note; verdicts are not silently rewritte
 
 ## EXP-004 — M0/M1 prospective baseline ladder
 
-- **Status:** PLANNED (D-032/D-033 contract frozen 2026-08-25; implementation
-  not authorized; unscored)
+- **Status:** IN PROGRESS (D-034 M0-only authorization; implementation frozen;
+  no validation/test effect inspected; M1 remains `BLOCKED_ASOF`)
 - **Frozen question:** On a causal hourly precondition risk set containing events
   and non-events, do price-only M0 and generic leverage/flow M1 improve OOS joint
   cumulative-incidence probabilities for the first `UP` / `DOWN` barrier cause?
@@ -411,10 +411,11 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   economic/event timestamp as proof of historical publication time.
 - **Method:** Corrected P5 unit in
   `docs/briefs/2026-08-25-p5-eval-unit.md`; exact feature/source/estimator contract
-  in `docs/briefs/2026-08-25-p6-implementation-freeze.md`. The future estimator
+  in `docs/briefs/2026-08-25-p6-implementation-freeze.md`. The M0 estimator
   is a deterministic ridge baseline-category multinomial logistic model with
   `NONE` reference, one joint `(p_up,p_down,p_none)` vector, development-only
-  standardization, and no hyperparameter search. No implementation exists here.
+  standardization, and no hyperparameter search. D-034 authorizes exactly one
+  exact-SHA M0 execution after the development-only firewall closes.
 - **Baselines:** M0 is exactly seven columns: 4h signed log return, 4h log range,
   causal 24h RV, and UTC hour/weekday sine/cosine controls. M1 adds exactly four:
   OI notional log level, 24h realized funding sum, same-venue perpetual premium,
@@ -439,13 +440,14 @@ corrections with an explicit correction note; verdicts are not silently rewritte
   therefore `BLOCKED_ASOF` before fitting. This is an input-availability status,
   not an EXP-004 model verdict. No surviving fuel measure; 2024 is thin (D-023);
   hourly sampling estimates the frozen sampled population, not continuous time.
-- **Artifacts:** D-032; D-033; both P5/P6 freeze briefs;
+- **Artifacts:** D-032; D-033; D-034; both P5/P6 freeze briefs;
   `reports/exp000/challenger_history.{json,md}` with D-019 provenance; source-only
   `reports/exp004/m1_availability.{json,md}` with D-019 provenance.
 - **Correction notes:** The original event-only stub was superseded before any fit
   or score. D-033 then froze exact M0/M1 sources, transforms, complete-case support,
   joint estimator, verdicts, and slices without reading labels or effects.
-  EXP-004 remains PLANNED and unscored; P6 remains unimplemented.
+  D-034 later authorized M0 alone. The pre-OOS implementation is frozen but no
+  validation/test effect has yet been inspected. M1 stays `BLOCKED_ASOF`.
 
 ## Experiment template
 

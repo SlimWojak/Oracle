@@ -39,7 +39,7 @@ sampling:
   event_clusters_define_risk_set: false
 
 evaluation:
-  status: contract_frozen_unimplemented
+  status: m0_implementation_frozen_unscored
   split_method: chronological_purged
   boundary_purge_seconds: 14400
   outcome_window_must_remain_in_period: true
@@ -71,10 +71,13 @@ evaluation:
     periods_and_label_families_must_all_pass: true
 
 exp004:
-  status: planned_unscored
-  implementation_authorized: false
+  status: m0_implementation_frozen_unscored
+  implementation_authorized: true
+  authorized_rung: m0_only
+  later_rungs_authorized: false
   contract: docs/briefs/2026-08-25-p6-implementation-freeze.md
   m0:
+    status: implementation_complete_unscored
     features:
       - trailing_4h_signed_log_return
       - trailing_4h_log_high_low_range

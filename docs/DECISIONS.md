@@ -474,6 +474,27 @@ No feature builder, risk-set implementation, estimator, fit, threshold, score,
 or validation/test effect was produced. EXP-004 remains PLANNED with blank
 Result/Verdict. P6 and P4 / EXP-003 remain unstarted.
 
+## D-034 — EXP-004 M0-only one-shot execution authorized
+
+**Accepted** (2026-08-25, Chair direct commission). This authorization is
+strictly the frozen M0 rung under D-032/D-033. It supersedes the historical P6
+stop line only for M0 and does not authorize M1, M2+, a partial M1, replacement
+sources, publication-lag invention, EXP-003/P4, or any feature or threshold
+change.
+
+The implementation must first pass focused and synthetic tests plus a
+development-only run that cannot construct or score a timestamp at or after
+2024-01-01. A clean immutable implementation commit is then the pre-OOS SHA.
+The OOS runner must reject any other or dirty checkout, consume one local
+one-shot receipt before constructing OOS outcomes, fit only the deterministic
+development estimator, apply its scaler/climatology/thresholds unchanged, and
+report validation, 2025, and 2026-01..07 separately for fixed and twin. The
+D-033 PASS/FAIL/NULL/BLOCKED rule is mechanical; no post-inspection retuning or
+slice rescue is permitted. M1 stays `BLOCKED_ASOF` and unimplemented.
+
+At this decision point no validation or test effect has been constructed or
+inspected. Result and verdict remain blank until the exact-SHA run is banked.
+
 ## Open decisions
 
 - Raw and derived data roots (host layout accepted in D-010; naming/manifest
