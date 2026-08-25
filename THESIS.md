@@ -138,4 +138,9 @@ used to train itself.
   already occurred?
 - Are upside squeezes and downside cascades structurally asymmetric?
 - Does any result survive multiple contiguous out-of-sample regimes?
+- If a fuel construct, and an impact construct where required, survive, and P5
+  plus M0–M1 are banked: is any remaining OOS first-passage lift still above a
+  contemporaneous vol-implied or M0/M1 probability after known-at-t friction, or
+  is “incoming sharp move” already in the price? Authorization sits after P6.
+  Hazard lift is not priced edge.
 
